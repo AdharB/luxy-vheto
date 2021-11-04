@@ -4,6 +4,19 @@
 {% include "attribute-cart-has-full-set" %}
 {% include "attribute-cart-has-gift" %}
 
+{%- assign pjax_cart_vheto_status = 0 -%}
 {% for item in cart.items %}
+
+  {%- if item.properties != empty -%}       
+    {%- for property in item.properties -%}
+      {%- if property.first contains '_vheto_status' -%}
+        {%- assign pjax_cart_vheto_status = property.last | times: 1 -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}        
+  {%- endif -%}
+
   {% include "cart-drawer-item" %}
 {% endfor %}
+
+<input type="hidden" id="pjax_cart_vheto_status" value="{{ pjax_cart_vheto_status }}">

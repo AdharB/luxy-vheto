@@ -1,4 +1,22 @@
 <form action="/cart" method="post" novalidate class="cart-drawer-checkout">
+
+  {%- assign cart_vheto_status = 0 -%}
+  {% for item in cart.items %}
+  	{% if cart_vheto_status == 1 %}
+  	  {% break %}
+  	{% endif %}
+    {%- if item.properties != empty -%}       
+      {%- for property in item.properties -%}
+        {%- if property.first contains '_vheto_status' -%}
+          {%- assign cart_vheto_status = property.last | times: 1 -%}
+          {%- break -%}
+        {%- endif -%}
+      {%- endfor -%}        
+    {%- endif -%}
+  {% endfor %}
+
+  <input type="hidden" name="attributes[vheto_status]" id="cart_vheto_status" value="{{ cart_vheto_status }}">
+  
   <div class="grid-bar grid-gutter--down-3">
     <div class="grid-item one-half">
       <button id="checkout-button" type="submit" class="cart-drawer-checkout-button" name="checkout" data-ga-event='{ "category": "Cart", "action": "checkout", "label": "Shopify" }'>
