@@ -1,0 +1,38 @@
+{% assign heading = settings.product_waitlist_form_heading | default: "Wait list" %}
+
+{% assign description = settings.product_waitlist_form_description | default: nil %}
+
+{% assign placeholder = settings.product_waitlist_form_placeholder | default: "Enter email address" %}
+
+{% assign call_to_action = settings.product_waitlist_form_call_to_action | default: "Submit" %}
+
+{% assign success = settings.product_waitlist_form_success %}
+
+{% if product_has_waitlist_id %}
+  <div id="product-waitlist-modal" class="hide">
+    <div class="product-waitlist-modal">
+      <form id="product-waitlist-form" action="//manage.kmail-lists.com/subscriptions/subscribe" data-ajax-submit="//manage.kmail-lists.com/ajax/subscriptions/subscribe" method="GET" autocomplete="off">
+        <label class="local--heading">
+          {{ heading }}
+        </label>
+
+        {% if description %}
+          <p class="local--description">
+            {{ description }}
+          </p>
+        {% endif %}
+
+        <input type="hidden" name="contact[accepts_marketing]" value="false" />
+        <input type="hidden" name="g" value="{{ product_waitlist_id }}" />
+
+        <input type="email" name="email" class="local--input" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ placeholder }}" autocorrect="off" autocapitalize="off" />
+
+        <input class="local--button" type="submit" name="commit" value="{{ call_to_action }}" />
+
+        <p class="success_message local--success hide">
+          {{ success }}
+        </p>
+      </form>
+    </div>
+  </div>
+{% endif %}

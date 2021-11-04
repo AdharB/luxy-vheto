@@ -1,0 +1,88 @@
+{% assign image = section.settings.image | default: nil %}
+
+{% assign mobile_image = section.settings.mobile_image | default: nil %}
+
+{% assign url = section.settings.url %}
+
+{% assign enabled = section.settings.enabled %}
+
+{% assign show_mobile = section.settings.show_mobile %}
+
+{% assign show_desktop = section.settings.show_desktop %}
+
+{% if enabled %}
+  {% if image and show_desktop %}
+    {% include "attribute-image-box-ratio" %}
+
+    {% assign image_url = image | img_url: "2200x" %}
+
+    <a href="{{ url }}" class="homepage-promo-image {% if mobile_image %}hide! large--show!{% endif %}" data-src="{{ image_url }}" style="padding-bottom: {{ image_box_ratio }};">
+    </a>
+  {% endif %}
+
+  {% if mobile_image and show_mobile %}
+    {% assign image = mobile_image %}
+
+    {% include "attribute-image-box-ratio" %}
+
+    {% assign image_url = image | img_url: "1000x" %}
+
+    <a href="{{ url }}" class="homepage-promo-image large--hide!" data-src="{{ image_url }}" style="padding-bottom: {{ image_box_ratio }};">
+    </a>
+  {% endif %}
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Promo",
+    "class": "homepage-promo-section",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enabled",
+        "label": "Enable",
+        "default": false
+      },
+      {
+        "type": "paragraph",
+        "content": "Show a promotional banner."
+      },
+      {
+        "type": "header",
+        "content": "Settings"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_mobile",
+        "label": "Show mobile",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_desktop",
+        "label": "Show desktop",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Mobile"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "mobile_image",
+        "label": "Mobile image"
+      },
+      {
+        "type": "url",
+        "id": "url",
+        "label": "Link"
+      }
+    ]
+  }
+{% endschema %}

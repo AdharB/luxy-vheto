@@ -1,0 +1,9 @@
+{% layout none %}
+
+{% include "attribute-cart-gift-minimum" %}
+{% include "attribute-cart-has-full-set" %}
+{% include "attribute-cart-has-gift" %}
+
+{% for item in cart.items %}
+  {% include "cart-drawer-item" %}
+{% endfor %}

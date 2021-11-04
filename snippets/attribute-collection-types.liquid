@@ -1,0 +1,13 @@
+{% assign collection_types = "" | split: "" %}
+
+{% for product in collection.products %}
+  {% include "attribute-product-type" %}
+
+  {% if collection_types contains product_type %}
+    {% continue %}
+  {% endif %}
+
+  {% assign type = product_type | split: "-<-@" %}
+
+  {% assign collection_types = collection_types | concat: type %}
+{% endfor %}

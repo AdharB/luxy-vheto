@@ -1,0 +1,58 @@
+{%- assign variant_image_urls = "" | split: "" -%}
+
+{%- for image in product.images offset: 3 -%}
+  {%- if image.height == image.width -%}
+    {%- continue -%}
+  {%- endif -%}
+
+  {%- assign variant_image_url = image | img_url: "800x" -%}
+  {%- assign variant_image_url = variant_image_url | split: "-<-@" -%}
+
+  {%- assign variant_image_urls = variant_image_urls | concat: variant_image_url -%}
+{%- endfor -%}
+
+
+{%- assign current_variant_index = 0 -%}
+
+{%- for variant in product.variants -%}
+  {%- if variant == current_variant -%}
+    {%- assign current_variant_index = forloop.index0 -%}
+    {%- break -%}
+  {%- endif -%}
+{%- endfor -%}
+
+<div class="product-gallery">
+  <div class="product-gallery-slider product-gallery-grid" data-flickity='{ "wrapAround": true, "prevNextButtons": false, "dragThreshold": 10, "pageDots": true, "cellAlign": "left", "lazyLoad": 2, "watchCSS": true }'>
+    {% for image in product.images offset: 2 limit: 2 %}
+      {%- if image.height == image.width -%}
+        {%- continue -%}
+      {%- endif -%}
+
+      {%- assign variant_image = false -%}
+
+      {%- if forloop.last -%}
+        {%- assign variant_image = true -%}
+      {%- endif -%}
+
+      {% assign image_url = image | img_url: "800x" %}
+
+      {%- if variant_image -%}
+        {%- assign image_url = variant_image_urls[current_variant_index] -%}
+      {%- endif -%}
+
+      <div class="product-gallery-slide product-gallery-grid-item">
+        <div class="product-gallery-image" {% if variant_image %}data-product-gift-card-variant-image{% endif %}>
+          {%- if variant_image -%}
+            <script type="application/json">
+              {
+                "image_urls": {{ variant_image_urls | json }}
+              }
+            </script>
+          {%- endif -%}
+
+          <img data-flickity-lazyload="{{ image_url }}" alt="" />
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>

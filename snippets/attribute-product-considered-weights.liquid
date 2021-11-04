@@ -1,0 +1,29 @@
+{% unless shop_weights %}
+  {% include "attribute-shop-weights" %}
+{% endunless %}
+
+{% assign product_considered_weights = "" | split: "" %}
+
+{% for tag in product.tags %}
+  {% assign weight = nil %}
+
+  {% if shop_weights contains tag %}
+    {% assign weight = tag %}
+  {% endif %}
+
+  {% if tag contains "considered " %}
+    {% assign weight = tag | split: "considered " | last %}
+  {% endif %}
+
+  {% if product_considered_weights contains weight %}
+    {% continue %}
+  {% endif %}
+
+  {% unless weight %}
+    {% continue %}
+  {% endunless %}
+
+  {% assign considered_weight = weight | split: "-<-@" %}
+
+  {% assign product_considered_weights = product_considered_weights | concat: considered_weight %}
+{% endfor %}

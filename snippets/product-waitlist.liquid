@@ -1,0 +1,9 @@
+{% assign call_to_action = settings.product_waitlist_call_to_action %}
+
+{% if product_has_waitlist_id %}
+  <div class="product-waitlist-button-container">
+    <a href="#product-waitlist-modal" class="js-modal">
+      {{ call_to_action }}
+    </a>
+  </div>
+{% endif %}

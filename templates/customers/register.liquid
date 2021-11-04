@@ -1,0 +1,46 @@
+{% assign title = settings.customer_register_title %}
+
+{% assign description = settings.customer_register_description | default: false %}
+
+{% assign call_to_action = settings.customer_register_call_to_action %}
+
+<div class="form-container">
+  {% form "create_customer" %}
+
+    <h1 class="customer-form-heading">
+      {{ title }}
+    </h1>
+
+    {% if description %}
+      <p>{{ description }}</p>
+    {% endif %}
+
+    {% if form.errors %}
+      <div class="text-links-primary text-primary">
+        {{ form.errors | default_errors }}
+      </div>
+    {% endif %}
+
+    <label for="first_name" class="label">First Name</label>
+    <input type="text" value="" class="input" name="customer[first_name]" id="first_name" placeholder="First Name" autocapitalize="words" autofocus />
+
+    <label for="last_name" class="label">Last Name</label>
+    <input type="text" value="" class="input" name="customer[last_name]" id="last_name" placeholder="Last Name" autocapitalize="words" />
+
+    <label for="email" class="label">Email</label>
+    <input type="email" value="" class="input" name="customer[email]" id="email" placeholder="Email" autocorrect="off" autocapitalize="off" required />
+
+    <label for="password" class="label">Password</label>
+    <input type="password" value="" class="input" name="customer[password]" id="create_password" placeholder="Password" required />
+
+    <div class="customer-form-button-container">
+      <button type="submit" class="button-primary">
+        {{ call_to_action }}
+      </button>
+    </div>
+
+    <p class="customer-form-links">
+      <a href="{{ shop.url }}">Return to Store</a>
+    </p>
+  {% endform %}
+</div>

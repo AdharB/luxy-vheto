@@ -1,0 +1,52 @@
+{% assign page = settings.support_banner_page %}
+{% assign page = pages[page] %}
+
+{% assign rte = page.content %}
+
+{% include "attribute-rte-fragments" %}
+{% include "attribute-rte-images" %}
+{% include "attribute-rte-headings" %}
+{% include "attribute-rte-paragraphs" %}
+
+{% include "filter-rte-img-url" input: rte_image_urls.first, size: "2000x" %}
+{% assign image_url = output %}
+
+{% assign image_alt = rte_image_alts[0] %}
+
+{% assign mobile_image_url = 'support-banner-mobile.jpg' | asset_url %}
+
+{% assign title = rte_headings.first %}
+
+{% assign description = rte_paragraphs[0] | append: rte_paragraphs[1] %}
+
+{% include "rte-fragment" with "background color" %}
+
+{% assign background_color = rte_content | strip_html %}
+
+<div class="support-banner hide large--show" style="background-color: {{ background_color }}; background-image:url({{ image_url }});">
+  <div class="support-banner-content">
+    <h2 class="support-banner-heading">
+      {{ title }}
+    </h2>
+
+    <div class="text-default-light text-links-secondary-dark">
+      {{ description }}
+    </div>
+  </div>
+</div>
+
+<div class="large--hide">
+  <div class="image-container">
+    <img src="{{ mobile_image_url }}" class="one-whole" alt="{{ image_alt }}" />
+  </div>
+
+  <div class="support-banner-mobile-content">
+    <h2 class="support-banner-heading">
+      {{ title }}
+    </h2>
+
+    <div class="support-banner-description">
+      {{ description }}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+{% assign title = page.title %}
+
+{% assign keyword = "newsletter" %}
+
+{% capture content_for_page_header %}
+  <h1 class="page-title">{{ title }}</h1>
+{% endcapture %}
+
+{% include "page-header" %}
+
+<div class="template-page-newsletter">
+  <div class="rte js-rte">
+    {% include "shortcodes" with page.content %}
+  </div>
+</div>
+
+<div id="blog-thumbnails" class="grid-uniform">
+  {% for article in blog.articles %}
+    {% if article.tag == 'Popular' %}
+      {% include "article-thumbnail" %}
+    {% endif %}
+  {% endfor %}
+</div>

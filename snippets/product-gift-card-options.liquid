@@ -1,0 +1,69 @@
+{%- for num in (1..product.options.size) -%}
+  {%- assign label = "Choose Amount" -%}
+
+  {%- if product.selected_variant -%}
+    {%- assign label = current_variant.price | money_with_currency | prepend: "Amount: " -%}
+  {%- endif -%}
+
+  {%- assign option_number = "option" | append: num -%}
+
+  {%- assign options = product.variants | map: option_number | uniq -%}
+
+  {%- assign variant_ids = product.variants | map: "id" -%}
+
+  <div class="product-gift-card-options" data-module-product-gift-card-options>
+    <a href="#" class="product-gift-card-options-button" data-local-button>
+      <span class="product-gift-card-options-text product-gift-card-options-label" data-local-label>
+        {{ label }}
+      </span>
+
+      <svg width="1em" height="1em" class="text-default">
+        <use xlink:href="#icon-controls" />
+      </svg>
+
+      <svg width="1em" height="1em" class="text-default">
+        <use xlink:href="#icon-arrow-down" />
+      </svg>
+    </a>
+
+    <div class="product-gift-card-options-dropdown hide" data-local-dropdown>
+      <div class="local--content">
+        {%- for option in options -%}
+          {%- assign id = variant_ids[forloop.index0] -%}
+
+          {%- assign index = forloop.index0 -%}
+
+          <a href="#" class="product-gift-card-options-text product-gift-card-options-link" data-local-link>
+            <script type="application/json">
+              {
+                "value": {{ option | json }},
+                "id": {{ id }},
+                "index": {{ index }}
+              }
+            </script>
+
+            {{ option }}
+          </a>
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <select name="{{ option_number }}" class="product-gift-card-options-select" data-local-select>
+      {%- for option in options -%}
+        {%- assign id = variant_ids[forloop.index0] -%}
+
+        {%- assign index = forloop.index0 -%}
+
+        {%- assign selected = false -%}
+
+        {%- if option == current_variant[option_number] -%}
+          {%- assign selected = true -%}
+        {%- endif -%}
+
+        <option value="{{ option }}|{{ id }}|{{ index }}" {% if selected %}selected{% endif %}>
+          {{ option }}
+        </option>
+      {%- endfor -%}
+    </select>
+  </div>
+{%- endfor -%}

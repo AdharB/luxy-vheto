@@ -1,0 +1,31 @@
+{% include "object-param-q" %}
+
+{% include "attribute-search-terms" %}
+
+{% include "support-header" %}
+
+{% capture title %}
+  Search results for <span class="font-secondary-bold">"{{ search_terms }}"</span>
+{% endcapture %}
+
+{% paginate search.results by 250 %}
+  <div class="template-search-support">
+    <div class="content-container">
+      <h1 class="template-search-support-heading">
+        {{ title }}
+      </h1>
+
+      <ul>
+        {% for article in search.results %}
+          {% unless article.author == "Luxy Support" %}
+            {% continue %}
+          {% endunless %}
+
+          {% include "support-thumbnail" %}
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+{% endpaginate %}
+
+{% include "support-banner" %}

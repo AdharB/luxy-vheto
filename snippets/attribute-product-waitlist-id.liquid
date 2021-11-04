@@ -1,0 +1,13 @@
+{% assign product_waitlist_id = nil %}
+
+{% assign product_has_waitlist_id = false %}
+
+{% assign product_on_waitlist = false %}
+
+{% for tag in product.tags %}
+  {% if tag contains "waitlist: " %}
+    {% assign product_waitlist_id = tag | split: "waitlist: " | last | strip %}
+    {% assign product_has_waitlist_id = true %}
+    {% assign product_on_waitlist = true %}
+  {% endif %}
+{% endfor %}

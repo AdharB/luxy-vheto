@@ -1,0 +1,68 @@
+{% assign title = settings.support_categories_title %}
+
+{% assign description = settings.support_categories_description | default: false %}
+
+<div class="box-default-lightest">
+  <div class="support-categories">
+    <div class="support-categories-header">
+      <h2 class="local--heading">
+        {{ title }}
+      </h2>
+
+      {% if description %}
+        <div class="page-header-rte box-trim">
+          <p>
+            {{ description }}
+          </p>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="grid-uniform grid-gutter--up-4 xlarge--grid-gutter--up-5">
+      {% for category in blog_categories %}
+        {% unless blog.all_tags contains category.title %}
+          {% continue %}
+        {% endunless %}
+
+        {% assign href = blog.url | append: "/tagged/" | append: category.handle %}
+
+        <div class="grid-item large--one-half xlarge--one-third">
+          <div class="support-categories-content">
+            <h3 class="local--heading">
+              <a href="{{ href }}">{{ category.title }}</a>
+            </h3>
+
+            <ul>
+              {% assign count = 0 %}
+              {% assign limit = 5 %}
+
+              {% paginate blogs[blog.handle].articles by 250 %}
+                {% for article in blogs[blog.handle].articles %}
+                  {% unless article.tags contains category.title %}
+                    {% continue %}
+                  {% endunless %}
+
+                  <li class="local--list-item">
+                    <a href="{{ article.url }}" class="local--link">
+                      {{ article.title }}
+                    </a>
+                  </li>
+
+                  {% assign count = count | plus: 1 %}
+
+                  {% if count == limit %}
+                    {% break %}
+                  {% endif %}
+                {% endfor %}
+              {% endpaginate %}
+            </ul>
+
+            <a href="{{ href }}" class="local--button">
+              more
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

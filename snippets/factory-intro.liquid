@@ -1,0 +1,28 @@
+{% assign title = settings.factory_intro_title %}
+
+{% assign description = settings.factory_intro_description %}
+
+<div class="factory-intro-header">
+  <h2 class="local--heading">
+    {{ title }}
+  </h2>
+
+  <p class="local--description">
+    {{ description }}
+  </p>
+</div>
+
+<div class="factory-intro-content">
+  <div class="grid grid-gutter--none">
+    {% for num in (1..2) %}
+      {% assign image_url = "factory_intro_" | append: num | append: "_image" %}
+      {% assign image_url = settings[image_url] | img_url: "800x" %}
+
+      <div class="grid-item large--one-half">
+        <div class="image-container">
+          <img data-src="{{ image_url }}" />
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>

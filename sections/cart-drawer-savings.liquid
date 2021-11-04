@@ -1,0 +1,46 @@
+{%- include "attribute-cart-total-savings" -%}
+
+{% assign heading = section.settings.heading %}
+
+{% assign enabled = section.settings.enabled %}
+
+{% unless cart_total_savings > 0 %}
+  {% assign enabled = false %}
+{% endunless %}
+
+<div class="clearfix cart-drawer-savings {% unless enabled %}hide{% endunless %}" data-module-cart-drawer-savings>
+  <div class="float-left">
+    <span class="font-secondary text-primary">
+      {{ heading }}
+    </span>
+  </div>
+  <div class="float-right">
+    <span class="font-secondary text-wide text-primary nowrap" data-local-price>
+      {% include "filter-money" with cart_total_savings %}
+    </span>
+  </div>
+</div>
+
+{%- schema -%}
+  {
+    "name": "Cart savings",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enabled",
+        "label": "Enable",
+        "default": true
+      },
+      {
+        "type": "paragraph",
+        "content": "Show total savings for products in the cart on sale or discounted. Will not show if no savings."
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "You save"
+      }
+    ]
+  }
+{%- endschema -%}

@@ -1,0 +1,11 @@
+{% unless collection_lengths == empty %}
+  {% include "collection-landing-filter-length" %}
+{% endunless %}
+
+{% unless collection_color_groups == empty %}
+  {% include "collection-landing-filter-color" %}
+{% endunless %}
+
+{% unless collection_types == empty %}
+  {% include "collection-landing-filter-type" %}
+{% endunless %}

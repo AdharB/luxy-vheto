@@ -1,0 +1,29 @@
+<title>{{ page_title }}</title>
+
+{% if settings.title_attention_message and settings.title_attention_blog %}
+  <script type="text/javascript">
+    window.onload = function () {
+      var pageTitle = document.title;
+      var attentionMsg = {{ settings.title_attention_message | json }};
+      var attentionBlog = {{ settings.title_attention_blog | json }};
+      var timer = "";
+      var isBlurred = false;
+
+      $(window).on("blur", function () {
+        isBlurred = true;
+
+        timer = window.setInterval(function () {
+          if (window.location.href.indexOf("hair-blog") != -1) {
+            document.title = document.title == pageTitle ? attentionBlog : pageTitle;
+          } else {
+            document.title = document.title == pageTitle ? attentionMsg : pageTitle;
+          }
+        }, 2000);
+      }).on("focus", function () {
+        isBlurred = false;
+        document.title = pageTitle;
+        clearInterval(timer);
+      });
+    };
+  </script>
+{% endif %}

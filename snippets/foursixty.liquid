@@ -1,0 +1,50 @@
+{%- assign foursixty_feed_id = foursixty_feed_id | default: settings.instagram_foursixty_feed_id -%}
+
+{%- capture foursixty -%}
+  <script src="//foursixty.com/media/scripts/fs.embed.v2.js" data-feed-id="{{ foursixty_feed_id }}"
+          data-should-check-shopify-products="false"></script>
+
+  <style>
+    .fs-wrapper {
+      margin-top: 4px;
+    }
+  </style>
+{%- endcapture -%}
+
+
+{%- capture foursixty_product -%}
+  {%- include "attribute-product-color" -%}
+
+  <script src="//foursixty.com/media/scripts/fs.slider.v2.5.js"
+          data-for-url="true"
+          {% if product_color %}
+          data-re-ignore=".*"
+          data-url-related="true"
+          data-re-replacement="{{ product_color | downcase | replace: " ", "-" }}"
+          data-link-url-exclude="{% if product.handle contains "-highlights" %}{% else %}-highlights{% endif %}{% if product.handle contains "-balayage" %}{% else %}{% if product.handle contains "-highlights" %}{% else %},{% endif %}-balayage{% endif %}"
+          {% endif %}
+          data-should-check-shopify-products="false"
+          data-cell-size="16.666%" data-feed-id="{{ foursixty_feed_id }}"></script>
+{%- endcapture -%}
+
+<style>
+  .fs-has-links i { display: none !important }
+  .fs-has-links::after { padding: 15px 20px !important }
+</style>
+
+{%- capture foursixty_default -%}
+  <script src="//foursixty.com/media/scripts/fs.slider.v2.js"
+          data-should-check-shopify-products="false"
+          data-cell-size="16.666%" data-feed-id="{{ foursixty_feed_id }}"
+          data-category-filter="Homepage">
+  </script>
+{%- endcapture -%}
+
+
+{%- if template contains "foursixty" -%}
+  {{ foursixty }}
+{%- elsif template.name == "product" -%}
+  {{ foursixty_product }}
+{%- else -%}
+  {{ foursixty_default }}
+{%- endif -%}

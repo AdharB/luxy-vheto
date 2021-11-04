@@ -1,0 +1,182 @@
+{% include "object-param-view" %}
+
+{% include "collections-mobile-menu" %}
+{% include "collections-menu" %}
+{% include "collections-compare" %}
+
+{% assign url_tracking_parameter = "CollectionsList" %}
+
+<div data-module-collections-products>
+  {% for block in section.blocks %}
+    {% assign keywords = block.settings.keywords | strip | split: ", " %}
+
+    {% if param_view %}
+      {% unless keywords contains param_view %}
+        {% continue %}
+      {% endunless %}
+    {% else %}
+      {% unless keywords contains "all" %}
+        {% continue %}
+      {% endunless %}
+    {% endif %}
+
+    {% assign collection_handle = block.settings.collection %}
+
+    {% assign collection = collections[collection_handle] %}
+
+    {% include "attribute-collection-lengths" %}
+
+    {% assign image = block.settings.image | default: collection.image | default: nil %}
+
+    {% assign image_url = image | img_url: "800x" %}
+
+    {% include "attribute-image-box-ratio" %}
+
+    {% assign heading = block.settings.title %}
+
+    {% assign description = block.settings.description %}
+
+    {% assign button_call_to_action = block.settings.call_to_action %}
+
+    {% assign button_url = collection.url | append: "?from=" | append: url_tracking_parameter %}
+
+    {% assign button_border_color = block.settings.button_border_color %}
+
+    {% assign button_background_color = block.settings.button_background_color %}
+
+    {% assign button_text_color = block.settings.button_text_color %}
+
+    {% assign url = button_url %}
+
+    <div id="{{ collection_handle }}" class="collections-products-collection-container" data-local-section>
+      <span class="collections-products-mobile-heading large--hide!">
+        {{ heading }}
+      </span>
+
+      <div class="grid-bar grid-gutter--0">
+        <div class="grid-item large--one-half position-relative">
+          <a href="{{ url }}" class="collections-products-image-container" style="padding-bottom: {{ image_box_ratio }}; background-image: url({{ image_url }});">
+
+          </a>
+        </div>
+
+        <div class="grid-item large--one-half">
+          <div class="collections-products-content">
+            <h1 class="section-heading medium-down--hide">
+              {{ heading }}
+            </h1>
+
+            <p class="collections-description">
+              {{ description }}
+            </p>
+
+            <div class="local--button-container">
+              {% if param_view %}
+                {% for collection_length in collection_lengths %}
+                  <a href="/collections/{{ collection_handle }}/{{ collection_length }}?from={{ url_tracking_parameter }}" class="button-primary">
+                    View {{ collection_length | replace: '"', " inch" }} {{ param_view }}
+                  </a>
+                {% endfor %}
+              {% else %}
+                {% include "component-button" %}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+{% schema %}
+  {
+    "name": "Products",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Add collections and products below."
+      },
+      {
+        "type": "header",
+        "content": "Compare"
+      },
+      {
+        "type": "text",
+        "id": "compare_description",
+        "label": "Description"
+      },
+      {
+        "type": "text",
+        "id": "compare_call_to_action",
+        "label": "Call to action"
+      },
+      {
+        "type": "image_picker",
+        "id": "compare_image",
+        "label": "Image"
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Collection",
+        "type": "collection",
+        "settings": [
+          {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection"
+          },
+          {
+            "type": "text",
+            "id": "keywords",
+            "label": "Keywords",
+            "info": "List of keywords separated by a comma used for creating more specific landing pages. Example: add \"balayage\" to show collection for \"/collections?view=balayage\". Add \"all\" to any collection that should show for the default \"/collections\" page."
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading"
+          },
+          {
+            "type": "textarea",
+            "id": "description",
+            "label": "Description"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image",
+            "info": "Leave blank to pull collection image."
+          },
+          {
+            "type": "header",
+            "content": "Button"
+          },
+          {
+            "type": "text",
+            "id": "call_to_action",
+            "label": "Call to action"
+          },
+          {
+            "type": "color",
+            "id": "button_background_color",
+            "label": "Background",
+            "default": "#000000"
+          },
+          {
+            "type": "color",
+            "id": "button_border_color",
+            "label": "Border",
+            "default": "#000000"
+          },
+          {
+            "type": "color",
+            "id": "button_text_color",
+            "label": "Text",
+            "default": "#FFFFFF"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

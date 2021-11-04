@@ -1,0 +1,13 @@
+{% assign image_url = settings.factory_header_image | img_url: "1800x" %}
+
+{% assign heading = settings.factory_header_title %}
+
+<div class="factory-header">
+  <div class="factory-header-content">
+    <h1 class="local--heading">
+      {{ heading }}
+    </h1>
+  </div>
+
+  <img data-src="{{ image_url }}" />
+</div>

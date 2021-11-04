@@ -1,0 +1,100 @@
+{%- include "attribute-shop-facebook-app-id" -%}
+
+{%- assign article_secure_url = shop.secure_url | append: article.url -%}
+
+{%- unless section.blocks == empty -%}
+  <div class="article-social-icons-container" data-module-social-icons>
+    <ul class="article-social-icons-list">
+      {%- for block in section.blocks -%}
+        {%- assign type = block.settings.type | downcase -%}
+
+        {%- assign url = block.settings.url -%}
+
+        {%- if type == "facebook" -%}
+          {%- assign url = "https://www.facebook.com/dialog/share?app_id={{ FACEBOOK_APP_ID }}&display=page&href={{ ARTICLE_URL }}" -%}
+          {%- assign url = url | replace: "{{ FACEBOOK_APP_ID }}", shop_facebook_app_id -%}
+          {%- assign url = url | replace: "{{ ARTICLE_URL }}", article_secure_url -%}
+        {%- endif -%}
+
+        {%- if type == "twitter" -%}
+          {%- capture url %}https://twitter.com/intent/tweet?text={{ article.title | append: ' @luxyhair' | url_encode }}{%- endcapture -%}
+        {%- endif -%}
+
+        {%- if type == "link" -%}
+          {%- assign url = article_secure_url -%}
+        {%- endif -%}
+
+        <li>
+          <a href="{{ url }}" class="block" target="_blank" data-local-{{ type }}>
+            <svg width="38" height="38">
+              <use xlink:href="#social-{{ type }}-round" />
+            </svg>
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+{%- endunless -%}
+
+{% schema %}
+  {
+    "name": "Social icons",
+    "settings": [
+
+    ],
+    "blocks": [
+      {
+        "type": "icon",
+        "name": "Icon",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Name"
+          },
+          {
+            "type": "select",
+            "id": "type",
+            "label": "Type",
+            "options": [
+               {
+                 "value": "Facebook",
+                 "label": "Facebook"
+               },
+               {
+                 "value": "Pinterest",
+                 "label": "Pinterest"
+               },
+               {
+                 "value": "Email",
+                 "label": "Email"
+               },
+               {
+                 "value": "TikTok",
+                 "label": "TikTok"
+               },
+               {
+                 "value": "Instagram",
+                 "label": "Instagram"
+               },
+               {
+                 "value": "TWitter",
+                 "label": "Twitter"
+               },
+               {
+                 "value": "Link",
+                 "label": "Link"
+               }
+             ],
+             "default": "Facebook"
+          },
+          {
+            "type": "url",
+            "id": "url",
+            "label": "Link"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

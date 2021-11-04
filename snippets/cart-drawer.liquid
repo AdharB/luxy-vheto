@@ -1,0 +1,15 @@
+{% assign current_product = product %}
+
+{% include "attribute-cart-empty" %}
+{% include "attribute-cart-gift-minimum" %}
+{% include "attribute-cart-invalid" %}
+{% include "attribute-cart-has-full-set" %}
+{% include "attribute-cart-has-gift" %}
+
+<div class="cart-drawer-container" data-module-cart-drawer>
+  <div class="cart-drawer" data-local-drawer>
+    {%- include "cart-drawer-content" -%}
+  </div>
+</div>
+
+{%- assign product = current_product -%}

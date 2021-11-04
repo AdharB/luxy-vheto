@@ -1,0 +1,107 @@
+{%- assign product_template_is_fragment = false -%}
+
+{%- if template.suffix == "pjax" -%}
+  {%- assign product_template_is_fragment = true -%}
+{%- endif -%}
+
+{% if product_collection %}
+  <div class="product-accordion position--last" data-module-product-accordion>
+    <div class="product-accordion-header {% if product_template_is_fragment %}state--showing{% endif %}" data-local-header>
+      <span class="local--heading">
+        Select Your Color
+      </span>
+
+      <svg class="local--icon" width="1em" height="1em">
+        <use xlink:href="#icon-arrow-down" />
+      </svg>
+    </div>
+
+    <div class="product-accordion-content" {% if product_template_is_fragment %}style="display: block;"{% endif %}>
+      {% include "product-option-color-filter" %}
+
+      <ul class="product-option-color-list">
+        {% for product in product_collection.products %}
+          {% include "attribute-product-weight" %}
+          {% include "attribute-product-length" %}
+          {% include "attribute-product-title" %}
+          {% include "attribute-product-color" %}
+          {% include "attribute-product-color-groups" %}
+
+          {% unless product_is_sample %}
+            {% unless product_considered_weights contains product_weight %}
+              {% continue %}
+            {% endunless %}
+          {% endunless %}
+
+          {% assign selected = false %}
+
+          {% if product.handle == current_product.handle %}
+            {% assign selected = true %}
+          {% endif %}
+
+
+          {% assign disabled = false %}
+
+          {% unless product_is_sample %}
+            {% unless product.tags contains current_product_length %}
+              {% assign disabled = true %}
+            {% endunless %}
+          {% endunless %}
+
+
+          {% assign hidden = true %}
+
+          {% for product_color_group_handle in product_color_group_handles %}
+            {% if current_color_group == product_color_group_handle %}
+              {% assign hidden = false %}
+            {% endif %}
+          {% endfor %}
+
+          {% if current_color_group == "all" %}
+            {% assign hidden = false %}
+          {% endif %}
+
+
+          {% assign url = product.url | within: collection %}
+
+          {% assign image_url = product.featured_image | img_url: "100x" %}
+
+          {% assign fragment_url = product.url | within: collection | append: "?view=pjax" %}
+
+          <li class="product-option-color-list-item {% if disabled %}state--disabled{% endif %} {% if hidden %}state--hidden{% endif %}" data-module-product-option-color>
+            <script type="application/json">
+              {
+                "color_groups": [{% for product_color_group in product_color_group_handles %}"{{ product_color_group }}"{% unless forloop.last %},{% endunless %}{% endfor %}]
+              }
+            </script>
+
+            <a href="{{ url }}" class="product-option-color-link {% if selected %}state--active{% endif %}" data-module-product-option title="{{ product_color }}">
+              <script type="application/json">
+                {
+                  "id": {{ product.id | json }},
+                  "title": {{ product.title | json }},
+                  "type": "color",
+                  "value": {{ product_color | json }},
+                  "length": {{ product_length | json }},
+                  "color_groups": ["all", {% for product_color_group in product_color_group_handles %}"{{ product_color_group }}"{% unless forloop.last %},{% endunless %}{% endfor %}],
+                  "pjax_urls_by_color_group": {
+                    "all": {{ fragment_url | json }},
+                    {%- for product_color_group_handle in product_color_group_handles -%}
+                      "{{ product_color_group_handle }}": {{ fragment_url | append: "&type=" | append: product_color_group_handle | json }}{% unless forloop.last %},{% endunless %}
+                    {%- endfor -%}
+                  }
+                }
+              </script>
+
+              <img class="one-whole" src="{{ image_url }}" />
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+
+      <div class="product-option-footer">
+        {%- include "product-virtual" -%}
+      </div>
+    </div>
+  </div>
+{% endif %}

@@ -1,0 +1,28 @@
+<div class="luxy-hair {% if customer %}swell-logged-in{% endif %}">
+  {% if customer %}
+    {% include 'swell-banner-section' %}
+
+    <div class="swell-logged-in-section">
+      <div class="swell-container">
+        <p class="swell-text">
+          Hi, <span class="swell-first-name">{{customer.first_name}}</span>!
+        </p>
+        <p class="swell-text">
+          You have <span class="swell-point-balance">X</span> Points.
+        </p>
+      </div>
+    </div>
+
+    {% include 'swell-vip-tier-section' %}
+    {% include 'swell-redeem_discount-section' %}
+    {% include 'swell-reward-raf-section' %}
+    {% include 'swell-campaign-section' %}
+  {% else %}
+    {% include 'swell-banner-section' %}
+    {% include 'swell-hiw-section' %}
+    {% include 'swell-campaign-section' %}
+    {% include 'swell-reward-raf-section' %}
+    {% include 'swell-vip-tier-section' %}
+    {% include 'swell-redeem_discount-section' %}
+  {% endif %}
+</div>

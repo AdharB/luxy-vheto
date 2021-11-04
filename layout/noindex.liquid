@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+
+    {{ content_for_header }}
+
+    {{ "//fast.fonts.net/cssapi/dae26521-047a-40e8-8683-f0d2a88f897a.css" | stylesheet_tag }}
+    {{ "theme.min.css" | asset_url | stylesheet_tag }}
+
+    {% include "hide-promotion-bar" %}
+</head>
+  <body>
+    {{ content_for_layout }}
+  </body>
+</html>

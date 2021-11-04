@@ -1,0 +1,19 @@
+{% assign title = settings.product_instagram_title | default: nil %}
+
+{% assign foursixty_feed_id = settings.product_instagram_foursixty_feed_id | default: nil %}
+
+{% if foursixty_feed_id %}
+  <div class="box-default-lightest">
+    <div class="product-instagram">
+      {% if title %}
+        <div class="product-instagram-content">
+          <span class="local--heading">
+            {{ title }}
+          </span>
+        </div>
+      {% endif %}
+
+      {% include "foursixty" %}
+    </div>
+  </div>
+{% endif %}

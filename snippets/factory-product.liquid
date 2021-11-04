@@ -1,0 +1,26 @@
+{% assign title = settings.factory_product_title %}
+
+{% assign description = settings.factory_product_description %}
+
+<div class="factory-product-header">
+  <h2 class="local--heading">
+    {{ title }}
+  </h2>
+
+  <p class="local--description">
+    {{ description }}
+  </p>
+</div>
+
+<div class="factory-product-content">
+  <div class="grid grid-gutter--up-5 xlarge--grid-gutter--up-7">
+    <div class="grid-item large--one-half">
+      <div class="local--column-1">
+        {% include "factory-prices" %}
+      </div>
+    </div>
+    <div class="grid-item large--one-half">
+      {% include "factory-packaging" %}
+    </div>
+  </div>
+</div>

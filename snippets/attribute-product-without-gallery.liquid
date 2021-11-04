@@ -1,0 +1,5 @@
+{%- assign product_without_gallery = false -%}
+
+{%- if product.images.size < 4 -%}
+  {%- assign product_without_gallery = true -%}
+{%- endif -%}

@@ -1,0 +1,30 @@
+{% assign blog = blogs.faq %}
+
+{% assign category = false %}
+
+{% for attribute in attribute_titles %}
+  {% if attribute == "category" %}
+    {% assign category = attribute_values[forloop.index0] %}
+  {% endif %}
+{% endfor %}
+
+<ol>
+  {% for article in blog.articles reversed %}
+    {% if article.tags contains category %}
+      <li>
+        <a href="#{{ article.title | handle }}" data-scroll='{ "offset": "#sticky-menu" }'>{{ article.title }}</a>
+      </li>
+    {% endif %}
+  {% endfor %}
+</ol>
+
+{% assign count = 1 %}
+
+{% for article in blog.articles reversed %}
+  {% if article.tags contains category %}
+    <h3 id="{{ article.title | handle }}">{{ count }}. {{ article.title }}</h3>
+    <p>{{ article.content }}</p>
+
+    {% assign count = count | plus: 1 %}
+  {% endif %}
+{% endfor %}

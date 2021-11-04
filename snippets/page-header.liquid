@@ -1,0 +1,21 @@
+{% unless content_for_page_header %}
+  {% assign title = page.title %}
+
+  {% assign description = page.content | strip_html %}
+
+  {% capture content_for_page_header %}
+    <h1 class="page-header-heading">
+      {{ title }}
+    </h1>
+
+    <p class="page-header-description">
+      {{ description }}
+    </p>
+  {% endcapture %}
+{% endunless %}
+
+<div class="page-header">
+  <div class="{% if keyword %}{{ keyword }}-header-content{% endif %} large--one-half xlarge--two-fifths box-center">
+    {{ content_for_page_header }}
+  </div>
+</div>

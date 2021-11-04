@@ -1,0 +1,36 @@
+{% assign video_url = settings.support_video_url | default: false %}
+
+{% assign heading = settings.support_video_title %}
+
+{% assign kicker = settings.support_video_subtitle %}
+
+{% assign image = settings.support_video_image | default: false %}
+
+{% assign image_url = settings.support_video_image | img_url: "600x" %}
+
+{% if image and video_url %}
+  <div class="support-video">
+    <ul class="support-video-list">
+      <li class="support-video-item">
+        <a href="{{ video_url }}" class="image-container position-relative js-modal-video" data-ga-event='{ "category": "Video", "action": "play", "label": "Select right shade" }'>
+          <svg class="position-center" width="36px" height="36px">
+            <use xlink:href="#icon-play-circle" />
+          </svg>
+          <img src="{{ image_url }}" width="120" alt="{{ title }}" />
+        </a>
+      </li>
+
+      <li>
+        <div class="support-video-content">
+          <span class="local--kicker">
+            {{ kicker }}
+          </span>
+
+          <h3 class="local--heading">
+            {{ heading }}
+          </h3>
+        </div>
+      </li>
+    </ul>
+  </div>
+{% endif %}

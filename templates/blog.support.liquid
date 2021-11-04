@@ -1,0 +1,16 @@
+{% assign current_blog = blog %}
+
+{% include "attribute-blog-categories" %}
+{% include "attribute-blog-current-category" %}
+
+{% if blog_current_category %}
+  {% include "support-breadcrumb" %}
+  {% include "support-category" %}
+{% else %}
+  {% include "support-header" %}
+  {% include "support-featured" %}
+  {% include "support-video" %}
+{% endif %}
+
+{% include "support-categories" %}
+{% include "support-banner" %}

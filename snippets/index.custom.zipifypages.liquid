@@ -1,0 +1,126 @@
+<!doctype html>
+
+<html>
+  {%- include "object-canonical" -%}
+  {%- include "object-template-base" -%}
+  {%- include "attribute-customer-sample-limit" -%}
+  {%- include "attribute-theme-landing-page" -%}
+
+  <head>
+    {% include "vendor-instant-search" %}
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="theme-color" content="{{ settings.color_primary }}" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="google-site-verification" content="IAJn9A53y-exuoOKl2DEX7a9siqyVl37mIx69HS9RJ4" />
+    <meta name="msvalidate.01" content="6ADA05DEC2CD2D1939F8D1B0D87FC15C" />
+    <meta name="description" content="{{ page_description | escape }}" />
+
+    <link rel="icon" href="{{ 'favicon.ico' | asset_url }}" />
+
+    {% include "title" %}
+    {% include "meta-open-graph" %}
+    {% include "meta-twitter-card" %}
+
+    <link rel="canonical" href="{{ canonical }}" />
+
+    {% include "css-async" with "//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" %}
+
+    {{ "//fast.fonts.net/cssapi/dae26521-047a-40e8-8683-f0d2a88f897a.css" | stylesheet_tag }}
+    {{ "theme.min.css" | asset_url | stylesheet_tag }}
+
+    {% if template == "blog.support" or template == "search.support" %}
+      {{ "//cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.1/awesomplete.min.css" | stylesheet_tag }}
+      {{ "//cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.1/awesomplete.min.js" | script_tag }}
+    {% endif %}
+
+    {% if template contains "index" %}
+      <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all" />
+    {% endif %}
+
+    {% include "hide-admin-bar" %}
+    {% include "hide-live-chat" %}
+    {% include "hide-countdown" %}
+
+    {% comment %}{{ content_for_header }}{% endcomment %}{% include 'header-scripts.zipifypages' %}
+
+    {% include "customer-json" %}
+    {% include "template-json" %}
+
+    {% include "bold-common" %}
+    {% include "SEOMetaManager" %}
+    {% include "yotpo" %}
+    {% include "vendor-vwo" %}
+    {% include "pinterest-base" %}
+    {% include "vendor-loyaltylion" %}
+    {% include "vendor-onesignal" %}
+    {% include "shogun-head" %}
+    {% include "vendor-snapchat" %}
+    {% include "weglot_hreftags" %}
+    {% include "weglot_switcher" %}
+
+    {% if template contains 'customers' %}
+      {{ "shopify_common.js" | shopify_asset_url | script_tag }}
+      {{ "customer_area.js"  | shopify_asset_url | script_tag }}
+    {% endif %}
+    
+    {% include 'minmaxify-head' %}
+</head>
+  <body class="template-{{ template | handle }}">
+    {% include "google-tag-manager" %}
+    {% include "facebook-sdk" %}
+    {% include "splash-screen" %}
+    {% include "svg" %}
+
+    <div class="overflow-hidden">
+      {% unless theme_landing_page %}
+        {% include "notification-bar" %}
+        {% include "sticky-menu" %}
+      {% endunless %}
+
+      {% include "header" %}
+
+      <main role="main">
+        {% comment %}{{ content_for_layout }}{% endcomment %}{% include 'page-content.zipifypages' %}
+      </main>
+
+      {% unless theme_landing_page %}
+        {% include "footer" %}
+      {% endunless %}
+    </div>
+
+    {% include "mobile-menu-modal" %}
+    {% include "fancybox-close-button" %}
+
+    {% if template_base == "product" %}
+      {% include "product-details-modal" %}
+      {% include "product-shipping-modal" %}
+    {% endif %}
+
+    {% include "klaviyo" %}
+
+    {{ "//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" | script_tag }}
+    {{ "/services/javascripts/currencies.js" | script_tag }}
+    {{ "jquery.currencies.min.js" | asset_url | script_tag }}
+    {{ 'theme.min.js' | asset_url | script_tag }}
+
+    {% include "newsletter-popup" %}
+
+    {% include "google-remarketing" %}
+    {% include "google-events" %}
+    {% include "pinterest-events" %}
+    {% include "bing" %}
+    {% include "upgrade-browser-notice" %}
+    {% include "affiliate-window" %}
+    {% include "bk-tracking" %}
+
+    <!-- spurit_sct-added -->
+    {% include "spurit_sct-theme-snippet" %}
+    <!-- /spurit_sct-added -->
+
+    {% include "back-in-stock-helper" %}
+    {% include "vendor-hivewyre" %}
+    {% include "vendor-gorgias" %}
+  {% include 'page-footer.zipifypages' %}</body>
+</html>

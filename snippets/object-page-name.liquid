@@ -1,0 +1,18 @@
+{% capture page_name %}
+  {% case template.name %}
+    {% when "index" %}
+      Homepage
+    {% when "list-collections" %}
+      Shop Collections
+    {% when "collection" %}
+      {{ collection.title }}
+    {% when "product" %}
+      {{ product.title }}
+    {% when "page" %}
+      {{ page.title }}
+    {% when "cart" %}
+      Cart
+  {% endcase %}
+{% endcapture %}
+
+{% assign page_name = page_name | strip_newlines | strip %}

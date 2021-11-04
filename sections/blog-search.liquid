@@ -1,0 +1,35 @@
+{% assign placeholder = section.settings.placeholder %}
+
+{% assign centered = false %}
+
+{% if current_tags or template == "blog.all" or template == "search.blog" %}
+  {% assign centered = true %}
+{% endif %}
+
+<div class="blog-search {% if centered %}text-center{% else %}text-right{% endif %}">
+  <form action="/search" class="blog-search-form" data-module-blog-search>
+    <input type="hidden" name="type" value="article" />
+    <input type="hidden" name="view" value="blog" />
+
+    <input type="text" name="q" class="blog-search-input local--input" placeholder="{{ placeholder }}" required autocomplete="off" />
+
+    <button type="submit" class="blog-search-button">
+      <svg width="1em" height="1em">
+        <use xlink:href="#icon-search" />
+      </svg>
+    </button>
+  </form>
+</div>
+
+{% schema %}
+  {
+    "name": "Search",
+    "settings": [
+      {
+        "type": "text",
+        "id": "placeholder",
+        "label": "Placeholder"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,2 @@
+{%- assign shop_color_groups = settings.shop_color_groups | newline_to_br | split: "<br />" -%}
+{%- assign shop_color_groups = shop_color_groups | join: " " | replace: "  ", " " | strip | split: " " -%}

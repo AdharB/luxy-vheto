@@ -1,0 +1,11 @@
+{% include "social-proof-header" %}
+
+<div class="social-proof">
+  <div class="grid">
+    {% paginate blog.articles by 1000 %}
+      {% for article in blog.articles %}
+        {% include "social-proof-thumbnail" %}
+      {% endfor %}
+    {% endpaginate %}
+  </div>
+</div>

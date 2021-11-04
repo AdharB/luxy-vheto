@@ -1,0 +1,118 @@
+{% include "attribute-cart-gift-minimum" %}
+
+{% assign call_to_action = section.settings.call_to_action %}
+
+{% assign cart_item_ids = cart.items | map: "variant" | map: "id"  %}
+
+{% assign enabled = section.settings.enabled %}
+
+{% if cart.total_price < cart_gift_minimum %}
+  {% assign enabled = false %}
+{% endif %}
+
+{% if enabled %}
+  <div class="cart-drawer-gift" data-module-cart-drawer-gift>
+    <button class="cart-drawer-gift-button" data-local-button>
+      <span class="local--text">{{ call_to_action }}</span>
+
+      <svg width="1em" height="1em" class="local--icon">
+        <use xlink:href="#icon-arrow-down" />
+      </svg>
+    </button>
+
+    <div class="cart-drawer-gift-content" data-local-content>
+      <div class="cart-drawer-gift-slider" data-local-slider>
+        {% for block in section.blocks %}
+          {% assign product = all_products[block.settings.product] %}
+
+          {% assign variant = product.selected_or_first_available_variant %}
+
+          {%- unless variant.id -%}
+            {%- continue -%}
+          {%- endunless -%}
+
+          {% assign heading = block.settings.title %}
+
+          {% assign image_url = product.featured_image | img_url: "300x" %}
+
+          {% assign active = false %}
+
+          {% if cart_item_ids contains variant.id %}
+            {% assign active = true %}
+          {% endif %}
+
+          <div class="cart-drawer-gift-thumbnail">
+            <div class="image-container">
+              <img src="{{ image_url }}" alt="" />
+            </div>
+
+            <div class="cart-drawer-gift-thumbnail-content">
+              <p class="local--heading">
+                {{ heading }}
+              </p>
+
+              <button class="cart-drawer-gift-add-to-cart {% if active %}state--active{% endif %}" data-local-add-to-cart>
+                <script type="text/json">
+                  {
+                    "id": {{ variant.id | json }},
+                    "quantity": 1
+                  }
+                </script>
+
+                <span class="local--default" data-local-add>Add</span>
+                <span class="local--active hide" data-local-added>Added</span>
+                <span class="local--spinner" data-local-spinner></span>
+              </button>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Cart gift",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enabled",
+        "label": "Enable",
+        "default": false
+      },
+      {
+        "type": "paragraph",
+        "content": "Allow customers to choose their own gift product."
+      },
+      {
+        "type": "header",
+        "content": "Content"
+      },
+      {
+        "type": "text",
+        "id": "call_to_action",
+        "label": "Call to action",
+        "default": "Choose your free gift"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "product",
+        "name": "Product",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading"
+          },
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Product"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

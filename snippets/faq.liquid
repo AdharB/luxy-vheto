@@ -1,0 +1,37 @@
+<section class="faq">
+  <div class="content-container">
+    <span class="faq-heading">
+      {{ title }}
+    </span>
+
+    <ul class="faq-thumbnails">
+      {% for handle in article_handles %}
+        {% assign article = articles[handle] | default: false %}
+
+        {% unless article %}
+          {% continue %}
+        {% endunless %}
+
+        {% include "support-thumbnail" %}
+      {% endfor %}
+    </ul>
+
+    {% assign description = settings.faq_help_description %}
+
+    {% assign call_to_action = settings.faq_help_call_to_action %}
+
+    <div class="faq-content">
+      <div class="inline-block-middle medium-down--one-whole">
+        <span class="local--description">
+          {{ description }}
+        </span>
+      </div>
+
+      <div class="inline-block-middle medium-down--one-whole">
+        <a href="" class="inline-block button-default nowrap" data-module-chat {% if template contains "product" %}data-ga-event='{ "category": "Product", "action": "click", "label": "Talk to us" }'{% endif %}>
+          {{ call_to_action }}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

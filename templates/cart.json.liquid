@@ -1,0 +1,10 @@
+{% layout none %}
+
+{% include "attribute-cart-total-savings" %}
+
+{% capture cart_total_savings_formatted %}{% include "filter-money" with cart_total_savings %}{% endcapture %}
+
+{
+  "total_savings": {{ cart_total_savings | json }},
+  "total_savings_formatted": {{ cart_total_savings_formatted | json }}
+}

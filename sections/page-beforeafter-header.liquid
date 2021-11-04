@@ -1,0 +1,81 @@
+{% assign kicker = section.settings.kicker %}
+
+{% assign heading = section.settings.heading %}
+
+{% assign image = section.settings.image | default: false %}
+
+{% assign image_url = image | img_url: '1600x' %}
+
+{% assign mobile_image = section.settings.image_mobile | default: false %}
+
+{% assign mobile_image_url = mobile_image | img_url: '1600x' %}
+
+{% assign description = section.settings.description | default: false %}
+
+<div class="beforeafter-header">
+  <span class="local--kicker">
+    {{ kicker }}
+  </span>
+
+  <h1 class="local--heading">
+    {{ heading }}
+  </h1>
+
+  <div class="image-container">
+    {% if image %}
+      <img class="one-whole hide large--show" src="{{ image_url }}" />
+    {% endif %}
+
+    {% if mobile_image %}
+      <img class="one-whole large--hide" src="{{ mobile_image_url }}" />
+    {% endif %}
+  </div>
+
+  {% if description %}
+    <p class="local--description">
+      {{ description }}
+    </p>
+  {% endif %}
+</div>
+
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "text",
+        "id": "kicker",
+        "label": "Kicker",
+        "default": "See the difference"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Before & After"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_mobile",
+        "label": "Mobile image"
+      },
+      {
+        "type": "textarea",
+        "id": "description",
+        "label": "Description"
+      }
+    ],
+    "default": {
+      "settings": {
+        "image": "shopify:\/\/shop_images\/BA_Header_Desktop_ab2af671-d1ea-45f7-a7db-e5dd080c9f6b.jpg",
+        "image_mobile": "shopify:\/\/shop_images\/BA_Header_Mobile.jpg",
+        "description": "Make your hair dreams come true with Luxy Hair extensions. They will instantly transform your hair into longer, thicker locks you’ve always dreamed of. It only takes minutes to clip them in – but the difference is tremendous."
+      }
+    }
+  }
+{% endschema %}

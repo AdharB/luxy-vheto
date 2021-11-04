@@ -1,0 +1,42 @@
+{% assign disable_minus = false %}
+
+{% if item.quantity == 1 %}
+  {% assign disable_minus = true %}
+{% endif %}
+
+
+{% assign disable = false %}
+
+{% if variant_sample_swatch %}
+  {% assign disable = true %}
+{% endif %}
+
+{% if product_is_gift %}
+  {% assign disable = true %}
+{% endif %}
+
+{% if item_is_discounted %}
+  {% assign disable = true %}
+{% endif %}
+
+{% if item.final_line_price == 0 %}
+  {% assign disable = true %}
+{% endif %}
+
+<div class="cart-drawer-item-quantity" data-module-cart-drawer-item-quantity>
+  <script type="application/json">
+    {
+      "id": {{ item.variant.id }}
+    }
+  </script>
+
+  <a href="/cart/change?line={{ forloop.index }}&amp;quantity={{ item.quantity | minus: 1 }}" class="{% if disable or disable_minus %}state--disabled{% endif %}" data-local-decrement>
+    <span>-</span>
+  </a>
+
+  <input type="text" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" min="1" readonly data-local-input />
+
+  <a href="/cart/change?line={{ forloop.index }}&amp;quantity={{ item.quantity | plus: 1 }}" class="{% if disable %}state--disabled{% endif %}" data-local-increment>
+    <span>+</span>
+  </a>
+</div>

@@ -1,0 +1,29 @@
+<div class="product-thumbnail">
+  <a href="{{ href }}" class="product-thumbnail-image-container product-thumbnail-image-rollover">
+    {% if hover_image_url %}
+      <div class="product-thumbnail-image--hover">
+        <img src="{{ hover_image_url }}" />
+      </div>
+    {% endif %}
+
+    <div class="product-thumbnail-image--default">
+      <img src="{{ image_url }}" alt="{{ title }}" />
+    </div>
+
+    {% if product_label %}
+      <div class="product-label local--label">
+        {{ product_label }}
+      </div>
+    {% endif %}
+  </a>
+
+  <h2 class="local--heading">
+    {{ title }}
+  </h2>
+
+  {% if call_to_action %}
+    <a href="{{ href }}" class="local--button">
+      {{ call_to_action }}
+    </a>
+  {% endif %}
+</div>

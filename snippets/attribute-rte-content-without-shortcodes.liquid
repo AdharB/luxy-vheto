@@ -1,0 +1,19 @@
+{% include "attribute-rte-lines" %}
+
+{% assign rte_content_without_shortcodes = "" %}
+
+{% for line in rte_lines %}
+  {% assign first_character = line | strip_html | strip | split: "" | first %}
+
+  {% assign last_character = line | strip_html | strip | split: "" | last %}
+
+  {% if first_character == "[" and last_character == "]" %}
+    {% continue %}
+  {% endif %}
+
+  {% if line contains "</h5>" %}
+    {% break %}
+  {% endif %}
+
+  {% assign rte_content_without_shortcodes = rte_content_without_shortcodes | append: line %}
+{% endfor %}

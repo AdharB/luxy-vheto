@@ -1,0 +1,22 @@
+{% assign cart_has_full_set = false %}
+
+{% assign cart_has_one_full_set = false %}
+
+{% assign count = 0 %}
+
+{% for item in cart.items %}
+  {% assign product = item.product %}
+
+  {% include "attribute-product-is-full-set" %}
+
+  {% if product_is_full_set %}
+    {% assign cart_has_full_set = true %}
+    {% assign count = count | plus: 1 %}
+  {% endif %}
+{% endfor %}
+
+{% assign product = current_product %}
+
+{% if count == 1 %}
+  {% assign cart_has_one_full_set = true %}
+{% endif %}

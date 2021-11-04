@@ -1,0 +1,47 @@
+{% unless default_content == false %}
+  {% assign video_url = settings.collection_video_url %}
+
+  {% assign kicker = settings.collection_video_subtitle %}
+
+  {% assign heading = settings.collection_video_title %}
+
+  {% assign call_to_action = settings.collection_video_call_to_action %}
+
+  {% assign image_url = settings.collection_video_image | img_url: "800x" %}
+{% endunless %}
+
+<section class="collection-video">
+  <div class="grid grid-gutter--none">
+    <div class="grid-item large--one-half position-relative">
+      <a href="{{ video_url }}" class="block position-center js-modal-video">
+        <svg width="1em" height="1em" style="font-size: 54px;">
+          <use xlink:href="#icon-play-circle" />
+        </svg>
+      </a>
+
+      <div class="image-container box-ratio--square">
+        <img data-src="{{ image_url }}" class="one-whole" alt="{{ title }} - {{ subtitle }}" />
+      </div>
+    </div>
+
+    <div class="grid-item large--one-half position-relative">
+      <div class="collection-video-content">
+        <div class="collection-video-content-container">
+          <span class="local--kicker">
+            {{ kicker }}
+          </span>
+
+          <h1 class="local--heading">
+            <a href="{{ video_url }}" class="js-modal-video">
+              {{ heading }}
+            </a>
+          </h1>
+
+          <a href="{{ video_url }}" class="button-link js-modal-video" data-ga-event='{ "category": "Video", "action": "play", "label": "Collection video" }'>
+            watch the video
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

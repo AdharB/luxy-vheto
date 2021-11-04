@@ -1,0 +1,5 @@
+{% assign collection_is_classic = false %}
+
+{% if collection.handle contains "classic" %}
+  {% assign collection_is_classic = true %}
+{% endif %}

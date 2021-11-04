@@ -1,0 +1,15 @@
+{% include "attribute-rte-lines" %}
+
+{% assign rte_body_copy = "" %}
+
+{% for line in rte_lines %}
+  {% if line contains "</h1>" or line contains "</h2>" or line contains "</h3>" or line contains "</h4>" or line contains "</h6>" or line contains "<img" %}
+    {% continue %}
+  {% endif %}
+
+  {% if line contains "</h5>" %}
+    {% break %}
+  {% endif %}
+
+  {% assign rte_body_copy = rte_body_copy | append: line %}
+{% endfor %}

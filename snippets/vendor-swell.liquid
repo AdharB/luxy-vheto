@@ -1,0 +1,7 @@
+{% if order.created_at %}
+  {{ 'swell-rewards.js' | asset_url | script_tag }}
+  {{ 'swell-rewards.scss.css' | asset_url | stylesheet_tag }}
+  {% include 'swell-post-checkout-popup' %}
+{% else %}
+   {% include 'swell-checkout-slider' %}
+{% endif %}

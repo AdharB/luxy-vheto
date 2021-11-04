@@ -1,0 +1,89 @@
+{% assign heading = section.settings.heading %}
+
+{% assign description = section.settings.description %}
+
+{% assign image = section.settings.image | default: false %}
+
+{% assign image_url = image | img_url: "1200x" %}
+
+{% assign video_url = section.settings.video_url | default: false %}
+
+{% assign call_to_action = section.settings.call_to_action %}
+
+<div class="careers-office-section careers-section-container border-bottom-default-lighter">
+  <div class="grid-bar">
+    <div class="grid-item large--one-half">
+      <div class="careers-office-image-container" {% if image %}data-src="{{ image_url }}"{% endif %}>
+        {% if video_url %}
+          <a href="{{ video_url }}" class="local--link js-modal-video">
+            <svg width="1em" height="1em" style="font-size: 54px;">
+              <use xlink:href="#icon-play-circle" />
+            </svg>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+    <div class="grid-item large--one-half">
+      <div class="careers-office-content">
+        <h2 class="careers-section-title with-description">
+          {{ heading }}
+        </h2>
+
+        <p class="local--description">
+          {{ description }}
+        </p>
+
+        {% if video_url %}
+          <div class="local--button-container">
+            <a href="{{ video_url }}" class="local--button js-modal-video">
+              {{ call_to_action }}
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Office",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading"
+      },
+      {
+        "type": "textarea",
+        "id": "description",
+        "label": "Description"
+      },
+      {
+        "type": "text",
+        "id": "call_to_action",
+        "label": "Call to action"
+      },
+      {
+        "type": "video_url",
+        "id": "video_url",
+        "accept": ["youtube", "vimeo"],
+        "label": "Video link"
+      }
+    ],
+    "default": {
+      "settings": {
+        "image": "shopify:\/\/shop_images\/luxy-hair-hq-office.jpg",
+        "heading": "Tour Our Office",
+        "description": "Soft pink armchairs, fresh flowers, and peppermint wafting through the air...the Luxy Hair office in downtown Toronto may just be the dreamiest office you will step foot in. Take a virtual tour of our office to learn how Luxy Hair is taking office culture to a whole new level.",
+        "call_to_action": "Watch the video",
+        "video_url": "https:\/\/vimeo.com\/317059096"
+      }
+    }
+  }
+{% endschema %}

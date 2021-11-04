@@ -1,0 +1,74 @@
+{% assign max_columns = 5 %}
+
+{% assign center_align = false %}
+
+{% if collection.products_count < max_columns %}
+  {% assign center_align = true %}
+{% endif %}
+
+<div class="collection-products">
+  <div class="grid-uniform grid-gutter--up-1 medium--grid-gutter--up-3 large--grid-gutter--up-4 {% if center_align %}text-center{% endif %}">
+    {% for product in collection.products %}
+      {% include "attribute-product-title" %}
+      {% include "attribute-product-type" %}
+      {% include "attribute-product-color-groups" %}
+      {% include "attribute-product-length" %}
+      {% include "attribute-product-label" %}
+
+      {% assign attributes = product_color_groups %}
+
+      {% assign length = product_length | split: "-<-@" %}
+
+      {% assign attributes = attributes | concat: length %}
+
+      {% assign type = product_type | split: "-<-@" %}
+
+      {% assign attributes = attributes | concat: type %}
+
+      {%- assign hidden = false -%}
+
+      {%- if collection_lengths.size > 1 and product_length == '16"' -%}
+        {%- assign hidden = true -%}
+      {%- endif -%}
+
+      <div class="grid-item one-half medium--one-third large--one-fifth collection-products-thumbnail {% if hidden %}state--hidden{% endif %}" data-module-collection-product-thumbnail>
+        <script type="text/json">
+          {
+            "attributes": {{ attributes | json }}
+          }
+        </script>
+
+        {%- assign title = product_title | split: "#" | first | strip -%}
+        {%- assign title = title | split: '"' | last | strip -%}
+
+        {% assign image_url = product.featured_image | img_url: "600x" %}
+
+        {% assign hover_image_url = product.images[1] | img_url: "600x" %}
+
+
+        {%- assign auto_filter_color_exclude = "balayage highlights multi" | split: " " -%}
+
+        {%- assign auto_filter_color = product_color_group_handles[0] -%}
+
+        {%- if auto_filter_color_exclude contains auto_filter_color -%}
+          {%- assign auto_filter_color = product_color_group_handles[1] -%}
+        {%- endif -%}
+
+        {%- assign href = product.url | within: collection -%}
+
+        {%- if auto_filter_color -%}
+          {%- assign href = href | append: "?type=" | append: auto_filter_color -%}
+        {%- endif -%}
+
+
+        {% assign call_to_action = false %}
+
+        {% include "component-product-thumbnail" %}
+      </div>
+    {% else %}
+      <div class="grid-item one-whole">
+        {% include "collection-empty" %}
+      </div>
+    {% endfor %}
+  </div>
+</div>

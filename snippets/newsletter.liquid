@@ -1,0 +1,33 @@
+{% assign klaviyo_list_id = settings.klaviyo_list_id %}
+
+{% assign title = settings.newsletter_title %}
+
+{% assign placeholder = settings.newsletter_placeholder %}
+
+{% assign call_to_action = settings.newsletter_call_to_action | default: "Subscribe" %}
+
+{% assign success = settings.newsletter_success %}
+
+<form id="newsletter" action="//manage.kmail-lists.com/subscriptions/subscribe" data-ajax-submit="//manage.kmail-lists.com/ajax/subscriptions/subscribe" class="newsletter" method="GET" autocomplete="off">
+  <label class="newsletter-heading">
+    {{ title }}
+  </label>
+
+  <input type="hidden" name="contact[accepts_marketing]" value="true">
+  <input type="hidden" name="g" value="{{ klaviyo_list_id }}" />
+
+  <div class="box-center" style="max-width: 700px;">
+    <div class="large--flex-bar flex-gutter--up-1">
+      <div class="flex-item--3">
+        <input class="button-box one-whole newsletter-input" type="email" name="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ placeholder }}" autocorrect="off" autocapitalize="off" />
+      </div>
+      <div class="flex-item--1">
+        <input class="button-default one-whole text-inverted" type="submit" name="commit" value="{{ call_to_action }}" />
+      </div>
+    </div>
+  </div>
+
+  <p class="success_message font-italic hide">
+    {{ success }}
+  </p>
+</form>

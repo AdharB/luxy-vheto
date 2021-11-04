@@ -1,0 +1,12 @@
+{%- assign enabled = false -%}
+
+{%- if current_variant.price > settings.product_payments_minimum_price -%}
+  {%- assign enabled = true -%}
+{%- endif -%}
+
+{%- if enabled -%}
+  <div class="product-payments" data-module-product-payments>
+    {% include "product-payments-shoppay" %}
+    {% include "product-payments-paybright" %}
+  </div>
+{%- endif -%}

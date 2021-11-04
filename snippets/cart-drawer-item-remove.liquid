@@ -1,0 +1,19 @@
+{% capture url %}/cart/change?line={{ forloop.index }}&amp;quantity=0{% endcapture %}
+
+{% assign future_cart_price = cart.total_price | minus: item.final_line_price %}
+
+{% if cart_has_gift and future_cart_price < cart_gift_minimum %}
+  {% capture url %}/cart/update?updates[{{ item.variant.id }}]=0&updates[{{ cart_gift_id }}]=0{% endcapture %}
+{% endif %}
+
+<div class="cart-drawer-item-remove" data-module-cart-drawer-item-remove>
+  <a href="{{ url }}" data-local-link>
+    <script type="application/json">
+      {
+        "id": {{ item.variant.id }}
+      }
+    </script>
+
+    Remove
+  </a>
+</div>

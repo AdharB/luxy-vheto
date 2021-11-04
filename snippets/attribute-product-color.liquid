@@ -1,0 +1,13 @@
+{% include "attribute-shop-colors" %}
+
+{% assign product_color = nil %}
+
+{% assign product_color_handle = nil %}
+
+{% for color in shop_colors %}
+  {% if product.tags contains color %}
+    {% assign product_color = color %}
+    {% assign product_color_handle = color | handle %}
+    {% break %}
+  {% endif %}
+{% endfor %}

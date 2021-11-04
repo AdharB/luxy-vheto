@@ -1,0 +1,13 @@
+<div class="menu-mega-dropdown-links">
+  <span class="local--heading">
+    <a href="{{ link.url }}">
+      {{ link.title }}
+    </a>
+  </span>
+
+  {% for link in link.links %}
+    <a href="{{ link.url }}" class="local--link">
+      {{ link.title }}
+    </a>
+  {% endfor %}
+</div>

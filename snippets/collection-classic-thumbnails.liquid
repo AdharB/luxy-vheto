@@ -1,0 +1,15 @@
+{%- assign collection_classic_colors = "Chocolate Brown" | split: ", " -%}
+
+{%- assign collection_classic_weights = "160, 220" | split: ", " -%}
+
+<div id="shop-collections" class="collection-classic-thumbnails scroll-horizontal">
+  <div class="nowrap local--container">
+    {% for weight in collection_classic_weights %}
+      {% assign collection = "shop_collection_" | append: forloop.index %}
+      {% assign collection = settings[collection] %}
+      {% assign collection = collections[collection] %}
+
+      {% include "collection-classic-thumbnail" %}
+    {% endfor %}
+  </div>
+</div>

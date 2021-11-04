@@ -1,0 +1,25 @@
+{% assign rte = page.content %}
+
+{% include "attribute-rte-content-without-images" %}
+{% include "attribute-rte-images" %}
+
+<section class="about-story">
+  <h1 class="local--heading">
+    {{ page.title }}
+  </h1>
+
+  <div class="grid grid-gutter--up-4">
+    <div class="grid-item large--one-half">
+      <div class="image-container">
+        {% for image_url in rte_image_urls %}
+          <img src="{{ image_url }}" class="local--image" alt="{{ rte_image_alts[forloop.index0] }}" />
+        {% endfor %}
+      </div>
+    </div>
+    <div class="grid-item large--one-half">
+      <div class="about-rte">
+        {{ rte_content_without_images }}
+      </div>
+    </div>
+  </div>
+</section>

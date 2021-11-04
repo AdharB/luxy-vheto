@@ -1,0 +1,71 @@
+{% assign label = 'Filter: 20"' %}
+
+{%- assign enabled = true -%}
+
+{%- if collection_lengths == empty -%}
+  {%- assign enabled = false -%}
+{%- endif -%}
+
+{%- assign hidden = true -%}
+
+{%- if collection.handle == "last-chance" -%}
+  {%- assign hidden = false -%}
+{%- endif -%}
+
+{% if enabled %}
+  <div class="collection-landing-filter-container {% if hidden %}hide{% endif %}">
+    <div id="collection-landing-filter-length" class="collection-landing-filter" data-module-collection-landing-filter>
+      <a href="#" class="collection-landing-filter-button" data-local-button>
+        <span class="collection-landing-filter-text collection-landing-filter-label" data-local-label>
+          {{ label }}
+        </span>
+
+        <svg width="1em" height="1em" class="text-default">
+          <use xlink:href="#icon-controls" />
+        </svg>
+
+        <svg width="1em" height="1em" class="text-default">
+          <use xlink:href="#icon-arrow-down" />
+        </svg>
+      </a>
+
+      <div class="collection-landing-filter-dropdown hide" data-local-dropdown>
+        <div class="local--content">
+          {% for length in shop_lengths %}
+            {% unless collection_lengths contains length %}
+              {% continue %}
+            {% endunless %}
+
+            <a href="#" class="collection-landing-filter-text collection-landing-filter-link" data-local-link>
+              <script type="text/json">
+                {
+                  "attribute": {{ length | json }}
+                }
+              </script>
+
+              {{ length }}
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+
+      <select class="collection-landing-filter-select" data-local-select>
+        {% for length in shop_lengths %}
+          {% unless collection_lengths contains length %}
+            {% continue %}
+          {% endunless %}
+
+          {%- assign selected = false -%}
+
+          {%- if length == '20"' -%}
+            {%- assign selected = true -%}
+          {%- endif -%}
+
+          <option value='{{ length }}' {% if selected %}selected{% endif %}>
+            {{ length }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+{% endif %}

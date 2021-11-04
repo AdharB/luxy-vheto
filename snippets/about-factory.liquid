@@ -1,0 +1,31 @@
+{% assign image_url = settings.about_factory_image | img_url: "1800x" %}
+
+{% assign image_alt = settings.about_factory_image_alt %}
+
+{% assign title = settings.about_factory_title %}
+
+{% assign description = settings.about_factory_description | default: false %}
+
+{% assign href = settings.about_factory_href %}
+
+{% assign call_to_action = settings.about_factory_call_to_action %}
+
+<section class="about-factory">
+  <div class="about-factory-content">
+    <h1 class="local--heading">
+      {{ title }}
+    </h1>
+
+    {% if description %}
+      <p class="local--description">
+        {{ description }}
+      </p>
+    {% endif %}
+
+    <a href="{{ href }}" class="button-outline-inverted">
+      {{ call_to_action }}
+    </a>
+  </div>
+
+  <img src="{{ image_url }}" class="position-center" alt="{{ image_alt }}" />
+</section>

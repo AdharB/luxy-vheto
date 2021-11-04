@@ -1,0 +1,12 @@
+{% assign product_label = nil %}
+
+{% for tag in product.tags %}
+  {% if tag contains "Label:" %}
+    {% assign product_label = tag | split: "Label:" | last | strip %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% unless settings.product_label_enabled %}
+  {% assign product_label = nil %}
+{% endunless %}

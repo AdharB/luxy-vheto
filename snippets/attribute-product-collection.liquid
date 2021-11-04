@@ -1,0 +1,8 @@
+{% assign product_collection = nil %}
+
+{% for link in linklists.shop.links %}
+  {% if product.tags contains link.title %}
+    {% assign product_collection = link.object %}
+    {% break %}
+  {% endif %}
+{% endfor %}

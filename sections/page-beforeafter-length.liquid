@@ -1,0 +1,97 @@
+{% include "section-beforeafter-gallery" %}
+
+{% schema %}
+  {
+    "name": "Gallery - Length",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Get instant length"
+      },
+      {
+        "type": "url",
+        "id": "url",
+        "label": "Link"
+      },
+      {
+        "type": "text",
+        "id": "call_to_action",
+        "label": "Call to action"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "slide",
+        "name": "Slide",
+        "settings": [
+          {
+            "type": "header",
+            "content": "Before"
+          },
+          {
+            "type": "image_picker",
+            "id": "before_image",
+            "label": "Image"
+          },
+          {
+            "type": "textarea",
+            "id": "before_description",
+            "label": "Description"
+          },
+          {
+            "type": "header",
+            "content": "After"
+          },
+          {
+            "type": "image_picker",
+            "id": "after_image",
+            "label": "Image"
+          },
+          {
+            "type": "textarea",
+            "id": "after_description",
+            "label": "Description"
+          }
+        ]
+      }
+    ],
+    "default": {
+      "settings": {
+        "heading": "Get instant length",
+        "url": "",
+        "call_to_action": ""
+      },
+      "blocks": [
+        {
+          "type": "slide",
+          "settings": {
+            "before_image": "shopify:\/\/shop_images\/041_LuxyHair_BA_Crop_0007_Length_Before_Belle-min_d400136f-0e4d-4f9b-a5f4-188a7abe52c1.jpg",
+            "before_description": "Without Luxy Hair extensions",
+            "after_image": "shopify:\/\/shop_images\/041_LuxyHair_BA_Crop_0006_Length_After_Belle-min_ee97f3e9-22aa-47fb-8fd3-b0cce46c008f.jpg",
+            "after_description": "With 220g Dirty Blonde Luxy Hair extensions"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "before_image": "shopify:\/\/shop_images\/041_LuxyHair_BA_Crop_0011_Length_Before_Azra-min_b8ed410c-75e8-42ae-929e-b3f1836c47fe.jpg",
+            "before_description": "Without Luxy Hair extensions",
+            "after_image": "shopify:\/\/shop_images\/041_LuxyHair_BA_Crop_0010_Length_After_Azra-min_57a44c7d-6f6f-4c1c-8ab6-9b9666049811.jpg",
+            "after_description": "With 220g Off Black Luxy Hair extensions"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "before_image": "shopify:\/\/shop_images\/041_LuxyHair_BA_Crop_0009_Length_Before_Vanessa-min_9ac5c043-67bc-4c38-9e0f-bc2bad3eee1f.jpg",
+            "before_description": "Without Luxy Hair extensions",
+            "after_image": "shopify:\/\/shop_images\/041_LuxyHair_BA_Crop_0008_Length_After_Vanessa-min_dbdd0296-3282-4980-b156-b7bc8037b04b.jpg",
+            "after_description": "With 220g Bleach Blonde Luxy Hair extensions"
+          }
+        }
+      ]
+    }
+  }
+{% endschema %}

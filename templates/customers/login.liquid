@@ -1,0 +1,83 @@
+<div class="form-container">
+  {% assign title = settings.customer_login_title %}
+
+  {% assign description = settings.customer_login_description | default: false %}
+
+  {% assign call_to_action = settings.customer_login_call_to_action %}
+
+  <div class="js-form-container">
+    {% form "customer_login" %}
+
+      <h1 class="customer-form-heading">
+        {{ title }}
+      </h1>
+
+      {% if description %}
+        <p>{{ description }}</p>
+      {% endif %}
+
+      {% if form.errors %}
+        <div class="text-links-primary text-primary">
+          {{ form.errors | default_errors }}
+        </div>
+      {% endif %}
+
+      <label for="customer_email" class="label">Email</label>
+      <input type="email" value="" class="input" name="customer[email]" id="customer_email" placeholder="Email" autocorrect="off" autocapitalize="off" autofocus required />
+
+      <label for="customer_password" class="label">Password</label>
+      <input type="password" value="" class="input" name="customer[password]" id="customer_password" placeholder="Password" required />
+
+      <div class="customer-form-button-container">
+        <button type="submit" class="button-primary">{{ call_to_action }}</button>
+      </div>
+
+      <p class="customer-form-links">
+        <a href="#" class="js-toggle-forms">Forgot your password?</a><br />
+        <a href="/account/register">Create an account</a>
+      </p>
+    {% endform %}
+  </div>
+
+
+  {% assign title = settings.customer_password_reset_title %}
+
+  {% assign description = settings.customer_password_reset_description %}
+
+  {% assign call_to_action = settings.customer_password_reset_call_to_action %}
+
+  <div class="js-form-container hide">
+    {% form "recover_customer_password" %}
+
+      <h1 class="customer-form-heading">
+        {{ title }}
+      </h1>
+
+      {% unless form.errors %}
+        <p>{{ description }}</p>
+      {% endunless %}
+
+      {% if form.errors %}
+        <div class="text-links-primary text-primary">
+          {{ form.errors | default_errors }}
+        </div>
+      {% endif %}
+
+      <label for="recover-email" class="label">Email</label>
+
+      <input type="email" value="" class="input" name="email" id="recover-email" placeholder="Email" autocorrect="off" autocapitalize="off" required />
+
+      <div class="customer-form-button-container">
+        <button type="submit" class="button-primary">
+          {{ call_to_action }}
+        </button>
+      </div>
+
+      <p class="customer-form-links">
+        <a href="#" class="js-toggle-forms">
+          Back to login
+        </a>
+      </p>
+    {% endform %}
+  </div>
+</div>

@@ -1,0 +1,22 @@
+{%- assign heading = "Payment Methods" -%}
+
+<div class="cart-drawer-payment-icons">
+  <h3 class="cart-drawer-payment-icons-heading">
+    {{ heading }}
+  </h3>
+
+  <div class="flex-bar">
+    {% assign payment_types = "american_express, master, visa, paypal, apple_pay, google_pay" | split: ", " %}
+
+    {% for type in payment_types %}
+      {% if shop.enabled_payment_types contains type %}
+        <div class="flex-item">
+          {% assign snippet = "svg-icon-payment-" | append: type %}
+          {% include snippet %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  {%- include "cart-payment-logos" -%}
+</div>

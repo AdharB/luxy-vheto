@@ -1,0 +1,98 @@
+<div class="product-accordion" data-module-product-accordion>
+  <div class="product-accordion-header" data-local-header>
+    <span class="local--heading">
+      Select Your Length
+    </span>
+
+    <svg class="local--icon" width="1em" height="1em">
+      <use xlink:href="#icon-arrow-down" />
+    </svg>
+  </div>
+
+  <div class="product-accordion-content">
+    <ul class="product-option-length-list">
+      {% for length in product_collection_lengths %}
+
+        {% assign selected = false %}
+
+        {% if length == current_product_length %}
+          {% assign selected = true %}
+        {% endif %}
+
+        {% assign url = nil %}
+        {% assign id = nil %}
+        {% assign title = nil %}
+
+        {% for product in product_collection.products %}
+          {% include "attribute-product-length" %}
+          {% include "attribute-product-weight" %}
+
+          {% unless product_considered_weights contains product_weight %}
+            {% continue %}
+          {% endunless %}
+
+          {% unless length == product_length %}
+            {% continue %}
+          {% endunless %}
+
+          {% assign url = product.url | within: collection %}
+
+          {% assign pjax_url = url | append: "?view=pjax" %}
+
+          {% assign id = product.id %}
+
+          {% assign title = product.title %}
+
+          {% break %}
+        {% endfor %}
+
+        {% unless url %}
+          {% for product in product_collection.products %}
+            {% include "attribute-product-length" %}
+
+            {% unless length == product_length %}
+              {% continue %}
+            {% endunless %}
+
+            {% assign url = product.url | within: collection %}
+
+            {% assign pjax_url = url | append: "?view=pjax" %}
+
+            {% assign id = product.id %}
+
+            {% assign title = product.title %}
+
+            {% break %}
+          {% endfor %}
+        {% endunless %}
+
+        <li class="product-option-length-item">
+          <a href="{{ url }}" class="product-option-length-link {% if selected %}state--active{% endif %}" data-module-product-option title="{{ length }}">
+            <script type="application/json">
+              {
+                "id": {{ id }},
+                "title": {{ title | json }},
+                "type": "length",
+                "value": {{ length | json }},
+                "pjax_url": {{ pjax_url | json }}
+              }
+            </script>
+
+            {{ length }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <div class="product-option-footer">
+      <a href="#product-option-length-modal" class="local--link js-modal">
+        Which length is for me?
+      </a>
+    </div>
+  </div>
+</div>
+
+{% assign product = current_product %}
+
+{% include "attribute-product-length" %}
+{% include "attribute-product-weight" %}

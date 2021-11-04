@@ -1,0 +1,68 @@
+{% assign image_url = collection.image | img_url: "600x" %}
+
+{% assign url = nil %}
+
+{% assign first_product = nil %}
+
+{% for product in collection.products %}
+  {% include "attribute-product-weight" %}
+  {% include "attribute-product-color" %}
+
+  {% unless product.tags contains "classic" %}
+    {% continue %}
+  {% endunless %}
+
+  {% unless product_weight == weight %}
+    {% continue %}
+  {% endunless %}
+
+  {% unless first_product %}
+    {% assign first_product = product %}
+  {% endunless %}
+
+  {% unless collection_classic_colors contains product_color %}
+    {% continue %}
+  {% endunless %}
+
+  {% unless product.available %}
+    {% continue %}
+  {% endunless %}
+
+  {% assign url = product.url | within: collection %}
+  {% break %}
+{% endfor %}
+
+{% unless url %}
+  {% assign url = first_product.url | within: collection %}
+{% endunless %}
+
+{% assign heading = collection.title %}
+
+{% assign description = "shop_collection_description_" | append: n %}
+{% assign description = settings[description] %}
+
+{% assign call_to_action = settings.collection_call_to_action %}
+
+<a href="{{ url }}" class="collection-classic-thumbnail" data-module-collection-classic-thumbnail>
+  <div class="local--image-container">
+    <img src="{{ image_url }}" alt="{{ title }}" />
+  </div>
+
+  <h3 class="local--heading">
+    {{ heading }}
+  </h3>
+
+  <p class="local--description">
+    {{ description }}
+  </p>
+
+  <div class="button-outline-small">
+    {{ call_to_action }}
+  </div>
+
+  {% if forloop.first %}
+    <svg class="medium--hide" width="51px" height="51px">
+      <use xlink:href="#icon-swipe" />
+    </svg>
+  {% endif %}
+</a>

@@ -1,0 +1,12 @@
+{% unless shop_types %}
+  {%- include "attribute-shop-types" -%}
+{% endunless %}
+
+{%- assign product_type = nil -%}
+
+{%- for tag in product.tags -%}
+  {%- if shop_types contains tag -%}
+    {%- assign product_type = tag -%}
+    {%- break -%}
+  {%- endif -%}
+{%- endfor -%}

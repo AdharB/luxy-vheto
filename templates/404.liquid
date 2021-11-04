@@ -1,0 +1,22 @@
+{% assign title = settings.404_title %}
+
+{% assign description = settings.404_description %}
+
+{% assign call_to_action = settings.404_call_to_action %}
+
+{% assign href = settings.404_link %}
+
+<div class="template-404">
+  <h1 class="local--heading">
+    {{ title }}
+  </h1>
+
+  <p class="local--description">
+    {{ description }}
+  </p>
+
+  <a href="{{ href }}" class="button-primary">
+    {{ call_to_action }}
+  </a>
+</div>
+ {% include 'BrokenLinkRedirect' %}

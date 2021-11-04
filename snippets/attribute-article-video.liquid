@@ -1,0 +1,7 @@
+{% assign article_video = false %}
+{% assign article_video_url = false %}
+
+{% if article.content contains 'video url="' %}
+  {% assign article_video = true %}
+  {% assign article_video_url = article.content | split: 'video url="' | slice: 1 | first | split: '"' | first %}
+{% endif %}

@@ -1,0 +1,20 @@
+{% assign image_url = settings.factory_location_image | img_url: "600x" %}
+
+{% assign description = settings.factory_location_description %}
+
+<div class="box-default-lightest">
+  <div class="factory-location">
+    <div class="grid">
+      <div class="grid-item large--one-half">
+        <div class="local--image-container">
+          <img src="{{ image_url }}" />
+        </div>
+      </div>
+      <div class="grid-item large--one-half">
+        <div class="factory-location-description">
+          {{ description }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

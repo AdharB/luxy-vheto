@@ -1,0 +1,44 @@
+{%- assign enabled = section.settings.enabled -%}
+
+{%- assign heading = section.settings.heading -%}
+
+{%- assign call_to_action = section.settings.call_to_action -%}
+
+{%- if enabled -%}
+  <div class="homepage-quiz">
+    <p class="homepage-quiz-heading">
+      {{ heading }}
+    </p>
+
+    <a href="#quiz-kit-key-p4FhMvZVo" class="button-primary">
+      {{ call_to_action }}
+    </a>
+  </div>
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "Quiz",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enabled",
+        "label": "Enable",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Need help getting started?"
+      },
+      {
+        "type": "text",
+        "id": "call_to_action",
+        "label": "Call to action",
+        "default": "Take our quiz"
+      }
+    ]
+  }
+{% endschema %}

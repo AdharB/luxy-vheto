@@ -1,0 +1,56 @@
+{% assign heading = section.settings.heading %}
+
+{% assign hashtag = section.settings.hashtag %}
+
+{% assign url = section.settings.url %}
+
+{% assign foursixty_feed_id = section.settings.foursixty_feed_id %}
+
+<div class="blog-instagram">
+  <div class="blog-instagram-content">
+    <h2 class="local--heading">
+      <span class="medium-down--hide">
+        {{ heading }}
+      </span>
+
+      <a href="{{ url }}">
+        {{ hashtag }}
+      </a>
+    </h2>
+  </div>
+
+  {% include "foursixty" %}
+</div>
+
+{% schema %}
+  {
+    "name": "Instagram",
+    "class": "blog-instagram",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading"
+      },
+      {
+        "type": "text",
+        "id": "hashtag",
+        "label": "Hashtag"
+      },
+      {
+        "type": "url",
+        "id": "url",
+        "label": "Link"
+      },
+      {
+        "type": "header",
+        "content": "Foursixty"
+      },
+      {
+        "type": "text",
+        "id": "foursixty_feed_id",
+        "label": "Feed ID"
+      }
+    ]
+  }
+{% endschema %}

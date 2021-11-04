@@ -1,0 +1,48 @@
+<script>
+
+  $(document).ready(function() {
+    var customerEmail = null;
+    var checkoutEmail = "{{checkout.email}}";
+    var email = null;
+
+    {% if customer %}
+    customerEmail = "{{customer.email}}";
+    {% endif %}
+
+    if(checkoutEmail && checkoutEmail.length > 0 && checkoutEmail.indexOf("@") >= 0){
+      email = checkoutEmail;
+    }
+
+    if(email === null && customerEmail !== null){
+     email = customerEmail;
+   }
+   if(email){
+    $(".swell-referral").attr("data-customer-email", email);
+  }
+});
+
+</script>
+
+<div class="luxy-hair">
+  <div class="swell-post-checkout-hair">
+    <div class="swell-post-checkout-holder">
+      <div class="checkout-heading">
+        <span class="swell-referral-back-link close-thank-you"></span>
+      </div>
+      <!-- Referral Section Code Start -->
+        <div class="referral-section">
+          <div class="post-checkout-banner">
+            <span class="post-checkout-heading">Thanks for <br>Purchasing Here!</span>
+          </div>
+          <div class="referral-section-holder">
+            <div class="swell-referral-holder">
+              <div class="swell-referral">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      <!-- Referral Section Code End -->
+    </div>
+  </div>
+</div>

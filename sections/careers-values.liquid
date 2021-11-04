@@ -1,0 +1,74 @@
+{% assign image = section.settings.image | default: false %}
+
+{% assign image_url = image | img_url: "1200x" %}
+
+{% assign heading = section.settings.heading %}
+
+{% assign subheading = section.settings.subheading %}
+
+{% assign body = section.settings.body %}
+
+<div class="careers-values-section">
+  <div class="careers-values-container">
+    <div class="grid grid-gutter--none">
+      <div class="grid-item xlarge--one-half">
+        <div class="box-ratio--square background-cover" {% if image %}data-src="{{ image_url }}"{% endif %}>
+
+        </div>
+      </div>
+      <div class="grid-item xlarge--one-half">
+        <div class="careers-values-content-box">
+          <div class="careers-values-content-container">
+            <h2 class="careers-section-title with-subtitle">
+              {{ heading }}
+            </h2>
+
+            <h3 class="careers-section-description">
+              {{ subheading }}
+            </h3>
+
+            <div class="careers-values-body">
+              {{ body }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Values",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading"
+      },
+      {
+        "type": "textarea",
+        "id": "subheading",
+        "label": "Subheading"
+      },
+      {
+        "type": "richtext",
+        "id": "body",
+        "label": "Body"
+      }
+    ],
+    "default": {
+      "settings": {
+        "image": "shopify:\/\/shop_images\/WallValues_Original.jpg",
+        "heading": "Our Values",
+        "subheading": "At Luxy Hair we…",
+        "body": "<p>✓ Value self-awareness, intellectual honesty, good-judgment, empathy and positive energy - often over career experience.<\/p>\n<p>✓ Work hard because we love what we&rsquo;re doing, but also believe in balance.<\/p>\n<p>✓ Offer a rare atmosphere that values individuality and creativity.<\/p>"
+      }
+    }
+  }
+{% endschema %}

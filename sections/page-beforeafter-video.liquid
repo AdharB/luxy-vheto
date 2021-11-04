@@ -1,0 +1,153 @@
+{% assign heading = section.settings.section_heading %}
+
+{% assign video_url = section.settings.video_url %}
+
+{% assign video_image_url = section.settings.thumbnail | img_url: "800x" %}
+
+{% assign video_kicker = section.settings.video_kicker %}
+
+{% assign video_heading = section.settings.video_heading %}
+
+{% assign video_call_to_action = section.settings.video_call_to_action %}
+
+<div class="box-secondary">
+  <div class="container">
+    <h2 class="beforeafter-video-heading">
+      {{ heading }}
+    </h2>
+
+    <div class="beforeafter-video-hero">
+      <div class="grid grid-gutter--none box-inverted">
+        <div class="grid-item large--one-half">
+          <div class="local--image-container">
+            <img data-src="{{ video_image_url }}" />
+
+            <a href="{{ video_url }}" class="block position-center position-3 js-modal-video">
+              <svg width="1em" height="1em" style="font-size: 54px;">
+                <use xlink:href="#icon-play-circle" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="grid-item large--one-half">
+          <div class="local--content-container">
+            <div class="local--content">
+              <span href="{{ video_url }}" class="local--kicker">
+                {{ video_kicker }}
+              </span>
+
+              <h1 class="local--heading">
+                <a href="{{ video_url }}" class="js-modal-video">
+                  {{ video_heading }}
+                </a>
+              </h1>
+
+              <a href="{{ video_url }}" class="button-link js-modal-video">
+                {{ video_call_to_action }}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% unless section.blocks == blank %}
+      <div class="beforeafter-video-thumbnails">
+        <div class="grid-uniform">
+          {% for block in section.blocks %}
+            {% assign image_url = block.settings.thumbnail | img_url: "800x" %}
+
+            <div class="grid-item medium--one-half large--one-half beforeafter-video-thumbnail" {{ block.shopify_attributes }}>
+              <div class="image-container position-relative">
+                <img src="{{ image_url }}" />
+
+                <a href="{{ block.settings.url }}" class="block position-center position-3 js-modal-video">
+                  <svg width="1em" height="1em" style="font-size: 54px;">
+                    <use xlink:href="#icon-play-circle" />
+                  </svg>
+                </a>
+              </div>
+
+              {% unless block.settings.heading == blank %}
+                <p class="local--heading">
+                  {{ block.settings.heading  }}
+                </p>
+              {% endunless %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% endunless %}
+</div>
+
+{% schema %}
+  {
+    "name": "Videos",
+    "class": "section-before-after-video",
+    "settings": [
+      {
+        "type": "text",
+        "id": "section_heading",
+        "label": "Heading",
+        "default": "Transformation Videos"
+      },
+      {
+        "type": "header",
+        "content": "Featured"
+      },
+      {
+        "type": "image_picker",
+        "id": "thumbnail",
+        "label": "Image"
+      },
+      {
+        "type": "url",
+        "id": "video_url",
+        "label": "Video link"
+      },
+      {
+        "type": "text",
+        "id": "video_kicker",
+        "label": "Kicker",
+        "default": "Get inspired"
+      },
+      {
+        "type": "text",
+        "id": "video_heading",
+        "label": "Heading",
+        "default": "Pia's Transformation"
+      },
+      {
+        "type": "text",
+        "id": "video_call_to_action",
+        "label": "Call to action",
+        "default": "Watch the video"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "video",
+        "name": "Video",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "thumbnail",
+            "label": "Video Thumbnail"
+          },
+          {
+            "type": "url",
+            "id": "url",
+            "label": "Video link"
+          },
+          {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

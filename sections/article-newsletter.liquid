@@ -1,0 +1,68 @@
+{% assign heading = section.settings.heading %}
+
+{% assign placeholder = section.settings.placeholder %}
+
+{% assign call_to_action = section.settings.call_to_action %}
+
+{% assign success = section.settings.success %}
+
+{% assign klaviyo_list_id = section.settings.klaviyo_list_id | default: settings.klaviyo_list_id %}
+
+<section class="article-newsletter hide large--show">
+  <h1 class="local--heading">
+    {{ heading }}
+  </h1>
+
+  <form id="article-newsletter" action="//manage.kmail-lists.com/subscriptions/subscribe" data-ajax-submit="//manage.kmail-lists.com/ajax/subscriptions/subscribe" method="GET" autocomplete="off">
+    <input type="hidden" name="contact[accepts_marketing]" value="true">
+    <input type="hidden" name="g" value="{{ klaviyo_list_id }}" />
+
+    <input type="email" name="email" class="local--input" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ placeholder }}" autocorrect="off" autocapitalize="off" />
+
+    <input class="local--button" type="submit" name="commit" value="{{ call_to_action }}" />
+
+    <p class="success_message local--success hide">
+      {{ success }}
+    </p>
+  </form>
+</section>
+
+{% schema %}
+  {
+    "name": "Newsletter",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading"
+      },
+      {
+        "type": "text",
+        "id": "placeholder",
+        "label": "Placeholder",
+        "default": "Enter your email address"
+      },
+      {
+        "type": "text",
+        "id": "call_to_action",
+        "label": "Call to action",
+        "default": "Sign up"
+      },
+      {
+        "type": "textarea",
+        "id": "success",
+        "label": "Success"
+      },
+      {
+        "type": "header",
+        "content": "Settings"
+      },
+      {
+        "type": "text",
+        "id": "klaviyo_list_id",
+        "label": "Klaviyo list ID",
+        "default": "LZR5cu"
+      }
+    ]
+  }
+{% endschema %}

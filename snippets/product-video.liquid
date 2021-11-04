@@ -1,0 +1,63 @@
+{% assign video_url = settings.product_video %}
+
+{% assign image_url = settings.product_video_image | img_url: "600x" %}
+
+{% assign title = settings.product_video_title %}
+
+{% assign kicker = settings.product_video_kicker %}
+
+{% assign call_to_action = settings.product_video_call_to_action %}
+
+{% assign rte = current_product.description %}
+
+{% include "attribute-rte-fragments" %}
+
+{% if rte_fragment_headings contains "video" %}
+  {% include "rte-fragment" with "video" %}
+
+  {% assign video_url = rte_link_texts[0] | default: video_url %}
+
+  {% include "filter-rte-img-url" input: rte_image_urls.first, size: "grande"  %}
+  {% assign image_url = output | default: image_url %}
+
+  {% assign title = rte_paragraphs[0] | default: title %}
+
+  {% assign kicker = rte_paragraphs[1] | default: kicker %}
+
+  {% assign call_to_action = rte_paragraphs[2] | default: call_to_action | strip_html %}
+{% endif %}
+
+<div id="product-video" class="grid-uniform grid-gutter--none">
+  <div class="grid-item large--one-half position-relative">
+    <a href="{{ video_url }}" class="block position-center js-modal-video">
+      <svg width="1em" height="1em" style="font-size: 54px;">
+        <use xlink:href="#icon-play-circle" />
+      </svg>
+    </a>
+
+    <div class="image-container box-ratio--square">
+      <img src="{{ image_url }}" class="one-whole" alt="{{ title }} - {{ subtitle }}" />
+    </div>
+  </div>
+  <div class="grid-item large--one-half position-relative">
+    <div class="box-ratio--square box-secondary">
+      <div class="product-video-content">
+        <span class="local--kicker">
+          {{ kicker }}
+        </span>
+
+        <span class="local--heading">
+          <a href="{{ video_url }}" class="js-modal-video">
+            {{ title }}
+          </a>
+        </span>
+
+        <span class="text-links-default">
+          <a href="{{ video_url }}" class="local--link js-modal-video" data-ga-event='{ "category": "Video", "action": "play", "label": "Product how-to video" }'>
+            {{ call_to_action }}
+          </a>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

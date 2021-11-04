@@ -1,0 +1,51 @@
+{% assign slide_count = 0 %}
+
+{% for num in (1..3) %}
+  {% assign show_slide = "show_factory_slide_" | append: num %}
+  {% assign show_slide = settings[show_slide] %}
+
+  {% if show_slide %}
+    {% assign slide_count = slide_count | plus: 1 %}
+  {% endif %}
+{% endfor %}
+
+<div id="factory-slides" class="factory-slides flickity-default-page-dots" data-flickity='{ "wrapAround": true, "prevNextButtons": false{% if slide_count == 1 %}, "pageDots": false, "draggable": false{% endif %} }'>
+  {% for num in (1..3) %}
+    {% assign show_slide = "show_factory_slide_" | append: num %}
+    {% assign show_slide = settings[show_slide] %}
+
+    {% assign description = "factory_description_" | append: num %}
+    {% assign description = settings[description] | default: false %}
+
+    {% assign subtext = "factory_subtext_" | append: num %}
+    {% assign subtext = settings[subtext] | default: false %}
+
+    {% assign image_url = "factory_slide_" | append: num %}
+    {% assign image_url = settings[image_url] | img_url: "1800x" %}
+
+    {% assign image_alt = "factory_image_alt_" | append: num %}
+    {% assign image_alt = settings[image_alt] %}
+
+    {% if show_slide %}
+      <div class="factory-slide">
+        {% if description %}
+          <div class="factory-slide-content">
+            <figure>
+              <blockquote class="local--description">
+                {{ description }}
+              </blockquote>
+
+              {% if subtext %}
+                <figcaption class="local--subtext">
+                  {{ subtext }}
+                </figcaption>
+              {% endif %}
+            </figure>
+          </div>
+        {% endif %}
+
+        <img data-src="{{ image_url }}" class="local--image" alt="{{ image_alt }}" style="max-height: 100%;" />
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>

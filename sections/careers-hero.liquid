@@ -1,0 +1,88 @@
+{% assign image = section.settings.image | default: false %}
+
+{% assign image_url = image | img_url: "2000x" %}
+
+{% assign mobile_image = section.settings.mobile_image | default: false %}
+
+{% assign mobile_image_url = mobile_image | img_url: "800x" %}
+
+{% assign video_url = section.settings.video_url | default: false %}
+
+{% assign heading = section.settings.heading %}
+
+{% assign description = section.settings.description %}
+
+{% assign call_to_action = section.settings.call_to_action %}
+
+<div class="careers-hero-container">
+  <div class="careers-hero-image-container" {% if image %}data-src="{{ image_url }}"{% endif %}>
+    {% if video_url %}
+      <div class="careers-hero-video-container">
+        <iframe src="https://player.vimeo.com/video/{{ video_url.id }}?background=1" scrolling="no" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="careers-hero-content">
+    <h1 class="local--heading">
+      {{ heading }}
+    </h1>
+
+    <p class="careers-section-description">
+      {{ description }}
+    </p>
+
+    {% if call_to_action %}
+      <div class="local--button-container">
+        <a href="#careers-openings" class="button-default" data-scroll='{ "offset": "#sticky-menu" }'>
+          {{ call_to_action }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Hero",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "video_url",
+        "id": "video_url",
+        "label": "Video",
+        "accept": ["youtube", "vimeo"],
+        "info": "Leave blank to show image instead"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading"
+      },
+      {
+        "type": "textarea",
+        "id": "description",
+        "label": "Description"
+      },
+      {
+        "type": "text",
+        "id": "call_to_action",
+        "label": "Call to action",
+        "info": "Scrolls to job openings when clicked"
+      }
+    ],
+    "default": {
+      "settings": {
+        "image": "",
+        "video_url": "https:\/\/vimeo.com\/317290515",
+        "heading": "Join the Luxy Team",
+        "description": "Luxy Hair is creating waves in the beauty industry, and we're looking for motivated linchpins to join us.",
+        "call_to_action": "See current job openings"
+      }
+    }
+  }
+{% endschema %}

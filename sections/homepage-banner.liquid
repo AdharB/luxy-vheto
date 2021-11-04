@@ -1,0 +1,142 @@
+{% assign image = section.settings.image %}
+
+{% include "attribute-image-box-ratio" %}
+
+{% assign image_url = image | img_url: "1000x" %}
+
+{% assign mobile_image_url = image | img_url: "700x" %}
+
+{% assign heading = section.settings.heading %}
+
+{% assign description = section.settings.description %}
+
+{% assign button_call_to_action = section.settings.call_to_action %}
+
+{% assign button_url = section.settings.url %}
+
+{% assign button_background_color = section.settings.button_background_color %}
+
+{% assign button_border_color = section.settings.button_border_color %}
+
+{% assign button_text_color = section.settings.button_text_color %}
+
+<div class="hide xlarge--show" style="background-color: {{ section.settings.background_color }};">
+  <div class="homepage-banner-container hide large--show" data-src="{{ image_url }}">
+    <div class="homepage-banner-content">
+      <h1 class="local--heading">
+        {{ heading }}
+      </h1>
+
+      <div class="homepage-banner-rte local--rte">
+        {{ description }}
+      </div>
+
+      {% include "component-button" %}
+    </div>
+  </div>
+</div>
+
+<div class="xlarge--hide">
+  <div class="homepage-banner-mobile-container">
+    <div style="background-color: {{ section.settings.background_color }};">
+      <h1 class="homepage-banner-mobile-heading">
+        {{ heading }}
+      </h1>
+
+      <div class="box-ratio-inline background-cover" data-src="{{ mobile_image_url }}" style="padding-bottom: {{ image_box_ratio }};"></div>
+    </div>
+
+    <div class="homepage-banner-rte homepage-banner-mobile-description">
+      {{ description }}
+    </div>
+
+    <div class="homepage-banner-mobile-button">
+      {% include "component-button" %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Banner",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background color"
+      },
+      {
+        "type": "header",
+        "content": "Images"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Desktop"
+      },
+      {
+        "type": "image_picker",
+        "id": "mobile_image",
+        "label": "Mobile"
+      },
+      {
+        "type": "header",
+        "content": "Content"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading"
+      },
+      {
+        "type": "richtext",
+        "id": "description",
+        "label": "Description"
+      },
+      {
+        "type": "header",
+        "content": "Button"
+      },
+      {
+        "type": "text",
+        "id": "call_to_action",
+        "label": "Call to action"
+      },
+      {
+        "type": "url",
+        "id": "url",
+        "label": "Link"
+      },
+      {
+        "type": "color",
+        "id": "button_background_color",
+        "label": "Background",
+        "default": "transparent"
+      },
+      {
+        "type": "color",
+        "id": "button_border_color",
+        "label": "Border",
+        "default": "#323232"
+      },
+      {
+        "type": "color",
+        "id": "button_text_color",
+        "label": "Text",
+        "default": "#323232"
+      }
+    ],
+    "default": {
+      "settings": {
+        "background_color": "#f6f2f1",
+        "image": "shopify:\/\/shop_images\/homepage-featured-content_977dd3ef-29ef-47ae-a859-c2208467763c.jpg",
+        "mobile_image": "",
+        "heading": "What are Luxy Hair extensions?",
+        "description": "<p>The easiest way to get longer, thicker hair in minutes - right at home<\/p>\n<p>Can be washed, heat styled and dyed&nbsp;like your own hair<\/p>\n<p>Made from straight 100% Remy human hair<\/p>\n<p>Cause absolutely zero damage to your natural hair<\/p>\n<p>Sourced ethically and produced responsibly<\/p>",
+        "call_to_action": "Learn more",
+        "url": "shopify:\/\/pages\/why-luxy-hair"
+      }
+    }
+  }
+{% endschema %}

@@ -1,0 +1,19 @@
+{% assign cart_invalid = false %}
+
+{%- assign cart_invalid_amount = settings.cart_invalid_amount | times: 100 -%}
+
+{%- assign cart_invalid_amount_formatted = cart_invalid_amount | money_without_trailing_zeros -%}
+
+{%- assign cart_invalid_description = settings.cart_invalid_description | replace: "{{ amount }}", cart_invalid_amount_formatted -%}
+
+{% if cart.total_price > cart_invalid_amount %}
+  {% assign cart_invalid = true %}
+{% endif %}
+
+{% if checkout and checkout.subtotal_price > cart_invalid_amount %}
+  {% assign cart_invalid = true %}
+{% endif %}
+
+{%- unless settings.cart_invalid_enabled -%}
+  {%- assign cart_invalid = false -%}
+{%- endunless -%}

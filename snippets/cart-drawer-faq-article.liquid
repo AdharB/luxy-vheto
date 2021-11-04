@@ -1,0 +1,33 @@
+{% assign rte = article.content %}
+
+{% include "attribute-rte-content-without-shortcodes" %}
+
+{% assign title = article.title %}
+
+{% assign description = rte_content_without_shortcodes %}
+
+{% assign href = article.url %}
+
+{% assign call_to_action = settings.support_thumbnail_call_to_action | default: false %}
+
+<li class="cart-drawer-faq-article {% if forloop.first %}position--first{% endif %}">
+  <a href="{{ href }}" class="cart-drawer-faq-link js-accordion-link">
+    <span class="local--heading">
+      {{ title }}
+    </span>
+
+    <span class="cart-drawer-faq-icon js-accordion-icon"></span>
+  </a>
+
+  <div class="cart-drawer-faq-content hide js-accordion-content">
+    <div class="rte-default-light box-trim">
+      {{ description }}
+    </div>
+
+    {% if call_to_action %}
+      <p class="local--button-container">
+        <a href="{{ href }}">{{ call_to_action }}</a>
+      </p>
+    {% endif %}
+  </div>
+</li>

@@ -1,0 +1,16 @@
+{% assign placeholder = "Search blog" %}
+
+<div class="article-search">
+  <form action="/search" class="local--form" data-module-blog-search>
+    <input type="hidden" name="type" value="article" />
+    <input type="hidden" name="view" value="blog" />
+
+    <input type="text" name="q" class="blog-search-input local--input" placeholder="{{ placeholder }}" required autocomplete="off" />
+
+    <button type="submit" class="blog-search-button">
+      <svg width="1em" height="1em">
+        <use xlink:href="#icon-search" />
+      </svg>
+    </button>
+  </form>
+</div>

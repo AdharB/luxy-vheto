@@ -1,0 +1,14 @@
+{% assign title = blog.title %}
+
+{% assign href = blog.url %}
+
+{% if param_type == "search" %}
+  {% assign title = "Search" %}
+  {% assign href = "/search?type=article&view=support&q=" | append: param_q %}
+{% endif %}
+
+<div class="box-default-lightest">
+  <div class="support-breadcrumb">
+    <a href="{{ href }}">&lt; Back to {{ title }}</a>
+  </div>
+</div>

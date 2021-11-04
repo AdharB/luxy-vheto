@@ -1,0 +1,19 @@
+{% assign title = page.title %}
+
+{% assign keyword = nil %}
+
+{% capture content_for_page_header %}
+  <h1 class="page-title">{{ title }}</h1>
+{% endcapture %}
+
+{% include "page-header" %}
+
+<div class="template-page">
+  <div id="page-content" class="rte js-rte">
+    {% if template.suffix == "no-shortcodes" %}
+      {{ page.content }}
+    {% else %}
+      {% include "shortcodes" with page.content %}
+    {% endif %}
+  </div>
+</div>

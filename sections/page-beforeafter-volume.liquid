@@ -1,0 +1,99 @@
+<div class="box-default-lightest">
+  {% include "section-beforeafter-gallery" %}
+</div>
+
+{% schema %}
+  {
+    "name": "Gallery - Volume",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Add Volume"
+      },
+      {
+        "type": "url",
+        "id": "url",
+        "label": "Link"
+      },
+      {
+        "type": "text",
+        "id": "call_to_action",
+        "label": "Call to action"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "slide",
+        "name": "Slide",
+        "settings": [
+          {
+            "type": "header",
+            "content": "Before"
+          },
+          {
+            "type": "image_picker",
+            "id": "before_image",
+            "label": "Image"
+          },
+          {
+            "type": "textarea",
+            "id": "before_description",
+            "label": "Description"
+          },
+          {
+            "type": "header",
+            "content": "After"
+          },
+          {
+            "type": "image_picker",
+            "id": "after_image",
+            "label": "Image"
+          },
+          {
+            "type": "textarea",
+            "id": "after_description",
+            "label": "Description"
+          }
+        ]
+      }
+    ],
+    "default": {
+      "settings": {
+        "heading": "Add Volume",
+        "url": "",
+        "call_to_action": ""
+      },
+      "blocks": [
+        {
+          "type": "slide",
+          "settings": {
+            "before_image": "shopify:\/\/shop_images\/041_LuxyHair_BA_Crop_0001_Volume_Before_Melissa-min_854fd920-ccf0-459a-abd8-5ab5049c4331.jpg",
+            "before_description": "Without Luxy Hair extensions",
+            "after_image": "shopify:\/\/shop_images\/041_LuxyHair_BA_Crop_0000_Volume_After_Melissa-min_800x_50efb9ac-4a46-467b-ae1e-ca7608159544.jpg",
+            "after_description": "With 160g Dirty Blonde Luxy Hair extensions"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "before_image": "shopify:\/\/shop_images\/041_LuxyHair_BA_Crop_0005_Layer_1-min_d2c890aa-bcd4-4558-af6e-5e4c301118f9.jpg",
+            "before_description": "Without Luxy Hair extensions",
+            "after_image": "shopify:\/\/shop_images\/041_LuxyHair_BA_Crop_0004_Layer_2-min_c2a35148-218a-4d8d-a1a0-d52b26c92ed8.jpg",
+            "after_description": "With 160g Ombre Chestnut Luxy Hair Extensions"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "before_image": "shopify:\/\/shop_images\/041_LuxyHair_BA_Crop_0003_Volume_Before_Karin-min_1a3510ef-18bf-4d00-b810-a8c4e3aa5a0a.jpg",
+            "before_description": "Without Luxy Hair extensions",
+            "after_image": "shopify:\/\/shop_images\/041_LuxyHair_BA_Crop_0002_Volume_After_Karin-min_9146a6dd-e536-4b43-8385-b90de89de9be.jpg",
+            "after_description": "With 220g Dirty Blonde Luxy Hair extensions"
+          }
+        }
+      ]
+    }
+  }
+{% endschema %}

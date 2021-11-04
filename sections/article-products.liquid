@@ -1,0 +1,92 @@
+{% include "object-param-view" %}
+{% include "attribute-article-products" %}
+
+{% assign heading = section.settings.heading %}
+
+{% assign one_product = false %}
+{% assign two_products = false %}
+
+{% case article_products.size %}
+  {% when 1 %}
+    {% assign one_product = true %}
+  {% when 2 %}
+    {% assign two_products = true %}
+{% endcase %}
+
+{% unless article_products == empty %}
+  <div class="article-products {% if one_product %}without--slider{% endif %}">
+    <h1 class="article-products-heading">
+      {{ heading }}
+    </h1>
+
+    <div class="large--grid-uniform {% unless one_product %}blog-slider-pagination medium-down--blog-slider{% endunless %}" {% unless one_product %}data-flickity='{ "watchCSS": true, "wrapAround": true, "prevNextButtons": false, "pageDots": true }'{% endunless %}>
+      {% for handle in article_products %}
+        {% assign product = all_products[handle] | default: nil %}
+
+        {% unless product %}
+          {% continue %}
+        {% endunless %}
+
+        {% assign current_variant = product.first_available_variant %}
+
+        {% include "attribute-product-collection" %}
+        {% include "attribute-product-is-accessory" %}
+        {% include "attribute-product-is-full-set" %}
+        {% include "attribute-product-length" %}
+        {% include "attribute-product-title" %}
+        {% include "attribute-product-weight" %}
+
+        {% assign image_url = product.images[1] | img_url: "800x800", crop: "center" %}
+
+        {% if product_length and product_weight %}
+          {% assign kicker = product_length | append: " / " | append: product_weight | append: " grams" %}
+        {% else %}
+          {% assign kicker = nil %}
+        {% endif %}
+
+        {% assign call_to_action = "Add to cart" %}
+
+        {% if one_product %}
+          {% assign grid_item_width = "one" %}
+        {% elsif two_products %}
+          {% assign grid_item_width = "large--one-half" %}
+        {% else %}
+          {% assign grid_item_width = "large--one-third" %}
+        {% endif %}
+
+        {%- assign grid_item_width = "one" -%}
+
+        <div class="grid-item {{ grid_item_width }}">
+          {% include "component-product-thumbnail-4" %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endunless %}
+
+{% schema %}
+  {
+    "name": "Products",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Shop the look"
+      },
+      {
+        "type": "header",
+        "content": "Notes"
+      },
+      {
+        "type": "paragraph",
+        "content": "To add a product to an article, use the tag 'product-HANDLE'. Product handles can be found on product pages under \"Edit website SEO\" or in the product URL."
+      },
+      {
+        "type": "paragraph",
+        "content": "To test, add ?view=test, ?view=test-products-1, ?view=test-products-2, ?view=test-products-3 to the end of any article URL."
+      }
+    ]
+  }
+{% endschema %}

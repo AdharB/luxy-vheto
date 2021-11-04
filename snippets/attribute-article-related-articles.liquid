@@ -1,0 +1,92 @@
+{% unless article_category %}
+  {% include "attribute-article-category" %}
+{% endunless %}
+
+{% assign article_index = false %}
+
+{% for article in blog.articles %}
+  {% if article.id == current_article.id %}
+    {% assign article_index = forloop.index %}
+  {% endif %}
+{% endfor %}
+
+
+{% comment %}
+  Get articles with same category beginning at the next article.
+{% endcomment %}
+{% assign next_related_articles = "" %}
+
+{% for article in blog.articles offset: article_index %}
+  {% if article.tags contains article_category %}
+    {% assign next_related_articles = next_related_articles | append: "  " | append: article.id %}
+  {% endif %}
+{% endfor %}
+
+{% assign next_related_articles = next_related_articles | strip | split: "  " %}
+
+
+{% comment %}
+  Get previous articles with same category, working backwards from
+  the current article.
+{% endcomment %}
+{% assign previous_related_articles = "" %}
+
+{% assign previous = "" %}
+
+{% for article in blog.articles %}
+  {% if forloop.index == article_index %}
+    {% break %}
+  {% endif %}
+
+  {% if article.tags contains article_category %}
+    {% assign previous = previous | append: "  " | append: article.id %}
+  {% endif %}
+{% endfor %}
+
+{% assign previous = previous | strip | split: "  " %}
+
+{% for id in previous reversed %}
+  {% assign previous_related_articles = previous_related_articles | append: "  " | append: id %}
+{% endfor %}
+
+{% assign previous_related_articles = previous_related_articles | strip | split: "  " %}
+
+
+{% comment %}
+  Build related articles from next and previous alternating between them.
+  Grab one from next, then from previous, then from next, etc.
+
+  First, get explicit related products from tags.
+{% endcomment %}
+{% assign related_articles = false %}
+
+{% for tag in article.tags %}
+  {% if tag contains "related-" %}
+    {% assign id = tag | split: "-" | last %}
+    {% assign related_articles = related_articles | append: "  " | append: id %}
+  {% endif %}
+{% endfor %}
+
+{% for id in next_related_articles %}
+  {% include "attribute-forloop-even" %}
+
+  {% if forloop_even and previous_related_articles[forloop.index0] %}
+    {% assign id = previous_related_articles[forloop.index0] %}
+  {% endif %}
+
+  {% assign related_articles = related_articles | append: "  " | append: id %}
+{% endfor %}
+
+{% for id in previous_related_articles %}
+  {% include "attribute-forloop-odd" %}
+
+  {% if forloop_odd and next_related_articles[forloop.index0] %}
+    {% assign id = next_related_articles[forloop.index0] %}
+  {% endif %}
+
+  {% assign related_articles = related_articles | append: "  " | append: id %}
+{% endfor %}
+
+{% if related_articles %}
+  {% assign article_related_articles = related_articles | remove: "false  " | split: "  " %}
+{% endif %}

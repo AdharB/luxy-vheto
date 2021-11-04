@@ -1,0 +1,43 @@
+{% assign heading = section.settings.heading %}
+
+{% assign enabled = section.settings.enabled %}
+
+{% if enabled %}
+  <div id="careers-openings" class="careers-section">
+    <div class="careers-section-container">
+      <h2 class="careers-section-title text-center">
+        {{ heading }}
+      </h2>
+
+      <div id="whr_embed_hook" class="text-center"></div>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Openings",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enabled",
+        "label": "Enable",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading"
+      },
+      {
+        "type": "paragraph",
+        "content": "Job listings are pulled from Workable."
+      }
+    ],
+    "default": {
+      "settings": {
+        "heading": "Job Openings"
+      }
+    }
+  }
+{% endschema %}

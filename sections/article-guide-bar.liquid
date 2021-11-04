@@ -1,0 +1,39 @@
+{% assign call_to_action = section.settings.call_to_action %}
+
+{% assign url = section.settings.url %}
+
+<div class="article-guide-bar large--hide" data-module-article-guide-bar>
+  <div class="article-guide-bar-content">
+    <a href="{{ url }}" class="local--description">
+      {{ call_to_action }}
+    </a>
+
+    <button class="local--button" data-local-button>
+      <svg width="1em" height="1em">
+        <use xlink:href="#icon-close" />
+      </svg>
+    </button>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Guide bar",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Fixed bottom bar on mobile only."
+      },
+      {
+        "type": "text",
+        "id": "call_to_action",
+        "label": "Call to action"
+      },
+      {
+        "type": "url",
+        "id": "url",
+        "label": "Link"
+      }
+    ]
+  }
+{% endschema %}

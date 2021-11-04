@@ -1,0 +1,24 @@
+{% capture canonical %}
+  {% case template.name %}
+    {% when "list-collections" %}
+      {% if param_view %}
+        {{ shop.url }}/collections?view={{ param_view }}
+      {% else %}
+        {{ shop.url }}/collections
+      {% endif %}
+    {% when "collection" %}
+      {{ shop.url }}{{ collection.url }}
+    {% when "blog" %}
+      {% if current_tags %}
+        {{ shop.url }}{{ blog.url }}/tagged/{{ current_tags | join: "+" }}
+      {% else %}
+        {{ shop.url }}{{ blog.url }}
+      {% endif %}
+    {% when "search" %}
+      {{ shop.url }}/search
+    {% else %}
+      {{ canonical_url }}
+  {% endcase %}
+{% endcapture %}
+
+{% assign canonical = canonical | strip %}

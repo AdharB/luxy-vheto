@@ -1,0 +1,53 @@
+<div class="menu-dropdown">
+  {% for link in link.links %}
+    {% assign heading = link.title %}
+
+    {% assign image = nil %}
+
+    {% assign description = nil %}
+
+    {% assign url = link.url %}
+
+
+    {% for block in section.blocks %}
+      {% unless block.type == "dropdown_link" %}
+        {% continue %}
+      {% endunless %}
+
+      {% assign block_title_downcase = block.settings.title | downcase %}
+
+      {% assign link_title_downcase = link.title | downcase %}
+
+      {% unless block_title_downcase == link_title_downcase %}
+        {% continue %}
+      {% endunless %}
+
+      {% assign description = block.settings.description | default: description %}
+
+      {% assign image = block.settings.image | default: image %}
+
+      {% assign image_url = image | img_url: "68x" %}
+    {% endfor %}
+
+
+    <a href="{{ url }}" class="flex-bar menu-dropdown-link {% unless forloop.last %}border-bottom-default-lighter{% endunless %}">
+      {% if image %}
+        <span class="flex-item--1 local--image-container">
+          <img src="{{ image_url }}" width="60" alt="" />
+        </span>
+      {% endif %}
+
+      <span class="flex-item--2 inline-block">
+        <span class="local--heading">
+          {{ heading }}
+        </span>
+
+        {% if description %}
+          <span class="local--description">
+            {{ description }}
+          </span>
+        {% endif %}
+      </span>
+    </a>
+  {% endfor %}
+</div>

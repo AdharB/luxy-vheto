@@ -1,0 +1,11 @@
+{% assign checkout_order_free_sample = false %}
+{% assign checkout_order_free_sample_only = false %}
+
+{% for item in checkout.line_items %}
+  {% if item.variant.title contains "Sample Swatch" %}
+    {% assign checkout_order_free_sample = true %}
+    {% assign checkout_order_free_sample_only = true %}
+  {% else %}
+    {% assign checkout_order_free_sample_only = false %}
+  {% endif %}
+{% endfor %}

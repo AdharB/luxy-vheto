@@ -1,0 +1,57 @@
+<div class="{% if heading %}cart-item-container with--heading{% endif %}">
+  {% if section.blocks %}
+    <ul class="text-left margin--none">
+      {% for block in section.blocks %}
+        {% assign article = articles[block.settings.article] | default: false %}
+
+        {% unless article %}
+          {% continue %}
+        {% endunless %}
+
+        {% include "cart-drawer-faq-article" %}
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>
+
+{% schema %}
+  {
+    "name": "Cart FAQ",
+    "settings": [],
+    "blocks": [
+      {
+        "name": "Article",
+        "type": "article",
+        "settings": [
+          {
+            "type": "article",
+            "id": "article",
+            "label": "Article"
+          }
+        ]
+      }
+    ],
+    "default": {
+      "blocks": [
+        {
+          "type": "article",
+          "settings": {
+            "article": "support\/can-i-return-or-exchange-my-order"
+          }
+        },
+        {
+          "type": "article",
+          "settings": {
+            "article": "support\/do-i-have-to-pay-taxes-customs-or-duties-on-my-order"
+          }
+        },
+        {
+          "type": "article",
+          "settings": {
+            "article": "support\/how-much-does-shipping-cost"
+          }
+        }
+      ]
+    }
+  }
+{% endschema %}

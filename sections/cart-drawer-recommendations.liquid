@@ -1,0 +1,87 @@
+{%- include "attribute-cart-has-full-set" -%}
+{%- include "attribute-cart-product-ids" -%}
+
+{%- assign collection = collections[section.settings.collection] | default: nil -%}
+
+{%- assign number_of_products = section.settings.number_of_products -%}
+
+{%- assign discounted_variant = false -%}
+
+{%- assign discounted_variant_cart_amount = section.settings.discounted_variant_cart_amount | times: 100 -%}
+
+{%- if cart.total_price > discounted_variant_cart_amount -%}
+  {%- assign discounted_variant = true -%}
+{%- endif -%}
+
+{%- assign enabled = section.settings.enabled -%}
+
+{%- unless cart_has_full_set -%}
+  {%- assign enabled = false -%}
+{%- endunless -%}
+
+{%- unless collection -%}
+  {%- assign enabled = false -%}
+{%- endunless -%}
+
+{%- if enabled -%}
+  {%- assign cart_item_ids = cart.items | map: "variant" | map: "id"  -%}
+
+  <div class="cart-drawer-recommendations" data-module-cart-drawer-recommendations>
+    <div class="cart-drawer-recommendations-slider" data-local-slider>
+      {%- for product in collection.products limit: number_of_products -%}
+        <div class="cart-drawer-recommendations-slide">
+          {%- include "cart-drawer-recommendations-product" -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "Cart recommendations",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enabled",
+        "label": "Enable",
+        "default": true
+      },
+      {
+        "type": "paragraph",
+        "content": "Recommendations slider. Products are pulled from the collection below. Cart must contain a full set."
+      },
+      {
+        "type": "text",
+        "id": "default_heading",
+        "label": "Default heading",
+        "info": "Can be set per product in the \"Cart recommendations heading\" metafield."
+      },
+      {
+        "type": "collection",
+        "id": "collection",
+        "label": "Collection"
+      },
+      {
+        "type": "number",
+        "id": "number_of_products",
+        "label": "Number of products",
+        "default": 7
+      },
+      {
+        "type": "header",
+        "content": "Discounted variant"
+      },
+      {
+        "type": "paragraph",
+        "content": "Offer a discount if the cart is over a certain amount by creating a product variant titled \"Discounted\"."
+      },
+      {
+        "type": "number",
+        "id": "discounted_variant_cart_amount",
+        "label": "Minimum cart amount (dollars)",
+        "default": 100
+      }
+    ]
+  }
+{% endschema %}

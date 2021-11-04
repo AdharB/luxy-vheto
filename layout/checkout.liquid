@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html class="{{ checkout_html_classes }}">
+  {%- include "attribute-checkout-first-time-accessed" -%}
+  {%- include "attribute-checkout-order-free-sample" -%}
+
+  <head>
+    {% include "vendor-google" %}
+    {% include "vendor-google-tag-manager-head" %}
+    {% include "favicon" %}
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, user-scalable=0" />
+
+    {% if cart_invalid %}
+      <meta http-equiv="refresh" content="0; url=/cart" />
+    {% endif %}
+
+    <title>{{ shop.name }} - {{ page_title }}</title>
+
+    {{ content_for_header }}
+    {{ checkout_stylesheets }}
+    {{ checkout_scripts }}
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    {% include "checkout-styles" %}
+    {% include "checkout-liquid-json" %}
+    {% include "vendor-route" %}
+    {% include "vendor-attentive-head" %}
+  </head>
+
+  <body>
+    {% include "vendor-facebook-sdk" %}
+    {% include "vendor-google-tag-manager-body" %}
+
+    <div class="banner" data-header>
+      <div class="wrap">
+        {{ content_for_logo }}
+      </div>
+    </div>
+    {{ order_summary_toggle }}
+    <div class="content" data-content>
+      <div class="wrap">
+        <div class="sidebar">
+          <div class="sidebar__header">
+            {{ content_for_logo }}
+          </div>
+          <div class="sidebar__content">
+            {{ content_for_order_summary }}
+          </div>
+        </div>
+        <div class="main" role="main">
+          <div class="main__header">
+            {{ content_for_logo }}
+            {{ breadcrumb }}
+
+            {% include "checkout-timer" %}
+
+            {{ alternative_payment_methods }}
+          </div>
+          <div class="main__content">
+            {{ content_for_layout }}
+
+            {% include "vendor-attentive-body" %}
+            {% include "vendor-facebook-messenger" %}
+            {% include "checkout-shipping-chart" %}
+          </div>
+
+          <div class="main__footer" role="contentinfo">
+            {{ content_for_footer }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{ tracking_code }}
+
+    {% include "checkout-shipping-options" %}
+    {% include "checkout-google-events" %}
+    {% include "vendor-bing" %}
+    {% include "vendor-pinterest" %}
+    {% include "vendor-snapchat" %}
+    {% include "vendor-swell" %}
+  </body>
+</html>

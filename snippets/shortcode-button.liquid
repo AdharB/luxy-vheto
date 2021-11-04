@@ -1,0 +1,17 @@
+{% assign button_href = shortcode_href | default: false %}
+
+{% assign button_text = false %}
+
+{% for attribute in attribute_titles %}
+  {% if attribute == "text" %}
+    {% assign button_text = attribute_values[forloop.index0] %}
+  {% endif %}
+{% endfor %}
+
+{% if button_href and button_text %}
+  <p class="shortcode-button">
+    <a href="{{ button_href }}" class="button-primary without-rte-styles" style="color: #fff; border: none;">
+      {{ button_text }}
+    </a>
+  </p>
+{% endif %}

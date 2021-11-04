@@ -1,0 +1,17 @@
+<div class="search-form hide" data-module-search-form>
+  <form action="/search" role="search" autocomplete="off">
+    <input class="input-reset" type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search" data-local-input />
+
+    <button type="submit" class="invisible">
+      Search
+    </button>
+
+    <button data-local-button>
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <g fill="currentColor">
+          <path d="M77.6 21.1l-28 28.1-28.1-28.1-1.9 1.9 28 28.1-28 28.1 1.9 1.9L49.6 53l28 28.1 2-1.9-28.1-28.1L79.6 23z"/>
+        </g>
+      </svg>
+    </button>
+  </form>
+</div>

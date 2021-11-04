@@ -1,0 +1,17 @@
+{% unless shop_color_groups %}
+  {%- include "attribute-shop-color-groups" -%}
+{% endunless %}
+
+{%- assign product_color_groups = "" | split: "" -%}
+
+{%- assign product_color_group_handles = "" | split: "" -%}
+
+{%- for tag in product.tags -%}
+  {%- if shop_color_groups contains tag -%}
+    {%- assign color = tag | split: "-<-@" -%}
+    {%- assign color_handle = tag | handle | split: "-<-@" -%}
+
+    {%- assign product_color_groups = product_color_groups | concat: color -%}
+    {%- assign product_color_group_handles = product_color_group_handles | concat: color_handle -%}
+  {%- endif -%}
+{%- endfor -%}

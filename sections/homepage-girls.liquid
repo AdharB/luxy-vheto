@@ -1,0 +1,202 @@
+{% assign heading = section.settings.heading %}
+
+{% assign subheading = section.settings.subheading %}
+
+{% assign button_call_to_action = section.settings.call_to_action %}
+
+{% assign button_url = section.settings.url %}
+
+{% assign button_background_color = section.settings.button_background_color %}
+
+{% assign button_border_color = section.settings.button_border_color %}
+
+{% assign button_text_color = section.settings.button_text_color %}
+
+<div class="box-secondary-light">
+  <div class="homepage-girls">
+    <div class="homepage-girls-header">
+      <span class="local--heading">
+        {{ heading }}
+      </span>
+
+      <h1 class="local--subheading">
+        {{ subheading }}
+      </h1>
+    </div>
+
+    <div class="homepage-girls-slider">
+      <div class="homepage-girls-slide-container" data-flickity='{ "wrapAround": true, "prevNextButtons": true, "autoPlay": false, "pageDots": true, "groupCells": 2, "cellAlign": "left" }' data-flickity-large='{ "groupCells": 4 }'>
+        {% for block in section.blocks %}
+          {% assign image = block.settings.image | default: nil %}
+
+          {% unless image %}
+            {% continue %}
+          {% endunless %}
+
+          {% include "attribute-image-box-ratio" %}
+
+          {% assign image_url = image | img_url: "600x" %}
+
+          {% assign name = block.settings.title %}
+
+          <div class="homepage-girls-slide">
+            <div class="image-container box-ratio-inline" style="padding-bottom: {{ image_box_ratio }};">
+              <img class="one-whole" data-src="{{ image_url }}" alt="" />
+            </div>
+
+            <h2 class="local--heading">
+              {{ name }}
+            </h2>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="homepage-girls-button-container">
+      {% include "component-button" %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Girls",
+    "class": "homepage-girls-section",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading"
+      },
+      {
+        "type": "text",
+        "id": "subheading",
+        "label": "Subheading"
+      },
+      {
+        "type": "header",
+        "content": "Button"
+      },
+      {
+        "type": "text",
+        "id": "call_to_action",
+        "label": "Call to action"
+      },
+      {
+        "type": "url",
+        "id": "url",
+        "label": "Link"
+      },
+      {
+        "type": "color",
+        "id": "button_background_color",
+        "label": "Background",
+        "default": "transparent"
+      },
+      {
+        "type": "color",
+        "id": "button_border_color",
+        "label": "Border",
+        "default": "#323232"
+      },
+      {
+        "type": "color",
+        "id": "button_text_color",
+        "label": "Text",
+        "default": "#323232"
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Girl",
+        "type": "girl",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Name"
+          }
+        ]
+      }
+    ],
+    "default": {
+      "settings": {
+        "heading": "As Seen On…",
+        "subheading": "See who else is loving Luxy Hair extensions",
+        "call_to_action": "Learn more",
+        "url": "shopify:\/\/blogs\/luxy-hair-girls"
+      },
+      "blocks": [
+        {
+          "type": "girl",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/pia_muehlenbeck.jpg",
+            "title": "Pia Muehlenbeck"
+          }
+        },
+        {
+          "type": "girl",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/kim_kardashian_ecf9e391-8ed8-4214-8a9c-1fe17ce6ac51.jpg",
+            "title": "Kim Kardashian"
+          }
+        },
+        {
+          "type": "girl",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/olivia_culpo.jpg",
+            "title": "Olivia Culpo"
+          }
+        },
+        {
+          "type": "girl",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/danielle_lombard.jpg",
+            "title": "Danielle Lombard"
+          }
+        },
+        {
+          "type": "girl",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/alex_centomo.jpg",
+            "title": "Alex Centomo"
+          }
+        },
+        {
+          "type": "girl",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/charly_jordan.jpg",
+            "title": "Charly Jordan"
+          }
+        },
+        {
+          "type": "girl",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/cindy_mello.jpg",
+            "title": "Cindy Mello"
+          }
+        },
+        {
+          "type": "girl",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/sophia_esperanza.jpg",
+            "title": "Sophia Esperanza"
+          }
+        },
+        {
+          "type": "girl",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/tammy_hembrow.jpg",
+            "title": "Tammy Hembrow"
+          }
+        }
+      ]
+    }
+  }
+{% endschema %}

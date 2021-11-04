@@ -1,0 +1,52 @@
+{%- assign enabled = section.settings.enabled -%}
+
+{%- if enabled -%}
+  <div class="cart-drawer-incentives">
+    <div class="grid-uniform grid-gutter--none">
+      {% for block in section.blocks %}
+        <div class="grid-item one-quarter">
+          <div class="cart-drawer-incentive {% if forloop.last %}position--last{% endif %}">
+            {{ block.settings.icon }}
+
+            <p class="local--description">
+              {{ block.settings.title }}
+            </p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "Cart incentives",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enabled",
+        "label": "Enabled",
+        "default": false
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Incentive",
+        "type": "incentive",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Description"
+          },
+          {
+            "type": "html",
+            "id": "icon",
+            "label": "Icon",
+            "info": "Paste in SVG code"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

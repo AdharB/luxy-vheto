@@ -1,0 +1,49 @@
+<div class="collections-mobile-menu" data-module-collections-mobile-menu>
+  <div class="collections-mobile-menu-container">
+    <a href="#" class="collections-mobile-menu-button" data-local-button>
+      <span class="collections-mobile-menu-link" data-local-button-text>
+        Shop all
+      </span>
+
+      <svg width="1em" height="1em">
+        <use xlink:href="#icon-controls" />
+      </svg>
+
+      <svg width="1em" height="1em">
+        <use xlink:href="#icon-arrow-down" />
+      </svg>
+    </a>
+
+    <div class="collections-mobile-menu-dropdown hide" data-local-dropdown>
+      {% for block in section.blocks %}
+        {% unless block.type == "collection" %}
+          {% continue %}
+        {% endunless %}
+
+        {% assign collection_handle = block.settings.collection %}
+
+        {% assign heading = block.settings.title %}
+
+        <a href="#{{ collection_handle }}" class="collections-mobile-menu-link" data-local-link>
+          {{ heading }}
+        </a>
+      {% endfor %}
+    </div>
+
+    <select class="collections-mobile-menu-select" data-local-select>
+      {% for block in section.blocks %}
+        {% unless block.type == "collection" %}
+          {% continue %}
+        {% endunless %}
+
+        {% assign collection_handle = block.settings.collection %}
+
+        {% assign heading = block.settings.title %}
+
+        <option value="{{ collection_handle }}">
+          {{ heading }}
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+</div>

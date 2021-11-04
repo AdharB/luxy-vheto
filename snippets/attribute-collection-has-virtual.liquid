@@ -1,0 +1,5 @@
+{%- assign collection_has_virtual = false -%}
+
+{%- if collection.handle == 'classic-clip-in-hair-extensions' or collection.handle == '16-inch-hair-extensions-clip-in' or collection.handle == 'classic-24-inch' or collection.handle == 'seamless-clip-in-hair-extensions' or collection.handle == 'halo-hair-extensions' or collection.handle == 'ponytail-extension' or collection.handle == 'clip-in-buns' or collection.handle == 'curly-ponytail-extension' -%}
+  {%- assign collection_has_virtual = true -%}
+{%- endif -%}

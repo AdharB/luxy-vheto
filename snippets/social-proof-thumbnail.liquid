@@ -1,0 +1,35 @@
+{% include "attribute-article-image" with "1024x1024" %}
+
+{% assign image_url = article_image %}
+
+{% assign title = article.title %}
+
+{% assign href = article.content | strip_html | strip %}
+
+{% assign video = false %}
+
+{% if article.content contains "vimeo" or article.content contains "youtube" %}
+  {% assign video = true %}
+{% endif %}
+
+<div class="grid-item large--one-third">
+  <a href="{{ href }}" class="{% if video %}js-modal-video{% endif %}">
+    <span class="image-container box-ratio--square box-default-lightest">
+      <img data-src="{{ image_url }}" class="one-whole" alt="{{ title }}" />
+    </span>
+
+    <div class="social-proof-thumbnail-content">
+      <h2 class="local--heading">
+        {{ title }}
+      </h2>
+
+      <span class="local--video">
+        {% if video %}
+          Play video
+        {% else %}
+          Read more
+        {% endif %}
+      </span>
+    </div>
+  </a>
+</div>

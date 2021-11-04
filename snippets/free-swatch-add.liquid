@@ -1,0 +1,272 @@
+
+<script>
+  //USA
+  timezone_allowed = ["America/New_York","America/North_Dakota","America/Detroit", "America/Boise", "America/Juneau","America/Sitka","America/Indianapolis", "America/Chicago", "America/Denver", "America/Phoenix","America/Los_Angeles","America/Anchorage","America/Adak","Pacific/Honolulu"];
+  //canada
+  timezone_allowed.push("America/St_Johns", "America/Halifax", "America/Blanc-Sablon","America/Toronto","America/Atikokan","America/Winnipeg","America/Regina","America/Edmonton","America/Creston","America/Vancouver"); 
+  
+  timezone_str= Intl.DateTimeFormat().resolvedOptions().timeZone;
+  
+  //Assigning Produc(SKU) to Variat Id of the swatch 
+  var free_item_arr = new Array(); 
+  /*2*/   free_item_arr['16-40g-Color60'] = 48002989908; 
+  /*3*/   free_item_arr['45g-Color60'] = 48002989908; 
+
+  /*4*/   free_item_arr['16-40g-Color5'] = 11257434636324; 
+  /*5*/   free_item_arr['45g-Color5'] = 11257434636324; 
+ 
+  /*6*/   free_item_arr['16-40g-Color5P19-S'] = 32466632310820; 
+
+  /*7*/   free_item_arr['16-40g-Color33'] = 39388637790244; 
+  /*8*/   free_item_arr['45g-Color33'] = 39388637790244; 
+
+  /*9*/   free_item_arr['16-40g-Color22N'] = 32530581913636; 
+  /*10*/  free_item_arr['45g-Color22N'] = 32530581913636; 
+
+  /*11*/  free_item_arr['16-40g-Color613'] = 39388694085668; 
+  /*12*/  free_item_arr['45g-Color613'] = 39388694085668; 
+
+  /*13*/  free_item_arr['16-40g-Color7'] = 31908904075300; 
+  /*14*/  free_item_arr['45g-Color7'] = 31908904075300; 
+
+  /*15*/  free_item_arr['16-40g-Color7T18-S'] = 31909416632356; 
+  /*16*/  free_item_arr['45g-Color7T18-S'] = 31909416632356; 
+
+  /*17*/  free_item_arr['16-40g-Color6'] = 48002989908; 
+  /*18 */ free_item_arr['45g-Color6'] = 48002989908; 
+
+  /*19*/  free_item_arr['45g-Color6T18-S'] = 10409835921444; 
+
+  /*20*/  free_item_arr['16-40g-Color6P18-S'] = 31908979048484; 
+  /*21*/  free_item_arr['45g-Color6P18-S'] = 31908979048484;
+
+  /*22*/  free_item_arr['16-40g-Color4'] = 48363959380; 
+  /*23*/  free_item_arr['45g-Color4'] = 48363959380; 
+
+  /*24*/  free_item_arr['16-40g-Color4T6-S'] = 10409830613028; 
+  /*25*/  free_item_arr['45g-Color4T6-S'] =10409830613028; 
+
+  /*26*/  free_item_arr['16-40g-Color2A'] = 32455581073444;  /*Check */
+  /*27*/  free_item_arr['45g-Color2A'] = 32455581073444;     /*Check*/
+
+  /*28*/  free_item_arr['16-40g-Color5R'] = 39388674162724; 
+  /*29*/  free_item_arr['45g-Color5R'] = 39388674162724 ; 
+
+  /*30*/  free_item_arr['16-40g-Color2'] = 48364516180; 
+  /*31*/  free_item_arr['45g-Color2'] = 48364516180; 
+
+  /*32*/  free_item_arr['16-40g-Color2T5-S'] = 31909314854948; 
+  /*33*/  free_item_arr['45g-Color2T5-S'] = 31909314854948 ; 
+
+  /*34*/  free_item_arr['16-40g-Color2P6-S'] = 31908971151396; 
+  /*35*/  free_item_arr['45g-Color2P6-S'] = 31908971151396; 
+
+  /*36*/  free_item_arr['16-40g-Color2T18-S'] = 31909338415140; 
+  /*37*/  free_item_arr['45g-Color2T18-S'] = 31909338415140;  
+
+  /*38*/  free_item_arr['45g-ColorT218'] = 48367096404; 
+
+  /*39*/  free_item_arr['16-40g-Color18'] = 48368553620; 
+  /*40*/  free_item_arr['45g-Color18'] = 48368553620 ; 
+
+  /*41*/  free_item_arr['16-40g-Color18T60-S'] = 10409826615332; 
+  /*42*/  free_item_arr['45g-Color18T60-S'] = 10409826615332; 
+  /*43*/  free_item_arr['16-40g-Color18P60-S'] = 10409826615332; 
+  /*44*/  free_item_arr['45g-Color18P60-S'] = 10409826615332; 
+
+  /*45*/  free_item_arr['16-40g-Color1'] = 48368375956 ; 
+  /*46*/  free_item_arr['45g-Color1'] = 48368375956; 
+
+  /*47*/  free_item_arr['16-40g-Color1c'] = 48368211924 ;   
+  /*48*/  free_item_arr['45g-Color1c'] = 48368211924; 
+
+  /*49*/  free_item_arr['16-40g-Color1CT7-S'] = 31909300863012 ; 
+  /*50*/  free_item_arr['45g-Color1CT7-S'] = 31909300863012 ; 
+
+  /*51*/  free_item_arr['16-40g-Color1CT6-S'] = 31909004247076 ; 
+  /*52*/  free_item_arr['45g-Color1CT6-S'] = 31909004247076; 
+
+  /*53*/  free_item_arr['45g-ColorT1C6'] =  48359670804;
+
+  /*54*/  free_item_arr['16-40g-Color1cP18-S'] = 32466630705188;   /*Check */
+  /*55 */ free_item_arr['45g-Color1cP18-S'] = 32466630705188; /*Check */
+
+  /*56*/  free_item_arr['16-40g-Color18A'] = 31908915576868; 
+  /*57*/  free_item_arr['45g-Color18A'] = 31908915576868; 
+
+  /*58*/  free_item_arr['45g-Color18AT90-S'] = 31909450514468; 
+  
+  /*59*/  free_item_arr['16-40g-Color30'] = 11257443581988;  /*Check */
+  /*60*/  free_item_arr['45g-Color30'] = 11257443581988;  /*Check */
+
+  /*61*/  free_item_arr['16-40g-Color4A'] = 32466624675876;   /*Check */
+  /*62*/  free_item_arr['45g-Color4A'] = 32466624675876;  /*Check */
+
+  /*63*/  free_item_arr['16-40g-Color1b'] = 48367321108; 
+  /*64*/  free_item_arr['45g-Color1b'] = 48367321108; 
+
+  /*65*/  free_item_arr['16-40g-Color1BT4-S'] = 10409839001636; 
+  /*66*/  free_item_arr['45g-Color1BT4-S'] = 10409839001636; 
+
+  /*67*/  free_item_arr['16-40g-Color90'] = 770415919124; 
+  /*68*/  free_item_arr['45g-Color90'] = 770415919124; 
+
+  /*69*/  free_item_arr['16-40g-Color19'] = 31908943200292; 
+  /*70*/  free_item_arr['45g-Color19'] = 31908943200292; 
+
+  /*71*/  free_item_arr['16-40g-Color19T90-S'] =31909479972900; 
+  /*72*/  free_item_arr['45g-Color19T90-S'] = 31909479972900; 
+ 
+  /*73*/  free_item_arr['16-40g-Color5A'] = 32466628149284;   /*Check */
+  /*74*/  free_item_arr['45g-Color5A'] = 32466628149284;  /*Check */
+
+  /*75*/  free_item_arr['16-40g-Color16'] = 31908909613092; 
+  /*76*/  free_item_arr['45g-Color16'] = 31908909613092; 
+
+  
+  // Adding items in cart
+
+  $(document).ready(function(){   
+    $.ajax({
+      type: 'GET',
+      url: '/cart.js',
+      async: false,
+      cache: false,
+      dataType: 'json',
+      success: function(cart_data){
+        arr = createLineArrayFull(cart_data)
+        var item_added ='0';
+        var item_removed ='0';
+
+        if(timezone_allowed.indexOf(timezone_str)>-1)  
+        {
+          //check for adding item
+          for(i=0;i<(cart_data.items).length;i++)
+          {
+            if(free_item_arr[cart_data.items[i].sku]!=undefined)
+            {
+              property_str = '_FREE_ITEM_'+cart_data.items[i].sku+':::'+free_item_arr[cart_data.items[i].sku];
+
+              if(itemExists(property_str,arr)==false)
+              {
+                if(addToCart(1,free_item_arr[cart_data.items[i].sku],property_str)==true)
+                {
+                  item_added ='1';
+                }
+              }
+            }
+          }   
+        }  
+        //check for removing item
+        for(i=0;i<arr.length;i++)
+        {
+          if(arr[i].properties != null)
+          {
+            line_item_key= arr[i].key;
+            arr1 = arr[i].properties;
+            for (var key in arr1)
+            {
+              if(key.indexOf('_FREE_ITEM_')>-1)
+              {
+                temp = key.split(':::');
+                original_item_sku = temp[0].replace('_FREE_ITEM_','');
+
+                if(isItemExists(original_item_sku,arr)==false)
+                {
+                  removeItemFromCart(line_item_key);
+                  item_removed = '1';
+                }
+              }
+            }
+          }
+        }
+
+        if(item_added=='1' || item_removed=='1')
+        {
+          window.location.href='/cart';    //Refresh page when adding and removing product. 
+        }
+      }
+    }); 
+  });
+  
+  function addToCart(qty,variant_id,free_property)
+  {
+    var is_success = false;
+    var data ={
+      quantity: qty,
+      id: variant_id,
+      properties: {}
+    };
+    data.properties[free_property]='1';
+
+    var params = {
+      type: 'POST',
+      url: '/cart/add.js',
+      data: data, 
+      async:false,
+      dataType: 'json',
+      success: function(stuff) { 
+        is_success =true;
+      },
+      error: function(xhr){
+        responseText = $.parseJSON(xhr.responseText);
+        alert(responseText.description);
+      }
+    };
+    $.ajax(params); 
+    return is_success;
+  }
+  function createLineArrayFull(cart_data)
+  {
+    var variant_arr = [];
+
+    for(j=0;j<(cart_data.items).length;j++)
+    {
+      variant_arr.push(cart_data.items[j]);
+    }  
+    return variant_arr;  	
+  }  
+  function itemExists(property_str,arr)
+  {
+    var exists = false;
+    for(k=0;k<arr.length;k++)
+    {
+      if(arr[k].properties != null && arr[k].properties.hasOwnProperty(property_str) == true)
+      {
+        exists = true;
+      }
+    }  
+    return exists;
+  }
+
+  function isItemExists(original_item_sku,arr)
+  {
+
+    var exists = false;
+    for(k=0;k<arr.length;k++)
+    {
+      if(arr[k].sku==original_item_sku)
+      {
+        exists = true;
+      }
+    }  
+    return exists;
+  }
+
+  function removeItemFromCart(line_item_key)
+  {
+    var data ={
+      id: line_item_key,
+      quantity:0
+    };
+
+    var params = {
+      type: 'POST',
+      url: '/cart/change.js',
+      data: data, 
+      async:false,
+      dataType: 'json',
+    };
+    $.ajax(params);
+  }
+</script>

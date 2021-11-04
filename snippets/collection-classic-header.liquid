@@ -1,0 +1,66 @@
+{% assign shop_thumbnails = "collections" %}
+{% assign shop_step = 1 %}
+
+{% if current_tags %}
+  {% assign shop_thumbnails = "products" %}
+  {% assign shop_step = 2 %}
+{% endif %}
+
+{% capture email %}
+  {% assign address = "shop_description_email_address_" | append: shop_thumbnails %}
+  {% assign address = settings[address] %}
+
+  {% assign call_to_action = "shop_description_email_call_to_action_" | append: shop_thumbnails %}
+  {% assign call_to_action = settings[call_to_action] %}
+
+  <a href="mailto:{{ address }}">{{ call_to_action }}</a>
+{% endcapture %}
+
+{% capture video %}
+  {% assign url = "shop_description_video_url_" | append: shop_thumbnails %}
+  {% assign url = settings[url] %}
+
+  {% assign call_to_action = "shop_description_video_call_to_action_" | append: shop_thumbnails %}
+  {% assign call_to_action = settings[call_to_action] %}
+
+  <a href="{{ url }}" class="js-modal-video" data-ga-event='{ "category": "Video", "action": "play", "label": "Help video" }'>
+    {{ call_to_action }}
+  </a>
+{% endcapture %}
+
+{% capture support %}
+  {% assign url = "shop_description_support_url_" | append: shop_thumbnails %}
+  {% assign url = settings[url] %}
+
+  {% assign call_to_action = "shop_description_support_call_to_action_" | append: shop_thumbnails %}
+  {% assign call_to_action = settings[call_to_action] %}
+
+  <a href="{{ url }}">{{ call_to_action }}</a>
+{% endcapture %}
+
+{% assign title = "Choose thickness:" %}
+
+{% assign description = "collection_description_" | append: shop_thumbnails %}
+{% assign description = settings[description] %}
+{% assign description = description | replace: "{{ email }}", email %}
+{% assign description = description | replace: "{{ video }}", video %}
+{% assign description = description | replace: "{{ support }}", support %}
+
+<div id="shop-header" class="collection-classic-header">
+  <ul class="collection-classic-header-breadcrumbs xsmall--hide">
+    <li class="text-default">
+      Choose thickness
+    </li>&nbsp;&nbsp;&gt;&nbsp;
+    <li>
+      Add to cart
+    </li>
+  </ul>
+
+  <h2 class="collection-title">
+    {{ title }}
+  </h2>
+
+  <p class="collection-description">
+    {{ description }}
+  </p>
+</div>

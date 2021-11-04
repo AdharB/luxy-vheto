@@ -1,0 +1,52 @@
+{% assign product = item.product %}
+{% assign variant = item.variant %}
+
+{% include "attribute-product-backorder" %}
+{% include "attribute-product-excerpt" %}
+{% include "attribute-product-is-gift-card" %}
+{% include "attribute-product-is-full-set" %}
+{% include "attribute-product-is-gift" %}
+{% include "attribute-product-title" %}
+{% include "attribute-product-weight" %}
+{% include "attribute-variant-sample-swatch" %}
+{% include "attribute-item-compare-line-price" %}
+{% include "attribute-item-description" %}
+{% include "attribute-item-on-sale" %}
+
+{% assign image_url = product.featured_image | img_url: "600x" %}
+
+{% assign url = product.url %}
+
+<div class="cart-drawer-item with--close">
+  <div class="flex flex-gutter--0">
+    <div>
+      <a href="{{ url }}" class="image-container {% if product_is_gift %}no-pointer-events{% endif %}">
+        <img src="{{ image_url }}" class="cart-drawer-item-image" alt="{{ product.title | escape }}" />
+      </a>
+    </div>
+
+    <div class="flex-item">
+      <h3 class="local--heading">
+        <a href="{{ url }}" class="{% if product_is_gift %}no-pointer-events{% endif %}">
+          {{ product_title }}{% if product_weight %} - {{ product_weight }}G{% endif %}
+        </a>
+      </h3>
+
+      {% include "cart-drawer-item-quantity" %}
+
+      <div class="inline-block-middle text-left">
+        {% include "cart-drawer-item-price" %}
+      </div>
+
+      <div class="xsmall--hide">
+        {%- unless product.type == "Insurance" -%}
+          {% include "cart-drawer-item-description" %}
+        {%- endunless -%}
+      </div>
+    </div>
+  </div>
+
+  {% include "cart-drawer-item-remove" %}
+</div>
+
+{% assign product = current_product %}

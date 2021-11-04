@@ -1,0 +1,66 @@
+{% assign search_pagination_limit = 250 %}
+
+{% assign search_results_count = search.results_count %}
+
+{% if search.results_count > search_pagination_limit %}
+  {% assign search_results_count = search_pagination_limit %}
+{% endif %}
+
+
+{% assign heading = "Search Results" %}
+
+{% assign keyword = "search" %}
+
+{% capture content_for_page_header %}
+  <h1 class="page-title">
+    {{ heading }}
+  </h1>
+
+  {% if search_results_count > 0 %}
+    <p class="search-summary">
+      Showing {{ search_results_count }} {{ search_results_count | pluralize: "result", "results" }} for <span class="font-bold">"{{ search.terms }}"</span>
+    </p>
+  {% endif %}
+{% endcapture %}
+
+{% include "page-header" %}
+
+
+{% assign types = "product, support, blog, page" | split: ", " %}
+
+{% assign type_headings = "Products, Help &amp; Support, Hair Blog, Pages" | split: ", " %}
+
+<div class="search-container">
+  {% if search_results_count == 0 %}
+    {% assign description = settings.site_search_no_results %}
+    {% assign description = description | replace: "{{ search_terms }}", search.terms %}
+
+    <div class="rte-default-light search-empty">
+      <p>
+        No results for <strong>"{{ search.terms }}"</strong>
+      </p>
+
+      <ul>
+        <li>Make sure all words are spelled correctly.</li>
+        <li>Try different keywords.</li>
+        <li>Try more general keywords.</li>
+        <li>Try fewer keywords.</li>
+      </ul>
+    </div>
+  {% else %}
+    {% paginate search.results by search_pagination_limit %}
+      {% for type in types %}
+        {% assign heading = type_headings[forloop.index0] %}
+
+        <div class="search-section-header">
+          <h2 class="local--heading">
+            {{ heading }}
+          </h2>
+        </div>
+
+        {% assign search_results = "search-results-" | append: type %}
+        {% include search_results %}
+      {% endfor %}
+    {% endpaginate %}
+  {% endif %}
+</div>

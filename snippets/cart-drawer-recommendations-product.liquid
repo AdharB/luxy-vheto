@@ -1,0 +1,91 @@
+{%- assign product = collection.products | first -%}
+
+{% assign variant = product.first_available_variant %}
+
+{% if discounted_variant %}
+  {% for product_variant in product.variants %}
+    {% if product_variant.title contains "Discounted" %}
+      {% assign variant = product_variant %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% include "attribute-item-description" %}
+{% include "attribute-product-backorder" %}
+{% include "attribute-product-cross-sell-heading" %}
+{% include "attribute-product-title" %}
+{% include "attribute-variant-on-sale" %}
+{% include "attribute-variant-sample-swatch" %}
+
+{% assign heading = product.metafields.luxy.cart_recommendations_heading | default: section.settings.default_heading %}
+
+{% assign image_url = product.featured_image | img_url: "600x" %}
+
+{% assign active = false %}
+
+{% if cart_item_ids contains variant.id %}
+  {% assign active = true %}
+{% endif %}
+
+<div class="cart-drawer-recommendations-container">
+  <form action="/cart/add">
+    <input type="hidden" name="id" value="{{ variant.id }}" />
+
+    <h2 class="cart-drawer-recommendations-heading">
+      {{ heading }}
+    </h2>
+
+    <div class="grid grid-gutter--up-1">
+      <div class="grid-item one-third">
+        <a class="image-container" href="{{ product.url }}">
+          <img data-flickity-lazyload="{{ image_url }}" class="one-max-whole circle cart-item-image cart-drawer-recommendations-image" alt="{{ product.title | escape }}" />
+        </a>
+      </div>
+
+      <div class="grid-item two-thirds cart-drawer-recommendations-content">
+        <h3 class="local--heading">
+          <a href="{{ product.url }}">
+            {{ product_title }}
+          </a>
+        </h3>
+
+        <div class="xsmall--hide">
+          <p class="cart-drawer-item-description style--{{ item_description_style }}">
+            {{ item_description }}
+          </p>
+        </div>
+
+        <div class="flex-bar xsmall--flex-none">
+          <div class="cart-drawer-recommendations-mobile-price">
+            <div class="cart-drawer-item-price">
+              <div class="font-secondary text-wide nowrap {% if variant_on_sale %}text-primary{% endif %}">
+                {% include "filter-money" with variant.price %}
+              </div>
+
+              {% if variant_on_sale %}
+                <div class="font-secondary font-size--down-2 text-wide text-line-through">
+                  {% include "filter-money" with variant.compare_at_price %}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+          <div class="flex-item-right">
+            <button type="submit" class="cart-drawer-recommendations-button {% if active %}state--active{% endif %}" data-local-button>
+              <script type="application/json">
+                {
+                  "id": {{ variant.id | json }},
+                  "quantity": 1
+                }
+              </script>
+
+              <span class="local--default" data-local-add>Add</span>
+              <span class="local--active hide" data-local-added>Added</span>
+              <span class="local--spinner" data-local-spinner></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

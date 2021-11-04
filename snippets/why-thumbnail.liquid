@@ -1,0 +1,96 @@
+{% include "attribute-forloop-even" %}
+
+{% assign title = "why_title_" | append: num %}
+{% assign title = settings[title] %}
+
+{% assign description = "why_description_" | append: num %}
+{% assign description = settings[description] %}
+
+{% assign image_url = "why_" | append: num %}
+{% assign image_url = settings[image_url] | img_url: "600x" %}
+
+{% assign image_alt = "why_image_alt_" | append: num %}
+{% assign image_alt = settings[image_alt] %}
+
+{% assign image_href = "why_image_link_" | append: num %}
+{% assign image_href = settings[image_href] | default: false %}
+
+{% assign image_video = false %}
+
+{% if image_href contains "vimeo" or image_href contains "youtube" %}
+  {% assign image_video = true %}
+{% endif %}
+
+{% assign button_href = "why_link_" | append: num %}
+{% assign button_href = settings[button_href] | default: false %}
+
+{% assign button_video = false %}
+
+{% if button_href contains "vimeo" or button_href contains "youtube" %}
+  {% assign button_video = true %}
+{% endif %}
+
+{% assign call_to_action = "why_call_to_action_" | append: num %}
+{% assign call_to_action = settings[call_to_action] | default: false %}
+
+{% assign button_style = "why_button_style_" | append: num %}
+{% assign button_style = settings[button_style] %}
+
+{% assign button_text_color = "why_button_text_color_" | append: num %}
+{% assign button_text_color = settings[button_text_color] %}
+
+{% assign button_background_color = "why_button_background_color_" | append: num %}
+{% assign button_background_color = settings[button_background_color] %}
+
+{% assign button_border_color = "why_button_border_color_" | append: num %}
+{% assign button_border_color = settings[button_border_color] %}
+
+<div class="why-thumbnail">
+  <div class="grid-bar {% if forloop_even %}large--grid-bar-reverse{% endif %}">
+    <div class="grid-item large--one-half">
+      <div class="why-thumbnail-content-container">
+        <div class="why-thumbnail-content">
+          <span class="local--kicker">
+            {{ num }}.
+          </span>
+
+          <h3 class="local--heading">
+            {{ title }}
+          </h3>
+
+          <p class="local--description">
+            {{ description }}
+          </p>
+
+          {% if button_href and call_to_action %}
+            <a href="{{ button_href }}" class="button {% if button_video %}js-modal-video{% endif %}" style="color: {{ button_text_color }}; background-color: {{ button_background_color }}; border-color: {{ button_border_color }};">
+              {{ call_to_action }}
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-item large--one-half">
+      <div class="why-thumbnail-image-container">
+        {% if image_video %}
+          <a href="{{ image_href }}" class="block position-center js-modal-video">
+            <svg width="1em" height="1em" style="font-size: 54px;">
+              <use xlink:href="#icon-play-circle" />
+            </svg>
+          </a>
+        {% endif %}
+
+        {% capture img %}
+          <img src="{{ image_url }}" class="one-whole" alt="" />
+        {% endcapture %}
+
+        {% if image_href %}
+          {{ img | link_to: image_href }}
+        {% else %}
+          {{ img }}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>

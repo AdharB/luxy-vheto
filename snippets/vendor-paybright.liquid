@@ -1,0 +1,6 @@
+{% assign api_key = "AN9sNW9ywREQdzTcCH6hPUXf6hNWXPC1wPJJ6f9hQUqTYz3nO7" %}
+
+{% assign amount = cart.total_price | money %}
+
+<script id="paybright" src="https://app.paybright.com/api/pbmarketing_iframe.js?public_key={{ api_key }}&financedamount={{ amount }}"></script>
+<div id="paybright-widget-container" class="pb-price"></div>

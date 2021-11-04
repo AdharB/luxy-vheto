@@ -1,0 +1,47 @@
+{% assign rte = article.content %}
+
+{% include "attribute-rte-fragments" %}
+
+{% include "rte-fragment" with "banner" %}
+
+{% assign image_url = rte_image_urls[0] | default: false %}
+
+{% assign image_alt = rte_image_alts[0] %}
+
+{% assign href = rte_image_hrefs[0] %}
+
+{% assign enabled = section.settings.enabled %}
+
+{% if enabled and image_url %}
+  <div class="article-banner">
+    <a href="{{ href }}" class="image-container">
+      <img data-src="{{ image_url }}" class="one-whole" alt="{{ image_alt }}" />
+    </a>
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Banner",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Article banner images appear in the sidebar."
+      },
+      {
+        "type": "checkbox",
+        "id": "enabled",
+        "label": "Enable",
+        "default": false
+      },
+      {
+        "type": "header",
+        "content": "Notes"
+      },
+      {
+        "type": "paragraph",
+        "content": "Banner images are added to the content of each article using the h5 header \"Banner\". Links can be added to the image using the rich text editor."
+      }
+    ]
+  }
+{% endschema %}

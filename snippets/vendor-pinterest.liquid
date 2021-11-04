@@ -1,0 +1,41 @@
+<script>
+  !(function(e) {
+    if (!window.pintrk) {
+      window.pintrk = function() {
+        window.pintrk.queue.push(Array.prototype.slice.call(arguments));
+      };
+      var n = window.pintrk;
+      (n.queue = []), (n.version = "3.0");
+      var t = document.createElement("script");
+      (t.async = !0), (t.src = e);
+      var r = document.getElementsByTagName("script")[0];
+      r.parentNode.insertBefore(t, r);
+    }
+  })("https://s.pinimg.com/ct/core.js");
+
+  pintrk("load", "2612988321809", { em: "{{ customer.id }}" });
+  pintrk("page");
+
+  {% if template.name == "cart" %}
+    pintrk('track', 'pagevisit', {
+      page_title: "Cart",
+      value: {{ cart.total_price | money_without_currency }},
+      line_items: [{% for item in cart.items %}{
+        product_name: {{ item.product.title | json }},
+        product_id: "{{ item.sku }}",
+        product_quantity: {{ item.quantity }},
+        product_price: {{ item.price | money_without_currency }}
+      }{% unless forloop.last %},{% endunless %}{% endfor %}]
+    });
+  {% endif %}
+
+  {% if template.name == "article" %}
+    pintrk('track', 'pagevisit', {
+      page_title: {{ article.title | json }}
+    });
+  {% endif %}
+</script>
+
+<noscript>
+  <img height="1" width="1" style="display:none;" alt="" src="https://ct.pinterest.com/v3/?tid=2612988321809&noscript=1" />
+</noscript>

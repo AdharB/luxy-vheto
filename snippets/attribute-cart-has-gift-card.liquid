@@ -1,0 +1,8 @@
+{% assign cart_has_gift_card = false %}
+
+{% for item in cart.items %}
+  {% if item.product.type == "Gift Card" %}
+    {% assign cart_has_gift_card = true %}
+    {% break %}
+  {% endif %}
+{% endfor %}

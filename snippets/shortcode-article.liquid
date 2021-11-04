@@ -1,0 +1,61 @@
+{% assign article = false %}
+
+{% for attribute_title in attribute_titles %}
+  {% if attribute_title == "handle" %}
+    {% assign article_handle = blog.handle | append: "/" | append: attribute_values[forloop.index0] %}
+    {% assign article = articles[article_handle] | default: false %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% if article %}
+  {% include "attribute-article-category" %}
+  {% include "attribute-article-category-url" %}
+  {% include "attribute-article-image" with "1000x" %}
+
+  {% assign image_url = article_image %}
+
+  {% assign heading = article.title %}
+
+  {% assign description = block.settings.description | default: nil %}
+
+  {% assign call_to_action = block.settings.call_to_action | default: "Read more" %}
+
+  {% assign url = article.url %}
+
+  <section class="shortcode-article">
+    <div class="large--flex">
+      <div class="flex-item--2 position-relative">
+        <a href="{{ url }}" class="position-full background-cover without-rte-styles" style="background-image: url({{ image_url }});"></a>
+      </div>
+
+      <div class="flex-item--2 border-default-lighter flex">
+        <div class="shortcode-article-content flex-item-center">
+          {% if article_category %}
+            <a href="{{ article_category_url }}" class="blog-kicker without-rte-styles">
+              {{ article_category }}
+            </a>
+          {% endif %}
+
+          <h1 class="without-rte-styles local--heading">
+            <a href="{{ url }}" class="without-rte-styles">
+              {{ heading }}
+            </a>
+          </h1>
+
+          {% if description %}
+            <p class="local--description">
+              {{ description }}
+            </p>
+          {% endif %}
+
+          <a href="{{ url }}" class="local--button without-rte-styles">
+            {{ call_to_action }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+{% assign article = current_article %}

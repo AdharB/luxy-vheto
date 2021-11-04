@@ -1,0 +1,12 @@
+{% assign article_featured_image_size = "750x750" %}
+
+{% assign article_featured_image = article | img_url: article_featured_image_size, crop: "center" %}
+
+{% assign rte = article.excerpt %}
+
+{% include "attribute-rte-image-urls" %}
+
+{% if rte_image_urls[0] %}
+  {% include "filter-rte-img-url" input: rte_image_urls[0], size: article_featured_image_size %}
+  {% assign article_featured_image = output %}
+{% endif %}

@@ -1,0 +1,10 @@
+{% layout none %}
+
+{% paginate blog.articles by 1000 %}
+  [
+    {% for article in blog.articles %}{
+      "title": {{ article.title | json }},
+      "url": {{ article.url | json }}
+    }{% unless forloop.last %},{% endunless %}{% endfor %}
+  ]
+{% endpaginate %}

@@ -1,0 +1,19 @@
+{% assign url = "tag" | link_to_add_tag: "tag" | split: 'href="' | last | split: '"' | first %}
+
+{% assign current_params = false %}
+
+{% if url contains "?" %}
+  {% assign current_params = url | split: "?" | last %}
+  {% assign current_param_parts = current_params | remove: "amp;" | split: "&" %}
+
+  {% assign current_param_keys = "" | split: "" %}
+  {% assign current_param_values = "" | split: "" %}
+
+  {% for param in current_param_parts %}
+    {% assign current_param_key = param | split: "=" | first | split: "-<-@" %}
+    {% assign current_param_value = param | split: "=" | last | split: "-<-@" %}
+
+    {% assign current_param_keys = current_param_keys | concat: current_param_key %}
+    {% assign current_param_values = current_param_values | concat: current_param_value %}
+  {% endfor %}
+{% endif %}

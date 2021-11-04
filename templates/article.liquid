@@ -1,0 +1,30 @@
+{% comment %}
+  Blog articles are automatically treated as fragments when the
+  blog template is set to `blog.fragment`.
+
+  Default blog articles will look for `snippets/article.liquid`.
+
+  Alternate blog articles will look for `snippets/article-BLOG-TEMPLATE-SUFFIX.liquid`.
+
+  For article fragments only, add the blog template suffix to the
+  blog_fragments array variable below.
+{% endcomment %}
+
+{% assign blog_fragments = "fragment, faq" | split: ", " %}
+
+{% assign article_template_snippet = "template-article-" | append: blog.template_suffix %}
+
+{% if blog.template_suffix == blank %}
+  {% include "template-article" %}
+{% elsif blog_fragments contains blog.template_suffix %}
+  {% layout "fragment" %}
+{% else %}
+  {% include article_template_snippet %}
+{% endif %}
+
+
+{% comment %}
+  blog posts-page-bottom model installed by Builder.io
+  You may modify this code at any time
+{% endcomment %}
+{% include 'model.blog posts-page-bottom.builder' %}

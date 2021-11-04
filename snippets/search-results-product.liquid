@@ -1,0 +1,78 @@
+{% assign results_count = 0 %}
+
+{% assign invalid_types = "Sample Swatch, Insurance" %}
+
+<div class="grid-uniform grid-gutter--up-1 medium--grid-gutter--up-3 large--grid-gutter--up-4">
+  {% for item in search.results %}
+    {% unless item.object_type == type %}
+      {% continue %}
+    {% endunless %}
+
+    {% assign product = item %}
+
+    {% if invalid_types contains product.type %}
+      {% continue %}
+    {% endif %}
+
+    {% assign results_count = results_count | plus: 1 %}
+
+    {% include "attribute-product-title" %}
+    {% include "attribute-product-weight" %}
+    {% include "attribute-product-length" %}
+
+    <div class="grid-item one-half medium--one-third large--one-fifth">
+
+      {% assign title = product_title | split: "#" | first | strip %}
+
+      {% assign image_url = product.featured_image | img_url: "600x" %}
+
+      {% assign hover_image_url = product.images[1] | img_url: "600x" %}
+
+      {% assign href = product.url | within: collection %}
+
+      {% assign call_to_action = false %}
+
+      <div class="search-results-product-content">
+        <a href="{{ href }}" class="product-thumbnail-image-container product-thumbnail-image-rollover">
+          {% if hover_image_url %}
+            <div class="product-thumbnail-image--hover">
+              <img src="{{ hover_image_url }}" class="block one-whole max-one" />
+            </div>
+          {% endif %}
+
+          <div class="product-thumbnail-image--default">
+            <img src="{{ image_url }}" class="max-one" alt="{{ title }}" />
+          </div>
+        </a>
+
+        <h2 class="local--heading">
+          {{ title }}
+        </h2>
+
+        {% if product_weight or product_length %}
+          <span class="local--description">
+            {% if product_weight %}
+              {{ product_weight }} grams /
+            {% endif %}
+
+            {% if product_length %}
+              {{ product_length }}
+            {% endif %}
+          </span>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if results_count == 30 %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+
+  {% if results_count == 0 %}
+    <div class="grid-item">
+      <p class="text-default-light">
+        No product results for <span class="font-bold">"{{ search.terms }}"</span>
+      </p>
+    </div>
+  {% endif %}
+</div>

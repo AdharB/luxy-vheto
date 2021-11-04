@@ -1,0 +1,34 @@
+{% assign rte = pages["our-story-customers"].content %}
+
+{% include "attribute-rte-body-copy" %}
+{% include "attribute-rte-headings" %}
+{% include "attribute-rte-images" %}
+
+{% assign heading = rte_headings.first %}
+
+{% assign image_urls = rte_image_urls %}
+
+{% assign image_alts = rte_image_alts %}
+
+{% assign description = rte_body_copy %}
+
+<section class="about-customers">
+  <h1 class="local--heading">
+    {{ heading }}
+  </h1>
+
+  <div class="grid grid-gutter--up-4">
+    <div class="grid-item large--one-half">
+      <div class="local--image-container">
+        {% for image_url in image_urls %}
+          <img src="{{ image_url }}" alt="{{ image_alts[forloop.index0] }}" />
+        {% endfor %}
+      </div>
+    </div>
+    <div class="grid-item large--one-half">
+      <div class="about-rte">
+        {{ description }}
+      </div>
+    </div>
+  </div>
+</section>

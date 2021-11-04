@@ -1,0 +1,49 @@
+{% comment %}
+-----------------------------------------------------------------------------
+Hey there! This is the markup for the ShipTimer coundown notice.
+
+If you need to make markup or styling changes, then this is the spot.
+
+If you have questions please don't hesitate to contact us. We'll reply within
+one business day.
+
+https://ethercycle.com/shiptimer/support/
+-----------------------------------------------------------------------------
+{% endcomment %}
+
+{% capture should_display_ship_timer %}
+  {% if product == null %}
+    true
+  {% elsif product.metafields.ship-timer.excluded_product_id == product.id %}
+    false
+  {% elsif product.inventory_management == null %}
+    true
+  {% else %}
+    {% assign total_stock = 0 %}
+    {%for variant in product.variants %}
+      {% capture i %}{{ total | plus:variant.inventory_quantity }}{%endcapture%}
+      {% assign total_stock = i %}
+    {%endfor%}
+    {% assign total_stock = total_stock | plus: 0 %}
+    {% if total_stock > 0 %}
+      true
+    {% endif %}
+  {% endif %}
+{% endcapture %}
+{% assign should_display_ship_timer = should_display_ship_timer | strip %}
+
+{% assign shopData = shop.metafields.ship-timer %}
+
+{% capture fontColor %}{{shopData.font_color}}{% endcapture %}
+{% capture fontSize %}{{shopData.font_size}}{% endcapture %}
+
+{% capture styleString %}{% if fontSize != blank %}font-size:{{fontSize}};{% endif %}{% endcapture %}
+{% capture styleString %}{{styleString}}{% if fontColor != blank %}color:{{fontColor}};{% endif %}{% endcapture %}
+
+{% if should_display_ship_timer == 'true' %}
+  <script>
+    var shipTimerData = {{ shop.metafields["ship-timer"]["data"] }};
+  </script>
+
+  <span class='ship-timer-display'>{{ shop.metafields["ship-timer"]["fallback_message"] }}</span>
+{% endif %}

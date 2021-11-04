@@ -1,0 +1,19 @@
+{% assign description = settings.gdpr_notice_description | default: nil %}
+
+{% assign call_to_action = settings.gdpr_notice_call_to_action | default: nil %}
+
+{% assign enabled = settings.gdpr_notice_enabled %}
+
+{% if enabled %}
+  <div class="gdpr-notice" data-module-gdpr-notice>
+    <div class="gdpr-notice-description">
+      {{ description }}
+    </div>
+
+    <a class="gdpr-notice-button" data-local-button>
+      <svg width="1em" height="1em">
+        <use xlink:href="#icon-close" />
+      </svg>
+    </a>
+  </div>
+{% endif %}

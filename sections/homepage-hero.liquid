@@ -1,0 +1,149 @@
+{% assign image = section.settings.image %}
+
+{% assign image_url = section.settings.image | img_url: "2000x" %}
+
+{% assign mobile_image_url = section.settings.mobile_image | img_url: "900x" %}
+
+{% assign kicker = section.settings.kicker %}
+
+{% assign heading = section.settings.heading %}
+
+{% assign description = section.settings.description %}
+
+{% assign call_to_action = section.settings.call_to_action | default: false %}
+
+{% assign url = section.settings.url %}
+
+{% assign button_2_enabled = section.settings.button_2_enabled %}
+
+{% assign call_to_action_2 = section.settings.call_to_action_2 | default: false %}
+
+{% assign url_2 = section.settings.url_2 %}
+
+<div class="large--hide">
+  <a href="{{ url }}" class="image-container box-ratio--square">
+    <img data-src="{{ mobile_image_url }}" class="one-whole" alt="" />
+  </a>
+
+  <div class="homepage-hero-mobile-content">
+    <div class="homepage-hero-kicker">
+      {{ kicker }}
+    </div>
+
+    <h1 class="local--heading">
+      {{ heading }}
+    </h1>
+
+    <p class="local--description xsmall--hide">
+      {{ description }}
+    </p>
+
+    <a href="{{ url }}" class="button-default one-whole">
+      {{ call_to_action }}
+    </a>
+  </div>
+</div>
+
+<div class="medium-down--hide">
+  <div class="homepage-hero" data-src="{{ image_url }}">
+    <div class="homepage-hero-content">
+      <h1 class="homepage-hero-title text-inverted">
+        {{ heading }}
+      </h1>
+
+      <a href="{{ url }}" class="button-primary">
+        {{ call_to_action }}
+      </a>
+
+      {% if button_2_enabled %}
+        <div class="local--button-container">
+          <a href="{{ url_2 }}" class="button-link-inverted">
+            {{ call_to_action_2 }}
+          </a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Hero",
+    "class": "homepage-hero-section",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "mobile_image",
+        "label": "Mobile image"
+      },
+      {
+        "type": "text",
+        "id": "kicker",
+        "label": "Kicker"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading"
+      },
+      {
+        "type": "textarea",
+        "id": "description",
+        "label": "Description"
+      },
+      {
+        "type": "header",
+        "content": "Button"
+      },
+      {
+        "type": "text",
+        "id": "call_to_action",
+        "label": "Call to action"
+      },
+      {
+        "type": "url",
+        "id": "url",
+        "label": "Link"
+      },
+      {
+        "type": "header",
+        "content": "Button 2"
+      },
+      {
+        "type": "checkbox",
+        "id": "button_2_enabled",
+        "label": "Enable"
+      },
+      {
+        "type": "text",
+        "id": "call_to_action_2",
+        "label": "Call to action"
+      },
+      {
+        "type": "url",
+        "id": "url_2",
+        "label": "Link"
+      }
+    ],
+    "default": {
+      "settings": {
+        "image": "shopify:\/\/shop_images\/Desktop__FullWidth_Camila_462c6366-2851-447a-8b4c-95b868158c4c.jpg",
+        "mobile_image": "shopify:\/\/shop_images\/Camila_Transformation-resaved_63727352-97b4-4963-9217-bc5a2561f07d.gif",
+        "kicker": "In just minutes you can",
+        "heading": "Get longer, thicker hair",
+        "description": "With high quality clip-in Luxy Hair extensions, you can finally have that fuller and longer hair you've always dreamed of.",
+        "call_to_action": "Shop hair extensions",
+        "url": "shopify:\/\/collections\/classic-clip-in-hair-extensions",
+        "button_2_enabled": true,
+        "call_to_action_2": "Help me choose",
+        "url_2": "shopify:\/\/pages\/step1"
+      }
+    }
+  }
+{% endschema %}

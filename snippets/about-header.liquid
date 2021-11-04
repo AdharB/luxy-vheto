@@ -1,0 +1,26 @@
+{% assign rte = pages["our-story-header"].content %}
+
+{% include "attribute-rte-body-copy" %}
+{% include "attribute-rte-headings" %}
+
+{% assign title = rte_headings[0] %}
+
+{% assign description = rte_body_copy %}
+
+{% assign keyword = "about" %}
+
+{% capture content_for_page_header %}
+  <h1 class="local--heading">
+    {{ title }}
+  </h1>
+
+  <svg width="1em" height="1em">
+    <use xlink:href="#icon-heart" />
+  </svg>
+
+  <div class="page-header-rte">
+    {{ description }}
+  </div>
+{% endcapture %}
+
+{% include "page-header" %}

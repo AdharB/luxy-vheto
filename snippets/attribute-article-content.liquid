@@ -1,0 +1,38 @@
+{% assign article_content = rte_content | replace: "<img src=", "<img data-src=" %}
+
+{% if param_view contains "test" %}
+  {% capture article_content %}
+    <p>[tiktok url="https://www.tiktok.com/@louisarose213/video/6875468548584541445"]</p>
+    <p>You're viewing the test template with fake article content that shows styles for each element.</p>
+    <p>Bacon ipsum dolor amet cupim cow biltong drumstick kevin porchetta ham hock flank. Sausage short loin beef ribs burgdoggen t-bone leberkas shoulder. Landjaeger biltong salami beef ribs beef, tongue tail spare ribs drumstick. Ribeye sausage short loin biltong, venison frankfurter jowl picanha porchetta turkey t-bone flank salami drumstick. Leberkas boudin jerky, pancetta pork pork belly chuck beef tongue.</p>
+    <h1>Heading 1</h1>
+    <p>[pinterest url="https://www.pinterest.com/pin/199495458484766383/"]</p>
+    <p>Note that heading 1 shouldn't be used in articles because the article title is the first level heading, but if it is used that's what it looks like.</p>
+    <p>[product handle="halo-16-inch-ash-blonde"]</p>
+    <h2>Heading 2</h2>
+    <p>Short ribs tri-tip beef ribs frankfurter pork chop biltong flank bacon. Pork chop jowl ham sirloin tongue. Doner andouille hamburger pig, pork belly ball tip turducken prosciutto pork loin brisket burgdoggen tail tri-tip drumstick spare ribs. Pig tail kielbasa landjaeger strip steak.</p>
+    <h3>Heading 3</h3>
+    <p>Flank t-bone chicken pork belly, filet mignon pork ball tip strip steak spare ribs ham hock kevin. Tenderloin turkey flank burgdoggen pork kielbasa shankle kevin jowl rump pork chop. Venison brisket bresaola swine meatball corned beef buffalo pancetta tri-tip, jowl sausage kielbasa beef salami. Short loin porchetta shankle doner tail, pig pork landjaeger picanha frankfurter shank. Buffalo picanha biltong, flank prosciutto pork chop drumstick. Rump ribeye swine pastrami picanha venison corned beef beef ribs capicola bresaola biltong salami.</p>
+    <h4>Heading 4</h4>
+    <p>Short ribs tri-tip beef ribs frankfurter pork chop biltong flank bacon. Pork chop jowl ham sirloin tongue. Doner andouille hamburger pig, pork belly ball tip turducken prosciutto pork loin brisket burgdoggen tail tri-tip drumstick spare ribs. Pig tail kielbasa landjaeger strip steak.</p>
+    <p>[article handle="third-day-hair"]</p>
+    <p>Venison brisket bresaola swine meatball corned beef buffalo pancetta tri-tip, jowl sausage kielbasa beef salami. Short loin porchetta shankle doner tail, pig pork landjaeger picanha frankfurter shank.</p>
+    <p><blockquote>This is a blockquote</blockquote></p>
+    <ul>
+      <li>Frankfurter pork chop biltong</li>
+      <li>Doner andouille hamburger pig</li>
+      <li>Loin brisket</li>
+    </ul>
+    <ol>
+      <li>Frankfurter pork chop biltong</li>
+      <li>Doner andouille hamburger pig</li>
+      <li>Loin brisket</li>
+    </ol>
+    <h2>Videos</h2>
+    <p>Videos are set to autoplay and muted by default. Use the options attribute to set specific parameters. Value of options attribute is expected to be in URL format e.g ?autoplay=0. Refer to YouTube and Vimeo documentation for list of options.</p>
+    <h3>YouTube</h3>
+    <p>[video url="https://www.youtube.com/watch?v=hefRwsUxWa4"]</p>
+    <h3>Vimeo</h3>
+    <p>[video url="https://vimeo.com/23561958"]</p>
+  {% endcapture %}
+{% endif %}

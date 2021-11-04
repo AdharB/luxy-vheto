@@ -1,0 +1,31 @@
+<div class="position-relative">
+  <div class="beforeafter-slider" data-flickity='{ "wrapAround": true, "prevNextButtons": true, "autoPlay": false, "dragThreshold": 10, "pageDots": true, "lazyLoad": true }'>
+    {% for block in section.blocks %}
+      <div class="beforeafter-slide-container">
+        <div class="beforeafter-slide">
+          <div class="grid grid-gutter--down-1 large--grid-gutter--up-4">
+            <div class="grid-item one-half">
+              {% assign image_url = block.settings.before_image | img_url: "600x" %}
+
+              {% assign title = "Before" %}
+
+              {% assign description = block.settings.before_description %}
+
+              {% include "component-beforeafter-slider-half" %}
+            </div>
+
+            <div class="grid-item one-half">
+              {% assign image_url = block.settings.after_image | img_url: "600x" %}
+
+              {% assign title = "After" %}
+
+              {% assign description = block.settings.after_description %}
+
+              {% include "component-beforeafter-slider-half" %}
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>

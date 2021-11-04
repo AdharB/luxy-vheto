@@ -1,0 +1,9 @@
+{% assign item_on_sale = false %}
+
+{% if item.variant.compare_at_price > item.variant.price %}
+  {% assign item_on_sale = true %}
+{% endif %}
+
+{% if item.original_price > item.final_price %}
+  {% assign item_on_sale = true %}
+{% endif %}

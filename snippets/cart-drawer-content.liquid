@@ -1,0 +1,37 @@
+{% if cart_empty %}
+  {% section "cart-drawer-empty" %}
+{% else %}
+  <div class="cart-drawer-content">
+    {%- include "cart-drawer-header" -%}
+
+    {% section "cart-drawer-gift" %}
+
+    <div class="cart-drawer-items" data-module-cart-drawer-items>
+      {% for item in cart.items %}
+        {% include "cart-drawer-item" %}
+      {% endfor %}
+    </div>
+
+    {% include "donation" %}
+    {% section "cart-drawer-recommendations" %}
+    {% section "cart-drawer-faq" %}
+    {% section "cart-drawer-incentives" %}
+    {% section "cart-drawer-shipping" %}
+    {% include "cart-drawer-payment-methods" %}
+  </div>
+
+  <div class="cart-drawer-footer">
+    {% include "cart-drawer-subtotal" %}
+    {% section "cart-drawer-savings" %}
+
+    {% if cart_invalid %}
+      {% include "cart-invalid" %}
+    {% else %}
+      <div style="height: 25px;">
+<!--         {% include "vendor-route-cart" %} -->
+      </div>
+
+      {% include "cart-drawer-checkout" %}
+    {% endif %}
+  </div>
+{% endif %}

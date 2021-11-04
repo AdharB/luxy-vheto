@@ -1,0 +1,13 @@
+{% assign collection_color_groups = "" | split: "" %}
+
+{% for product in collection.products %}
+  {% include "attribute-product-color-groups" %}
+
+  {% if product_color_group == empty %}
+    {% continue %}
+  {% endif %}
+
+  {% assign collection_color_groups = collection_color_groups | concat: product_color_groups %}
+{% endfor %}
+
+{% assign collection_color_groups = collection_color_groups | uniq %}

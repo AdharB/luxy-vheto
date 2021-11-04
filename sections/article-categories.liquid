@@ -1,0 +1,56 @@
+{% assign menu = section.settings.menu %}
+{% assign menu = linklists[menu] | default: nil %}
+
+{% assign heading = section.settings.heading %}
+
+{% if menu %}
+  <div class="article-categories" data-module-collections-mobile-menu>
+    <a href="#" class="article-categories-button" data-local-button>
+      <span>
+        {{ heading }}
+      </span>
+
+      <svg width="1em" height="1em">
+        <use xlink:href="#icon-arrow-down" />
+      </svg>
+    </a>
+
+    <div class="article-categories-dropdown hide" data-local-dropdown>
+      {% for link in menu.links %}
+        {% assign url = blog.url | append: "/tagged/" | append: link.handle %}
+
+        <a href="{{ url }}" class="collections-mobile-menu-link">
+          {{ link.title }}
+        </a>
+      {% endfor %}
+    </div>
+
+    <select data-local-select>
+      {% for link in menu.links %}
+        {% assign url = blog.url | append: "/tagged/" | append: link.handle %}
+
+        <option value="{{ link.handle }}" onclick="location.href = '{{ url }}';">
+          {{ link.title }}
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Categories",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "menu",
+        "label": "Menu"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading"
+      }
+    ]
+  }
+{% endschema %}

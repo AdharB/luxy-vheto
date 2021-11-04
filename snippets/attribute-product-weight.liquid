@@ -1,0 +1,10 @@
+{% include "attribute-shop-weights" %}
+
+{% assign product_weight = nil %}
+
+{% for tag in product.tags %}
+  {% if shop_weights contains tag %}
+    {% assign product_weight = tag %}
+    {% break %}
+  {% endif %}
+{% endfor %}

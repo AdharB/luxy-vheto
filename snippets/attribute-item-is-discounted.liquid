@@ -1,0 +1,5 @@
+{% assign item_is_discounted = false %}
+
+{% if item.original_price > item.final_price %}
+  {% assign item_is_discounted = true %}
+{% endif %}

@@ -1,0 +1,33 @@
+{% assign results_count = 0 %}
+
+<div class="grid-uniform">
+  {% for item in search.results %}
+    {% unless item.object_type == "article" %}
+      {% continue %}
+    {% endunless %}
+
+    {% assign article = item %}
+
+    {% if article.author == "Luxy Support" %}
+      {% continue %}
+    {% endif %}
+
+    {% assign results_count = results_count | plus: 1 %}
+
+    <div class="grid-item one-half large--one-quarter">
+      {% include "article-thumbnail" %}
+    </div>
+
+    {% if results_count == 30 %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+
+  {% if results_count == 0 %}
+    <div class="grid-item">
+      <p class="text-default-light">
+        No hair blog results for <span class="font-bold">"{{ search.terms }}"</span>
+      </p>
+    </div>
+  {% endif %}
+</div>

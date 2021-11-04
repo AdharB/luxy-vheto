@@ -1,0 +1,33 @@
+{% assign title = settings.product_detail_title %}
+
+{% assign description = settings.product_detail_description %}
+
+{% assign call_to_action = settings.product_detail_call_to_action %}
+
+<div class="product-accordion" data-module-product-accordion>
+  <div class="product-accordion-header" data-local-header>
+    <span class="local--heading">
+      Collection Description
+    </span>
+
+    <svg class="local--icon" width="1em" height="1em">
+      <use xlink:href="#icon-arrow-down" />
+    </svg>
+  </div>
+
+  <div class="product-accordion-content">
+    <div class="product-details">
+      <span class="local--heading">
+        {{ title }}
+      </span>
+
+      <p class="local--description">
+        {{ description }}
+      </p>
+
+      <a href="#product-details-modal" class="local--link js-modal" data-ga-event='{ "category": "Product", "action": "click", "label": "View product measurements" }'>
+        {{ call_to_action }}
+      </a>
+    </div>
+  </div>
+</div>

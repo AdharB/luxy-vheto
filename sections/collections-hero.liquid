@@ -1,0 +1,110 @@
+{% assign heading = section.settings.heading | replace: "[br]", "<br />" %}
+
+{% assign call_to_action = section.settings.call_to_action | default: nil %}
+
+{% assign call_to_action_2 = section.settings.call_to_action_2 | default: nil %}
+
+{% assign url_2 = section.settings.url_2 | default: nil %}
+
+{% assign image = section.settings.image | default: nil %}
+
+{% assign image_url = image | img_url: "1200x" %}
+
+{% assign video_url = section.settings.video_url | default: nil %}
+
+<div class="collections-hero" data-module-collections-hero>
+  <div class="large--flex">
+    <div class="flex-item--2 position-relative overflow-hidden">
+      <div class="local--video-container" {% if video_url %}data-local-video-container{% endif %} {% if image %}style="background-image: url({{ image_url }});"{% endif %}>
+        {% if video_url %}
+          <iframe src="https://player.vimeo.com/video/{{ video_url.id }}?background=1&loop=1&muted=1" scrolling="no" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+        {% endif %}
+      </div>
+    </div>
+    <div class="flex-item--2">
+      <div class="collections-hero-content">
+        <h1 class="section-heading">
+          {{ heading }}
+        </h1>
+
+        <p class="collections-description">
+          {{ section.settings.description }}
+        </p>
+
+        <div class="inline-block text-center">
+          {% if call_to_action %}
+            <div class="local--button-container">
+              <a href="#collections-content" class="button-primary" data-scroll='{ "offset": "#sticky-menu" }'>
+                {{ call_to_action }}
+              </a>
+            </div>
+          {% endif %}
+
+          {% if call_to_action_2 and url_2 %}
+            <div class="local--button-container-2">
+              <a href="{{ url_2 }}" class="button-link">
+                {{ call_to_action_2 }}
+              </a>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Hero",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading"
+      },
+      {
+        "type": "textarea",
+        "id": "description",
+        "label": "Description"
+      },
+      {
+        "type": "video_url",
+        "id": "video_url",
+        "accept": ["vimeo"],
+        "label": "Video"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "header",
+        "content": "Call to action"
+      },
+      {
+        "type": "text",
+        "id": "call_to_action",
+        "label": "Text"
+      },
+      {
+        "type": "paragraph",
+        "content": "Scrolls to collections."
+      },
+      {
+        "type": "header",
+        "content": "Call to action 2"
+      },
+      {
+        "type": "text",
+        "id": "call_to_action_2",
+        "label": "Text"
+      },
+      {
+        "type": "url",
+        "id": "url_2",
+        "label": "Link"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,61 @@
+{% assign heading = section.settings.heading %}
+
+{% assign description = section.settings.description %}
+
+{% assign call_to_action = section.settings.call_to_action %}
+
+{% assign url = section.settings.url %}
+
+<div class="cart-drawer-header" data-module-cart-drawer-header>
+  <h1 class="local--heading">
+    {{ heading }}
+
+    <svg width="1em" height="1em" data-local-close-button>
+      <use xlink:href="#icon-close-thin" />
+    </svg>
+  </h1>
+
+  <p class="local--description">
+    {{ description }}
+  </p>
+
+  <div class="local--call-to-action-container">
+    <div class="local--call-to-action">
+      <a href="{{ url }}" class="one-whole inline-block button-primary" data-local-close-button>
+        {{ call_to_action }}
+      </a>
+    </div>
+  </div>
+</div>
+
+{%- schema -%}
+  {
+    "name": "Cart empty",
+    "settings": [
+      {
+        "type": "text",
+        "label": "Heading",
+        "id": "heading",
+        "default": "Your Shopping Bag"
+      },
+      {
+        "type": "textarea",
+        "label": "Description",
+        "id": "description",
+        "default": "Your cart is empty."
+      },
+      {
+        "type": "text",
+        "label": "Call to action",
+        "id": "call_to_action",
+        "default": "Continue shopping"
+      },
+      {
+        "type": "url",
+        "label": "Link",
+        "id": "url",
+        "default": "\/collections"
+      }
+    ]
+  }
+{%- endschema -%}

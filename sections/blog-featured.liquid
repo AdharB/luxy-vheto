@@ -1,0 +1,76 @@
+{% assign article = section.settings.article %}
+{% assign article = articles[article] | default: nil %}
+
+{% include "attribute-article-date" %}
+{% include "attribute-article-category" %}
+{% include "attribute-article-category-url" %}
+{% include "attribute-article-featured-image" %}
+
+{% assign image_url = article_featured_image %}
+
+{% assign title = article.title %}
+
+{% assign description = article.excerpt | strip_html | truncate: 140 %}
+
+{% assign url = article.url %}
+
+{% assign call_to_action = section.settings.call_to_action %}
+
+{% if article %}
+  <section class="blog-featured">
+    <div class="blog-featured-container">
+      <div class="grid grid-gutter--none">
+        <div class="grid-item large--one-half">
+          <a href="{{ url }}" class="blog-featured-image">
+            <img data-src="{{ image_url }}" />
+          </a>
+        </div>
+        <div class="grid-item large--one-half">
+          <div class="blog-featured-content">
+            <div class="blog-featured-content-container">
+
+              {% if article_category %}
+                <a href="{{ article_category_url }}" class="blog-kicker">
+                  {{ article_category }}
+                </a>
+              {% endif %}
+
+              <h1 class="local--heading">
+                <a href="{{ url }}">
+                  {{ title }}
+                </a>
+              </h1>
+
+              <p class="local--description">
+                {{ description }}
+              </p>
+
+              <a href="{{ url }}" class="button-link">
+                {{ call_to_action }}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Featured",
+    "settings": [
+      {
+        "type": "article",
+        "id": "article",
+        "label": "Article",
+        "info": "Image, category, excerpt and link are pulled from the article."
+      },
+      {
+        "type": "text",
+        "id": "call_to_action",
+        "label": "Call to action"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,11 @@
+{% assign color = settings.notification_bar_text_color %}
+
+{% assign background_color = settings.notification_bar_background_color %}
+
+{% assign description = settings.notification_bar_description %}
+
+{% if settings.show_notification_bar %}
+  <div class="notification-bar notification-bar-rte" style="color: {{ color }}; background-color: {{ background_color }};">
+    {{ description }}
+  </div>
+{% endif %}

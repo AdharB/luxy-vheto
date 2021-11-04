@@ -1,0 +1,1080 @@
+<style>
+  .hair-classification {
+    margin: 10px auto;
+    min-height: 750px;
+    width: auto;
+    display: block;
+    font-family: 'Acta W01 Book';
+    text-align: center;
+    position: relative;
+    padding: 0;
+  }
+  .hair-classification h3 {
+    text-align: center;
+  }
+  .step-box {
+    max-width: 500px;
+    display: none;
+    margin: 0 auto;
+  }
+  .first-step {
+    display: inline-block;
+  }
+
+  .collection-group .collection-select {
+    background-color: rgb(244, 243, 239);
+    margin: 10px 0;
+    text-align: center;
+    border-radius: 10px;
+    padding: 10px 10px 0;
+    letter-spacing: 1px;
+    cursor: pointer;
+    display: inline-block;
+    width: 500px;
+  }
+  .collection-group{width: 500px;margin: 0 auto;display: none;}
+  .collection-group .collection-select img{float: right;height: 117px;}
+  .collection-group .collection-select span{float: left;line-height: 105px;}
+  .collection-refer {
+    background-color: rgb(244, 243, 239);
+    margin: 10px 0 50px;
+    text-align: center;
+    border-radius: 10px;
+    padding: 10px 10px 0 0;
+    letter-spacing: 1px;
+    display: inline-block;
+    width: auto;
+    min-width: 300px;
+    font-family: "Futura LT W01 Medium";
+  }
+  .collection-refer img {float: left;height: 60px;}
+  .collection-refer span{float: right;line-height: 50px;}
+  .back-arrow,.third-step-back-arrow,.first-step-back-arrow,.back-arrow-preview {
+    background-color: #F4F3EF;
+    margin: 10px 25px 10px auto;
+    text-align: center;
+    display: inline-block;
+    border-radius: 100%;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+  }
+  .btn-restart .back-arrow, .btn-restart .third-step-back-arrow{margin-left: 0;margin-right: 0;}
+  .back-arrow svg,.third-step-back-arrow svg,.first-step-back-arrow svg,.back-arrow-preview svg {margin-top: 17px;}
+  .upload-section{display: none;position: relative;}
+  .canvas-section{position: relative;}
+  #selected_file {
+    margin: 15px auto;
+    display: block;
+    width: 375px;
+  }
+  .fourth-step.step-box{max-width: inherit;}
+  .product-div {
+    background-color: #F4F3EF;
+    padding: 20px 20px 6px;
+    min-height: 500px;
+    width: 375px;
+    display: inline-block;
+    margin:0 10px 10px;
+  }
+  .product-div img {
+    width: 180px;
+    max-width: 180px;
+    border-radius: 90px;
+  }
+
+  .second-step.step-box,.first-step.step-box{max-width:775px;}
+  .third-step.step-box{max-width: 98%;width: 98%;}
+  .image-preview{
+    padding: 0;
+    height: 500px;
+    display: inline-block;
+    margin: 0;
+    vertical-align: top;
+    width: 375px;
+  }
+  .image-preview img{
+    height: 500px;
+    object-fit: cover;
+    background:#F4F3EF;
+    width: 375px;
+  }
+  .error_msg {
+    display: none;
+
+  }
+  .page-title {
+    font-size: 15px;
+    color: #000;
+    text-align: center;
+    padding-bottom: 20px;
+    font-family: "Futura LT W01 Medium";
+  }
+  .step-box h3 {
+    font-size: 24px;
+    padding-bottom: 50px;
+  }
+  .btn-light {
+    background-color: #F4F3EF;
+    font-size: 11px;
+    text-transform: uppercase;
+    border-radius: 25px;
+    min-width: 253px;
+    text-align: center;
+    padding: 0px;
+    margin-bottom: 15px;
+    letter-spacing: 1.65px;
+    display: inline-block;
+    height: 51px;
+    line-height: 52px;
+    position: relative;
+    border: none;
+    color: #000;
+    font-family: "Futura LT W01 Medium";
+  }
+  .btn-light svg,.upload-pic.live-camera svg {
+    display: inline-block;
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    margin-top: -8px;
+    height: 16px;
+  }
+  .btn-dark {
+    background-color: #000;
+    font-size: 11px;
+    text-transform: uppercase;
+    border-radius: 25px;
+    min-width: 210px;
+    text-align: center;
+    padding: 0px;
+    margin-bottom: 15px;
+    letter-spacing: 1.65px;
+    display: inline-block;
+    height: 51px;
+    line-height: 52px;
+    position: relative;
+    border: none;
+    color: #fff;
+    font-family: "Acta";
+  }
+  .btn-dark svg {
+    display: inline-block;
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    margin-top: -8px;
+  }
+  .instructions {
+    text-align: left;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+    font-family: 'Futura LT W01 Medium';
+  }
+  .instructions ul li {
+    font-size: 15px;
+    color: #6e6e6e;
+    padding-bottom: 5px;
+  }
+  .instructions ul li:last-child {
+    padding-bottom: 0px;
+  }
+  .instructions ul li span.icon {
+    width: 16px;
+    display: inline-block;
+    height: 16px;
+    margin-right: 6px;
+    vertical-align: top;
+  }
+  .instructions ul li span.icon svg {
+    position: relative;
+    top: 2px;
+  }
+  .select-color,.select-the-color, .add-to-bag, .fourth-step button,.select-the-collection{
+    background-color: #CC627D;
+    font-size: 11px;
+    text-transform: uppercase;
+    border-radius: 25px;
+    min-width: 117px;
+    text-align: center;
+    padding: 0px;
+    margin-bottom: 15px;
+    letter-spacing: 1.65px;
+    display: inline-block;
+    height: 37px;
+    line-height: 38px;
+    border: none;
+    color: #fff;
+    font-family: "Futura LT W01 Medium";
+  }
+  .add-to-bag{display: none;}
+  .color-result{
+   font-size: 24px;
+  }
+  #buns{
+   padding-bottom: 50px;
+  }
+
+  .upload-pic.live-camera,#snap.upload-pic,#btnSubmit.upload-pic,
+  #reupload, #btnSubmit1
+  {
+      background-color:#000;
+      margin: 10px auto 20px;
+      text-align: center;
+      border-radius: 25px;
+      padding: 16px 40px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      display: inline-block;
+      color: #fff;
+      border: none;
+      text-transform: uppercase;
+      font-family: "Futura LT W01 Medium";
+      font-size: 12px;
+      min-width: 253px;
+      position: relative;
+      outline: none;
+      height: 51px;
+    }
+    button#btnSubmit:disabled{ background-color: #F4F3EF;color: #000;}
+    .upload-pic.live-camera { display: block;}
+    .fa.fa-camera
+  {
+    position: absolute;
+    left: 18px;
+
+    top: 36%;
+    font-size: 16px;
+  }
+  .color-title {margin: 50px 0;font-family: 'Futura LT W01 Medium';font-size: 15px }
+  .collection-selection-title {margin: 20px 0;font-family: 'Futura LT W01 Medium';font-size: 15px}
+  #match_color{
+    margin-top: 10px;
+    font-family: Acta W01 Book;
+    font-size: 15px;
+  }
+  #match_color img{vertical-align: middle;height: 50px;border-radius: 25px;margin-right: 10px;}
+  .collection-select-div {
+    background-color: #F4F3EF;
+    padding: 20px;
+    min-height: 372px;
+    width: 375px;
+    display: inline-block;
+    margin: 0 10px 10px 0;
+    vertical-align: bottom;
+    position: relative;
+  }
+  .collection-select-div .collection-img {
+      bottom: 0;
+      position: absolute;
+      margin: 0 auto;
+      text-align: center;
+      left: 20%;
+  }
+  .collection-select-div:last-child {
+      margin-right: 0;
+  }
+  .collection-select-div img {
+      width: 220px;
+      vertical-align: bottom;
+  }
+  .select-the-collection.collection-select {
+      position: absolute;
+      left: 33%;
+      bottom: 0;
+  }
+  .collection-selection-box{overflow-x: auto;white-space: nowrap;}
+
+  .color-img {position: relative;width: 180px;height: 180px;margin: 0 auto;}
+  .preview-color {
+    position: absolute;
+    bottom: 74px;
+    left: 69px;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+  }
+  .preview-color img {width: 37px;}
+  .preview-the-color{width: 300px;}
+  .preview-color-img{
+    margin-bottom: 10px;
+    padding: 0 10px;
+  }
+  .preview-color-img img {
+    width: 300px;
+}
+  @media (max-width:767px){
+    .template-page {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    .hair-classification {
+      height: auto;
+    }
+    .collection-group{width: 340px;}
+    .collection-group .collection-select{width:100%;}
+    .collection-group .collection-select img{height: 95px;}
+    .collection-group .collection-select span{line-height: 80px;font-size: 13px;}
+    .collection-selection-box{margin: 0 10px;}
+    .product-div{width: 70%;margin: 0;min-height: 372px;max-height: 372px;}
+    .image-preview {
+
+        width: 94%;
+        height: auto;
+    }
+    .image-preview img {
+      width: 100%;
+     /* height: auto; */
+      max-height: 372px;
+    }
+
+    #snap.upload-pic, #reupload, #btnSubmit1, #btnSubmit.upload-pic {
+      min-width: 165px;
+      padding: 16px 15px;
+      margin-left: 15px;
+    }
+
+    .upload-pic.live-camera{
+      min-width: 210px;
+    }
+    .btn-light {
+      min-width: 210px;
+    }
+    .preview-the-color {
+      width: 94%;
+    }
+    .preview-color-img img {
+      width: 100%;
+    }
+    #selected_file {
+      width: 94%;
+    }
+    .color-title {
+      margin: 20px 0;
+    }
+    .step-box h3 {
+
+    padding-bottom: 10px;
+  }
+    #error{
+      padding: 50px 0;
+    }
+  }
+
+
+
+
+
+</style>
+<div>
+  <div>
+
+    <div class="template-product template-product-container hair-classification">
+      <input type="hidden" id="collection_selected" value="" >
+      <input type="hidden" id="result_color" value="" >
+      <input type="hidden" id="color_img" value="" >
+      <input type="hidden" id="last-step" value="" >
+      <input type="hidden" id="base64_image" value="" >
+      <input type="hidden" id="no_camera_support" value="0" >
+      <input type="hidden" id="add_to_cart" value="0" >
+      <div class="page-title">
+        Virtual Color Match
+      </div>
+      <div class="first-step step-box">
+        <div>
+          <h3 class="share-a-photo">Share a photo of your<br> current hair.</h3>
+          <h3 id="error" class="error_msg">Oops! The photo didn't work<br> Let's try again.</h3>
+          <div id="videoDiv"  style="display:none;" class="answer_list" >
+            <div class="video-wrap">
+              <div class="canvas-section">
+                 <canvas id="canvas" style="display: none;"></canvas>
+              </div>
+
+              <video playsinline autoplay id="video">
+
+              </video>
+            </div>
+
+            <div class="video-controller">
+              <button id="snap" class="upload-pic">Take Photo</button>
+              <button id="btnSubmit" class="upload-pic" disabled> Submit
+              </button>
+            </div>
+
+          </div>
+          <div class="upload-section">
+              <img id="selected_file" src="">
+              <button id="reupload" class="upload-pic">Upload New Photo</button>
+              <button id="btnSubmit1" class="upload-pic">Submit</button>
+          </div>
+
+          <button type="button" class="upload-pic live-camera" onclick="showDiv()" name="answer" >
+           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="33" height="29" viewBox="0 0 33 29">
+  <image id="photo-camera" width="33" height="29" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAdCAYAAAAkXAW5AAACx0lEQVRIibXXS4hcRRQG4K/HaR9EMcowKomPLNSFEYmSQHARdS8BCaILUYmJi4CouFFcCSK+iYuAAWcRgxhcKcnKV0AUxOCDQY2zMCojxo2G0dEko3NcVHWm0tx7+/ak/aE4p6tOVf3nnFtVpzsRoQEdvII7cEGD3VHsxgtNi9UiIpravhgOOwasV9k6DZG4Ej9k/Se83+DLXTgP8zh/lJF4o/Bw7QBvdhS2288kEpfgJpyLCbya+w9h/QBfxnAcXRzDg/inwf4kvsRsGYknI+Kvmjyvb+nRo20+mgILEfFMRBARW2qMFiPi8SFDu3dIIhER2zoRcRjX4jc8gp+xiO/x4xCfVw9rpdQ2YRIv4jLMdiJiAeN4DQ80TDwHN+PqrP+KLzCzDKLwPB7DwjhOZBL/1hh38RTuw6UV4+/h2SxLXFFh/zems947ESdFxFzOzVRFji+PiJmWuX2ib+7uCptfivGXc9/ceEO4VkjHczL/npaO7afZo6uwGdvy+NPSsXwu/76oYs2qSGoisacgMIWtfeNf4wD2SqnoSml5C0ewEwf75hyr3KkmHeuKEH5ckab+dlth/04L+9PSMVYThXsL/Z6GaPXwgaW35XZc3GLOKdSRuCHLb6T7og32FPqNoyCxMsu2BOC7Qp8YBYn5LCu/5hqsKvQ/RkHicJbrLEVlEO4s9K9GQWJflmdhV4t11hQkPtN7os+QxLv4POt3Sw9bHSbxoVSPwsPDEGgiAVsK/SW8iU1S+daVvH8I30qlIOlS+2RYEoPejlsiFR8lfs9vQD9eb3lJtb6sejiI67C/6Fvp9FMzK6WgzaVWifLtqCu7Z6Rb8Hrcimss1ROHpPdjYRl7n9pvHGdn/c8Bk6Yt1QKjwFyW3TGpqIENI9ygDTZmudiJiCncnzuO5vZ/YwKrs/52JyIuxEfSkRv+39PyMS8V1Zv+A5odlcQEHNzpAAAAAElFTkSuQmCC"/>
+</svg>
+
+            Live Camera
+          </button>
+
+          <a href="javascript:;" class="upload-pic btn-light">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="33" height="33" viewBox="0 0 33 33">
+              <image id="upload" width="33" height="33" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAhCAYAAABX5MJvAAABeElEQVRYhe2XPUsEMRCGn1tWRPewEbXWShtRC0Ww187ORv+FvVj5ByxELEQQweoULSysPCyuOSs/ahcFQQQ5FT/gtMgEw7Ksi7lEi30hTDLZnXkyu4QE7NQN7AIDlnF+rQi4Aj6BGOj1DVAGLgRAt2ufIBFwmQDQLQZ6XAOkVSDZnFYkWYE1oCL9I2A1AdLyipSBcyPJnvi3ZHwg401XIIPAnRF835g7EV/d8G0bzz4CYz8lCHJAtPP9jQ+BWWPuXeyH4VsAdqTfBXTkyJFLk8BGiv8YteJaytw6MNMqgCxlQeRWns/hXAWEVgGhVUBoFRBaAVAFzoBlz7kXJW81BKbEGXuGGAZGQFWiIc57zxAPYhu2/0Sn2MgmiC3Em9hXmyChJcQ86uj38pcQt5bvA/9on2iT/rPn3E9iwwB1PAPo9wyhL9FBCXVxmRZHBbgBSg6TN4E+YE7GNYAhsq91rtu4XvEosARMoO4JzVYv31CA2lfqwApw+gV5D3oe2y6VEAAAAABJRU5ErkJggg=="/>
+            </svg>
+            UPLOAD A PHOTO</a>
+          <input type="file" name="hair_photo" id="hair_photo" value="UPLOAD A PHOTO" style="display: none;" accept="image/*">
+        </div>
+        <div class="instructions">
+          <ul>
+            <li><span class="icon"><svg fill="none" height="16" width="16" stroke="#929192" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12"/></svg></span> Face the camera</li>
+            <li><span class="icon"><svg fill="none" height="16" width="16" stroke="#929192" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12"/></svg></span> Hair is visible from root to tip</li>
+            <li><span class="icon"><svg fill="none" height="16" width="16" stroke="#929192" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12"/></svg></span> Natural indirect light (near a window)</li>
+            <li><span class="icon"><svg fill="none" height="16" width="16" stroke="#929192" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12"/></svg></span> 1 person only in the photo</li>
+            <li><span class="icon cross"><svg fill="#929192" height="12" width="12" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><title/><g data-name="Layer 57" id="Layer_57"><path d="M18.83,16l8.59-8.59a2,2,0,0,0-2.83-2.83L16,13.17,7.41,4.59A2,2,0,0,0,4.59,7.41L13.17,16,4.59,24.59a2,2,0,1,0,2.83,2.83L16,18.83l8.59,8.59a2,2,0,0,0,2.83-2.83Z"/></g></svg></span> No filters or edited photos</li>
+            <li><span class="icon cross"><svg fill="#929192" height="12" width="12" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><title/><g data-name="Layer 57" id="Layer_57"><path d="M18.83,16l8.59-8.59a2,2,0,0,0-2.83-2.83L16,13.17,7.41,4.59A2,2,0,0,0,4.59,7.41L13.17,16,4.59,24.59a2,2,0,1,0,2.83,2.83L16,18.83l8.59,8.59a2,2,0,0,0,2.83-2.83Z"/></g></svg></span> Avoid harsh sunlight on your hair and face</li>
+          </ul>
+        </div>
+        <div>
+          <a href="javascript:history.back();">
+            <div class="first-step-back-arrow">
+              <svg fill="none" height="16" width="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><line x1="19" x2="5" y1="12" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            </div>
+          </a>
+          <a class="btn-restart">
+            <div class="back-arrow">
+            <svg fill="#000" height="14" width="14" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><g data-name="Layer 57" id="Layer_57"><path d="M18.83,16l8.59-8.59a2,2,0,0,0-2.83-2.83L16,13.17,7.41,4.59A2,2,0,0,0,4.59,7.41L13.17,16,4.59,24.59a2,2,0,1,0,2.83,2.83L16,18.83l8.59,8.59a2,2,0,0,0,2.83-2.83Z"></path></g></svg>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="second-step step-box">
+        <div class="color-result"></div>
+        <div>
+          <div class="back-arrow">
+            <svg fill="none" height="16" width="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><line x1="19" x2="5" y1="12" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          </div>
+          <a class="btn-restart">
+            <div class="back-arrow">
+            <svg fill="#000" height="14" width="14" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><g data-name="Layer 57" id="Layer_57"><path d="M18.83,16l8.59-8.59a2,2,0,0,0-2.83-2.83L16,13.17,7.41,4.59A2,2,0,0,0,4.59,7.41L13.17,16,4.59,24.59a2,2,0,1,0,2.83,2.83L16,18.83l8.59,8.59a2,2,0,0,0,2.83-2.83Z"></path></g></svg>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="preview-the-color step-box">
+        <div class="preview-color-img"></div>
+        <div>
+          <button class="select-the-color" type="button">Select</button>
+          <button class="add-to-bag" type="button">Add To Bag</button>
+        </div>
+        <div class="instructions text-center">
+          <ul>
+            <li><span class="icon"><svg fill="none" height="16" width="16" stroke="#929192" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12"/></svg></span>60 Day Returns & Exchanges</li>
+            <li><span class="icon"><svg fill="none" height="16" width="16" stroke="#929192" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12"/></svg></span>FREE return shipping for U.S exchanges</li>
+            <li><span class="icon"><svg fill="none" height="16" width="16" stroke="#929192" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12"/></svg></span>Set includes a tester weft for color match</li>
+          </ul>
+        </div>
+        <div>
+          <div class="back-arrow-preview">
+            <svg fill="none" height="16" width="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><line x1="19" x2="5" y1="12" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          </div>
+          <a class="btn-restart">
+            <div class="back-arrow">
+            <svg fill="#000" height="14" width="14" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><g data-name="Layer 57" id="Layer_57"><path d="M18.83,16l8.59-8.59a2,2,0,0,0-2.83-2.83L16,13.17,7.41,4.59A2,2,0,0,0,4.59,7.41L13.17,16,4.59,24.59a2,2,0,1,0,2.83,2.83L16,18.83l8.59,8.59a2,2,0,0,0,2.83-2.83Z"></path></g></svg>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="third-step step-box">
+        <h3>Choose your collection.</h3>
+
+        <div class="collection-selection-box">
+          <div class="collection-select-div">
+            <div class="collection-selection-title">Seamless Collection</div>
+            <div class="collection-img"><img src="https://cdn.shopify.com/s/files/1/0066/0052/files/3X4_Seamless_OFF_600x.jpg?v=1626290526"></div>
+            <button class="select-the-collection collection-select" data-val="seamless" type="button">Select</button>
+          </div>
+
+          <div class="collection-select-div">
+            <div class="collection-selection-title">Classic Collection</div>
+            <div class="collection-img"><img src="https://cdn.shopify.com/s/files/1/0066/0052/files/3X4_Classic_OFF_600x.jpg?v=1626290526"></div>
+            <button class="select-the-collection collection-select" data-val="classic" type="button">Select</button>
+          </div>
+
+          <div class="collection-select-div">
+            <div class="collection-selection-title">Halo<sup>&reg;</sup> Collection</div>
+            <div class="collection-img"><img src="https://cdn.shopify.com/s/files/1/0066/0052/files/3X4_Halo_OFF_600x.jpg?v=1626290526"></div>
+            <button class="select-the-collection collection-select" data-val="halo" type="button">Select</button>
+          </div>
+
+          <div class="collection-select-div">
+            <div class="collection-selection-title">Clip-In Ponytails Collection</div>
+            <div class="collection-img"><img src="https://cdn.shopify.com/s/files/1/0066/0052/files/3X4_Ponytails_OFF_600x.jpg?v=1626290526"></div>
+            <button class="select-the-collection collection-select" data-val="ponytail" type="button">Select</button>
+          </div>
+
+          <div class="collection-select-div">
+            <div class="collection-selection-title">Clip-In Buns Collection</div>
+            <div class="collection-img" id="buns"><img src="https://cdn.shopify.com/s/files/1/0066/0052/files/clip-in-buns-luxy-hair.jpg?v=1626290526"></div>
+            <button class="select-the-collection collection-select" data-val="clip-in buns" type="button">Select</button>
+          </div>
+        </div>
+
+        <h2 id="match_color"></h2>
+
+        <div class="collection-group">
+          <div class="collection-select" data-val="seamless"><span>SEAMLESS COLLECTION</span> <img src="https://cdn.shopify.com/s/files/1/0066/0052/files/3X4_Seamless_OFF_600x.jpg?v=1626290526"></div>
+          <div class="collection-select" data-val="classic"><span>CLASSIC COLLECTION</span> <img src="https://cdn.shopify.com/s/files/1/0066/0052/files/3X4_Classic_OFF_600x.jpg?v=1626290536"></div>
+          <div class="collection-select" data-val="halo"><span>HALO<sup>&reg;</sup> COLLECTION</span> <img src="https://cdn.shopify.com/s/files/1/0066/0052/files/3X4_Halo_OFF_600x.jpg?v=1626290562"></div>
+          <div class="collection-select" data-val="ponytail"><span>CLIP-IN PONYTAILS COLLECTION</span> <img src="https://cdn.shopify.com/s/files/1/0066/0052/files/3X4_Ponytails_OFF_600x.jpg?v=1626290572"></div>
+          <div class="collection-select" data-val="clip-in buns"><span>CLIP-IN BUNS COLLECTION</span> <img src="https://cdn.shopify.com/s/files/1/0066/0052/files/clip-in-buns-luxy-hair.jpg?v=1619531880"></div>
+        </div>
+
+        <div>
+          <div class="third-step-back-arrow">
+            <svg fill="none" height="16" width="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><line x1="19" x2="5" y1="12" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          </div>
+          <a class="btn-restart">
+            <div class="back-arrow">
+            <svg fill="#000" height="14" width="14" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><g data-name="Layer 57" id="Layer_57"><path d="M18.83,16l8.59-8.59a2,2,0,0,0-2.83-2.83L16,13.17,7.41,4.59A2,2,0,0,0,4.59,7.41L13.17,16,4.59,24.59a2,2,0,1,0,2.83,2.83L16,18.83l8.59,8.59a2,2,0,0,0,2.83-2.83Z"></path></g></svg>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="fourth-step step-box">
+        <div class="product-result"></div>
+        <a class="btn-restart">
+          <div class="back-arrow">
+          <svg fill="#000" height="14" width="14" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><g data-name="Layer 57" id="Layer_57"><path d="M18.83,16l8.59-8.59a2,2,0,0,0-2.83-2.83L16,13.17,7.41,4.59A2,2,0,0,0,4.59,7.41L13.17,16,4.59,24.59a2,2,0,1,0,2.83,2.83L16,18.83l8.59,8.59a2,2,0,0,0,2.83-2.83Z"></path></g></svg>
+          </div>
+        </a>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+<script>
+var imgArray = {'Jet Black': 'https://cdn.shopify.com/s/files/1/0066/0052/products/Jet_Black_Clip_In_Luxy_Hair_Extensions_3f665cbb-f19d-4e9f-9ce1-960d42ecbdbb_600x.jpg?v=1615568136'};
+imgArray["Off Black"] = 'https://cdn.shopify.com/s/files/1/0066/0052/products/Off_Black_600x.jpg?v=1615568300';
+imgArray["Off Black Balayage"] = 'https://cdn.shopify.com/s/files/1/0066/0052/products/Luxy_Clip_In_Hair_Extensions_ColorSwatch_OffBlackBalayage_1X1_ff61e26e-45c5-44dd-8713-91c824c25dc7_600x.jpg?v=1616433955';
+imgArray["Chocolate Brown Balayage"] = 'https://cdn.shopify.com/s/files/1/0066/0052/products/Luxy_Clip_In_Hair_Extensions_ColorSwatch_ChocolateBalayage_1X1_fd5ecfc8-05fe-4680-a3f7-412bc27aec67_600x.jpg?v=1616176306';
+imgArray["Ash Brown"] = 'https://cdn.shopify.com/s/files/1/0066/0052/products/Luxy_Clip_In_Hair_Extensions_ColorSwatch_AshBrown_1X1_edit_5db42fc7-ba77-4bb9-a0b5-c312624cc18f_600x.jpg?v=1616177608';
+imgArray["Ash Brown Balayage"] = 'https://cdn.shopify.com/s/files/1/0066/0052/products/Ash_Brown_Balayage_600x0_e6820c4b-2a3b-4015-ac2f-316482756f3b_600x.jpg?v=1616177775';
+imgArray["Chestnut Brown"] = 'https://cdn.shopify.com/s/files/1/0066/0052/products/Chestnut_Brown_600x.jpg?v=1616176578';
+imgArray["Chestnut Brown Balayage"] = 'https://cdn.shopify.com/s/files/1/0066/0052/products/Luxy_Clip_In_Hair_Extensions_ColorSwatch_ChestnutBalayage_1X1_b87d68ad-957e-4c5d-960c-f57e3f5f6152_600x.jpg?v=1616434343';
+imgArray["Chestnut Brown Highlights"] = 'https://cdn.shopify.com/s/files/1/0066/0052/products/LX_Chestnut_Brown_Highlights_156_600x_0b9c4e2a-24ac-44a8-936c-8038cc86a4f3_600x.jpg?v=1616177050';
+imgArray["Dark Brown Balayage"] = 'https://cdn.shopify.com/s/files/1/0066/0052/products/1X1_Static_16_DarkBrownBalayage_600x.jpg?v=1616174226';
+imgArray["Cool Dark Brown"] = 'https://cdn.shopify.com/s/files/1/0066/0052/products/1X1_ColorSwatch_Hover_Cool_Dark_Brown_600x.jpg?v=1616169155';
+imgArray["Sandy Brown"] = 'https://cdn.shopify.com/s/files/1/0066/0052/products/1X1_ColorSwatch_Hover_Sandy_Brown_600x.jpg?v=1616177181';
+imgArray["Ash Brown Highlights"] = 'https://cdn.shopify.com/s/files/1/0066/0052/products/Luxy-Hair-Extensions_Ash_Brown_Highlights_Classic_1X1_13d7584f-7207-4795-8291-6c2ab40b9dea_600x.jpg?v=1616178048';
+imgArray["Neutral Brown"] = 'https://cdn.shopify.com/s/files/1/0066/0052/products/Mocha_Brown_600x.jpg?v=1616167908';
+imgArray["Mocha Brown Balayage"] = 'https://cdn.shopify.com/s/files/1/0066/0052/products/1X1_Static_16_MochaBrownBalayage_600x.jpg?v=1616434017';
+imgArray["Mocha Brown Highlights"] = 'https://cdn.shopify.com/s/files/1/0066/0052/products/Mocha_Brown_Highlights_600x600_6fd3380d-9087-46cc-88a7-02b81a835d7d_600x.jpg?v=1616168522';
+imgArray["Mocha Brown"] = 'https://cdn.shopify.com/s/files/1/0066/0052/products/Mocha_Brown_600x.jpg?v=1616167908';
+imgArray["Dark Brown"] = 'https://cdn.shopify.com/s/files/1/0066/0052/products/Dark_Brown_64395bff-af4f-46a0-b882-1e665b2e21c2_600x.jpg?v=1616169440';
+imgArray["Dark Ash Brown Balayage"] = 'https://cdn.shopify.com/s/files/1/0066/0052/products/DarkBrown_Balayage_600x0_dc96589a-8312-4fee-8f57-88397fa8f086_600x.jpg?v=1616174761';
+imgArray["Dark Brown Highlights"] = 'https://cdn.shopify.com/s/files/1/0066/0052/products/LX_Dark_Brown_Highlights_183_600x0_51d01142-e256-4432-a5e9-b8fddd660d2e_600x.jpg?v=1616174633';
+imgArray["Chocolate Brown"] = 'https://cdn.shopify.com/s/files/1/0066/0052/products/Chocolate_Brown_600x.jpg?v=1616175485';
+imgArray["Blonde Balayage"] = 'https://cdn.shopify.com/s/files/1/0066/0052/products/Blonde_Balayage_Luxy_Hair_Extensions_Swatch_grande_04123c89-59bf-4b68-81cb-affe262839fb_600x.jpg?v=1616179079';
+imgArray["Sandy Blonde"] = 'https://cdn.shopify.com/s/files/1/0066/0052/products/Sandy_Blonde_9f09723e-628f-4661-8454-9d001926c335_600x.jpg?v=1620137834';
+imgArray["Natural Blonde Balayage"] = 'https://cdn.shopify.com/s/files/1/0066/0052/products/Blonde_Balayage_Luxy_Hair_Extensions_Swatch_grande_04123c89-59bf-4b68-81cb-affe262839fb_600x.jpg?v=1616179079';
+imgArray["Dirty Blonde"] = 'https://cdn.shopify.com/s/files/1/0066/0052/products/Dirty_600x.jpg?v=1616178913';
+imgArray["Dirty Blonde Highlights"] = 'https://cdn.shopify.com/s/files/1/0066/0052/products/LX_Blonde_Highlights_143_600x0_ad68d058-b35b-421a-9df1-01ab5b100588_600x.jpg?v=1617209047';
+imgArray["Ash Blonde"] = 'https://cdn.shopify.com/s/files/1/0066/0052/products/Ash_Blonde_600x.jpg?v=1623682947';
+imgArray["Platinum Blonde"] = 'https://cdn.shopify.com/s/files/1/0066/0052/products/Seamless_PlatinumBlonde_LuxyHair_ClipInHairExtensions_SwatchSquare_large_89971e15-a4ce-4c8e-a89c-8433ccaaee73_600x.jpg?v=1616434663';
+imgArray["Natural Blonde"] = 'https://cdn.shopify.com/s/files/1/0066/0052/products/Natural_Blonde_479635f9-f374-4e6d-ab1e-dd9c938b9057_600x.jpg?v=1616178561';
+imgArray["Sandy Blonde Balayage"] = 'https://cdn.shopify.com/s/files/1/0066/0052/products/1X1_Static_16_SandyBlondeBalayage_600x.jpg?v=1620055916';
+imgArray["Beige Blonde"] = 'https://cdn.shopify.com/s/files/1/0066/0052/products/1X1_ColorSwatch_Hover_BeigeBlonde_904f437c-35a1-4b12-b1ab-ad8a64688d5d_600x.jpg?v=1616434589';
+imgArray["Bronde"] = 'https://cdn.shopify.com/s/files/1/0066/0052/products/Bronde_58ca0972-8d0e-4f88-a6fd-75767ce80191_600x.jpg?v=1616178234';
+imgArray["Mocha Bronde Balayage"] = 'https://cdn.shopify.com/s/files/1/0066/0052/products/Bronde_Balayage_600x_f4f5be8d-4c8a-4752-9ce0-70c434adafa3_600x.jpg?v=1616178415';
+imgArray["Bronde Balayage"] = 'https://cdn.shopify.com/s/files/1/0066/0052/products/Bronde_Balayage_600x_f4f5be8d-4c8a-4752-9ce0-70c434adafa3_600x.jpg?v=1616178415';
+imgArray["Natural Red"] = 'https://cdn.shopify.com/s/files/1/0066/0052/products/Luxy_Clip_In_Hair_Extensions_ColorSwatch_NaturalRed_1X1_695f014b-3cd1-417c-ace8-523471fa0d7e_600x.jpg?v=1616180535';
+
+function GetQueryStringParams(sParam)
+{
+
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+
+     for (var i=0;i<sURLVariables.length;i++)
+     {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam)
+        {
+            return sParameterName[1];
+        }
+
+    }
+ }
+
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        $('#selected_file').attr('src',e.target.result)
+        $('.upload-section').show();
+        $('.upload-pic.btn-light').hide();
+        $('#base64_image').val(e.target.result);
+      }
+
+      reader.readAsDataURL(input.files[0]);
+      $('#canvas').show();
+    }
+  }
+
+  function getSuggestion()
+  {
+    length_str= ($('#collection_selected').val()=='clip-in buns') ? '' : ' 20"';
+    $.getJSON("/search/suggest.json", {
+        "q": str_collection + ' ' + $('#result_color').val() + length_str,
+        "resources": {
+          "type": "product",
+          "options": {
+            "unavailable_products": "last"
+          }
+        }
+      }).done(function (data1) {
+        if(data1.resources.results.products.length>0)
+        {
+          result_products = data1.resources.results.products;
+          for(i=0;i<data1.resources.results.products.length;i++)
+          {
+            if(result_products[i].available==true)
+            {
+              color_selected= $('#result_color').val().toLowerCase();
+              product_title= result_products[i].title.toLowerCase();
+
+              if(color_selected.indexOf('balayage')==-1 && product_title.indexOf('balayage')>-1)
+              {
+                continue;
+              }
+              if(product_title.indexOf('bundle')>-1 || product_title.indexOf('volumizer')>-1)
+              {
+                continue;
+              }
+
+              if($('#add_to_cart').val()==0)
+              {
+                window.location.href= '/products/'+result_products[i].handle+'?from=vheto';
+                return;
+              }
+              else
+              {
+                variant_id= result_products[i].variants[0].id;
+                addItemToCart(variant_id);
+              }
+            }
+          }
+        }
+      });
+  }
+
+  function processSelectedData(section)
+  {
+    base64_image_data = $('#base64_image').val();
+    base64_image_data= base64_image_data.replace("data:image/png;base64,", "");
+    base64_image_data= base64_image_data.replace("data:image/jpeg;base64,", "");
+
+    $.ajax({
+      method: "POST",
+      url: "https://vheto.big-static.com/api/v1/simple-hair-classification/",
+      contentType:'application/json',
+      data: JSON.stringify({image:base64_image_data}),
+      headers: { 'Authorization': 'Api-Key gGnfR2QD.sot3cvxhlscRmCak0pLOkFGO1bErJNQQ' },
+      cache: false,
+      processData: false,
+    }).done(function (data) {
+      if(data.status==true)
+      {
+        if(data.colors.length>0)
+        {
+          img_url = imgArray[data.colors[0].color];
+          html = "<h2>Your Luxy color match is "+data.colors[0].color+ "." +"</h2>";
+
+          html += '<div class="collection-selection-box">';
+          html += '<div class="product-div">';
+          html += '<div class="color-title">Your Color Match</div>';
+          html += '<div class="color-img"><img src="'+img_url+'" />';
+          html += '  <div class="preview-color"><img src="https://cdn.shopify.com/s/files/1/0066/0052/t/171/assets/eye-icon.png" alt="Show Large"></div> ';
+          html += '</div>';
+          html += '<div class="color-title">'+data.colors[0].color+'</div>';
+          html += '<div><button class="select-color" type="button" >Select</button></div>';
+          html += '</div>';
+
+          html += '<div class="image-preview"><img src="'+$('#base64_image').val()+'" /></div>';
+          html += '</div>';
+
+          html += ' <div class="instructions text-center">';
+          html += ' <ul>';
+          html += ' <li><span class="icon"><svg fill="none" height="16" width="16" stroke="#929192" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12"/></svg></span>60 Day Returns & Exchanges</li>';
+          html += ' <li><span class="icon"><svg fill="none" height="16" width="16" stroke="#929192" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12"/></svg></span>FREE return shipping for U.S exchanges</li>';
+          html += ' <li><span class="icon"><svg fill="none" height="16" width="16" stroke="#929192" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12"/></svg></span>Set includes a tester weft for color match</li>';
+          html += ' </ul>';
+          html += '  </div>';
+
+          $('.preview-color-img').html('<img src="'+img_url+'" />')
+          $('.first-step').hide();
+          $('.second-step .color-result').html(html);
+          ga('send', 'event', 'vheto', 'Click', 'See swatch'); //
+          scroll_to= $('.second-step').position().top;
+          $('body,html').animate({
+              scrollTop: scroll_to},
+              'fast'
+          );
+          $('.second-step').show();
+          $('#last-step').val('first-step');
+          $('#result_color').val(data.colors[0].color);
+          $('#color_img').val(img_url);
+          $('#match_color').html('<img src="'+img_url+'" />Your color match is ' + $('#result_color').val() + "." );
+        }
+        else
+        {
+          $('.second-step .color-result').html("<h3>Sorry. No Match Found!</h3>");
+          $('.second-step').show();
+        }
+      }
+      else
+      {
+        $('.error_msg').show();
+        $('.share-a-photo').hide();
+        $('#base64_image').val('');
+        $("#hair_photo").val('');
+        $('#selected_file').attr('src','')
+        $('.upload-section, #videoDiv').hide();
+        $('#canvas').hide();
+        $('#video').show();
+        if($('#no_camera_support').val()=='0')
+        {
+          $('.upload-pic.live-camera').show();
+        }
+        snap.innerHTML = "Take Photo";
+        $('.upload-pic.btn-light').show();
+
+        scroll_to= $('.first-step').position().top;
+          $('body,html').animate({
+              scrollTop: scroll_to},
+              'fast'
+          );
+      }
+    });
+  }
+
+  function selectTheColor(add_to_cart_or_not,collection_parameter)
+  {
+      $('#add_to_cart').val(add_to_cart_or_not);
+      $('#last-step').val('preview-the-color');
+
+      if(collection_parameter !=undefined && $('#collection_selected').val()!='')
+      {
+        str_collection = $('#collection_selected').val();
+        if($('#collection_selected').val()=='classic')
+        {
+          str_collection += ' 160g';
+        }
+        getSuggestion();
+      }
+      else
+      {
+        $('.preview-the-color').hide();
+        $('.third-step').show();
+      }
+  }
+
+  function addItemToCart(variant_id)
+  {
+    var data ={
+      quantity: 1,
+      id: variant_id
+    };
+
+    var params = {
+      type: 'POST',
+      url: '/cart/add.js',
+      data: data,
+      async:false,
+      dataType: 'json',
+      success: function(stuff) {
+        window.location.href='/cart';
+      },
+      error: function(xhr){
+        responseText = $.parseJSON(xhr.responseText);
+        alert(responseText.description);
+      }
+    };
+    $.ajax(params);
+  }
+
+  function detectMobile()
+  {
+    var isMobile = false;
+
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )
+    {
+      var isMobile = true;
+    }
+    return isMobile;
+  }
+
+  $(document).ready(function() {
+    var collection_parameter = GetQueryStringParams("collection");
+    var from_product = GetQueryStringParams("from_product");
+     if(collection_parameter !=undefined)
+     {
+        switch(collection_parameter) {
+          case 'classic-clip-in-hair-extensions':
+          case '16-inch-hair-extensions-clip-in':
+          case 'classic-24-inch':
+            collection_val= 'classic';
+            break;
+          case 'seamless-clip-in-hair-extensions':
+            collection_val= 'seamless';
+            break;
+          case 'halo-hair-extensions':
+            collection_val= 'halo';
+            break;
+          case 'clip-in-buns':
+            collection_val= 'clip-in buns';
+            break;
+          case 'ponytail-extension':
+          case 'curly-ponytail-extension':
+            collection_val= 'ponytail';
+            break;
+          default:
+            collection_val= '';
+        }
+        $('#collection_selected').val(collection_val);
+        $('.add-to-bag').show();
+        if(from_product == undefined && $('.collection-select[data-val="'+collection_val+'"]').length>0)
+        {
+          $('.share-a-photo').before('<div class="collection-refer">'+$('.collection-group .collection-select[data-val="'+collection_val+'"]').html()+'</div>');
+        }
+      }
+
+    //google Analytics for referer
+    if(collection_parameter == undefined)
+    {
+       ga('send', 'event', 'vheto', 'click-homepage', 'start vheto - banner');//
+    }
+    else
+    {
+      if(from_product == undefined)
+      {
+        ga('send', 'event', 'vheto', 'click-collection', 'start vheto - banner');//
+      }
+      else
+      {
+       ga('send', 'event', 'vheto', 'click-product', 'start vheto - banner'); //
+      }
+    }
+    $(document).on('click','.preview-color',function(){
+      $('.second-step').hide();
+      $('.preview-the-color').show();
+    });
+    $('.back-arrow-preview').click(function(){
+      ga('send', 'event', 'vheto', 'Click', 'Back'); //
+      $('.second-step').show();
+      $('.preview-the-color').hide();
+    });
+    $(document).on('click','.select-the-color',function(){
+      add_to_cart_or_not = 0;
+      selectTheColor(add_to_cart_or_not,collection_parameter);
+    });
+
+    $(document).on('click','.add-to-bag',function(){
+      add_to_cart_or_not = 1;
+      selectTheColor(add_to_cart_or_not,collection_parameter);
+    });
+
+    $(document).on('click','.select-color',function(){
+      $('#last-step').val('second-step');
+      ga('send', 'event', 'vheto', 'Click', 'Select Color'); //
+
+      if(collection_parameter !=undefined && $('#collection_selected').val()!='')
+      {
+        str_collection = $('#collection_selected').val();
+        if($('#collection_selected').val()=='classic')
+        {
+          str_collection += ' 160g';
+        }
+        getSuggestion();
+      }
+      else
+      {
+        $('.second-step').hide();
+        $('.third-step').show();
+      }
+    });
+    $('.third-step .collection-select').click(function(){
+      ga('send', 'event', 'vheto', 'Click', 'Select Collection'); //
+      $('#collection_selected').val($(this).attr('data-val'));
+
+      str_collection = $('#collection_selected').val();
+      if($('#collection_selected').val()=='classic')
+      {
+        str_collection += ' 160g';
+      }
+      getSuggestion();
+
+    });
+    $('.back-arrow').click(function(){
+      ga('send', 'event', 'vheto', 'Click', 'Back'); //
+      $('.first-step').show();
+      //$('#base64_image').val('');
+      //$("#hair_photo").val('');
+      $('.second-step').hide();
+    });
+    $('.third-step-back-arrow').click(function(){
+      ga('send', 'event', 'vheto', 'Click', 'Back'); //
+      $('.'+$('#last-step').val()).show();
+      $('.third-step').hide();
+    });
+    $('.first-step-back-arrow').click(function(){
+     ga('send', 'event', 'vheto', 'Click', 'Back'); //
+    });
+
+    $('a.upload-pic,#reupload').click(function () {
+      ga('send', 'event', 'vheto', 'Click', 'Upload New Photo'); //
+      $('#videoDiv').hide();
+      $('#canvas').hide();
+      /*
+      if($('#no_camera_support').val()=='0')
+      {
+        $('.upload-pic.live-camera').show();
+      }
+      */
+      $("#hair_photo").trigger("click");
+    });
+
+    $('.btn-restart').click(function () {
+      window.history.back();
+    });
+
+    $('#hair_photo').change(function(e){
+      ga('send', 'event', 'vheto', 'Click', 'Upload Photo'); //
+      $('.first-step .instructions').hide();
+      $('.upload-pic.live-camera').hide();
+      $('.error_msg').hide();
+     filename = $.trim($(this).val());
+     temp_arr = filename.split(".");
+     ext = temp_arr[temp_arr.length - 1].toLowerCase();
+
+     if (filename!="" && ext != 'jpeg' && ext != 'jpg' && ext != 'png')
+     {
+      alert("The image must be a file of type: jpeg or png.");
+      return false;
+    }
+
+    readURL(this);
+  });
+    $(document).on('click','#btnSubmit',function(){
+      if($('#base64_image').val()!='')
+      {
+        ga('send', 'event', 'vheto', 'Click', 'Accept Photo'); //
+        processSelectedData('camera');
+      }
+    });
+
+    $(document).on('click','#btnSubmit1',function(){
+      if($('#base64_image').val()!='')
+      {
+        ga('send', 'event', 'vheto', 'Click', 'Accept Photo'); //
+        processSelectedData('upload');
+      }
+    });
+});
+</script>
+<script>
+  'use strict';
+
+  const video = document.getElementById("video");
+  const canvas = document.getElementById("canvas");
+  const snap= document.getElementById('snap');
+  const submitPhoto= document.getElementById('btnSubmit');
+
+  var video_width;
+  var video_height;
+  if(detectMobile()==true)
+  {
+    video_width = 300;
+    video_height = 300;
+  }
+  else
+  {
+    video_width = 375;
+    video_height = 500;
+  }
+
+  $('#canvas').attr('width',video_width);
+  $('#canvas').attr('height',video_height);
+  const constraints = {
+    video: {
+      width: video_width, height: video_height
+    }
+  };
+
+  async function init(){
+    try{
+      const stream = await navigator.mediaDevices.getUserMedia(constraints);
+      handleSuccess(stream);
+    }
+    catch(e){
+      //console.log(`navigator.getUserMedia.error:${e.toString()}`);
+      $('.upload-pic.live-camera').hide();
+      $('#no_camera_support').val('1');
+    }
+  }
+
+  function handleSuccess(stream){
+    window.stream = stream;
+    video.srcObject = stream;
+  }
+
+  init();
+
+  var context = canvas.getContext('2d');
+  snap.addEventListener("click", function(){
+    if(snap.innerHTML=='Take Photo')
+    {
+      ga('send', 'event', 'vheto', 'Click', 'Take Photo'); //
+      $('#btnSubmit').attr('disabled',false);
+      context.drawImage(video, 0 , 0, video_width, video_height);
+      snap.innerHTML = "Retake Photo";
+      const image = canvas.toDataURL('image/png');
+      $('#base64_image').val(image);
+      $('#canvas').show();
+      $('#video').hide();
+    }
+    else
+    {
+      $('#btnSubmit').attr('disabled',true);
+      $('.error_msg').hide();
+      snap.innerHTML = "Take Photo";
+      $('#base64_image').val('');
+      $('#canvas').hide();
+      $('#video').show();
+    }
+  });
+
+  function showDiv() {
+    $('.error_msg').hide();
+    $('#videoDiv').show();
+    snap.innerHTML = "Take Photo";
+    $('#canvas').hide();
+    $('#video').show();
+    $('.first-step .instructions').hide();
+    $('.upload-pic.live-camera').hide();
+    $('.upload-pic.btn-light').hide();
+    $('.upload-section').hide();
+    $('#base64_image').val('');
+    $("#hair_photo").val('');
+
+    ga('send', 'event', 'vheto', 'Click', 'Live Camera'); //
+  }
+
+</script>

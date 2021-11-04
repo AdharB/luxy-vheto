@@ -1,0 +1,104 @@
+{% assign article_handles = "" | split: "" %}
+
+{% for block in section.blocks %}
+  {% assign article_handle = block.settings.article %}
+  {% assign article_handle = article_handle | split: "-<-@" %}
+  {% assign article_handles = article_handles | concat: article_handle %}
+{% endfor %}
+
+{% assign rte = product.description %}
+
+{% include "attribute-rte-fragments" %}
+
+{% include "rte-fragment" with "faq" %}
+
+{% if rte_list_item_texts != blank %}
+  {% assign article_handles = "" | split: "" %}
+
+  {% for text in rte_list_item_texts %}
+    {% assign handle = "faq/" | append: text | split: "  " %}
+    {% assign article_handles = article_handles | concat: handle %}
+
+    {% assign handle = "support/" | append: text | split: "  " %}
+    {% assign article_handles = article_handles | concat: handle %}
+  {% endfor %}
+{% endif %}
+
+{% assign enabled = section.settings.enabled %}
+
+{% assign heading = section.settings.heading %}
+
+{% if enabled %}
+  <div class="product-accordion" data-module-product-accordion>
+    <div class="product-accordion-header" data-local-header>
+      <span class="local--heading">
+        {{ heading }}
+      </span>
+
+      <svg class="local--icon" width="1em" height="1em">
+        <use xlink:href="#icon-arrow-down" />
+      </svg>
+    </div>
+
+    <div class="product-accordion-content">
+      <ul class="product-faq">
+        {% for handle in article_handles %}
+          {% assign article = articles[handle] | default: false %}
+
+          {% if article %}
+            <li>
+              <a href="#{{ article.id }}" class="js-modal">
+                {{ article.title }}
+              </a>
+
+              <div id="{{ article.id }}" class="modal-rte js-rte">
+                {% include "shortcodes" with article.content %}
+              </div>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "FAQ",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enabled",
+        "label": "Enable",
+        "default": false
+      },
+      {
+        "type": "paragraph",
+        "content": "Show frequently asked questions. Set default articles using blocks above or set specific articles per product using the h5 header \"faq\" within the description of the product in the admin."
+      },
+      {
+        "type": "header",
+        "content": "Content"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Frequently Asked Questions"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "article",
+        "name": "Article",
+        "settings": [
+          {
+            "type": "article",
+            "id": "article",
+            "label": "Article"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,30 @@
+{% assign rte = article.content %}
+
+{% include "attribute-rte-content-without-shortcodes" %}
+
+{% assign heading = article.title %}
+
+{% assign description = rte_content_without_shortcodes %}
+
+{% assign href = article.url %}
+
+{% assign call_to_action = settings.support_thumbnail_call_to_action | default: false %}
+
+<li class="support-thumbnail {% if forloop.last %}position--last{% endif %}">
+  <a href="{{ href }}" class="support-thumbnail-link js-accordion-link">
+    {{ heading }}
+    <span class="icon-plus-minus js-accordion-icon"></span>
+  </a>
+
+  <div class="support-thumbnail-content hide js-accordion-content">
+    <div class="rte-default-light">
+      {{ description }}
+    </div>
+
+    {% if call_to_action %}
+      <p class="local--button-container">
+        <a href="{{ href }}">{{ call_to_action }}</a>
+      </p>
+    {% endif %}
+  </div>
+</li>

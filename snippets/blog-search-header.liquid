@@ -1,0 +1,15 @@
+{% assign kicker = "The Luxy Hair Blog" %}
+
+{% capture heading %}
+  {% if search.results == empty %}No{% else %}Search{% endif %} results for <strong>"{{ search.terms }}"</strong>
+{% endcapture %}
+
+<div class="blog-search-header">
+  <a href="{{ blog.url }}" class="local--kicker">
+    {{ kicker }}
+  </a>
+
+  <h1 class="local--heading">
+    {{ heading }}
+  </h1>
+</div>

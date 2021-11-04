@@ -1,0 +1,13 @@
+<div class="support-category">
+  <div class="content-container">
+    <h2 class="local--heading">
+      {{ blog_current_category }}
+    </h2>
+
+    <ul class="local--list">
+      {% for article in blog.articles %}
+        {% include "support-thumbnail" %}
+      {% endfor %}
+    </ul>
+  </div>
+</div>

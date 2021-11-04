@@ -1,0 +1,11 @@
+{% assign url = nil %}
+
+{% for attribute in attribute_titles %}
+  {% if attribute == "url" %}
+    {% assign url = attribute_values[forloop.index0] %}
+  {% endif %}
+{% endfor %}
+
+{%- assign id = url | split: "/pin/" | last | remove: "/"  -%}
+
+<iframe src="https://assets.pinterest.com/ext/embed.html?id={{ id }}" height="560" width="345" frameborder="0" scrolling="no" ></iframe>

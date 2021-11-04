@@ -1,0 +1,28 @@
+<div class="banner-section {% if customer %} logged-in {% endif %}">
+  <div class="holder">
+    <div class="text-section {% if customer %} logged-in {% endif %}">
+      <h1>Luxy Rewards</h1>
+      <p class="swell-text">
+        Let’s be friends with benefits! Earn points while you <br class="swell-mobile">shop and start leveling up! <i>Bigger</i> savings, a <i>fuller</i> <br class="swell-mobile">wallet, and even <i>fuller</i> hair are coming your way.
+      </p>
+      {% unless customer %}
+        <div class="swell-btn-holder">
+          <a class="swell-btn join-now" href="/account/register">Sign Up</a> 
+          <a class="swell-btn sign-in" href="/account/login">Sign In</a> 
+        </div>
+        <p class="swell-text join-reward-text">
+          Earn 100 points when you join!
+        </p>
+      {% else %}
+        <div class="swell-btn-holder">
+          <a class="swell-btn swell-btn-redeem" href="/checkout">
+          Redeem Now
+          </a>
+          <a class="swell-btn swell-btn-history swell-history-link" href="javascript:void(0)">
+          Rewards History
+          </a>  
+        </div>
+      {% endunless %}
+    </div>
+  </div>
+</div>

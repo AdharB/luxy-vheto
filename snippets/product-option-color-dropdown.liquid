@@ -1,0 +1,67 @@
+{% assign label = product_color_group %}
+
+{% if product_color_group and product.title contains "Hair Ties" %}
+  <div class="product-accordion position--last" data-module-product-accordion>
+    <div class="product-accordion-header" data-local-header>
+      <span class="local--heading">
+        Select Your Color
+      </span>
+
+      <svg class="local--icon" width="1em" height="1em">
+        <use xlink:href="#icon-arrow-down" />
+      </svg>
+    </div>
+
+    <div class="product-accordion-content" {% if template.suffix == 'fragment' %}style="display: block;"{% endif %}>
+      <div class="product-option-color-filter" data-module-product-option-color-dropdown>
+        <a href="#" class="product-option-color-filter-button" data-local-button>
+          <span class="product-option-color-filter-text product-option-color-filter-label" data-local-label>
+            {{ label }}
+          </span>
+
+          <svg width="1em" height="1em" class="text-default">
+            <use xlink:href="#icon-controls" />
+          </svg>
+
+          <svg width="1em" height="1em" class="text-default">
+            <use xlink:href="#icon-arrow-down" />
+          </svg>
+        </a>
+
+        <div class="product-option-color-filter-dropdown hide" data-local-dropdown>
+          <div class="product-option-color-filter-dropdown-content">
+            {% for color in product_collection_color_variants %}
+              {% assign href = product_collection_color_variant_urls[forloop.index0] %}
+
+              {% assign pjax = href | append: "?view=pjax" %}
+
+              <a href="{{ href }}" class="product-option-color-filter-text product-option-color-filter-link" data-local-link data-key="{{ color }}" data-pjax="{{ pjax }}">
+                {{ color }}
+              </a>
+            {% endfor %}
+          </div>
+        </div>
+
+        <select class="product-option-color-filter-select" data-local-select>
+          {% for color in product_collection_color_variants %}
+            {% assign color_handle = color | handle %}
+
+            {% assign selected = false %}
+
+            {% if product_color_group == color_handle %}
+              {% assign selected = true %}
+            {% endif %}
+
+            {% assign href = product_collection_color_variant_urls[forloop.index0] %}
+
+            {% assign pjax_url = href | append: "?view=pjax" %}
+
+            <option value="{{ color_handle }}" {% if selected %}selected="selected"{% endif %} data-href="{{ href }}" data-pjax="{{ pjax_url }}" data-key="{{ color }}">
+              {{ color }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+  </div>
+{% endif %}

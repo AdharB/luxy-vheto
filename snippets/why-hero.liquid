@@ -1,0 +1,69 @@
+{% assign image_url = settings.why_hero_image | img_url: "1800x" %}
+
+{% assign image_alt = settings.why_hero_image_alt %}
+
+{% assign mobile_image_url = settings.why_hero_mobile_image | img_url: "1800x" %}
+
+{% assign background_color = settings.why_hero_background_color %}
+
+{% assign title = settings.why_hero_title %}
+
+{% assign description = settings.why_hero_description %}
+
+{% assign video = settings.show_why_hero_video %}
+
+{% assign href = settings.why_hero_video_url | split: "//" | last | prepend: "//" %}
+
+{% assign call_to_action = settings.why_hero_video_call_to_action %}
+
+{% assign duration = settings.why_hero_video_duration | default: false %}
+
+<div class="position-relative">
+  <div class="large--hide">
+    <img src="{{ mobile_image_url }}" style="width: 100%;" />
+  </div>
+
+  <div class="why-hero-background hide! large--show!" data-src="{{ image_url }}"></div>
+
+  <div class="position-relative text-center">
+    <div class="why-hero-image-container hide large--show" style="background-color: {{ background_color }};">
+      <img data-src="{{ image_url }}" alt="{{ image_alt }}" />
+    </div>
+
+    <div class="why-hero-content">
+      <h1 class="local--heading">
+        {{ title }}
+      </h1>
+
+      {% if description %}
+        <p class="local--description">
+          {{ description }}
+        </p>
+      {% endif %}
+
+      {% if video %}
+        <a href="{{ href }}" class="button-outline-small {% if video %}js-modal-video{% endif %}" data-ga-event='{ "category": "Video", "action": "play", "label": "Why Luxy Hair" }'>
+          {{ call_to_action }}
+        </a>
+      {% endif %}
+
+      {% if video and duration %}
+        <small class="local--footnote">
+          <em>{{ duration }}</em>
+        </small>
+      {% endif %}
+    </div>
+
+    <a href="#why-thumbnails" data-scroll='{ "offset": "#sticky-menu" }' class="why-hero-scroll-indicator hide! large--show!">
+      <div data-module-scroll-indicator>
+        <p class="local--description">
+          See more
+        </p>
+
+        <svg width="1em" height="1em">
+          <use xlink:href="#icon-arrow-down" />
+        </svg>
+      </div>
+    </a>
+  </div>
+</div>

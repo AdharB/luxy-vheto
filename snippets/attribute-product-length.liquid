@@ -1,0 +1,12 @@
+{% unless shop_lengths %}
+  {%- include "attribute-shop-lengths" -%}
+{% endunless %}
+
+{%- assign product_length = nil -%}
+
+{%- for tag in product.tags -%}
+  {%- if shop_lengths contains tag -%}
+    {%- assign product_length = tag -%}
+    {%- break -%}
+  {%- endif -%}
+{%- endfor -%}

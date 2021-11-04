@@ -1,0 +1,27 @@
+{% unless product_collection %}
+  {% include "attribute-product-collection" %}
+{% endunless %}
+
+{% assign product_collection_color_variants = "" | split: "" %}
+
+{% assign product_collection_color_variant_urls = "" | split: "" %}
+
+{% for product in product_collection.products %}
+  {% include "attribute-product-color-group" %}
+
+  {% unless product.title contains "Hair Ties" %}
+    {% continue %}
+  {% endunless %}
+
+  {% assign color = product_color_group | split: "-<-@" %}
+  {% assign product_collection_color_variants = product_collection_color_variants | concat: color %}
+
+  {% assign url = product.url | within: collection | split: "-<-@" %}
+  {% assign product_collection_color_variant_urls = product_collection_color_variant_urls | concat: url %}
+{% endfor %}
+
+{% comment %} --- {% endcomment %}
+
+{% assign product = current_product %}
+
+{% include "attribute-product-color-group" %}

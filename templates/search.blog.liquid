@@ -1,0 +1,21 @@
+{% assign blog = blog | default: blogs["hair-blog"] %}
+
+{% include "attribute-blog-categories" %}
+
+{% include "blog-search-header" %}
+{% section "blog-search" %}
+{% section "blog-menu" %}
+
+{% paginate search.results by settings.blog_pagination_limit %}
+  <div class="content-container">
+    {% if search.results == empty %}
+      {% section "blog-search-empty" %}
+    {% else %}
+      <div id="blog-pagination-articles" class="grid-uniform">
+        {% include "blog-search-results" %}
+      </div>
+    {% endif %}
+  </div>
+
+  {% include "blog-pagination" %}
+{% endpaginate %}

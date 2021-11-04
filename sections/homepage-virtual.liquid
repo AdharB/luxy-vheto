@@ -1,0 +1,53 @@
+{%- assign description = section.settings.description -%}
+
+{%- assign color_background = section.settings.color_background -%}
+
+{%- assign color_text = section.settings.color_text -%}
+
+{%- assign enabled = section.settings.enabled -%}
+
+{%- if enabled -%}
+  <div class="notification-bar notification-bar-rte" style="color: {{ color_text }}; background-color: {{ color_background }};">
+    {{ description }}
+  </div>
+{%- endif -%}
+
+{%- schema -%}
+  {
+    "name": "Virtual banner",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enabled",
+        "label": "Enable",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Content"
+      },
+      {
+        "type": "richtext",
+        "id": "description",
+        "label": "Description",
+        "default": "<p>GET AN INSTANT <a href=\"https:\/\/www.luxyhair.com\/pages\/virtual-color-match\">VIRTUAL COLOR MATCH<\/a><\/p>"
+      },
+      {
+        "type": "header",
+        "content": "Color"
+      },
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Background",
+        "default": "#CD6285"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Text",
+        "default": "#ffffff"
+      }
+    ]
+  }
+{%- endschema -%}

@@ -1,0 +1,17 @@
+{% assign article_products = "" | split: "" %}
+
+{% for tag in article.tags %}
+  {% if tag contains "product-" %}
+    {% assign handle = tag | split: "product-" | last | split: "-<-@" %}
+    {% assign article_products = article_products | concat: handle %}
+  {% endif %}
+{% endfor %}
+
+{% case param_view %}
+  {% when "test-products-1" %}
+    {% assign article_products = "halo-16-inch-ash-blonde" | split: "-<-@" %}
+  {% when "test-products-2" %}
+    {% assign article_products = "halo-16-inch-ash-blonde, bleach-blonde-613-120g" | split: ", " %}
+  {% when "test-products-3" %}
+    {% assign article_products = "halo-16-inch-ash-blonde, bleach-blonde-613-120g, halo-16-inch-ash-brown-balayage" | split: ", " %}
+{% endcase %}

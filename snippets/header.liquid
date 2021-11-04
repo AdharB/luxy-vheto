@@ -1,0 +1,35 @@
+<div class="header" data-module-header>
+  <button class="header-mobile-menu" data-module-mobile-menu-link>
+    <svg width="1em" height="1em">
+      <use xlink:href="#icon-bacinator" />
+    </svg>
+  </button>
+
+  <div class="header-menu">
+    {% section "menu" %}
+  </div>
+
+  <a href="/" class="header-logo">
+    {% include "logo" %}
+  </a>
+
+  <div class="header-utility">
+    <button class="header-search" data-module-search-link>
+      <svg width="1em" height="1em">
+        <use xlink:href="#icon-search" />
+      </svg>
+    </button>
+
+    {% if shop.customer_accounts_enabled %}
+      <a href="/account" class="header-account">
+        {% if customer %}Hi, {{ customer.first_name | truncate: 16 }}{% else %}Login{% endif %}
+      </a>
+    {% endif %}
+
+    <div class="header-currency">
+      {% include "currency-switcher" %}
+    </div>
+
+    {% include "cart-link" %}
+  </div>
+</div>

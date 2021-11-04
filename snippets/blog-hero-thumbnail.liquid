@@ -1,0 +1,24 @@
+{% include "attribute-article-category" %}
+{% include "attribute-article-featured-image" %}
+
+{% assign url = article.url %}
+
+<div class="blog-hero-thumbnail">
+  <a href="{{ url }}" class="local--image-container">
+    <img src="" data-flickity-lazyload="{{ article_featured_image }}" class="one-whole" alt="{{ article.title }}" />
+  </a>
+
+  <div class="blog-hero-slide-content">
+    {% if article_category %}
+      <span class="blog-kicker">
+        {{ article_category }}
+      </span>
+    {% endif %}
+
+    <h2 class="blog-heading local--heading">
+      <a href="{{ url }}">
+        {{ article.title }}
+      </a>
+    </h2>
+  </div>
+</div>

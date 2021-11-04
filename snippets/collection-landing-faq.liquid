@@ -1,0 +1,17 @@
+{% assign rte = collection.description %}
+
+{% include "attribute-rte-fragments" %}
+
+{% include "rte-fragment" with "faq" %}
+
+{% assign article_handles = "" | split: "  " %}
+
+{% for item in rte_list_item_texts %}
+  {% assign item_handle_1 = "faq/" | append: item | split: "  " %}
+  {% assign item_handle_2 = "support/" | append: item | split: "  " %}
+  {% assign article_handles = article_handles | concat: item_handle_1 | concat: item_handle_2 %}
+{% endfor %}
+
+{% assign title = rte_headings.first | default: "Frequently Asked Questions" %}
+
+{% include "faq" %}

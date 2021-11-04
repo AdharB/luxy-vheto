@@ -1,0 +1,54 @@
+{% assign call_to_action = settings.blog_pagination_call_to_action %}
+
+{% assign pagination_page_urls = "" | split: "" %}
+
+{% assign blog_search_page = false %}
+
+{% assign blog_all_page = false %}
+
+{% assign blog_category_page = false %}
+
+{% if template == "search.blog" %}
+  {% assign blog_search_page = true %}
+{% endif %}
+
+{% if template == "blog.all" %}
+  {% assign blog_all_page = true %}
+{% endif %}
+
+{% if template == "blog" and current_tags %}
+  {% assign blog_category_page = true %}
+{% endif %}
+
+{% for num in (2..paginate.pages) %}
+  {% capture url %}
+    {% if blog_search_page %}
+      /search?type=article&q={{ search.terms | handle }}&view=blog-thumbnails&page={{ num }}
+    {% elsif blog_all_page %}
+      /blogs/hair-blog?view=thumbnails&page={{ num }}
+    {% elsif blog_category_page %}
+      /blogs/hair-blog/tagged/{{ blog_current_category | handle }}?view=thumbnails&page={{ num }}
+    {% endif %}
+  {% endcapture %}
+
+  {% assign url = url | strip_newlines | strip | split: "-<-@" %}
+  {% assign pagination_page_urls = pagination_page_urls | concat: url %}
+{% endfor %}
+
+{% if paginate.pages > 1 %}
+  <div class="blog-pagination" data-module-blog-pagination>
+    <script type="text/json">
+      {
+        "pagination_page_urls": {{ pagination_page_urls | json }}
+      }
+    </script>
+
+    <div class="blog-pagination-spinner hide" data-local-spinner>
+
+    </div>
+
+    <button class="button-link" data-local-button>
+      {{ call_to_action }}
+    </button>
+  </div>
+{% endif %}

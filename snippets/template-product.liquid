@@ -1,0 +1,100 @@
+{%- include "object-param-type" -%}
+{%- include "object-param-view" -%}
+
+{%- assign current_product = product -%}
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+
+{%- assign variant = current_variant -%}
+
+{%- include "attribute-product-collection" -%}
+
+{%- paginate product_collection.products by 200 -%}
+  {%- include "attribute-product-color" -%}
+  {%- include "attribute-product-length" -%}
+  {%- include "attribute-product-weight" -%}
+
+  {%- assign current_product_weight = product_weight -%}
+  {%- assign current_product_length = product_length -%}
+  {%- assign current_product_color = product_color -%}
+
+  {%- include "attribute-shop-lengths" -%}
+  {%- include "attribute-shop-weights" -%}
+  {%- include "attribute-shop-color-groups" -%}
+  {%- include "attribute-product-backorder" -%}
+  {%- include "attribute-product-collection" -%}
+  {%- include "attribute-product-color-group" -%}
+  {%- include "attribute-product-description" -%}
+  {%- include "attribute-product-is-accessory" -%}
+  {%- include "attribute-product-is-full-set" -%}
+  {%- include "attribute-product-is-sample" -%}
+  {%- include "attribute-product-label" -%}
+  {%- include "attribute-product-title" -%}
+  {%- include "attribute-product-collection-color-groups" -%}
+  {%- include "attribute-product-collection-color-variants" -%}
+  {%- include "attribute-product-collection-lengths" -%}
+  {%- include "attribute-product-collection-has-lengths" -%}
+  {%- include "attribute-product-considered-weights" -%}
+  {%- include "attribute-product-waitlist-id" -%}
+  {%- include "attribute-product-without-gallery" -%}
+  {%- include "attribute-variant-on-sale" -%}
+
+  {%- assign current_color_group = param_type | default: "all" -%}
+
+  {%- if param_view == "b" -%}
+    {%- assign current_color_group = "all" -%}
+  {%- endif -%}
+
+  <div class="template-product template-product-container {% if product_without_gallery %}without--gallery{% endif %}">
+    <div class="template-product-column-1">
+      {%- include "product-gallery" -%}
+    </div>
+    <div class="template-product-column-2">
+      <div class="product-sidebar" data-module-product-sidebar>
+        {%- form "product", product -%}
+          {%- include "product-header" -%}
+          {%- include "product-payments" -%}
+          {%- include "product-rating" -%}
+
+          <input type="hidden" name="quantity" value="1" min="1" />
+          <input type="hidden" name="id" value="{{ current_variant.id }}" />
+
+          {%- if product.title contains "Sweatshirt" -%}
+            {%- include "product-option-size" -%}
+          {%- elsif product_is_accessory -%}
+            {%- include "product-option-color-dropdown" -%}
+          {%- else -%}
+            {%- if product_collection_has_lengths -%}
+              {%- include "product-option-length" -%}
+            {%- endif -%}
+
+            {%- include "product-option-color" -%}
+          {%- endif -%}
+
+          {%- include "product-backorder" -%}
+          {%- include "product-description" -%}
+          {%- include "product-ship-timer" -%}
+          {%- include "product-add-to-cart" -%}
+          {%- include "product-waitlist" -%}
+          {%- include "product-klaviyo-back-in-stock" -%}
+        {%- endform -%}
+
+        {%- section "product-incentives" -%}
+        {%- include "product-details" -%}
+        {%- section "product-faq" -%}
+        {%- include "product-shipping" -%}
+      </div>
+    </div>
+  </div>
+
+  {%- include "product-instagram" -%}
+  {%- include "product-reviews" -%}
+
+  {%- unless product_is_accessory -%}
+    {%- include "product-option-length-modal" -%}
+    {%- include "product-option-color-modal" -%}
+  {%- endunless -%}
+
+  {%- include "product-details-modal" -%}
+  {%- include "product-shipping-modal" -%}
+  {%- include "product-waitlist-modal" -%}
+{%- endpaginate -%}

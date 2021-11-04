@@ -1,0 +1,9 @@
+{% layout none %}
+
+{% paginate blog.articles by settings.blog_pagination_limit %}
+  {% for article in blog.articles %}
+    <div class="grid-item one-half large--one-quarter">
+      {% include "article-thumbnail" %}
+    </div>
+  {% endfor %}
+{% endpaginate %}

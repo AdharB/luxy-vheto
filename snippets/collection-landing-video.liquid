@@ -1,0 +1,18 @@
+{% assign rte = collection.description %}
+
+{% include "attribute-rte-fragments" %}
+
+{% include "rte-fragment" with "video" %}
+
+{% assign video_url = rte_link_texts[0] | default: settings.collection_video_url %}
+
+{% assign kicker = rte_paragraphs[0] | default: settings.collection_video_subtitle | strip_html %}
+
+{% assign heading = rte_paragraphs[1] | default: settings.collection_video_title | strip_html %}
+
+{% assign default_image_url = settings.collection_video_image | img_url: "800x" %}
+
+{% include "filter-rte-img-url" input: rte_image_urls.first, size: "800x"  %}
+{% assign image_url = output | default: default_image_url %}
+
+{% include "collection-video" default_content: false %}

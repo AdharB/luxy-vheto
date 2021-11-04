@@ -1,0 +1,5 @@
+{% assign rte = product.description %}
+
+{% include "attribute-rte-content" %}
+
+{% assign product_description = rte_content | replace: '<meta charset="utf-8">',"" %}

@@ -1,0 +1,75 @@
+{% assign current_year = "now" | date: "%Y" %}
+
+{% assign copyright = settings.footer_copyright | replace: "{{ current_year }}", current_year %}
+
+<footer id="footer" class="footer" data-module-footer>
+  <div class="content-container">
+    {% include "newsletter" %}
+
+    <div class="footer-links-container">
+      <div class="grid-uniform">
+        {% for link in linklists.footer.links %}
+          {% assign social_icons = false %}
+
+          {% for link in link.links %}
+            {% if link.url contains "facebook.com" %}
+              {% assign social_icons = true %}
+            {% endif %}
+          {% endfor %}
+
+          <div class="grid-item one-half large--one-quarter {% unless forloop.first %}small--hide{% endunless %}">
+            <h2 class="footer-links-heading">
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            </h2>
+
+            <ul class="footer-links-list">
+              {% for link in link.links %}
+                <li>
+                  <a class="inline-block text-secondary-dark hover-text-default" href="{{ link.url }}">
+                    {% if social_icons %}
+                      <svg class="local--icon" width="1em" height="1em">
+                        <use xlink:href="#social-{{ link.handle }}" />
+                      </svg>
+                    {% endif %}
+
+                    {{ link.title }}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="footer-footer">
+      <div class="large--grid-bar">
+        <div class="grid-item large--two-thirds">
+          <div class="footer-currency-switcher">
+            {% include "currency-switcher" %}
+          </div>
+
+          <p class="footer-copyright">
+            {{ copyright }}
+          </p>
+        </div>
+
+        <div class="grid-item large--one-third">
+          <ul class="footer-payment-icons">
+            {% assign payment_types = "paypal, master, american_express, visa" | split: ", " %}
+
+            {% for type in shop.enabled_payment_types %}
+              {% if payment_types contains type %}
+                <li class="footer-payment-icon-container">
+                  <svg class="local--icon" width="1em" height="1em">
+                    <use xlink:href="#payment-{{ type }}" />
+                  </svg>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

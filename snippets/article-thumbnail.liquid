@@ -1,0 +1,24 @@
+{% include "attribute-article-image" %}
+{% include "attribute-article-category" %}
+
+{% assign url = article.url %}
+
+<div class="article-thumbnail">
+  <a href="{{ url }}" class="image-container local--image-container">
+    <img data-src="{{ article_image }}" />
+  </a>
+
+  <div class="local--content">
+    {% if article_category %}
+      <span class="blog-kicker">
+        {{ article_category }}
+      </span>
+    {% endif %}
+
+    <h2 class="blog-heading">
+      <a href="{{ url }}">
+        {{ article.title }}
+      </a>
+    </h2>
+  </div>
+</div>

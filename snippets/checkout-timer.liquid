@@ -1,0 +1,157 @@
+{% assign enabled = settings.checkout_timer_enabled %}
+
+{% assign time = settings.checkout_timer_time %}
+
+{% assign heading = settings.checkout_timer_heading %}
+
+{% assign icon = settings.checkout_timer_icon %}
+
+{% assign description = settings.checkout_timer_description %}
+
+{% if enabled %}
+  <div class="checkout-timer-container" data-module-checkout-timer data-time="{{ time }}">
+    <p class="checkout-timer-heading">
+      {{ icon }}{{ heading }}
+    </p>
+
+    <div class="checkout-timer">
+      <p class="checkout-timer-description" data-local-description>
+        {% capture time_html %}<span data-local-time>{{ time }}:00</span>{% endcapture %}
+
+        {% capture minutes_html %}<span data-local-minutes>minutes</span>{% endcapture %}
+
+        {% assign description = description | replace: "{{ time }}", time_html %}
+        {% assign description = description | replace: "minutes", minutes_html %}
+
+        {{ description }}
+      </p>
+    </div>
+  </div>
+
+  <style>
+    .checkout-timer-container {
+      display: none;
+      padding-top: 1.5em;
+      padding-bottom: 0.5em;
+    }
+
+    .checkout-timer-heading {
+      position: relative;
+      padding-left: 32px;
+      margin-bottom: 0.75em;
+      line-height: 18.2px;
+    }
+
+    .checkout-timer-heading svg {
+      width: 30px;
+      position: absolute;
+      top: 40%;
+      transform: translateY(-50%);
+      left: 0;
+    }
+
+    .checkout-timer {
+      background-color: #F7F0EE;
+      border-radius: 5px;
+      border: 1px solid #DED8D6;
+      padding: 0.9285714286em 0.7857142857em;
+    }
+
+    .checkout-timer-description {
+      font-weight: 600;
+    }
+  </style>
+
+  <script>
+    (function () {
+      var context = document.querySelector("[data-module-checkout-timer]");
+
+      if ( !context ) {
+        return;
+      }
+
+      if ( Shopify.Checkout.step == "contact_information" ) {
+        context.style.display = "block";
+      }
+
+      var Events = (function () {
+        var events = {};
+
+        this.trigger = function(name, data) {
+          var handlers = events[name];
+
+          if ( !!handlers === false ) {
+            return;
+          }
+
+          handlers.forEach(function (handler) {
+            handler.call(this, data);
+          });
+        };
+
+        this.on = function (name, handler) {
+          var handlers = events[name];
+
+          if ( !!handlers === false ) {
+            handlers = events[name] = [];
+          }
+
+          handlers.push(handler);
+        };
+
+        return this;
+      })();
+
+      Styles();
+      Timer();
+      Minutes();
+
+      Events.on("timer:end", function () {
+        context.style.display = "none";
+      });
+
+      function Styles() {
+        if ( matchMedia("(max-width: 480px)").matches ) {
+          context.style.paddingTop = "0";
+          context.style.paddingBottom = "2em";
+        }
+      }
+
+      function Timer() {
+        var element = context.querySelector("[data-local-time]");
+
+        var seconds = context.getAttribute("data-time") * 60;
+
+        window.setInterval(function () {
+          seconds--;
+
+          if ( seconds == 59 ) {
+            Events.trigger("timer:seconds");
+          }
+
+          if ( seconds == 0 ) {
+            Events.trigger("timer:end");
+            clearInterval();
+            return;
+          }
+
+          var time = seconds_to_minutes(seconds);
+
+          element.innerHTML = time;
+        }, 1000);
+      }
+
+      function Minutes() {
+        var element = context.querySelector("[data-local-minutes]");
+
+        Events.on("timer:seconds", function () {
+          element.innerHTML = "seconds";
+        });
+      }
+
+      function seconds_to_minutes(s) { // https://stackoverflow.com/a/37770048
+        return (0 > s ? (s = -s,"-") : "") + (s - (s %= 60) ) / 60 + (9 < s ? ":" : ":0") + s;
+      }
+    })();
+  </script>
+{% endif %}

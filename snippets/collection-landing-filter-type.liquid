@@ -1,0 +1,73 @@
+{% assign label = "Filter: All Types" %}
+
+<div class="collection-landing-filter-container">
+  <div id="collection-landing-filter-color" class="collection-landing-filter" data-module-collection-landing-filter>
+    <a href="#" class="collection-landing-filter-button" data-local-button>
+      <span class="collection-landing-filter-text collection-landing-filter-label" data-local-label>
+        {{ label }}
+      </span>
+
+      <svg width="1em" height="1em" class="text-default">
+        <use xlink:href="#icon-controls" />
+      </svg>
+
+      <svg width="1em" height="1em" class="text-default">
+        <use xlink:href="#icon-arrow-down" />
+      </svg>
+    </a>
+
+    <div class="collection-landing-filter-dropdown hide" data-local-dropdown>
+      <div class="local--content">
+        <a href="#" class="collection-landing-filter-text collection-landing-filter-link" data-local-link>
+          <script type="text/json">
+            {
+              "attribute": null
+            }
+          </script>
+
+          All types
+        </a>
+
+        {% for type in shop_types %}
+          {% unless collection_types contains type %}
+            {% continue %}
+          {% endunless %}
+
+          <a href="#" class="collection-landing-filter-text collection-landing-filter-link" data-local-link>
+            <script type="text/json">
+              {
+                "attribute": {{ type | json }}
+              }
+            </script>
+
+            {{ type }}
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <select class="collection-landing-filter-select" data-local-select>
+      <option value="all">
+        All types
+      </option>
+
+      {% for type in shop_types %}
+        {% unless collection_types contains type %}
+          {% continue %}
+        {% endunless %}
+
+        {% assign type_handle = type | handle %}
+
+        {% assign selected = false %}
+
+        {% if current_type == type_handle %}
+          {% assign selected = true %}
+        {% endif %}
+
+        <option value="{{ type }}" {% if selected %}selected="selected"{% endif %}>
+          {{ type }}
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+</div>

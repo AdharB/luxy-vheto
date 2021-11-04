@@ -1,0 +1,24 @@
+{%- assign checkout_has_swatch = false -%}
+
+{%- for item in checkout.line_items -%}
+  {%- if item.variant.title contains "Sample Swatch" -%}
+    {%- assign checkout_has_swatch = true -%}
+    {%- break -%}
+  {%- endif -%}
+{%- endfor -%}
+
+<script id="checkout-liquid-json" type="application/json">
+  {
+    "Cart": {
+      "custom_attributes": {
+        "has_swatch": {{ checkout_has_swatch | json }}
+      }
+    },
+    "Settings": {
+      "checkout_swatches": {
+        "enabled": {{ settings.checkout_swatches_enabled | json }},
+        "message": {{ settings.checkout_swatches_message | json }}
+      }
+    }
+  }
+</script>

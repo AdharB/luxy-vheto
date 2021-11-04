@@ -1,0 +1,19 @@
+{% assign api_key = settings.yotpo_api_key %}
+
+<div class="yotpo bottomLine"
+  data-appkey="{{ api_key }}"
+  data-domain="{{ shop.permanent_domain | escape }}"
+  data-product-id="{{ product.id }}"
+  data-product-models="{{ product.id }}"
+  data-name="{{ product.title | escape }}"
+  data-url="{{ shop.url }}{{ product.url }}"
+  data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
+  data-bread-crumbs="{% for tag in product.tags %}{{ tag | escape }};{% endfor %}"
+  data-ga-event='{ "category": "Product", "action": "click", "label": "Yotpo star rating - Reviews", "target": ".text-m" }'>
+</div>
+
+<div class="yotpo QABottomLine"
+  data-appkey="{{ api_key }}"
+  data-product-id="{{ product.id }}"
+  data-ga-event='{ "category": "Product", "action": "click", "label": "Yotpo star rating - QA", "target": ".ask-question" }'>
+</div>

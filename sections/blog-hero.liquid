@@ -1,0 +1,76 @@
+{% assign heading = section.settings.heading | default: nil %}
+
+{% assign max_articles = 6 %}
+
+{% assign number_of_latest = section.settings.number_of_latest %}
+
+{% assign number_of_specific = max_articles | minus: number_of_latest %}
+
+<div class="blog-hero-header">
+  <h1 class="local--heading">
+    {{ heading }}
+  </h1>
+</div>
+
+{% unless section.blocks == empty %}
+  <div class="blog-hero-content">
+    <div class="blog-slider-pagination blog-slider-prev-next" data-flickity='{ "wrapAround": true, "lazyLoad": 2, "cellAlign": "left", "prevNextButtons": true }'>
+      {% for article in blog.articles limit: number_of_latest %}
+        {% include "attribute-article-category" %}
+        {% include "attribute-article-featured-image" %}
+
+        {% assign url = article.url %}
+
+        {% include "blog-hero-thumbnail" %}
+      {% endfor %}
+
+      {% for block in section.blocks limit: number_of_specific %}
+        {% assign article = block.settings.article %}
+        {% assign article = articles[article] | default: false %}
+
+        {% unless article %}
+          {% continue %}
+        {% endunless %}
+
+        {% include "blog-hero-thumbnail" %}
+      {% endfor %}
+    </div>
+  </div>
+{% endunless %}
+
+{% schema %}
+  {
+    "name": "Hero",
+    "class": "blog-hero",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading"
+      },
+      {
+        "type": "range",
+        "id": "number_of_latest",
+        "min": 0,
+        "max": 6,
+        "step": 1,
+        "label": "Number of latest",
+        "default": 3,
+        "info": "Show this number of latest posts before pulling from specific articles below."
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Article",
+        "type": "article",
+        "settings": [
+          {
+            "type": "article",
+            "id": "article",
+            "label": "Article"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

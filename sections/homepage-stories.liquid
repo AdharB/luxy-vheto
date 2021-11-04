@@ -1,0 +1,92 @@
+{%- include "object-param-view" -%}
+
+{% assign enabled = section.settings.enabled %}
+
+{% if enabled %}
+  {%- assign test_variant = param_view | default: "a" -%}
+
+  <div class="homepage-stories" data-module-homepage-stories>
+    <div data-flickity='{ "cellAlign": "left", "contain": true, "freeScroll": true, "pageDots": false, "prevNextButtons": false }'>
+      {% for block in section.blocks %}
+        {% assign image = block.settings.image %}
+
+        {% assign image_alt = block.settings.image_alt %}
+
+        {% include "attribute-image-box-ratio" %}
+
+        {% assign image_url = image | img_url: "300x300", crop: "top" %}
+
+        {% assign image_alt = block.settings.image_alt %}
+
+        {% assign heading = block.settings.heading %}
+
+        {% assign url = block.settings.url %}
+
+        <div class="homepage-stories-slide">
+          <article class="homepage-stories-thumbnail">
+            <a href="{{ url }}" class="homepage-stories-thumbnail-image">
+              <img data-src="{{ image_url }}" alt="{{ image_alt }}" />
+            </a>
+
+            <div class="homepage-stories-thumbnail-content">
+              <h1 class="local--heading">
+                <a href="{{ url }}">{{ heading }}</a>
+              </h1>
+            </div>
+          </article>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Stories",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enabled",
+        "label": "Enable",
+        "default": false
+      }
+    ],
+    "blocks": [
+      {
+        "type": "thumbnail",
+        "name": "Thumbnail",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Name"
+          },
+          {
+            "type": "header",
+            "content": "Content"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "image_alt",
+            "label": "Image alt"
+          },
+          {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading"
+          },
+          {
+            "type": "url",
+            "id": "url",
+            "label": "Link"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,33 @@
+{% comment %}
+
+  This snippet renders meta data needed to create a Twitter card
+  for products and articles.
+
+  Your cards must be approved by Twitter to be activated
+    - https://dev.twitter.com/docs/cards/validation/validator
+
+{% endcomment %}
+
+{% case template.name %}
+  {% when "product" %}
+    {% assign image = product.featured_image %}
+  {% when "article" %}
+    {% assign image = article.image %}
+  {% when "collection" %}
+    {% assign image = collection.image %}
+{% endcase %}
+
+{% assign image = image | default: settings.social_media_image %}
+
+<meta name="twitter:site" content="{{ settings.twitter_handle }}" />
+<meta name="twitter:description" content="{{ page_description | escape }}" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ page_title | escape }}" />
+<meta name="twitter:image" content="https:{{ image | img_url: '800x' }}" />
+
+{% if template.name == "product" %}
+  <meta name="twitter:label1" content="Price" />
+  <meta name="twitter:data1" content="{{ product.price | money_with_currency | strip_html | escape }}" />
+  <meta name="twitter:label2" content="Availability" />
+  <meta name="twitter:data2" content="In stock" />
+{% endif %}

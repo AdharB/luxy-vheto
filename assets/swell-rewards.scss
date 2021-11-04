@@ -1,0 +1,2702 @@
+$min: min-width;
+$max: max-width;
+$small: 480px;
+$s-medium: 768px;
+$large: 992px;
+$x-large: 1200px;
+
+/*Text colors*/
+
+$colorTextWhite: #000000;
+$colorTextDarkGreen: #ffffff;
+$colorTextGreen: #00953d;
+$colorTextLightGreen: #a0d8b3;
+$colorWhite: #fff;
+$colorBlack: #000;
+$colorAntiquewhite: #f3e1d0;
+$swellTextColorLightGrey: #3d4246;
+$colorWhitish: #fefefe;
+$colorLightGrey: #f5f3ef;
+$colorBGGrey: #ebebeb;
+
+/*Text colors End*/
+
+@font-face {
+  font-family: 'ActaW01-Book';
+  src: url('ActaW01-Book.woff2') format('woff2'),
+      url('ActaW01-Book.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Futura Std';
+  src: url('FuturaStd-Heavy.woff2') format('woff2'), url('FuturaStd-Heavy.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+}
+
+$theme-font-family-acta: "ActaW01-Book";
+$themeFontFutursStd: "Futura Std";
+
+@font-face {
+  font-family: 'swell-reward';
+  src:  url('swell-reward.eot?uodntn');
+  src:  url('swell-reward.eot?uodntn#iefix') format('embedded-opentype'),
+    url('swell-reward.ttf?uodntn') format('truetype'),
+    url('swell-reward.woff?uodntn') format('woff'),
+    url('swell-reward.svg?uodntn#swell-reward') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="swell-icon-"], [class*=" swell-icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'swell-reward' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.swell-icon-girl:before {
+  content: "\e900";
+  color: #edd3d5;
+}
+.swell-icon-insider:before {
+  content: "\e901";
+  color: #c2bdc5;
+}
+.swell-icon-vip:before {
+  content: "\e902";
+}
+.swell-icon-write-a-product-review:before {
+  content: "\e903";
+}
+.swell-icon-share-on-facebook:before {
+  content: "\e904";
+}
+.swell-icon-per-1-spent:before {
+  content: "\e905";
+}
+.swell-icon-newsletter-sign-up:before {
+  content: "\e906";
+}
+.swell-icon-follow-on-instagram:before {
+  content: "\e907";
+}
+.swell-icon-create-an-account:before {
+  content: "\e908";
+}
+.swell-icon-birthday-reward:before {
+  content: "\e909";
+}
+.swell-icon-forma-1-copy-3:before {
+  content: "\e90a";
+}
+.swell-icon-forma-1-copy-2:before {
+  content: "\e90b";
+}
+.swell-icon-tweet:before {
+  content: "\e90c";
+}
+.swell-icon-sms:before {
+  content: "\e90d";
+}
+.swell-icon-share:before {
+  content: "\e90e";
+}
+.swell-icon-message:before {
+  content: "\e90f";
+}
+.swell-icon-copy-link:before {
+  content: "\e910";
+}
+
+#rewards,
+#refer,
+#account {
+  .wrapper {
+    max-width: initial;
+  }
+}
+
+.swell-desktop {
+  display: none !important;
+  @media($min: $s-medium) {
+    display: block !important;
+  }
+}
+.swell-mobile {
+  display: block !important;
+  @media($min: $s-medium) {
+    display: none !important;
+  }
+}
+.swell-referral-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  img {
+    max-width: 75px;
+  }
+}
+
+.luxy-hair {
+  ul {
+    padding: 0;
+    margin: 0;
+    li {
+      list-style-type: none;
+    }
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    -o-object-position: center top;
+    object-position: center top;
+    vertical-align: -webkit-baseline-middle;
+  }
+  .swell-heading {
+    font-family: $theme-font-family-acta;
+    font-size: 26px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #000000;
+    @media($min: $small) {
+      font-size: 40px;
+    }
+    @media($min: $s-medium) {
+      font-size: 30px;
+    }
+    @media($min: $large) {
+      font-size: 36px;
+    }
+  }
+  .swell-text {
+    font-family: $theme-font-family-acta;
+    font-size: 17px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: $colorBlack;
+    max-width: 540px;
+  }
+
+  .banner-section {
+    min-height: 630px;
+    margin-bottom: 65px;
+    position: relative;
+    background: url(swell-banner-mobile.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    @media($min: $small) {
+      margin-bottom: 100px;
+      min-height: 950px;
+    }
+    @media($min: $s-medium) {
+      background: url(swell-banner.png);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      margin-bottom: 80px;
+      min-height: 70vh;
+    }
+    @media($min: $large) {
+      margin-bottom: 100px;
+    }
+    &.logged-in{
+      min-height: 630px;
+      margin-bottom: 45px;
+      @media($min: $small) {
+        min-height: 900px;
+        margin-bottom: 65px;
+      }
+      @media($min: $s-medium) {
+        min-height: 70vh;
+        margin-bottom: 50px;
+      }
+      @media($min: $large) {
+        margin-bottom: 65px;
+      }
+    }
+    img {
+      width: 50%;
+      &.swell-mobile {
+        display: block;
+        width: 100%;
+        @media($min: $s-medium) {
+          display: none;
+        }
+      }
+    }
+    .swell-text {
+      font-family: $theme-font-family-acta;
+      font-size: 17px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: left;
+      color: $colorBlack;
+      max-width: 540px;
+      margin-bottom: 40px;
+    }
+    .holder {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      background-color: transparent;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      @media($min: $s-medium) {
+        height: 100%;
+        padding-left: 5%;
+        width: 66%;
+        align-items: center;
+      }
+      @media($min: $large) {
+        padding-left: 15px;
+        width: 63%;
+      }
+      .text-section {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        padding-top: 50px;
+        @media($min: $small) {
+          padding-top: 80px;
+        }
+        @media($min: $s-medium) {
+          align-items: flex-start;
+          padding-top: 0;
+          width: 100%;
+          max-width: 630px;
+        }
+        &.logged-in{
+          .swell-btn-holder {
+            margin-bottom: 50px;
+            @media($min: $small) {
+              margin-bottom: 80px;
+            }
+            @media($min: $s-medium) {
+              margin-bottom: 0px;
+            }
+          }  
+        }
+        h1 {
+          font-family: $theme-font-family-acta;
+          font-size: 47px;
+          font-weight: normal;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          text-align: center;
+          color: $colorBlack;
+          text-transform: capitalize;
+          margin-bottom: 0;
+          @media($min: $small) {
+            font-size: 72px;
+          }
+          @media($min: $s-medium) {
+            font-size: 65px;
+          }
+          @media($min: $large) {
+            font-size: 85px;
+          }
+        }
+        .swell-text {
+          font-family: $theme-font-family-acta;
+          font-size: 13px;
+          font-weight: normal;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          text-align: left;
+          color: $colorBlack;
+          max-width: 567px;
+          margin-bottom: 20px;
+          text-align: center;
+          @media($min: $small) {
+            font-size: 20px;
+            margin-bottom: 40px;
+          }
+          @media($min: $s-medium) {
+            font-size: 13px;
+            text-align: left;
+            max-width: 425px;
+            margin-bottom: 40px;
+          }
+          @media($min: $large) {
+            font-size: 17px;
+            max-width: 555px;
+          }
+          &.join-reward-text{
+            margin-bottom: 50px;
+            @media($min: $small) {
+              margin-bottom: 80px;
+            }
+            @media($min: $s-medium) {
+              margin-bottom: 20px;
+            }
+          }
+        }
+        .swell-btn-holder {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          max-width: 280px;
+          width: 100%;
+          margin-bottom: 15px;
+          @media($min: $small) {
+            max-width: 400px;
+            margin-bottom: 30px;
+          }
+          @media($min: $s-medium) {
+            max-width: 300px;
+            margin-bottom: 20px;
+          }
+          @media($min: $large) {
+            max-width: 350px;
+          }
+          .swell-btn {
+            font-family: $themeFontFutursStd;
+            font-size: 12px;
+            font-stretch: normal;
+            font-style: normal;
+            letter-spacing: normal;
+            text-align: center;
+            background-color: $colorBlack;
+            color: $colorWhite;
+            width: 100%;
+            padding: 14px 0;
+            text-transform: uppercase;
+            border: 2px solid $colorBlack;
+            max-width: 136px;
+            @media($min: $small) {
+              max-width: 195px;
+              font-size: 14px;
+            }
+            @media($min: $s-medium) {
+              max-width: 145px;
+              padding: 10px 0;
+            }
+            @media($min: $large) {
+              max-width: 170px;
+              padding: 12px 0;
+            }
+
+            &:hover {
+              background-color: transparent;
+              color: $colorBlack;
+            }
+            &.sign-in {
+              background-color: transparent;
+              color: $colorBlack;
+              &:hover {
+                background-color: $colorBlack;
+                color: $colorWhite;
+              }
+            }
+            &.swell-btn-redeem {
+              background-color: $colorBlack;
+              color: $colorWhite;
+              &:hover {
+                color: $colorBlack;
+                background-color: $colorWhite;
+              }
+            }
+            &.swell-btn-history{
+              color: $colorBlack;
+              background-color: transparent;
+              &:hover {
+                color: $colorWhite;
+                background-color: $colorBlack;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .swell-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+  .how-it-works {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 65px;
+    @media($min: $small) {
+      margin-bottom: 100px;
+    }
+    @media($min: $s-medium) {
+      margin-bottom: 80px;
+    }
+    @media($min: $large) {
+      margin-bottom: 100px;
+    }
+    .steps {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      list-style: none;
+      padding: 0;
+      width: 100%;
+      margin: 40px 0 0;
+      flex-wrap: wrap;
+      @media($min: $small) {
+        margin: 50px 0 0;
+      }
+      @media($min: $s-medium) {
+        flex-wrap: nowrap;
+        max-width: 730px;
+        margin: 45px 0 0;
+      }
+      @media($min: $large) {
+        max-width: 900px;
+        margin: 60px 0 0;
+      }
+      @media($min: $x-large) {
+        max-width: 1100px;
+        margin: 70px 0 0;
+      }
+      li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin: 0;
+        flex-basis: 100%;
+        margin: 0 0 35px;
+        @media($min: $small) {
+          margin: 0 0 55px;
+        }
+        @media($min: $s-medium) {
+          margin: 0;
+          flex-basis: 33.33%;
+        }
+        &:last-child {
+          margin: 0;
+        }
+        .number {
+          font-family: $theme-font-family-acta;
+          font-size: 20px;
+          font-weight: normal;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          text-align: center;
+          color: #000000;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background-color: #f5f3ef;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          @media($min: 401px) {
+            font-size: 24px;
+            width: 50px;
+            height: 50px;
+          }
+          @media($min: $small) {
+            font-size: 32px;
+            width: 60px;
+            height: 60px;
+          }
+          @media($min: $s-medium) {
+            font-size: 26px;
+            width: 50px;
+            height: 50px;
+          }
+          @media($min: $large) {
+            font-size: 30px;
+            width: 54px;
+            height: 54px;
+          }
+        }
+        h4 {
+          font-family: $themeFontFutursStd;
+          font-size: 16px;
+          font-weight: 900;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          text-align: center;
+          color: #000000;
+          text-transform: uppercase;
+          margin: 40px 0 20px;
+          @media($min: 401px) {
+            font-size: 22px;
+          }
+          @media($min: $small) {
+            font-size: 28px;
+          }
+          @media($min: $s-medium) {
+            margin: 20px 0 10px;
+            font-size: 20px;
+          }
+          @media($min: $large) {
+            font-size: 22px;
+          }
+        }
+        p {
+          font-family: $theme-font-family-acta;
+          font-weight: normal;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          text-align: center;
+          color: #000000;
+          max-width: 355px;
+          font-size: 14px;
+          @media($min: 401px) {
+            font-size: 17px;
+          }
+          @media($min: $small) {
+            font-size: 20px;
+          }
+          @media($min: $s-medium) {
+            font-size: 14px;
+            max-width: initial;
+          }
+          @media($min: $large) {
+            font-size: 16px;
+          }
+          .swell-break {
+            display: none;
+            @media($min: $s-medium) {
+              display: block;
+            }
+          }
+        }
+        &:first-child {
+          p {
+            max-width: initial;
+          }
+        }
+      }
+    }
+  }
+  .swell-logged-in-section {
+    width: 100%;
+    padding: 0;
+    margin-bottom: 65px;
+    @media($min: $small) {
+      margin-bottom: 100px;
+    }
+    @media($min: $s-medium) {
+      margin-bottom: 60px;
+    }
+    @media($min: $large) {
+      margin-bottom: 80px;
+    }
+    .swell-container{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .swell-text {
+      font-family: $theme-font-family-acta;
+      font-size: 30px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
+      color: $colorBlack;
+      margin-bottom: 0;
+      @media($min: $small) {
+        font-size: 44px;
+      }
+      @media($min: $s-medium) {
+        font-size: 40px;
+      }
+      @media($min: $large) {
+        font-size: 44px;
+      }
+      .swell-first-name{
+        text-transform: capitalize;
+      }
+    }
+  }
+  .ways-to-earn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 65px;
+    @media($min: $small) {
+      margin-bottom: 100px;
+    }
+    @media($min: $s-medium) {
+      margin-bottom: 80px;
+    }
+    @media($min: $large) {
+      margin-bottom: 100px;
+    }
+    .campaigns {
+      display: flex;
+      text-align: center;
+      list-style: none;
+      flex-wrap: wrap;
+      padding: 0;
+      justify-content: space-between;
+      margin: 30px 0 0;
+      @media($min: $small) {
+        margin: 60px 0 0;
+      }
+      &.logged-in{
+        .swell-campaign{
+          &.last-campaign{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .swell-campaign-content{
+              cursor: unset;
+            }
+            .swell-campaign-shop-now{
+              display: inline-block;
+            }
+            .swell-campaign-sign-up{
+              display: none;
+            }
+          }
+          .swell-campaign-content{
+            cursor: pointer;
+          }
+        }  
+      }
+      .swell-campaign {
+        flex-basis: 50%;
+        border-top: 1px solid #a1a1a1;
+        border-left: 1px solid #a1a1a1;
+        margin-bottom: 0;
+        @media($min: $s-medium) {
+          border-top: 0;
+          border-bottom: 1px solid #a1a1a1;
+          border-right: 1px solid #a1a1a1;
+          border-left: 1px solid #a1a1a1;
+          margin-bottom: 0;
+          &:nth-child(3),
+          &:nth-child(5),
+          &:nth-child(7) {
+            border-left: 0;
+            @media($min: $s-medium) {
+              border-left: 1px solid #a1a1a1;
+            }
+          }
+          flex-basis: 25%;
+          border-right: 0;
+        }
+        &:nth-child(1),
+        &:nth-child(2),
+        &:nth-child(3),
+        &:nth-child(4) {
+          border-top: 1px solid #a1a1a1;
+          @media($min: $s-medium) {
+            border-top: 1px solid #a1a1a1;
+          }
+        }
+        &:nth-child(2),
+        &:nth-child(6) {
+          border-right: 1px solid #a1a1a1;
+          @media($min: $s-medium) {
+            border-right: 0;
+          }
+        }
+        &:nth-child(7),
+        &:nth-child(8) {
+          border-bottom: 1px solid #a1a1a1;
+        }
+        &:nth-child(4),
+        &:nth-child(8) {
+          border-right: 1px solid #a1a1a1;
+        }
+        &:last-child {
+          border-right: 1px solid #a1a1a1;
+          @media($min: $s-medium) {
+            border-right: 1px solid #a1a1a1;
+          }
+        }
+        .swell-campaign-content {
+          padding: 20px 0;
+          @media($min: $small) {
+            padding: 60px 0;
+          }
+          @media($min: $s-medium) {
+            padding: 50px 0;
+          }
+          @media($min: $large) {
+            padding: 70px 0;
+          }
+          .swell-campaign-icon {
+            margin-bottom: 25px;
+            min-height:46px;
+            @media($min: $small) {
+              min-height:54px;
+            }
+            @media($min: $s-medium) {
+              min-height:48px;
+            }
+            @media($min: $large) {
+              min-height:54px;
+            }
+            i {
+              font-size: 42px;
+              @media($min: $small) {
+                font-size: 50px;
+              }
+              @media($min: $s-medium) {
+                font-size: 44px;
+              }
+              @media($min: $large) {
+                font-size: 50px;
+              }
+              &.swell-icon-logo {
+                font-size: 50px;
+                @media($min: $small) {
+                  font-size: 75px;
+                }
+              }
+            }
+          }
+          .swell-campaign-value {
+            font-family: $theme-font-family-acta;
+            font-size: 16px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            letter-spacing: normal;
+            text-align: center;
+            color: $colorBlack;
+            text-transform: uppercase;
+            margin-bottom: 0px;
+            @media($min: 401px) {
+              margin-bottom: 5px;
+              font-size: 20px;
+            }
+            @media($min: $small) {
+              margin-bottom: 10px;
+              font-size: 24px;
+            }
+            @media($min: $s-medium) {
+              font-size: 20px;
+              margin-bottom: 10px;
+            }
+            @media($min: $large) {
+              font-size: 24px;
+              margin-bottom: 12px;
+            }
+          }
+          .swell-campaign-type {
+            .swell-campaign-type-content {
+              font-family: $theme-font-family-acta;
+              font-size: 12px;
+              font-weight: normal;
+              font-stretch: normal;
+              font-style: normal;
+              letter-spacing: normal;
+              text-align: center;
+              color: $colorBlack;
+              @media($min: 400px) {
+                font-size: 16px;
+              }
+              @media($min: $small) {
+                font-size: 20px;
+              }
+              @media($min: $s-medium) {
+                font-size: 13px;
+              }
+              @media($min: $large) {
+                font-size: 16px;
+              }
+            }
+          }
+        }
+
+        &.news-letter-campaign {
+          cursor: pointer;
+        }
+
+        &.last-campaign {
+          font-family: $theme-font-family-acta;
+          font-size: 22px;
+          font-weight: normal;
+          font-stretch: normal;
+          font-style: normal;
+          letter-spacing: normal;
+          text-transform: uppercase;
+          color: $colorBlack;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .swell-campaign-shop-now,
+          .swell-campaign-sign-up{
+            font-family: $themeFontFutursStd;
+            text-transform: uppercase;
+            color: $colorBlack;
+            font-weight: 900;
+            cursor: pointer;
+            line-height: 1;
+            border-bottom: 1px solid $colorBlack;
+          }
+          .swell-campaign-shop-now{
+            display: none;
+          }
+          
+        }
+      }
+    }
+  }
+  .hidden {
+    display: none;
+  }
+  .product-redemption-section {
+    .redemption-main {
+      padding: 60px 0 50px;
+      @media(max-width: 768px) {
+        padding: 110px 0 60px;
+      }
+      .swell-heading {
+        font-family: $theme-font-family-acta;
+        font-size: 31px;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: #051c2c;
+        margin-bottom: 40px;
+        @media(max-width: 768px) {
+          font-size: 36px;
+          margin-bottom: 50px;
+        }
+        @media(max-width: 480px) {
+          font-size: 26px;
+        }
+      }
+      .swell-redemption-list {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 20px;
+        position: relative;
+        max-width: 820px;
+        @media(max-width: 768px) {
+          max-width: 500px;
+        }
+        @media(max-width: 560px) {
+          max-width: 400px;
+        }
+        @media(max-width: 480px) {
+          max-width: 340px;
+          padding: 0 10px;
+        }
+        @media(max-width: 400px) {
+          max-width: 280px;
+          padding: 0 5px;
+        }
+        .swell-icon-swell-left-arrow {
+          position: absolute;
+          left: -15px;
+          top: 38%;
+          cursor: pointer;
+          @media($min: $small) {
+            left: -30px;
+          }
+          /*@media(max-width: 1024px) {
+          top: 120px;
+        }
+        @media(max-width: 768px) {
+          top: 235px;
+          left: -25px;
+        }
+        @media(max-width: 560px) {
+          top: 180px; 
+        }
+        @media(max-width: 400px) {
+          top: 140px;
+          left: -16px;
+        }*/
+        }
+        .swell-icon-swell-right-arrow {
+          position: absolute;
+          right: -15px;
+          top: 38%;
+          cursor: pointer;
+          @media($min: $small) {
+            right: -30px;
+          }
+          /*@media(max-width: 1024px) {
+          top: 120px;
+        }
+        @media(max-width: 768px) {
+          top: 235px;
+          right: -25px;
+        }
+        @media(max-width: 560px) {
+          top: 180px; 
+        }
+        @media(max-width: 400px) {
+          top: 140px;
+          right: -16px;
+        }*/
+        }
+        .slick-slide {
+          margin: 5px;
+          img {
+            margin: 0 auto;
+          }
+        }
+        .slick-track,
+        .slick-list {
+          width: 100%;
+        }
+        .swell-redemption {
+          flex-basis: 25%;
+          margin: 5px;
+          padding-left: 5px;
+          padding-right: 5px;
+          outline: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          @media(max-width: 768px) {
+            flex-basis: 100%;
+          }
+          img {
+            max-width: 220px;
+            @media($min: 401px) {
+              max-width: 250px;
+            }
+            @media($min: $small) {
+              max-width: 350px;
+            }
+          }
+          .swell-redeem-content {
+            padding: 30px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .product-name {
+              font-family: $theme-font-family-acta;
+              font-size: 16px;
+              font-weight: normal;
+              font-stretch: normal;
+              font-style: normal;
+              line-height: normal;
+              letter-spacing: normal;
+              text-align: center;
+              color: $colorBlack;
+              @media(max-width: 768px) {
+                font-size: 20px;
+              }
+              @media(max-width: 480px) {
+                font-size: 13px;
+              }
+            }
+            .swell-price {
+              font-family: $theme-font-family-acta;
+              font-size: 22px;
+              font-weight: normal;
+              font-stretch: normal;
+              font-style: normal;
+              line-height: normal;
+              letter-spacing: normal;
+              text-align: center;
+              color: #000000;
+              margin-bottom: 30px;
+              @media(max-width: 768px) {
+                font-size: 26px;
+                margin-bottom: 25px;
+              }
+              @media(max-width: 480px) {
+                font-size: 13px;
+              }
+            }
+            .swell-redeem-btn {
+              font-family: $themeFontFutursStd;
+              font-size: 14px;
+              font-stretch: normal;
+              font-style: normal;
+              letter-spacing: normal;
+              text-align: center;
+              color: #000000;
+              cursor: pointer;
+              text-transform: uppercase;
+              border: 1px solid $colorBlack;
+              padding: 14px 0;
+              max-width: 140px;
+              width: 100%;
+              @media(max-width: 768px) {
+                font-size: 16px;
+                max-width: 230px;
+                padding: 20px 0;
+              }
+              @media(max-width: 480px) {
+                font-size: 12px;
+                max-width: 170px;
+                padding: 18px 0;
+              }
+            }
+          }
+        }
+        .slick-list {
+          /*.slick-track {
+          div {
+            &:nth-child(3n) {
+              padding-right: 5px;
+            }
+          }
+          &:nth-child(3n) {
+            padding-right: 0;
+          }
+        }*/
+        }
+      }
+    }
+  }
+  .swell-border-full {
+    width: 100%;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 60px;
+  }
+
+  .swell-redeem-discounts {
+    max-width: initial;
+    margin-bottom: 0px;
+    @media($min: $s-medium) {
+      padding: 0;
+      margin-bottom: 80px;
+    }
+    @media($min: $large) {
+      margin-bottom: 100px;
+    }
+    .swell-container{
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      @media($min: $s-medium) {
+        flex-direction: row;
+        padding: 0 10px;
+        margin: 0 auto;
+        margin-bottom: 80px;
+      }
+    }
+    .swell-redeem-discount-left-section {
+      flex-basis: 50%;
+      background-color: #f5f3ef;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      order: 2;
+      @media($min: $s-medium) {
+        order: 1;
+      }
+      .swell-redeem-discount-left-section-holder {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        max-width: 360px;
+        padding: 80px 10px;
+        align-items: center;
+        @media($min: $small) {
+          max-width: 450px;
+        }
+        @media($min: $s-medium) {
+          max-width: 330px;
+          padding: 30px 10px;
+          align-items: flex-start;
+        }
+        @media($min: $large) {
+          max-width: 380px;
+        }
+        .swell-heading {
+          font-size: 28px;
+          @media($min: $small) {
+            font-size: 36px;
+          }
+          @media($min: $s-medium) {
+            font-size: 24px;
+          }
+          @media($min: $large) {
+            font-size: 32px;
+          }
+        }
+        .swell-text {
+          line-height: 1.4;
+          margin-bottom: 40px;
+          font-size: 12px;
+          text-align: center;
+          @media($min: 401px) {
+            font-size: 14px;
+          }
+          @media($min: $small) {
+            font-size: 18px;
+          }
+          @media($min: $s-medium) {
+            text-align: left;
+            font-size: 13px;
+          }
+          @media($min: $large) {
+            font-size: 15px;
+          }
+        }
+        .swell-conversion-points {
+          cursor: initial;
+          border: 1px solid #000;
+          max-width: 400px;
+          width: 100%;
+          font-family: $themeFontFutursStd;
+          font-size: 24px;
+          font-weight: 900;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          text-align: center;
+          color: #000000;
+          padding: 8px 0;
+          display: block;
+          margin-bottom: 40px;
+          text-transform: uppercase;
+          @media($max: $large) {
+            font-size: 20px;
+          }
+          @media($max: $s-medium) {
+            max-width: 470px;
+            padding: 15px 0;
+          }
+          @media($max: $small) {
+            font-size: 14px;
+          }
+        }
+        .swell-redeem-list {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-wrap: wrap;
+          .swell-redeem-list-section {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: center;
+            flex-basis: 100%;
+            border: 1px solid $colorBlack;
+            border-bottom: 0;
+            &:last-child{
+              border-bottom: 1px solid $colorBlack;
+            }
+            .swell-redeem-list-section-holder {
+              display: flex;
+              justify-content: center;
+              align-items: flex-start;
+              width: 100%;
+              .swell-redeem-heading {
+                flex-basis: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 40px;
+                text-align: left;
+                font-family: $theme-font-family-acta;
+                font-size: 24px;
+                font-weight: normal;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: normal;
+                letter-spacing: normal;
+                text-align: center;
+                color: $colorBlack;
+                margin-bottom: 0px;
+                @media($max: $large) {
+                  font-size: 22px;
+                }
+              }
+              .swell-redeem-points{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-basis: 50%;
+                min-height: 40px;
+                border-left: 1px solid $colorBlack;
+                margin-bottom: 0px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .swell-redeem-discount-right-section {
+      flex-basis: 50%;
+      order: 1;
+      @media($min: $s-medium) {
+        order: 2;
+      }
+      .swell-img {
+        width: 100%;
+        object-fit: cover;
+        height: 100%;
+        object-position: center top;
+        vertical-align: -webkit-baseline-middle;
+      }
+    }
+  }
+
+  .swell-reward-raf-section{
+    margin-bottom: 65px;
+    @media($min: $small) {
+      margin-bottom: 100px;
+    }
+    @media($min: $s-medium) {
+      margin-bottom: 80px;
+    }
+    @media($min: $large) {
+      margin-bottom: 100px;
+    }
+    .swell-container{
+      padding: 0;
+      @media($min: $s-medium) {
+        padding: 0 10px;
+      }
+    }
+    .swell-reward-raf-holder{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f5f3ef;
+      flex-direction: column;
+      @media($min: $s-medium) {
+        flex-direction: row;
+      }
+      .swell-raf-image-holder{
+        flex-basis: 50%;
+      }
+      .swell-raf-text-container{
+        flex-basis: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .swell-raf-text-holder{
+          max-width: none;
+          text-align: center;
+          padding: 50px 10px;
+          @media($min: $s-medium) {
+            padding: 50px 15px;
+          }
+          @media($min: $s-medium) {
+            padding: 0;
+            width:100%;
+            text-align: left;
+            max-width: 360px;
+          }
+          @media($min: $large) {
+            max-width: 450px;
+          }
+          .swell-raf-heading{
+            font-family: $themeFontFutursStd;
+            font-size: 16px;
+            font-weight: 900;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: $colorBlack;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            @media($min: $small) {
+              font-size: 20px;
+            }
+            @media($min: $s-medium) {
+              font-size: 18px;
+            }
+            @media($min: $large) {
+              font-size: 20px;
+            }
+          }
+          .swell-heading{
+            font-family: $theme-font-family-acta;
+            font-size: 38px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            text-align: center;
+            color: $colorBlack;
+            margin-bottom: 15px;
+            @media($min: $small) {
+              font-size: 54px;
+            }
+            @media($min: $s-medium) {
+              text-align: left;
+              font-size: 46px;
+            }
+            @media($min: $large) {
+              font-size: 50px;
+            }
+          }
+          .swell-text{
+            font-family: $theme-font-family-acta;
+            font-size: 12px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            text-align: center;
+            color: $colorBlack;
+            margin-bottom: 30px;
+            max-width: none;
+            @media($min: $small) {
+              font-size: 16px;
+            }
+            @media($min: $s-medium) {
+              text-align: left;
+              font-size: 15px;
+              max-width: 358px;
+            }
+            @media($min: $large) {
+              font-size: 16px;
+              max-width: 386px;
+            }
+            .swell-break{
+              display: block;
+              @media($min: $s-medium) {
+                display: none;
+              } 
+            }
+          }
+          .swell-raf-btn{
+            background-color: $colorBlack;
+            border: 1px solid $colorBlack;
+            font-family: $themeFontFutursStd;
+            font-size: 12px;
+            font-weight: 900;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            text-align: center;
+            color: #fefefe;
+            padding: 10px 0;
+            display: block;
+            max-width: 150px;
+            text-transform: uppercase;
+            margin: 0 auto;
+            @media($min: $small) {
+              font-size: 14px;
+              max-width: 190px;
+            }
+            @media($min: $s-medium) {
+              margin: 0;
+              max-width: 175px;
+            }
+            @media($min: $large) {
+              max-width: 190px;
+            }
+            &:hover {
+              color: $colorBlack;
+              background-color: $colorWhite;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /* Vip Table Section Code Start */
+  .vip-table-section {
+    text-align: center;
+    margin-bottom: 65px;
+    @media($min: $small) {
+      margin-bottom: 100px;
+    }
+    @media($min: $s-medium) {
+      margin-bottom: 80px;
+    }
+    @media($min: $large) {
+      margin-bottom: 100px;
+    }
+
+    .vip-tier-holder{
+      width: 100%;
+      padding-top: 20px;
+      @media($min: $small) {
+        padding-top: 40px;
+      }
+      @media($min: $s-medium) {
+        padding-top: 30px;
+      }
+      @media($min: $large) {
+        padding-top: 40px;
+      }
+      .vip-tier-head{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 30px;
+        @media($min: $small) {
+          margin-bottom: 50px;
+        }
+        @media($min: $s-medium) {
+          margin-bottom: 40px;
+        }
+        @media($min: $large) {
+          margin-bottom: 50px;
+        }
+        li{
+          width: 100%;
+          max-width: 250px;
+          .tier-icon{
+            padding: 0 15px;
+            margin-bottom: 10px;
+            i {
+              display: block;
+              font-size: 13px;
+              @media ($min: $small) {
+                font-size: 22px;
+              }
+              @media ($min: $s-medium) {
+                font-size: 20px;
+              }
+              @media ($min: $large) {
+                font-size: 24px;
+              }
+            }
+          }
+          .text-holder{
+            border-right: 1px solid #b7b7b7;
+            .tier-name{
+              font-family: $theme-font-family-acta;
+              font-weight: normal;
+              font-style: normal;
+              font-stretch: normal;
+              line-height: normal;
+              letter-spacing: normal;
+              text-align: center;
+              color: $colorBlack;
+              padding: 0;
+              font-size: 14px;
+              margin-bottom: 10px;
+              text-transform: uppercase;
+              @media ($min: $small) {
+                font-size: 24px;
+              }
+              @media ($min: $s-medium) {
+                font-size: 20px;
+              }
+              @media ($min: $large) {
+                font-size: 24px;
+              }
+            }
+            .tier-value{
+              font-family: $theme-font-family-acta;
+              font-size: 12px;
+              font-weight: normal;
+              font-style: normal;
+              font-stretch: normal;
+              line-height: normal;
+              letter-spacing: normal;
+              text-align: center;
+              color: $colorBlack;
+              padding: 0;
+              margin-bottom: 0;
+              @media ($min: $small) {
+                font-size: 14px;
+              }
+              @media ($min: $s-medium) {
+                font-size: 13px;
+              }
+              @media ($min: $large) {
+                font-size: 16px;
+              }
+            }
+          }
+          &:last-child {
+            .text-holder{
+              border-right: 0;
+            }
+          }
+        }
+      }
+      .swell-benefits{
+        font-family: $theme-font-family-acta;
+        font-size: 24px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: $colorBlack;
+        margin-bottom: 30px;
+        @media($min: $small) {
+          margin-bottom: 40px;
+        }
+        @media($min: $s-medium) {
+          margin-bottom: 25px;
+        }
+        @media($min: $large) {
+          margin-bottom: 30px;
+        }
+      }
+      .vip-tier-body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        li{
+          border: 1px solid #b7b7b7;
+          border-right: 0;
+          border-bottom: 0;
+          padding: 0;
+          font-size: 12px;
+          flex-basis: 50%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          min-height: 90px;
+          @media($min: $small){
+            min-height: 125px;
+            font-size: 15px;
+          }
+          @media($min: $s-medium){
+            min-height: 90px;
+            font-size: 12px;
+            border-bottom: 1px solid #b7b7b7;
+            flex-basis: 20%;
+          }
+          @media($min: $large){
+            min-height: 125px;
+            font-size: 15px;
+          }
+          .tier-property-icons{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 100px;
+            text-align: center;
+            margin: 0 auto;
+            .icon {
+              margin: 0 3px;
+              font-size: 18px;
+            }
+          }
+          .tier-property-value{
+            font-family: $theme-font-family-acta;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            letter-spacing: normal;
+            text-align: center;
+            color: $colorBlack;
+            line-height: normal;
+            margin-bottom: 0;
+          }
+          &:first-child {
+            flex-basis: 100%;
+            border-right: 1px solid #b7b7b7;
+            @media($min: $s-medium){
+              border-right: 0;
+              flex-basis: 20%;
+            }
+          }
+          &:nth-child(3n+3){
+            border-right: 1px solid #b7b7b7;
+            @media($min: $s-medium){
+              border-right: 0;
+            } 
+          }
+          &:nth-last-child(2){
+            border-bottom: 1px solid #b7b7b7;
+          }
+          &:last-child {
+            border-right: 1px solid #b7b7b7;
+            border-bottom: 1px solid #b7b7b7;
+          }
+        }
+      }
+      &.logged-in{
+        .vip-tier-head{
+          li{
+            display: none;
+            &.swell-active{
+              display: block;
+              .text-holder{
+                border: 0;
+              }
+            }
+          }
+        }
+        .vip-tier-body{
+          li{
+            .tier-property-icons{
+              .icon{
+                display: none;
+                &.swell-active{
+                  display: inline-block;
+                }
+              }
+            }
+          }
+        }
+
+        &.tier_0{
+          .vip-tier-head{
+            li{
+              &.swell-active{
+                .next-tier{
+                  display: block;
+                  line-height: normal;
+                  margin-bottom: 10px;
+                  font-size: 12px;
+                  @media ($min: $small) {
+                    font-size: 13px;
+                  }
+                  @media ($min: $s-medium) {
+                    font-size: 13px;
+                  }
+                  @media ($min: $large) {
+                    font-size: 14px;
+                  }
+                }
+              }
+            }
+          }
+          .vip-tier-body{
+            li{
+              &:nth-child(2) {
+                border-bottom: 1px solid #b7b7b7;
+              }
+              &:nth-child(3) {
+                border-right: 1px solid #b7b7b7;
+                border-bottom: 1px solid #b7b7b7;
+              }
+              &:nth-child(4) {
+                display: none;
+              }
+              &:nth-child(5) {
+                display: none;
+              }
+            }
+          }
+        }
+        &.tier_1{
+          .vip-tier-body{
+            li{
+              &:nth-child(5) {
+                display: none;
+              } 
+              &:first-child {
+                flex-basis: 50%;
+                border-right: 0;
+                @media($min: $s-medium){
+                  flex-basis: 20%;
+                }
+              }
+              &:nth-child(2n+2){
+                border-right: 1px solid #b7b7b7;
+                @media($min: $s-medium){
+                  border-right: 0;
+                } 
+              }
+              &:nth-child(3) {
+                border-bottom: 1px solid #b7b7b7;
+                border-right: 0;
+              }
+              &:nth-child(4) {
+                border-right: 1px solid #b7b7b7;
+                border-bottom: 1px solid #b7b7b7;
+              }
+            }
+          } 
+        }
+      }
+    }
+  }
+  /* Vip Table Section Code End */
+
+}
+
+/* Referral Section Code Start */
+.referral-section {
+  .referral-banner {
+    @media ($min: $s-medium) {
+      background-image: url(swell-referral-banner.png);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      width: 100%;
+      min-height: 75vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 100px;
+      .banner-heading {
+        font-family: $theme-font-family-acta;
+        font-size: 20px;
+        font-weight: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: $colorBlack;
+        text-transform: uppercase;
+        font-size: 80px;
+        padding-left: 20%;
+      }
+    }
+  }
+  .swell-container {
+    padding: 0;
+    @media ($min: $s-medium) {
+      padding: 0 10px;
+    }
+  }
+  .referral-section-holder {
+    background-color: $colorLightGrey;
+    padding: 15px 5px;
+    @media ($min: $small) {
+      padding: 30px 5px;
+    }
+    @media ($min: $s-medium) {
+      display: flex;
+      padding: 50px 10px;
+      margin-bottom: 50px;
+    }
+    .swell-referral-holder {
+      @media ($min: $s-medium) {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .swell-referral-content-container {
+        .swell-referral-content-sidebar {
+          display: none;
+        }
+        .swell-referral-content-main {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          margin: 0 auto;
+          .swell-referral-register {
+            padding: 40px 5px;
+            min-height: 418px;
+            max-width: 310px;
+            text-align: center;
+            @media ($min: $small) {
+              padding: 60px 5px;
+              min-height: 596px;
+              max-width: 460px;
+            }
+            @media ($min: $s-medium) {
+              padding: 40px 5px;
+              text-align: left;
+              min-height: 343px;
+              max-width: 365px;
+            }
+            @media ($min: $large) {
+              min-height: 371px;
+              max-width: 455px;
+            }
+          }
+          .swell-referral-refer {
+            padding: 40px 5px;
+            min-height: 477px;
+            max-width: 310px;
+            text-align: center;
+            @media ($min: $small) {
+              padding: 60px 5px;
+              min-height: 660px;
+              max-width: 460px;
+            }
+            @media ($min: $s-medium) {
+              padding: 40px 5px;
+              text-align: left;
+              min-height: 416px;
+              max-width: 365px;
+            }
+            @media ($min: $large) {
+              min-height: 448px;
+              max-width: 455px;
+            }
+          }
+          .swell-referral-heading {
+            font-family: $theme-font-family-acta;
+            font-size: 34px;
+            font-weight: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: $colorBlack;
+            margin: 0 auto 10px;
+            text-transform: uppercase;
+            @media ($min: $small) {
+              font-size: 54px;
+            }
+            @media ($min: $s-medium) {
+              font-size: 43px;
+              margin-left: 0;
+            }
+            @media ($min: $large) {
+              font-size: 54px;
+            }
+            .refer-heading {
+              display: block;
+              font-size: 18px;
+              margin-bottom: 20px;
+              @media ($min: $small) {
+                font-size: 28px;
+              }
+              @media ($min: $s-medium) {
+                display: none;
+              }
+            }
+          }
+          .swell-referral-details {
+            font-family: $theme-font-family-acta;
+            font-size: 12px;
+            font-weight: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: $colorBlack;
+            margin: 0 auto 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid $colorBlack;
+            @media ($min: $small) {
+              font-size: 18px;
+              margin-bottom: 50px;
+              padding-bottom: 50px;
+            }
+            @media ($min: $s-medium) {
+              font-size: 15px;
+              margin-left: 0;
+              margin-bottom: 35px;
+              padding-bottom: 35px;
+            }
+            @media ($min: $large) {
+              font-size: 18px;
+            }
+          }
+          .refer-customer-error {
+            color: red;
+          }
+          .swell-referral-form-wrapper {
+            .swell-referral-form-header-details {
+              font-family: $theme-font-family-acta;
+              font-size: 12px;
+              font-weight: normal;
+              line-height: normal;
+              letter-spacing: normal;
+              color: $colorBlack;
+              margin: 0 auto 30px;
+              @media ($min: $small) {
+                font-size: 18px;
+              }
+              @media ($min: $s-medium) {
+                font-size: 12px;
+                margin-left: 0;
+              }
+              @media ($min: $large) {
+                font-size: 15px;
+              }
+            }
+            .swell-referral-form-list {
+              .swell-referral-form-list-field {
+                @media ($min: $s-medium) {
+                  display: flex;
+                }
+                .swell-referral-form-list-field-input {
+                  font-family: $theme-font-family-acta;
+                  font-size: 12px;
+                  font-weight: normal;
+                  line-height: normal;
+                  letter-spacing: normal;
+                  color: rgba(0,0,0,0.5);
+                  border: 0;
+                  border-bottom: solid 1px $colorBlack;
+                  outline: 0;
+                  width: 100%;
+                  padding: 0 12px;
+                  background-color: transparent;
+                  height: 40px;
+                  margin-bottom: 20px;
+                  box-sizing: border-box;
+                  @media ($min: $small) {
+                    font-size: 18px;
+                    height: 55px;
+                    margin-bottom: 30px;
+                  }
+                  @media ($min: $s-medium) {
+                    padding: 3px 0;
+                    margin-bottom: 0;
+                    height: 45px;
+                    font-size: 12px;
+                    flex: 3;
+                  }
+                  @media ($min: $large) {
+                    font-size: 14px;
+                  }
+                }
+                .swell-referral-form-list-submit {
+                  font-family: $themeFontFutursStd;
+                  font-size: 12px;
+                  font-weight: 900;
+                  line-height: normal;
+                  letter-spacing: normal;
+                  text-align: center;
+                  color: $colorWhitish;
+                  background-color: $colorBlack;
+                  border: 1px solid $colorBlack;
+                  width: 50%;
+                  margin: 0 auto;
+                  outline: 0;
+                  box-shadow: none;
+                  padding: 0;
+                  height: 40px;
+                  text-transform: uppercase;
+                  @media ($min: $small) {
+                    height: 55px;
+                    font-size: 18px;
+                  }
+                  @media ($min: $s-medium) {
+                    width: 100%;
+                    height: 45px;
+                    font-size: 15px;
+                    flex: 1;
+                  }
+                  @media ($min: $large) {
+                    font-size: 18px;
+                  }
+                  &:hover {
+                    color: $colorBlack;
+                    background-color: $colorWhite;
+                  }
+                }
+              }
+            }
+          }
+          .swell-referral-media-wrapper {
+            margin-top: 35px;
+            .swell-referral-media-details {
+              display: none;
+              @media ($min: $s-medium) {
+                display: block;
+                font-family: $theme-font-family-acta;
+                font-size: 12px;
+                font-weight: normal;
+                line-height: normal;
+                letter-spacing: normal;
+                color: $colorBlack;
+                margin: 0 auto 10px;
+                margin-left: 0;
+              }
+              @media ($min: $large) {
+                font-size: 14px;
+              }
+            }
+            .swell-referral-media-list {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              @media ($min: $s-medium) {
+                max-width: 310px;
+                width: 100%;
+              }
+              @media ($min: $large) {
+                max-width: 330px;
+              }
+              .swell-referral-medium {
+                font-family: $theme-font-family-acta;
+                font-size: 12px;
+                font-weight: normal;
+                line-height: normal;
+                letter-spacing: normal;
+                color: $colorBlack;
+                margin: 0;
+                cursor: pointer;
+                @media ($min: $small) {
+                  font-size: 16px;
+                }
+                @media ($min: $s-medium) {
+                  font-size: 12px;
+                  margin-left: 0;
+                }
+                @media ($min: $large) {
+                  font-size: 14px;
+                }
+                .swell-referral-medium-content {
+                  @media ($min: $s-medium) {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                  }
+                  .swell-referral-media-icon {
+                    display: block;
+                    font-size: 12px;
+                    margin-bottom: 10px;
+                    @media ($min: $small) {
+                      font-size: 16px;
+                    }
+                    @media ($min: $s-medium) {
+                      font-size: 12px;
+                      display: inline-block;
+                      margin-bottom: 0;
+                      margin-right: 5px;
+                    }
+                  }
+                }
+                &.swell-share-referral-sms {
+                  @media ($min: $s-medium) {
+                    display: none;
+                  }
+                }
+              }
+            }
+          }
+          .swell-referral-thanks {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            position: relative;
+            padding: 40px 5px;
+            min-height: 477px;
+            max-width: 310px;
+            text-align: center;
+            @media ($min: $small) {
+              padding: 60px 5px;
+              min-height: 660px;
+              max-width: 460px;
+            }
+            @media ($min: $s-medium) {
+              padding: 40px 5px;
+              text-align: left;
+              min-height: 416px;
+              max-width: 365px;
+            }
+            @media ($min: $large) {
+              min-height: 448px;
+              max-width: 455px;
+            }
+            .swell-referral-back-link{
+              top:50px;
+              &:before,
+              &:after{
+                background: $colorBlack;
+              }
+            }
+            .swell-referral-heading{
+              font-weight: bold;
+              font-size: 20px;
+              @media ($min: $small) {
+                font-size: 30px;
+              }
+              @media ($min: $s-medium) {
+                font-size: 20px;
+              }
+              @media ($min: $large) {
+                font-size: 26px;
+              }
+            }
+            .swell-referral-details{
+              border-bottom: 0;
+            }
+          }
+        }
+      }
+    }
+    .referral-content {
+      display: none;
+      @media ($min: $s-medium) {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      &.logged-in {
+        display: block;
+      }
+      .referral-content-holder {
+        max-width: 300px;
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+        padding: 40px 5px;
+        border-top: 1px solid rgba(0,0,0,0.2);
+        @media ($min: $small) {
+          max-width: 450px;
+          padding: 60px 5px;
+        }
+        @media ($min: $s-medium) {
+          border-top: 0;
+          max-width: 355px;
+          text-align: left;
+          padding: 40px 5px;
+        }
+        @media ($min: $large) {
+          max-width: 450px;
+        }
+      }
+      .check-reward-balance {
+        font-family: $theme-font-family-acta;
+        font-size: 12px;
+        font-weight: normal;
+        line-height: normal;
+        letter-spacing: 0.36px;
+        margin: 0 auto 15px;
+        color: $colorBlack;
+        text-decoration: none;
+        border-bottom: 1px solid $colorBlack;
+        display: inline-block;
+        @media($min:$small) {
+          font-size: 18px;
+        }
+        @media($min:$s-medium) {
+          font-size: 12px;
+        }
+        @media($min:$large) {
+          font-size: 16px;
+        }
+      }
+      .swell-referral-heading {
+        .swell-heading {
+          font-family: $theme-font-family-acta;
+          font-size: 15px;
+          font-weight: normal;
+          line-height: normal;
+          letter-spacing: 0.56px;
+          text-transform: uppercase;
+          margin: 0 auto 20px;
+          color: $colorBlack;
+          @media($min:$small) {
+            font-size: 22px;
+          }
+          @media($min:$s-medium) {
+            text-align:left;
+            font-size: 18px;
+          }
+          @media($min:$large) {
+            font-size: 24px;
+          }
+        }
+        .swell-detail {
+          font-family: $theme-font-family-acta;
+          font-size: 12px;
+          font-weight: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          color: $colorBlack;
+          max-width: 260px;
+          width: 100%;
+          margin: 0 auto; 
+          @media($min:$small) {
+            font-size: 16px;
+            max-width: 350px;
+          }
+          @media($min:$s-medium) {
+            font-size: 12px;
+            max-width: 100%;
+          }
+          @media($min:$large) {
+            font-size: 15px;
+          }
+        }
+      }
+      .table-classes {
+        width: 100%;
+        margin-bottom: 35px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+        .swell-table-responsive {
+          border: 0;
+          min-height: 170px;
+          max-height: 170px;
+          overflow-y: scroll;
+          padding-right: 15px;
+          @media ($min: $small) {
+            min-height: 180px;
+            max-height: 180px;
+          }
+          @media ($min: $large) {
+            min-height: 210px;
+            max-height: 210px;
+          }
+          &::-webkit-scrollbar {
+            width: 0.5em;
+          }
+          &::-webkit-scrollbar-track {
+            background: #f8f8f8;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+          }
+          &::-webkit-scrollbar-thumb {
+            background-color: $colorBlack;
+            outline: 1px solid slategrey;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+          }
+          .swell-referral-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: transparent;
+            border: 0;
+            margin: 0;
+            thead, tbody {
+              tr {
+                th, td {
+                  font-family: $theme-font-family-acta;
+                  font-size: 12px;
+                  font-weight: normal;
+                  line-height: normal;
+                  letter-spacing: normal;
+                  text-align: left;
+                  padding: 10px 5px;
+                  border: 0;
+                  background-color: transparent;
+                  color: $colorBlack;
+                  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                  max-width: 100px;
+                  width: 50%;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  @media($min:$small) {
+                    font-size: 15px;
+                  }
+                  @media($min:$s-medium) {
+                    font-size: 12px;
+                    padding: 12px 5px;
+                  }
+                  @media($min:$large) {
+                    font-size: 15px;
+                  }
+                }
+                th {
+                  text-transform: uppercase;
+                }
+              }
+            }
+          }
+        }
+      }
+      .redeem-point {
+        .swell-referral-heading {
+          .swell-heading {
+            margin: 0 auto 10px;
+          }
+        }
+      }
+    }
+  }
+}
+/* Referral Section Code End */
+
+/* Cross Link Code Start */
+.swell-referral-back-link {
+  width: 3em;
+  height: 3em;
+  max-width: 35px;
+  max-height: 35px;
+  display: block;
+  vertical-align: middle;
+  margin-left: auto;
+  cursor: pointer;
+  position: absolute;
+  top: -70px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  &:after, &:before {
+    background: $colorWhite;
+    content: "";
+    height: 2px;
+    max-width: calc(35px * 1.414);
+    position: absolute;
+    top: 0;
+    transition: 0.05s ease-in-out background-color;
+    width: calc(3em * 1.414);
+  }
+  &:before {
+    left: 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    -webkit-transform-origin: left;
+    -ms-transform-origin: left;
+    transform-origin: left;
+  }
+  &:after {
+    right: 0;
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-transform-origin: right;
+    -ms-transform-origin: right;
+    transform-origin: right;
+  }
+  @media ($min: $s-medium) {
+    width: 2em;
+    height: 2em;
+    max-width: 25px;
+    max-height: 25px;
+    &:after, &:before {
+      max-width: calc(25px * 1.414);
+      width: calc(2em * 1.414);
+    }
+  }
+}
+/* Cross Link Code End */
+
+/* Copy Pop-up Code Start */
+.swell-referral-copy {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.7);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  box-sizing: border-box;
+  .swell-referral-copy-content {
+    max-width: 450px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    background-color: $colorBGGrey;
+    padding: 40px 5px;
+    box-sizing: border-box;
+    .swell-referral-copy-sidebar {
+      display: none;
+    }
+    .swell-referral-copy-main {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      .swell-referral-heading {
+        display: none;
+      }
+      .swell-referral-copy-link {
+        font-family: $theme-font-family-acta;
+        font-size: 20px;
+        font-weight: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: $colorBlack;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        @media($min:$small) {
+          font-size: 30px;
+          margin-bottom: 20px;
+        }
+      }
+      .swell-referral-copy-button {
+        max-width: 120px;
+        width: 100%;
+        height: 36px;
+        font-family: $theme-font-family-acta;
+        font-size: 12px;
+        font-weight: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: $colorWhite;
+        background-color: #cd627d;
+        border: 1px solid #cd627d;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        outline: none;
+        @media ($min: $small) {
+          max-width: 160px;
+          height: 45px;
+          font-size: 14px;
+        }
+        @media ($min: $s-medium) {
+          margin-bottom: 40px;
+        }
+        &:hover {
+          color: $colorBlack;
+          background-color: $colorWhite;
+        }
+      }
+      .swell-referral-details {
+        font-family: $theme-font-family-acta;
+        font-size: 12px;
+        font-weight: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: $colorBlack;
+        margin: 0;
+        @media($min:$small) {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
+/* Copy Pop-up Code End */
+
+/* Post Checkout Pop-up Code Start */
+.swell-post-checkout-hair {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.7);
+  z-index: 99;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  .swell-post-checkout-holder {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 1200px;
+    .checkout-heading {
+      width: 100%;
+      @media ($min: $s-medium) {
+        padding: 0 10px;
+        box-sizing: border-box;
+      }
+      .swell-referral-back-link {
+        position: relative;
+        top: auto;
+        margin-bottom: 40px;
+        @media ($min: $s-medium) {
+          margin-left: 0;
+        }
+      }
+    }
+    .referral-section {
+      width: 100%;
+      overflow-y: auto;
+      max-height: 500px;
+      @media ($min: $s-medium) {
+        max-height: 100%;
+        display: flex;
+        padding: 0 10px;
+        box-sizing: border-box;
+      }
+      .post-checkout-banner {
+        background-image: url(swell-post-checkout-image-mobile.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: top;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 350px;
+        @media ($min: $small) {
+          min-height: 550px;
+        }
+        @media ($min: $s-medium) {
+          background-image: url(swell-post-checkout-image.png);
+          flex: 1;
+          min-height: auto;
+        }
+        .post-checkout-heading {
+          font-family: $theme-font-family-acta;
+          font-size: 9vw;
+          font-weight: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          color: $colorWhite;
+          text-transform: uppercase;
+          text-align: center;
+          @media ($min: $s-medium) {
+            font-size: 4.5vw;
+          }
+          @media ($min: $large) {
+            font-size: 46px;
+          }
+        }
+      }
+      .referral-section-holder {
+        margin-bottom: 0;
+        @media ($min: $s-medium) {
+          flex: 1.1;
+        }
+        .swell-referral-content-container{
+          .swell-referral-content-main{
+            .swell-referral-register {
+              min-height: 406px;
+              @media ($min: $small) {
+                min-height: 556px;
+              }
+              @media ($min: $s-medium) {
+                min-height: 336px;
+              }
+              @media ($min: $large) {
+                min-height: 368px;
+              }
+            }
+            .swell-referral-refer {
+              min-height: 406px;
+              @media ($min: $small) {
+                min-height: 556px;
+              }
+              @media ($min: $s-medium) {
+                min-height: 336px;
+              }
+              @media ($min: $large) {
+                min-height: 368px;
+              }
+            }
+            .swell-referral-thanks {
+              min-height: 406px;
+              @media ($min: $small) {
+                min-height: 556px;
+              }
+              @media ($min: $s-medium) {
+                min-height: 336px;
+              }
+              @media ($min: $large) {
+                min-height: 368px;
+              }
+              .swell-referral-back-link{
+                top:50px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+/* Post Checkout Pop-up Code End */
+
+.account-page{
+  .swell-redeem-discounts{
+    margin-bottom: 0;
+    border-bottom: 1px solid $colorWhite;
+    @media ($min: $s-medium) {
+      border-bottom: 0;
+      margin-bottom: 80px;
+    }
+    @media ($min: $large) {
+      margin-bottom:100px;
+    }
+  }
+  .swell-logged-in-section {
+    .swell-text {
+      &:nth-child(1) {
+        margin-bottom: 0;
+      }
+      &:nth-child(2) {
+        margin-bottom: 35px;
+        @media(max-width: 479px) {
+          margin-bottom: 20px;
+        }
+      }
+    }
+    .swell-btn-holder {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 280px;
+       @media($min: $small) {
+        max-width: 400px;
+      }
+      @media($min: $s-medium) {
+        max-width: 430px;
+      }
+      .swell-btn {
+        cursor: pointer;
+        display: block;
+        padding: 14px 0;
+        width: 100%;
+        max-width: 135px;
+        text-align: center;
+        font-family: $themeFontFutursStd;
+        font-size: 12px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: $colorBlack;
+        text-transform: uppercase;
+        background-color: $colorWhite;
+        border: 1px solid $colorBlack;
+        @media($min: $small) {
+          font-size: 14px;
+          max-width: 195px;
+        }
+        @media($min: $s-medium) {
+          font-size: 13px;
+          max-width: 208px;
+          padding: 16px 0;
+        }
+        &:hover {
+          color: $colorWhite;
+          background-color: $colorBlack;
+        }
+      }
+      .swell-btn-redeem {
+        background-color: $colorBlack;
+        color: $colorWhite;
+        &:hover {
+          color: $colorBlack;
+          background-color: $colorWhite;
+        }
+      }
+    }
+  }
+}

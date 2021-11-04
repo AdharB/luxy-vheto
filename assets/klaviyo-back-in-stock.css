@@ -1,0 +1,28 @@
+#klaviyo-bis-modal .btn {
+  padding: 16px 38px;
+  font-size: 12.6419px;
+  letter-spacing: 4px;
+  width: 100%;
+  text-transform: uppercase;
+  font-family: "Futura LT W01 Heavy", "Helvetica Neue", sans-serif;
+  border-radius: 0;
+  text-align: center;
+  color: #ffffff;
+  background-color: #CD627D;
+  border: 2px solid #CD627D;
+}
+
+#klaviyo-bis-modal .modal-title {
+  color: #000000;
+}
+
+#klaviyo-bis-modal .completed_message {
+  background: transparent;
+  border: none;
+  font-style: italic;
+  color: #CD627D;
+
+  a {
+    display: none;
+  }
+}

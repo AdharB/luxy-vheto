@@ -1,0 +1,182 @@
+<script>
+  (function () {
+
+    var CheckoutLiquid = (function () {
+      var element = document.getElementById("checkout-liquid-json");
+      var resource = {};
+
+      if ( element ) {
+        resource = JSON.parse(element.innerHTML);
+      }
+
+      return resource;
+    })();
+
+    var EU_COUNTRY_NAMES = [
+      "Austria",
+      "Belgium",
+      "Bulgaria",
+      "Croatia",
+      "Cyprus",
+      "Czech Republic",
+      "Denmark",
+      "Estonia",
+      "Finland",
+      "France",
+      "Germany",
+      "Greece",
+      "Hungary",
+      "Ireland",
+      "Italy",
+      "Latvia",
+      "Lithuania",
+      "Luxemburg",
+      "Luxembourg",
+      "Malta",
+      "Netherlands",
+      "Poland",
+      "Portugal",
+      "Romania",
+      "Slovakia",
+      "Slovenia",
+      "Spain",
+      "Sweden",
+      "United Kingdom"
+    ];
+
+    function ShippingOption(element) {
+      var self = this;
+
+      this.element = element;
+      this.$element = $(element);
+      this.text = this.$element.find(".radio__label__primary").text().trim();
+
+      this.refs = {
+        input: self.$element.find("[name='checkout[shipping_rate][id]']")
+      };
+    }
+
+    ShippingOption.prototype = {
+      select: function () {
+        this.refs.input.prop("checked", true);
+      },
+
+      unselect: function () {
+        this.refs.input.prop("checked", false);
+      },
+
+      constructor: ShippingOption
+    };
+
+    function Shipping() {
+      this.elements = $("[data-shipping-methods]").children(".content-box__row");
+
+      this.options = this.elements.map(function () {
+        return new ShippingOption(this);
+      });
+    }
+
+    Shipping.prototype = {
+      hide_all: function () {
+        document.querySelector("[data-shipping-methods]").style.display = "none";
+      },
+
+      hide_if: function (regexp) {
+        this.options
+          .filter(function (index, option) {
+            return option.text.match(regexp);
+          }).each(function (index, option) {
+            option.$element.hide();
+          });
+
+        this.select_first_visible_option();
+      },
+
+      hide_unless: function (regexp) {
+        var available = false;
+
+        this.options.each(function (index, option) {
+          if ( option.text.match(regexp) ) {
+            available = true;
+          };
+        });
+
+        if ( !available ) { // block from removing all options
+          return false;
+        }
+
+        this.options
+          .filter(function (index, option) {
+            return !option.text.match(regexp);
+          }).each(function (index, option) {
+            option.$element.hide();
+          });
+
+        this.select_first_visible_option();
+      },
+
+      select_first_visible_option: function () {
+        this.options
+          .each(function (index, option) {
+            option.unselect();
+          })
+          .filter(function (index, option) {
+            return option.$element.is(":visible");
+          })
+          .first()
+            .select();
+      },
+
+      shipping_method_notice: function (text) {
+        var elements = {
+          header: document.querySelector(".section--shipping-method .section__header"),
+          title: document.querySelector(".section--shipping-method .section__title"),
+          text: document.querySelector(".section--shipping-method .section__text")
+        };
+
+        if ( elements.text ) {
+          elements.text.innerText = text;
+          return;
+        }
+
+        var text_element = document.createElement("p");
+
+        text_element.innerText = text;
+        text_element.classList.add("section__text");
+
+        elements.header.append(text_element);
+      },
+
+      disable_button: function () {
+        document.querySelector("[data-content]").classList.add("custom--disable");
+      },
+
+      constructor: Shipping
+    };
+
+    $(document).on("page:load page:change", initialize);
+
+    function initialize() {
+      var shipping = new Shipping();
+      var country = {{ checkout.shipping_address.country | json }};
+
+      // Trello: https://trello.com/c/MO78L2Z8/431
+      if ( CheckoutLiquid.Settings.checkout_swatches.enabled ) {
+        if ( CheckoutLiquid.Cart.custom_attributes.has_swatch && country != "Canada" && country != "United States" ) {
+          shipping.hide_all();
+          shipping.disable_button();
+          shipping.shipping_method_notice(CheckoutLiquid.Settings.checkout_swatches.message);
+        }
+      }
+    }
+  })();
+</script>
+
+<style>
+  [data-content].custom--disable .total-line--shipping,
+  [data-content].custom--disable .step__footer,
+  [data-content].custom--disable .route-div,
+  [data-content].custom--disable .fb_iframe_widget {
+    display: none;
+  }
+</style>

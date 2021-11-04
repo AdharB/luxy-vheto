@@ -1,0 +1,39 @@
+<ul class="mobile-menu-nav" data-module-mobile-menu-nav>
+  {% for link in linklists["mobile-menu"].links %}
+    {% assign has_dropdown = link.links | default: false %}
+
+    <li class="mobile-menu-nav-item" {% if has_dropdown %}data-local-nav-item{% endif %}>
+      <a href="{{ link.url }}" class="mobile-menu-nav-link" data-local-link>
+        {{ link.title }}
+
+        {% if has_dropdown %}
+          <svg width="1em" height="1em">
+            <use xlink:href="#icon-arrow-down" />
+          </svg>
+        {% endif %}
+      </a>
+
+      {% if has_dropdown %}
+        <nav class="mobile-menu-nav-dropdown" data-local-dropdown>
+          {% for link in link.links %}
+            {% assign has_dropdown = link.links | default: false %}
+
+            <a href="{{ link.url }}" class="mobile-menu-nav-link-2 {% if has_dropdown %}with--dropdown{% endif %}" {% if has_dropdown %}data-local-link-2{% endif %}>
+              {{ link.title }}
+            </a>
+
+            {% if has_dropdown %}
+              <nav class="mobile-menu-nav-dropdown-2" data-local-dropdown-2>
+                {% for link in link.links %}
+                  <a href="{{ link.url }}" class="mobile-menu-nav-link-3">
+                    {{ link.title }}
+                  </a>
+                {% endfor %}
+              </nav>
+            {% endif %}
+          {% endfor %}
+        </nav>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>

@@ -1,0 +1,13 @@
+{% paginate blog.articles by settings.blog_pagination_limit %}
+  <div class="content-width-center container">
+    <div id="blog-pagination-articles" class="grid-uniform">
+      {% for article in blog.articles offset: 2 %}
+        <div class="grid-item one-half large--one-quarter">
+          {% include "article-thumbnail" %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  {% include "blog-pagination" %}
+{% endpaginate %}

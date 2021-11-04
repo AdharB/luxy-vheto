@@ -1,0 +1,57 @@
+{% assign heading = section.settings.heading %}
+
+{% assign description = section.settings.description %}
+
+{% assign image = section.settings.image | default: false %}
+
+{% assign image_url = image | img_url: "300x" %}
+
+<div class="careers-section">
+  <div class="careers-section-container">
+    <div class="careers-certified-content">
+      <h2 class="careers-section-title with-description">
+        {{ heading }}
+      </h2>
+
+      <p class="local--description">
+        {{ description }}
+      </p>
+
+      {% if image %}
+        <div class="local--image-container">
+          <img src="{{ image_url }}" alt="" />
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Certified",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading"
+      },
+      {
+        "type": "textarea",
+        "id": "description",
+        "label": "Description"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      }
+    ],
+    "default": {
+      "settings": {
+        "heading": "We're a Great Place to Work!",
+        "description": "Thanks to our positive and uplifting culture, Luxy Hair is Great Place to Work certified. We are committed to upholding a wellness positive office environment where everyone feels healthy, happy, and fulfilled. As believers in a growth mindset, learning and growing are core to our values. We practice gratitude daily and are dedicated to maintaining a fun and collaborative culture. Our team is growing fast and we're looking for like-minded individuals to join us as we embark on the next chapter.",
+        "image": "shopify:\/\/shop_images\/GPTW_Certified_-_SEP_2018_-_SEP_2019_copy.png"
+      }
+    }
+  }
+{% endschema %}

@@ -1,0 +1,21 @@
+{% assign heading = section.settings.heading %}
+
+{% assign url = section.settings.url | default: false %}
+
+{% assign call_to_action = section.settings.call_to_action | default: false %}
+
+<div class="beforeafter-gallery-container">
+  <h2 class="beforeafter-gallery-title">
+    {{ heading }}
+  </h2>
+
+  {% include "component-beforeafter-slider" %}
+
+  {% if url and call_to_action %}
+    <div class="beforeafter-gallery-button-container">
+      <a href="{{ url }}" class="button-default">
+        {{ call_to_action }}
+      </a>
+    </div>
+  {% endif %}
+</div>

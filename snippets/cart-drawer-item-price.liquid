@@ -1,0 +1,15 @@
+<div class="cart-drawer-item-price">
+  <div class="local--price {% if item_on_sale %}state--on-sale{% endif %}">
+    {% if item.final_line_price == 0 %}
+      FREE
+    {% else %}
+      {% include "filter-money" with item.final_line_price %}
+    {% endif %}
+  </div>
+
+  {% if item_on_sale %}
+    <div class="local--compare-price">
+      {% include "filter-money" with item_compare_line_price %}
+    </div>
+  {% endif %}
+</div>

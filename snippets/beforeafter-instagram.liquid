@@ -1,0 +1,27 @@
+{% assign kicker = settings.beforeafter_instagram_kicker | default: nil %}
+
+{% assign title = settings.beforeafter_instagram_title | default: nil %}
+
+{% assign foursixty_feed_id = settings.beforeafter_instagram_foursixty_feed_id | default: nil %}
+
+{% if foursixty_feed_id %}
+  <div class="beforeafter-instagram">
+    {% if kicker and title %}
+      <div class="local--content">
+        {% if kicker %}
+          <span class="local--kicker">
+            {{ kicker }}
+          </span>
+        {% endif %}
+
+        {% if title %}
+          <h2 class="local--heading">
+            {{ title }}
+          </h2>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% include "foursixty" %}
+  </div>
+{% endif %}

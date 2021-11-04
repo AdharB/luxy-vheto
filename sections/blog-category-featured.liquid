@@ -1,0 +1,9 @@
+<div class="blog-category-featured">
+  <div class="large--grid-uniform blog-slider-pagination medium-down--blog-slider" data-flickity='{ "watchCSS": true, "wrapAround": true, "prevNextButtons": false, "pageDots": true }'>
+    {% for article in blog.articles limit: 2 %}
+      <div class="grid-item large--one-half">
+        {% include "article-thumbnail-2" %}
+      </div>
+    {% endfor %}
+  </div>
+</div>

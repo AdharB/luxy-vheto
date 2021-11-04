@@ -1,0 +1,9 @@
+{% for article in search.results %}
+  {% include "attribute-article-blog-id" %}
+
+  {% if article_blog_id == blog.id %}
+    <div class="grid-item one-half large--one-quarter">
+      {% include "article-thumbnail" %}
+    </div>
+  {% endif %}
+{% endfor %}

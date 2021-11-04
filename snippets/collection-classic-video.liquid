@@ -1,0 +1,63 @@
+{% assign video_url = settings.shop_collections_video_url %}
+
+{% assign title = settings.shop_collections_video_title %}
+
+{% assign kicker = settings.shop_collections_video_subtitle %}
+
+{% assign description = settings.shop_collections_video_content | default: nil %}
+
+{% assign call_to_action = settings.shop_collections_video_call_to_action %}
+
+{% assign image = settings.shop_collections_video_image %}
+
+{% assign image_url = image | img_url: "large" %}
+
+{% if video_url %}
+  <div class="collection-classic-video">
+    <div class="grid grid-gutter--none">
+      <div class="grid-item large--one-half position-relative">
+        <a href="{{ video_url }}" class="block position-center js-modal-video">
+          <svg width="1em" height="1em" style="font-size: 54px;">
+            <use xlink:href="#icon-play-circle" />
+          </svg>
+        </a>
+
+        <a href="https://youtu.be/J_F3ZRzkaUs" class="block position-center js-modal-video" style="display: none">
+          <svg width="1em" height="1em" style="font-size: 54px;">
+            <use xlink:href="#icon-play-circle" />
+          </svg>
+        </a>
+
+        <div class="image-container box-ratio--square">
+          <img src="{{ image_url }}" class="one-whole" alt="{{ title }} - {{ subtitle }}" />
+        </div>
+      </div>
+      <div class="grid-item large--one-half position-relative">
+        <div class="collection-classic-video-content">
+          <div class="collection-classic-video-content-container">
+            <span class="local--kicker">
+              {{ kicker }}
+            </span>
+
+            <h2 class="local--heading">
+              <a href="{{ video_url }}" class="js-modal-video">
+                {{ title }}
+              </a>
+            </h2>
+
+            {% if description %}
+              <p class="local--description">
+                {{ description }}
+              </p>
+            {% endif %}
+
+
+            <a href="{{ video_url }}" class="button-link js-modal-video" data-ga-event='{ "category": "Video", "action": "play", "label": "Shop Collections video" }'>
+              {{ call_to_action }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}

@@ -1,0 +1,8 @@
+{% assign shop_colors_lines = settings.shop_colors | newline_to_br | split: "<br />" %}
+
+{% assign shop_colors = "" | split: "" %}
+
+{% for line in shop_colors_lines %}
+  {% assign shop_color = line | strip | split: "-<-@" %}
+  {% assign shop_colors = shop_colors | concat: shop_color %}
+{% endfor %}

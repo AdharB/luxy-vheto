@@ -1,0 +1,12 @@
+{% assign size = attribute-article-image | default: "600x" %}
+
+{% assign article_image = article | img_url: size %}
+
+{% unless article.image %}
+  {% assign rte = article.excerpt %}
+
+  {% include "attribute-rte-images" %}
+
+  {% include "filter-rte-img-url" input: rte_image_urls[0], size: size %}
+  {% assign article_image = output %}
+{% endunless %}

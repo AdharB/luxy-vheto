@@ -1,0 +1,31 @@
+{% paginate collection.products by 150 %}
+  {% include "attribute-shop-color-groups" %}
+  {% include "attribute-shop-lengths" %}
+  {% include "attribute-collection-color-groups" %}
+  {% include "attribute-collection-has-virtual" %}
+  {% include "attribute-collection-lengths" %}
+  {% include "attribute-collection-types" %}
+
+  {% include "collection-landing-hero" %}
+  {% include "collection-landing-header" %}
+
+  {%- if collection_has_virtual -%}
+    <div class="collection-virtual-grid">
+      <div class="collection-virtual-filter">
+        {% include "collection-landing-filter" %}
+      </div>
+      {% comment %}
+      <div class="collection-virtual-container">
+        {% include "collection-virtual" %}
+      </div>
+	  {% endcomment %}
+    </div>
+  {%- else -%}
+    {% include "collection-landing-filter" %}
+  {%- endif -%}
+
+  {% include "collection-products" %}
+  {% include "collection-landing-video" %}
+  {% include "collection-footer" %}
+  {% include "collection-landing-faq" %}
+{% endpaginate %}

@@ -1,0 +1,30 @@
+{% assign title = settings.support_title %}
+
+{% assign description = settings.support_description %}
+
+{% assign placeholder = settings.support_search_placeholder %}
+
+{% assign keyword = "support" %}
+
+{% capture content_for_page_header %}
+  <h1 class="local--heading">
+    {{ title }}
+  </h1>
+
+  <div class="page-header-rte local--description">
+    <p>
+      {{ description }}
+    </p>
+  </div>
+
+  <div class="support-header-search">
+    {% include "support-search" %}
+  </div>
+
+  <div class="text-links-secondary-dark">
+    <span class="support-header-email">OR EMAIL US:</span>
+    <a href="mailto:{{ shop.email }}">{{ shop.email }}</a>
+  </div>
+{% endcapture %}
+
+{% include "page-header" %}

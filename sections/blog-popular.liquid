@@ -1,0 +1,62 @@
+{% assign heading = section.settings.heading | default: nil %}
+
+{% assign call_to_action = "See all posts" %}
+
+{% assign url = blog.url | append: "?view=all" %}
+
+{% include "component-blog-section-header" %}
+
+{% unless section.blocks == empty %}
+  <div class="large--grid-uniform blog-slider-pagination medium-down--blog-slider" data-flickity='{ "watchCSS": true, "wrapAround": true, "prevNextButtons": false, "pageDots": true }'>
+    {% for block in section.blocks %}
+      {% assign article = block.settings.article %}
+      {% assign article = articles[article] | default: nil %}
+
+      {% unless article %}
+        {% continue %}
+      {% endunless %}
+
+      <div class="grid-item large--one-half">
+        {% include "article-thumbnail-2" %}
+      </div>
+    {% endfor %}
+  </div>
+{% endunless %}
+
+{% schema %}
+  {
+    "name": "Popular",
+    "class": "blog-popular",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading"
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Article",
+        "type": "article",
+        "settings": [
+          {
+            "type": "article",
+            "id": "article",
+            "label": "Article"
+          },
+          {
+            "type": "textarea",
+            "id": "description",
+            "label": "Description"
+          },
+          {
+            "type": "text",
+            "id": "call_to_action",
+            "label": "Call to action",
+            "default": "Read more"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

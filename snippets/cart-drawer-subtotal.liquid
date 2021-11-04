@@ -1,0 +1,13 @@
+<div class="flex cart-drawer-subtotal">
+  <div class="flex-item position-relative">
+    <span class="font-secondary">
+      Subtotal
+    </span>
+  </div>
+
+  <div class="flex-item flex-item-right text-right">
+    <span class="font-secondary text-wide nowrap" data-module-cart-drawer-subtotal>
+      {% include "filter-money" with cart.total_price %}
+    </span>
+  </div>
+</div>

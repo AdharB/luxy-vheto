@@ -1,0 +1,117 @@
+{% assign title = settings.factory_about_title %}
+
+{% assign found_image_url = settings.factory_found_image | img_url: "600x" %}
+
+{% assign found_title = settings.factory_found_title %}
+
+{% assign found_description = settings.factory_found_description %}
+
+{% assign material_image_url = settings.factory_material_image | img_url: "600x" %}
+
+{% assign material_title = settings.factory_material_title %}
+
+{% assign material_description = settings.factory_material_description %}
+
+{% assign owner_image_url = settings.factory_owner_image | img_url: "1800x" %}
+
+{% assign owner_title = settings.factory_owner_title %}
+
+{% assign owner_description = settings.factory_owner_description %}
+
+{% assign owner_staff_number = settings.factory_staff_number %}
+
+{% assign owner_staff_label = settings.factory_staff_label %}
+
+{% assign owner_years_number = settings.factory_years_number %}
+
+{% assign owner_years_label = settings.factory_years_label %}
+
+<div class="box-default-lightest">
+  <div class="factory-about-header">
+    <h2 class="local--heading">
+      {{ title }}
+    </h2>
+
+    {% include "factory-slides" %}
+  </div>
+</div>
+
+{% include "factory-location" %}
+
+<div class="factory-about-content-1">
+  <div class="grid medium-down--grid-gutter--none">
+    <div class="grid-item large--one-half">
+      <div class="factory-about-content-image-container">
+        <img data-src="{{ found_image_url }}" class="max-one" />
+      </div>
+
+      <h4 class="factory-about-content-heading">
+        {{ found_title }}
+      </h4>
+
+      <p class="factory-about-content-description">
+        {{ found_description }}
+      </p>
+    </div>
+
+    <div class="grid-item large--one-half">
+      <div class="factory-about-content-image-container">
+        <img data-src="{{ material_image_url }}" class="max-one" />
+      </div>
+
+      <h4 class="factory-about-content-heading">
+        {{ material_title }}
+      </h4>
+
+      <p class="factory-about-content-description">
+        {{ material_description }}
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="factory-about-content-2">
+  <div class="factory-about-content-image-container">
+    <img data-src="{{ owner_image_url }}" class="max-one" />
+  </div>
+
+  <div class="grid">
+    <div class="grid-item large--one-half">
+      <h4 class="factory-about-content-heading">
+        {{ owner_title }}
+      </h4>
+
+      <p class="factory-about-content-description">
+        {{ owner_description }}
+      </p>
+    </div>
+
+    <div class="grid-item large--one-half">
+      <div class="grid">
+        <div class="grid-item large--one-half">
+          <div class="factory-about-stat">
+            <h4 class="local--number">
+              {{ owner_staff_number }}
+            </h4>
+
+            <h5 class="local--label">
+              {{ owner_staff_label }}
+            </h5>
+          </div>
+        </div>
+
+        <div class="grid-item large--one-half">
+          <div class="factory-about-stat">
+            <h4 class="local--number">
+              {{ owner_years_number }}
+            </h4>
+
+            <h5 class="local--label">
+              {{ owner_years_label }}
+            </h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

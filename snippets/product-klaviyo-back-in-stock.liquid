@@ -1,0 +1,11 @@
+{% assign enabled = settings.klaviyo_back_in_stock_enabled %}
+
+{% assign call_to_action = settings.klaviyo_back_in_stock_button_call_to_action %}
+
+{% if enabled and product_is_backorder %}
+  {% unless product_on_waitlist %}
+    <div class="product-klaviyo-back-in-stock-container">
+      <a class="klaviyo-bis-trigger" href="#">{{ call_to_action }}</a>
+    </div>
+  {% endunless %}
+{% endif %}

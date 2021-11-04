@@ -1,0 +1,40 @@
+{% unless product_collection %}
+  {% include "attribute-product-collection" %}
+{% endunless %}
+
+{% assign product_collection_lengths = "" | split: "" %}
+
+{% for product in product_collection.products %}
+  {% include "attribute-product-length" %}
+  {% include "attribute-product-considered-weights" %}
+
+  {% unless product_considered_weights contains current_product_weight %}
+    {% continue %}
+  {% endunless %}
+
+  {% if product_collection_lengths contains product_length %}
+    {% continue %}
+  {% endif %}
+
+  {% assign length = product_length | split: "-<-@" %}
+
+  {% assign product_collection_lengths = product_collection_lengths | concat: length %}
+{% endfor %}
+
+{% assign product_collection_lengths_in_order = "" | split: "" %}
+
+{% for shop_length in shop_lengths %}
+  {% if product_collection_lengths contains shop_length %}
+    {% assign length = shop_length | split: "-<-@" %}
+    {% assign product_collection_lengths_in_order = product_collection_lengths_in_order | concat: length %}
+  {% endif %}
+{% endfor %}
+
+{% assign product_collection_lengths = product_collection_lengths_in_order %}
+
+{% comment %} --- {% endcomment %}
+
+{% assign product = current_product %}
+
+{% include "attribute-product-length" %}
+{% include "attribute-product-considered-weights" %}

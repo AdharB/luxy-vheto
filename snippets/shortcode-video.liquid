@@ -1,0 +1,61 @@
+{% assign video_url = nil %}
+
+{% assign video_options = nil %}
+
+{% assign video_transcription = nil %}
+
+{% for attribute_title in attribute_titles %}
+  {% if attribute_title == "url" %}
+    {% assign video_url = attribute_values[forloop.index0] %}
+  {% endif %}
+
+  {% if attribute_title == "options" %}
+    {% assign video_options = attribute_values[forloop.index0] %}
+  {% endif %}
+
+  {% if attribute_title == "transcription" %}
+    {% assign video_transcription = attribute_values[forloop.index0] %}
+  {% endif %}
+{% endfor %}
+
+{% if video_url contains "youtube" %}
+  {% assign video_id = video_url | split: "v=" | last | split: "&" | first %}
+  {% assign video_url = "//www.youtube.com/embed/ID" | replace: "ID", video_id  %}
+  {% assign video_options = video_options | default: "?autoplay=1&amp;mute=1" %}
+{% endif %}
+
+{% if video_url contains "youtu.be" %}
+  {% assign video_id = video_url | split: "/" | last %}
+  {% assign video_url = "//www.youtube.com/embed/ID" | replace: "ID", video_id %}
+  {% assign video_options = video_options | default: "?autoplay=1&amp;mute=1" %}
+{% endif %}
+
+{% if video_url contains "vimeo" %}
+  {% assign video_id = video_url | split: "/" | last %}
+  {% assign video_url = "//player.vimeo.com/video/ID" | replace: "ID", video_id %}
+  {% assign video_options = video_options | default: "?autoplay=1&amp;muted=1" %}
+{% endif %}
+
+{% assign video_url = video_url | append: video_options %}
+
+{% if video_url %}
+  <div class="video-container shortcode-video">
+    <iframe src="{{ video_url }}" frameborder="0" webkitallowfullscreen="webkitallowfullscreen" mozallowfullscreen="mozallowfullscreen" allowfullscreen="allowfullscreen"></iframe>
+  </div>
+{% endif %}
+
+{% if video_transcription and template.name == "article" %}
+  {% assign page = pages[video_transcription] %}
+
+  <p>
+    <a href="#video-transcription-{{ video_id }}" class="js-modal">
+      {{ settings.article_video_transcription_call_to_action }}
+    </a>
+  </p>
+
+  <div id="video-transcription-{{ video_id }}" class="hide">
+    <div class="shortcode-video-modal-content">
+      {{ page.content }}
+    </div>
+  </div>
+{% endif %}

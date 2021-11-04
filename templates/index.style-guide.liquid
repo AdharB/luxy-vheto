@@ -1,0 +1,405 @@
+{% layout none %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+
+    {{ content_for_header }}
+
+    {{ "//fast.fonts.net/cssapi/dae26521-047a-40e8-8683-f0d2a88f897a.css" | stylesheet_tag }}
+    {{ "theme.min.css" | asset_url | stylesheet_tag }}
+
+    {% include "hide-promotion-bar" %}
+  </head>
+  <body>
+    {% include "svg" %}
+
+    <div class="style-guide">
+      <h2 class="section-heading">
+        Colors
+      </h2>
+
+      <div class="grid-uniform">
+        <div class="grid-item one-tenth">
+          <span class="block box-ratio--square box-primary"></span>
+          <p>Primary<br /><span class="text-default-light">{{ settings.color_primary }}</span></p>
+        </div>
+        <div class="grid-item one-tenth">
+          <span class="block box-ratio--square box-primary-light"></span>
+          <p>Primary light<br /><span class="text-default-light">{{ settings.color_primary_light }}</span></p>
+        </div>
+        <div class="grid-item one-tenth">
+          <span class="block box-ratio--square" style="background-color: #F7F0EE"></span>
+          <p>Secondary light<br /><span class="text-default-light">{{ settings.color_secondary_light }}</span></p>
+        </div>
+        <div class="grid-item one-tenth">
+          <span class="block box-ratio--square box-secondary"></span>
+          <p>Secondary<br /><span class="text-default-light">{{ settings.color_secondary }}</span></p>
+        </div>
+        <div class="grid-item one-tenth">
+          <span class="block box-ratio--square box-secondary-dark"></span>
+          <p>Secondary dark<br /><span class="text-default-light">{{ settings.color_secondary_dark }}</span></p>
+        </div>
+        <div class="grid-item one-tenth">
+          <span class="block box-ratio--square box-default"></span>
+          <p>Default<br /><span class="text-default-light">{{ settings.color_default }}</span></p>
+        </div>
+        <div class="grid-item one-tenth">
+          <span class="block box-ratio--square box-default-light"></span>
+          <p>Default light<br /><span class="text-default-light">{{ settings.color_default_light }}</span></p>
+        </div>
+        <div class="grid-item one-tenth">
+          <span class="block box-ratio--square box-default-lighter"></span>
+          <p>Default lighter<br /><span class="text-default-light">{{ settings.color_default_lighter }}</span></p>
+        </div>
+        <div class="grid-item one-tenth">
+          <span class="block box-ratio--square box-default-lightest"></span>
+          <p>Default lightest<br /><span class="text-default-light">{{ settings.color_default_lightest }}</span></p>
+        </div>
+        <div class="grid-item one-tenth">
+          <span class="block box-ratio--square box-default-accent"></span>
+          <p>Default accent<br /><span class="text-default-light">#8b7f7f</span></p>
+        </div>
+      </div>
+
+      <br />
+      <br />
+
+      <h2 class="section-heading">
+        Typography
+      </h2>
+
+      <br />
+      <br />
+
+      <p>
+        <span class="title-secondary-bold">TITLE SECONDARY BOLD</span><br />
+        <span class="text-default-light">.title-secondary-bold</span>
+      </p>
+
+      <br />
+      <br />
+
+      <p>
+        <span class="title-secondary-wide">TITLE SECONDARY WIDE</span><br />
+        <span class="text-default-light">.title-secondary-wide</span>
+      </p>
+
+      <br />
+      <br />
+
+      <p>
+        <span class="page-title">Page Title</span><br />
+        <span class="text-default-light">.page-title</span>
+      </p>
+
+      <p>
+        <span class="section-kicker">Section kicker</span>
+        <span class="text-default-light">.section-kicker</span>
+      </p>
+
+      <p>
+        <span class="homepage-section-heading">Section heading</span><br />
+        <span class="text-default-light">.homepage-section-heading</span>
+      </p>
+
+      <br />
+      <br />
+
+      <div class="grid-item one-third">
+        <p class="text-default-light">Acta W01 Book<br />16px / 25.629px</p>
+        <p>New Year - New hairstyle….that’s how the saying goes, right? Well, I’ve got a quick and easy boho twist braid you can achieve in 10 mins or less that will brighten up your 2017! Scroll down for step-by-step photo instructions, or watch the full video at the end of this post.</p>
+        <p>You can wear a hat for a more casual vibe or pop in some sparkly accessories and you’ve got a party-ready look!</p>
+      </div>
+
+      <br />
+      <br />
+
+      <h2 class="section-heading">
+        Buttons
+      </h2>
+
+      <ul class="list-inline--up-1">
+        <li>
+          <a href="" class="button-default">Default</a><br /><br />
+          <span class="text-default-light">.button-default</span>
+        </li>
+        <li>
+          <a href="" class="button-primary">Primary</a><br /><br />
+          <span class="text-default-light">.button-primary</span>
+        </li>
+      </ul>
+
+      <br />
+      <br />
+
+      <ul class="list-inline--up-1">
+        <li>
+          <a href="" class="button-outline">Outline</a><br /><br />
+          <span class="text-default-light">.button-outline</span>
+        </li>
+        <li>
+          <a href="" class="button-outline-small">Outline small</a><br /><br />
+          <span class="text-default-light">.button-outline-small</span>
+        </li>
+        <li>
+          <a href="" class="button-pill">Pill</a><br /><br />
+          <span class="text-default-light">.button-pill</span>
+        </li>
+        <li>
+          <a href="" class="button-link">Link</a><br /><br />
+          <span class="inline-block padding-top--down-1 text-default-light">.button-link</span>
+        </li>
+      </ul>
+
+      <br />
+      <br />
+
+      <div class="style-guide--button-outline">
+        <ul class="list-inline--up-1">
+          <li>
+            <a href="" class="button-outline-inverted">Outline inverted</a><br /><br />
+            <span class="text-inverted">.button-outline-inverted</span>
+          </li>
+          <li>
+            <a href="" class="button-outline-inverted-small">Outline inverted small</a><br /><br />
+            <span class="text-inverted">.button-outline-inverted-small</span>
+          </li>
+          <li>
+            <a href="" class="button-link-inverted">Link inverted</a><br /><br />
+            <span class="inline-block padding-top--down-1 text-default-light">.button-link-inverted</span>
+          </li>
+        </ul>
+      </div>
+
+      <br />
+      <br />
+
+      <h2 class="section-heading">
+        Icons
+      </h2>
+
+      {% capture icons %}
+      icon-checkmark
+      icon-controls
+      icon-star
+      icon-heart
+      icon-bag
+      icon-play
+      icon-play-circle
+      icon-close
+      icon-bacinator
+      icon-swipe
+      icon-lock
+      icon-search
+      icon-price-tag
+      icon-recycle
+      icon-arrow-down
+      icon-arrow-down-bold
+      icon-user
+      icon-gift
+      {% endcapture %}
+
+      {% assign icons = icons | strip | newline_to_br | strip_newlines | replace: " ", "" | split: "<br/>" %}
+
+      <div class="grid-uniform grid-gutter--none">
+        {% for icon in icons %}
+          <div class="grid-item one-tenth">
+            <div class="box-ratio--square border-default-lighter">
+              <div class="position-center font-size--up-1">
+                <svg width="1em" height="1em">
+                  <use xlink:href="#{{ icon }}" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <br />
+      <br />
+
+      {% capture social_icons %}
+      social-instagram
+      social-tiktok
+      social-youtube
+      social-pinterest
+      social-facebook
+      social-instagram-round
+      social-tiktok-round
+      social-pinterest-round
+      social-facebook-round
+      social-email-round
+      {% endcapture %}
+
+      {% assign social_icons = social_icons | strip | newline_to_br | strip_newlines | replace: " ", "" | split: "<br/>" %}
+
+      <div class="grid-uniform grid-gutter--none">
+        {% for icon in social_icons %}
+          <div class="grid-item one-tenth">
+            <div class="box-ratio--square border-default-lighter">
+              <div class="position-center">
+                <svg width="1em" height="1em" class="font-size--up-3">
+                  <use xlink:href="#{{ icon }}" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <br />
+      <br />
+
+      {% capture payment_icons %}
+      payment-paypal
+      payment-paypal-color
+      payment-american_express
+      payment-visa
+      payment-master
+      {% endcapture %}
+
+      {% assign payment_icons = payment_icons | strip | newline_to_br | strip_newlines | replace: " ", "" | split: "<br/>" %}
+
+      <div class="grid-uniform grid-gutter--none">
+        {% for icon in payment_icons %}
+          <div class="grid-item one-tenth">
+            <div class="box-ratio--square border-default-lighter">
+              <div class="position-center">
+                <svg width="1em" height="1em" class="font-size--up-12">
+                  <use xlink:href="#{{ icon }}" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <br />
+      <br />
+
+      <h2 class="section-heading">
+        Layout
+      </h2>
+
+      <p class="text-default-light text-center">.grid-bar</p>
+
+      {% assign heights = "50, 100, 70" | split: ", " %}
+
+      <div class="grid-bar">
+        {% for height in heights %}
+          <div class="grid-item one-third">
+            <div class="box-default-lightest position-relative" style="height: {{ height }}px;">
+              <span class="position-center">{{ forloop.index }}</span>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <br />
+      <br />
+
+      <p class="text-default-light text-center">.grid-bar-reverse</p>
+
+      <div class="grid-bar-reverse">
+        {% for height in heights %}
+          <div class="grid-item one-third">
+            <div class="box-default-lightest position-relative" style="height: {{ height }}px;">
+              <span class="position-center">{{ forloop.index }}</span>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <br />
+      <br />
+
+      <div class="theme-container position-relative border-default-lighter" style="height: 100px;">
+        <span class="text-default-light position-center">
+          .theme-container
+        </span>
+      </div>
+
+      <br />
+      <br />
+
+      <div class="content-container position-relative border-default-lighter" style="height: 100px;">
+        <span class="text-default-light position-center">
+          .content-container
+        </span>
+      </div>
+
+      <br />
+      <br />
+
+      <h2 class="section-heading">
+        Product thumbnails
+      </h2>
+
+      {% assign product = all_products["jet-black-16-140g"] %}
+
+      {% assign current_variant = product.first_available_variant %}
+
+      {% include "attribute-product-collection" %}
+      {% include "attribute-product-featured-image" %}
+      {% include "attribute-product-label" %}
+      {% include "attribute-product-length" %}
+      {% include "attribute-product-title" %}
+      {% include "attribute-product-weight" %}
+
+      <div class="grid-uniform">
+        <div class="grid-item one-quarter">
+          {% assign image_url = product.featured_image | img_url: "600x" %}
+
+          {% assign hover_image_url = product.images[1] | img_url: "600x" %}
+
+          {% assign title = product_title %}
+
+          {% assign call_to_action = nil %}
+
+          {% include "component-product-thumbnail" %}
+        </div>
+        <div class="grid-item one-quarter">
+          {% assign image_url = product.featured_image | img_url: "600x" %}
+
+          {% assign hover_image_url = product.images[1] | img_url: "600x" %}
+
+          {% assign title = product_title %}
+
+          {% assign call_to_action = "SELECT" %}
+
+          {% include "component-product-thumbnail" %}
+        </div>
+        <div class="grid-item one-quarter">
+          {% assign image_url = product_featured_image | img_url: "1200x" %}
+
+          {% assign kicker = product_length | append: " / " | append: product_weight | append: " grams" %}
+
+          {% assign call_to_action = "Add to cart" %}
+
+          {% include "component-product-thumbnail-3" %}
+        </div>
+      </div>
+
+      <br />
+      <br />
+
+      <div class="one-half">
+        {% assign image_url = product_featured_image | img_url: "1200x" %}
+
+        {% assign kicker = product_length | append: " / " | append: product_weight | append: " grams" %}
+
+        {% assign call_to_action = "Add to cart" %}
+
+        {% include "component-product-thumbnail-4" %}
+      </div>
+    </div>
+
+    {{ "/services/javascripts/currencies.js" | script_tag }}
+
+    {{ "theme.min.js" | asset_url | script_tag }}
+  </body>
+</html>

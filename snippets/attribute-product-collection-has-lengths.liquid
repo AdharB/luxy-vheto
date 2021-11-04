@@ -1,0 +1,13 @@
+{% unless product_collection_lengths %}
+  {% include "attribute-product-collection-lengths" %}
+{% endunless %}
+
+{% assign product_collection_has_lengths = false %}
+
+{% if product_collection_lengths.size > 1 %}
+  {% assign product_collection_has_lengths = true %}
+{% endif %}
+
+{% unless settings.product_lengths_enabled %}
+  {% assign product_collection_has_lengths = false %}
+{% endunless %}

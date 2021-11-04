@@ -1,0 +1,23 @@
+{% assign results_count = 0 %}
+
+{% for item in search.results %}
+  {% unless item.object_type == "page" %}
+    {% continue %}
+  {% endunless %}
+
+  {% assign results_count = results_count | plus: 1 %}
+
+  {% assign page = item %}
+
+  <p class="text-links-default-light">
+    <a href="{{ page.url }}">
+      {{ page.title }}
+    </a>
+  </p>
+{% endfor %}
+
+{% if results_count == 0 %}
+  <p class="text-default-light">
+    No page results for <span class="font-bold">"{{ search.terms }}"</span>
+  </p>
+{% endif %}

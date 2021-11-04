@@ -1,0 +1,45 @@
+<script>
+  $('body').on('mousedown', '[data-trekkie-id="apply_discount_button"]', function () {
+    var code = $('[data-trekkie-id="reduction_code_field"]').val();
+
+    setTimeout(function () {
+      if ( $('#error-for-reduction_code').length > 0 ) {
+        ga("gtag_UA_23346554_1.send", 'event', 'checkout', 'promo code fail', code);
+      }
+
+      if ( $('.total-line--reduction').length > 0 ) {
+        var value = $('.total-line--reduction .order-summary__emphasis').text().trim();
+        ga("gtag_UA_23346554_1.send", 'event', 'checkout', 'promo code success', code, value);
+      }
+    }, 3000);
+  });
+</script>
+
+
+<script>
+  (function () {
+    document.querySelectorAll(".field--error").each(function (element) {
+      var label = element.querySelector("[name]").getAttribute("name");
+      ga("send", "event", "Checkout", "form error", label);
+    });
+  });
+</script>
+
+
+{% assign label = nil %}
+
+{% if checkout_order_free_sample_only %}
+  {% assign label = "only free sample" %}
+{% elsif checkout_order_free_sample %}
+  {% assign label = "free sample" %}
+{% else %}
+  {% assign label = "no free sample" %}
+{% endif %}
+
+{% if checkout_first_time_accessed %}
+  <script>
+    (function () {
+      ga("send", "event", "Checkout", "{{ label }}");
+    });
+  </script>
+{% endif %}

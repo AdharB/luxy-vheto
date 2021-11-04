@@ -1,0 +1,211 @@
+{% assign heading = section.settings.heading %}
+
+{% assign content = section.settings.content %}
+
+{% assign rating = section.settings.rating %}
+
+{% assign rating_string = rating | append: '' %}
+
+{% assign rating_floor = rating | floor %}
+
+{% assign review_count = section.settings.review_count %}
+
+{% assign btn_text = section.settings.btn_text %}
+
+{% assign btn_link = section.settings.btn_link %}
+
+<div class="box-default-lightest">
+  <div class="container">
+    <div class="beforeafter-reviews-header">
+      {% unless heading == blank %}
+        <h2 class="local--heading">
+          {{ heading }}
+        </h2>
+      {% endunless %}
+
+      {% unless content == blank %}
+        <p class="local--description">
+          {{ content }}
+        </p>
+      {% endunless %}
+
+      <ul class="beforeafter-reviews-rating">
+        {% for i in (1..rating_floor) %}
+          <li>
+            <i class="icon icon--star"></i>
+          </li>
+        {% endfor %}
+
+        {% if rating_string contains '.5' %}
+          <li>
+            <i class="icon icon--half-star"></i>
+          </li>
+        {% endif %}
+
+        <li class="local--count">
+          ({{ review_count }})
+        </li>
+      </ul>
+    </div>
+
+    <div class="beforeafter-reviews">
+      <div class="grid-uniform">
+        {% for block in section.blocks %}
+          {% assign image = block.settings.image | default: nil %}
+
+          {% assign content = block.settings.content %}
+
+          {% assign author = block.settings.author %}
+
+          {% assign url = block.settings.link | default: nil %}
+
+          {% assign call_to_action = "Read full story" %}
+
+          {% assign content = block.settings.content %}
+
+          {% assign rating = block.settings.rating %}
+
+          {% assign rating_string = rating | append: '' %}
+
+          {% assign rating_floor = rating | floor %}
+
+          <div class="grid-item medium--one-third large--one-third beforeafter-reviews-thumbnail" {{ block.shopify_attributes }}>
+            {% if image %}
+              <div class="local--image-container">
+                <img class="one-whole" src="{{ image | img_url: '400x' }}" />
+              </div>
+            {% endif %}
+
+            <ul class="beforeafter-reviews-rating">
+              {% for i in (1..rating_floor) %}
+                <li>
+                  <i class="icon icon--star"></i>
+                </li>
+              {% endfor %}
+              {% if rating_string contains '.5' %}
+                <li>
+                  <i class="icon icon--half-star"></i>
+                </li>
+              {% endif %}
+            </ul>
+
+            {% unless content == blank %}
+              <p class="local--description">
+                {{ content  }}
+              </p>
+            {% endunless %}
+
+            {% unless author == blank %}
+              <h4 class="local--name">
+                {{ author  }}
+              </h4>
+            {% endunless %}
+
+            {% if url %}
+              <a href="{{ url }}" class="button-link">
+                {{ call_to_action }}
+              </a>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  {% unless btn_text == blank or btn_link == blank %}
+    <div class="beforeafter-reviews-footer">
+      <a href="{{ btn_link }}" class="button-outline">
+       {{ btn_text }}
+      </a>
+    </div>
+  {% endunless %}
+</div>
+
+{% schema %}
+  {
+    "name": "Reviews",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Your Luxy Hair Transformation Stories"
+      },
+      {
+        "type": "textarea",
+        "id": "content",
+        "label": "Content",
+        "default": "We love seeing all our customers' transformations with their Luxy Hair extensions. Be sure to share your before and afters with us at info@luxyhair.com for a chance to be featured."
+      },
+      {
+        "type": "header",
+        "content": "CTA Button"
+      },
+      {
+        "type": "range",
+        "id": "rating",
+        "min": 0,
+        "max": 5,
+        "step": 0.5,
+        "unit": "px",
+        "label": "Rating",
+        "default": 5
+      },
+      {
+        "type": "text",
+        "id": "review_count",
+        "label": "Review count",
+        "default": "40"
+      },
+      {
+        "type": "text",
+        "id": "btn_text",
+        "label": "Button text",
+        "default": "View All Stories"
+      },
+      {
+        "type": "url",
+        "id": "btn_link",
+        "label": "Button link"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "story",
+        "name": "Story",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "author",
+            "label": "Author"
+          },
+          {
+            "type": "textarea",
+            "id": "content",
+            "label": "Content"
+          },
+          {
+            "type": "range",
+            "id": "rating",
+            "min": 0,
+            "max": 5,
+            "step": 0.5,
+            "unit": "px",
+            "label": "Rating",
+            "default": 5
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

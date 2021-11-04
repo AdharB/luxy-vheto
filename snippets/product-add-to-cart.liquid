@@ -1,0 +1,38 @@
+{% assign call_to_action = settings.product_add_to_cart_call_to_action %}
+
+{% if product_is_backorder %}
+  {% assign call_to_action = settings.product_backorder_add_to_cart | default: "Preorder now" %}
+{% endif %}
+
+{% if product_on_waitlist %}
+  {% assign call_to_action = settings.product_waitlist_add_to_cart | default: "Coming soon" %}
+{% endif %}
+
+
+{% assign disabled = false %}
+
+{% if product_on_waitlist %}
+  {% assign disabled = true %}
+{% endif %}
+
+{%- if product_is_gift -%}
+  {%- assign disabled = true -%}
+{%- endif -%}
+
+<div class="product-add-to-cart-container">
+  <button type="submit" class="product-add-to-cart {% if disabled %}state--disabled{% endif %}" data-ga-event='{ "category": "Product", "action": "click", "label": "{{ call_to_action }}" }' module-add-to-cart>
+    <script type="application/json">
+      {
+        "quantity": 1,
+        "custom_attributes": {
+          "product_is_full_set": {{ product_is_full_set | json }},
+          "product_on_waitlist": {{ product_on_waitlist | json }}
+        },
+        "variant": {{ current_variant | json }}
+      }
+    </script>
+
+    <span class="local--default">{{ call_to_action }}</span>
+    <span class="local--spinner"></span>
+  </button>
+</div>

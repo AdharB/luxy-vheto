@@ -1,0 +1,12 @@
+{% assign rte = collection.description %}
+
+{% include "attribute-rte-fragments" %}
+
+{% include "rte-fragment" with "header" %}
+
+{% assign title = rte_headings.first | default: nil %}
+
+{% include "filter-html-strip-p-tags" input: rte_paragraphs.first %}
+{% assign description = output %}
+
+{% include "component-collection-header" %}

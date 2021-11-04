@@ -1,0 +1,19 @@
+{% assign collection_lengths = "" | split: "" %}
+
+{% for product in collection.products %}
+  {% include "attribute-product-length" %}
+
+  {% if collection_lengths contains product_length %}
+    {% continue %}
+  {% endif %}
+
+  {% assign length = product_length | split: "-<-@" %}
+
+  {% assign collection_lengths = collection_lengths | concat: length %}
+{% endfor %}
+
+{% comment %} --- {% endcomment %}
+
+{% assign product = current_product %}
+
+{% include "attribute-product-length" %}

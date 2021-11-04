@@ -1,0 +1,35 @@
+{% unless product_collection %}
+  {% include "attribute-product-collection" %}
+{% endunless %}
+
+{% assign product_collection_color_groups = "" | split: "" %}
+
+{% for product in product_collection.products %}
+  {% include "attribute-product-color-groups" %}
+  {% include "attribute-product-length" %}
+  {% include "attribute-product-considered-weights" %}
+
+  {% unless product_considered_weights contains current_product_weight %}
+    {% continue %}
+  {% endunless %}
+
+  {% unless product_length == current_product_length %}
+    {% continue %}
+  {% endunless %}
+
+  {% for product_color_group in product_color_groups %}
+    {% assign color_group = product_color_group | split: "-<-@" %}
+
+    {% assign product_collection_color_groups = product_collection_color_groups | concat: color_group %}
+  {% endfor %}
+{% endfor %}
+
+{% assign product_collection_color_groups = product_collection_color_groups | uniq %}
+
+{% comment %} --- {% endcomment %}
+
+{% assign product = current_product %}
+
+{% include "attribute-product-color-groups" %}
+{% include "attribute-product-length" %}
+{% include "attribute-product-considered-weights" %}

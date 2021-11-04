@@ -1,0 +1,2 @@
+{%- assign shop_lengths = settings.product_tags_lengths | newline_to_br | split: "<br />" -%}
+{%- assign shop_lengths = shop_lengths | join: " " | replace: "  ", " " | strip | split: " " -%}

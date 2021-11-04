@@ -1,0 +1,14 @@
+{% assign title = page.title %}
+
+{% assign keyword = "reviews" %}
+
+{% capture content_for_page_header %}
+  <h1 class="page-title">{{ title }}</h1>
+{% endcapture %}
+
+{% include "page-header" %}
+
+<div class="template-page-reviews">
+  {% include "vendor-yotpo-carousel" %}
+  {% include "vendor-yotpo-dedicated-page" %}
+</div>

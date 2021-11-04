@@ -1,0 +1,39 @@
+<div class="product-gallery">
+  {% if product_label %}
+    <div class="product-label product-gallery-label">
+      {{ product_label }}
+    </div>
+  {% endif %}
+
+  <div class="product-gallery-slider product-gallery-grid" data-flickity='{ "wrapAround": true, "prevNextButtons": false, "dragThreshold": 10, "pageDots": true, "cellAlign": "left", "lazyLoad": 2, "watchCSS": true }'>
+    {% for media in product.media offset: 2 %}
+      {%- unless media.media_type == "image" or media.media_type == "external_video" -%}
+        {%- continue -%}
+      {%- endunless -%}
+
+      {%- assign image_url = media | img_url: "800x" -%}
+
+      <div class="product-gallery-slide product-gallery-grid-item">
+        {%- if media.media_type == "image" -%}
+          <div class="product-gallery-image">
+            <img data-flickity-lazyload="{{ image_url }}" alt="{{ media.alt }}" />
+          </div>
+        {%- endif -%}
+
+        {%- if media.media_type == "external_video" -%}
+          <div class="product-gallery-video" data-module-product-gallery-video>
+            <button class="xlarge--hide">
+              <svg width="1em" height="1em">
+                <use xlink:href="#icon-play-circle" />
+              </svg>
+            </button>
+
+            <img data-flickity-lazyload="{{ image_url }}" class="xlarge--hide!" alt="{{ media.alt }}" />
+
+            {{ media | external_video_url: background: 1 | external_video_tag }}
+          </div>
+        {%- endif -%}
+      </div>
+    {% endfor %}
+  </div>
+</div>

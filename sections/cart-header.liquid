@@ -1,0 +1,40 @@
+{%- assign heading = section.settings.heading -%}
+
+{%- assign call_to_action = section.settings.call_to_action -%}
+
+{%- assign url = section.settings.url -%}
+
+<div class="page-header">
+  <h1 class="page-title">
+    {{ heading }}
+  </h1>
+
+  <a href="{{ url }}" class="button-primary">
+    {{ call_to_action }}
+  </a>
+</div>
+
+{%- schema -%}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Get longer, fuller hair"
+      },
+      {
+        "type": "text",
+        "id": "call_to_action",
+        "label": "Call to action",
+        "default": "Continue shopping"
+      },
+      {
+        "type": "url",
+        "id": "url",
+        "label": "Link"
+      }
+    ]
+  }
+{%- endschema -%}

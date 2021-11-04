@@ -1,0 +1,36 @@
+{% assign title = settings.customer_activate_title %}
+
+{% assign description = settings.customer_activate_description | default: false %}
+
+{% assign call_to_action = settings.customer_activate_call_to_action %}
+
+<div class="form-container">
+  {% form "activate_customer_password" %}
+
+    <h1 class="customer-form-heading">
+      {{ title }}
+    </h1>
+
+    {% if description %}
+      <p>{{ description }}</p>
+    {% endif %}
+
+    {% if form.errors %}
+      <div class="text-links-primary text-primary">
+        {{ form.errors | default_errors }}
+      </div>
+    {% endif %}
+
+    <label for="customer_password" class="label">Password</label>
+    <input type="password" value="" class="input" name="customer[password]" id="customer_password" required />
+
+    <label for="customer_password_confirmation" class="label">Password Confirmation</label>
+    <input type="password" value="" class="input" name="customer[password_confirmation]" id="customer_password_confirmation" required />
+
+    <div class="customer-form-button-container">
+      <button type="submit" class="button-primary">
+        {{ call_to_action }}
+      </button>
+    </div>
+  {% endform %}
+</div>

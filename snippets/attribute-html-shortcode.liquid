@@ -1,0 +1,7 @@
+{% assign html_shortcode = false %}
+
+{% assign html_first_character = html | strip_html | strip | split: "" | first %}
+
+{% if html_first_character == "[" %}
+  {% assign html_shortcode = true %}
+{% endif %}

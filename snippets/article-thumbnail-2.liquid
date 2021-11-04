@@ -1,0 +1,45 @@
+{% include "attribute-article-category" %}
+{% include "attribute-article-category-url" %}
+{% include "attribute-article-image" with "1000x" %}
+
+{% assign image_url = article_image %}
+
+{% assign heading = article.title %}
+
+{% assign description = block.settings.description | default: nil %}
+
+{% assign call_to_action = block.settings.call_to_action | default: "Read more" %}
+
+{% assign url = article.url %}
+
+<div class="article-thumbnail-2">
+  <a href="{{ url }}" class="local--image-container">
+    {% if image_url %}
+      <img data-src="{{ image_url }}" alt="{{ title }}" />
+    {% endif %}
+  </a>
+
+  <div class="local--content {% unless description %}without-description{% endunless %}">
+    {% if article_category %}
+      <a href="{{ article_category_url }}" class="blog-kicker">
+        {{ article_category }}
+      </a>
+    {% endif %}
+
+    <h2 class="blog-heading local--heading">
+      <a href="{{ url }}">
+        {{ heading }}
+      </a>
+    </h2>
+
+    {% if description %}
+      <p class="local--description">
+        {{ description }}
+      </p>
+    {% endif %}
+
+    <a href="{{ url }}" class="button-link local--button">
+      {{ call_to_action }}
+    </a>
+  </div>
+</div>

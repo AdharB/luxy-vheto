@@ -1,0 +1,8 @@
+{% assign shop_types_lines = settings.shop_types | newline_to_br | split: "<br />" %}
+
+{% assign shop_types = "" | split: "" %}
+
+{% for line in shop_types_lines %}
+  {% assign shop_type = line | strip | split: "-<-@" %}
+  {% assign shop_types = shop_types | concat: shop_type %}
+{% endfor %}

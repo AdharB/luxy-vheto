@@ -1,0 +1,15 @@
+{% assign cart_has_gift = false %}
+
+{% assign cart_gift_id = nil %}
+
+{% for item in cart.items %}
+  {% if item.product.title contains "Sample" %}
+    {% continue %}
+  {% endif %}
+
+  {% if item.final_line_price == 0 %}
+    {% assign cart_has_gift = true %}
+    {% assign cart_gift_id = item.variant.id %}
+    {% break %}
+  {% endif %}
+{% endfor %}

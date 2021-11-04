@@ -1,0 +1,119 @@
+{%- assign description = section.settings.description | remove: "<p>" | remove: "</p>" -%}
+
+{%- assign enabled = section.settings.enabled -%}
+
+{%- if template contains "cart" -%}
+  {%- assign enabled = false -%}
+{%- endif -%}
+
+{%- if template contains "customers" -%}
+  {%- assign enabled = false -%}
+{%- endif -%}
+
+{%- if template.name == "article" -%}
+  {%- assign enabled = false -%}
+{%- endif -%}
+
+{%- if template.name == "product" -%}
+  {%- assign enabled = false -%}
+{%- endif -%}
+
+{%- if enabled -%}
+  <div class="shipping-notification" data-module-shipping-notification>
+    <div class="shipping-notification-content">
+      <div class="shipping-notification-description type--default" data-local-description>
+        <script type="text/json">
+          {
+            "default": true
+          }
+        </script>
+
+        {{ description }}
+      </div>
+
+      {%- for block in section.blocks -%}
+        {%- assign description = block.settings.description | remove: "<p>" | remove: "</p>" -%}
+
+        {%- assign countries_lines = block.settings.countries | newline_to_br | split: "<br />" -%}
+
+        {%- assign countries = "" | split: "" -%}
+
+        {%- for line in countries_lines -%}
+          {%- assign country = line | strip | split: "-<-@" -%}
+          {%- assign countries = countries | concat: country -%}
+        {%- endfor -%}
+
+        <div class="shipping-notification-description" data-local-description>
+          <script type="text/json">
+            {
+              "countries": {{ countries | json }}
+            }
+          </script>
+
+          {{ description }}
+        </div>
+      {%- endfor -%}
+
+      <button class="shipping-notification-button" data-local-button>
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <g fill="currentColor">
+            <path d="M77.6 21.1l-28 28.1-28.1-28.1-1.9 1.9 28 28.1-28 28.1 1.9 1.9L49.6 53l28 28.1 2-1.9-28.1-28.1L79.6 23z"/>
+          </g>
+        </svg>
+      </button>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "Shipping notification",
+    "class": "shipping-notification-section",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enabled",
+        "label": "Enable",
+        "default": false
+      },
+      {
+        "type": "paragraph",
+        "content": "Show a notification bar that slides in from right side."
+      },
+      {
+        "type": "header",
+        "content": "Content"
+      },
+      {
+        "type": "richtext",
+        "id": "description",
+        "label": "Description",
+        "info": "Default description. Used on mobile."
+      }
+    ],
+    "blocks": [
+      {
+        "type": "zone",
+        "name": "Zone",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Name"
+          },
+          {
+            "type": "textarea",
+            "id": "countries",
+            "label": "Countries",
+            "info": "Two-letter country codes one per line. Not required if default zone."
+          },
+          {
+            "type": "richtext",
+            "id": "description",
+            "label": "Description"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

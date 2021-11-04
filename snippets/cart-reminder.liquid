@@ -1,0 +1,21 @@
+{% assign heading = settings.cart_reminder_heading | default: nil %}
+
+{% assign description = settings.cart_reminder_description | default: nil %}
+
+{% if settings.cart_reminder_enabled %}
+  <div class="cart-reminder hide" data-module-cart-reminder>
+    {% if heading %}
+      <p>{{ heading }}</p>
+    {% endif %}
+
+    {% if description %}
+      <p>{{ description }}</p>
+    {% endif %}
+
+    <button class="cart-reminder-close" data-local-button>
+      <svg width="1em" height="1em">
+        <use xlink:href="#icon-close" />
+      </svg>
+    </button>
+  </div>
+{% endif %}

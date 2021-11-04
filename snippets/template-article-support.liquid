@@ -1,0 +1,20 @@
+{% assign current_article = article %}
+
+{% include "object-param-q" %}
+{% include "object-param-type" %}
+{% include "attribute-blog-categories" %}
+{% include "attribute-article-category" %}
+{% include "attribute-article-category-url" %}
+
+{% include "support-breadcrumb" %}
+
+<div class="template-article-support">
+  {% include "support-article-header" %}
+
+  <div class="article-rte template-article-support-content">
+    {% include "shortcodes" with article.content %}
+  </div>
+</div>
+
+{% include "support-categories" %}
+{% include "support-banner" %}

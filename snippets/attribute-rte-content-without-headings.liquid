@@ -1,0 +1,15 @@
+{% include "attribute-rte-lines" %}
+
+{% assign rte_content_without_headings = "" %}
+
+{% for line in rte_lines %}
+  {% if line contains "</h1>" or line contains "</h2>" or line contains "</h3>" or line contains "</h4>" or line contains "</h6>" %}
+    {% continue %}
+  {% endif %}
+
+  {% if line contains "</h5>" %}
+    {% break %}
+  {% endif %}
+
+  {% assign rte_content_without_headings = rte_content_without_headings | append: line %}
+{% endfor %}

@@ -1,0 +1,322 @@
+{% layout "noindex" %}
+
+{% assign variant = product.selected_or_first_available_variant %}
+
+{% assign current_product = product %}
+
+{% include "attribute-shop-color-groups" %}
+{% include "attribute-shop-lengths" %}
+{% include "attribute-shop-types" %}
+{% include "attribute-shop-weights" %}
+
+{% include "attribute-product-collection" %}
+
+{% paginate product_collection.products by 100 %}
+  {% include "attribute-product-color" %}
+  {% include "attribute-product-length" %}
+  {% include "attribute-product-weight" %}
+
+  {% assign current_product_weight = product_weight %}
+  {% assign current_product_length = product_length %}
+  {% assign current_product_color = product_color %}
+
+  {% include "attribute-product-backorder" %}
+  {% include "attribute-product-collection-color-groups" %}
+  {% include "attribute-product-collection-color-variants" %}
+  {% include "attribute-product-collection-lengths" %}
+  {% include "attribute-product-collection-has-lengths" %}
+  {% include "attribute-product-color-group" %}
+  {% include "attribute-product-color-groups" %}
+  {% include "attribute-product-considered-weights" %}
+  {% include "attribute-product-cross-sell-heading" %}
+  {% include "attribute-product-excerpt" %}
+  {% include "attribute-product-is-accessory" %}
+  {% include "attribute-product-is-gift-card" %}
+  {% include "attribute-product-is-full-set" %}
+  {% include "attribute-product-is-gift" %}
+  {% include "attribute-product-is-sample" %}
+  {% include "attribute-product-label" %}
+  {% include "attribute-product-title" %}
+  {% include "attribute-product-type" %}
+  {% include "attribute-product-waitlist-id" %}
+  {% include "attribute-variant-on-sale" %}
+
+  <div class="product-attributes">
+    <div class="product-attribute">
+      <p>
+        <a href="/admin/products/{{ product.id }}" class="text-link">
+          Go to admin &rarr;
+        </a>
+      </p>
+    </div>
+
+    <div class="product-attribute">
+      <h2>
+        product_backorder_description
+      </h2>
+      <p>
+        {{ product_backorder_description | default: "NA" }}
+      </p>
+    </div>
+
+    <div class="product-attribute">
+      <h2>
+        product_collection_color_groups
+      </h2>
+      <p>
+        {% if product_collection_color_groups == empty %}
+          NA
+        {% else %}
+          {{ product_collection_color_groups | join: ", " }}
+        {% endif %}
+      </p>
+    </div>
+
+    <div class="product-attribute">
+      <h2>
+        product_collection_color_variants
+      </h2>
+      <p>
+        {% if product_collection_color_variants == empty %}
+          NA
+        {% else %}
+          {% for color in product_collection_color_variants %}
+            {% assign href = product_collection_color_variant_urls[forloop.index0] %}
+
+            <a href="{{ href }}" class="text-link">
+              {{ color }}
+            </a>{% unless forloop.last %},{% endunless %}
+          {% endfor %}
+        {% endif %}
+      </p>
+    </div>
+
+    <div class="product-attribute">
+      <h2>
+        product_collection_lengths
+      </h2>
+      <p>
+        {% if product_collection_lengths == empty %}
+          NA
+        {% else %}
+          {{ product_collection_lengths | join: ", " }}
+        {% endif %}
+      </p>
+    </div>
+
+    <div class="product-attribute">
+      <h2>
+        product_collection
+      </h2>
+      <p>
+        <a href="/admin/collections/{{ product_collection.id }}" class="text-link">{{ product_collection.title | default: "NA" }}</a>
+      </p>
+    </div>
+
+    <div class="product-attribute">
+      <h2>
+        product_collection_has_lengths
+      </h2>
+      <p>
+        {{ product_collection_has_lengths }}
+      </p>
+    </div>
+
+    <div class="product-attribute">
+      <h2>
+        product_color
+      </h2>
+      <p>
+        {{ product_color | default: "NA" }}
+      </p>
+    </div>
+
+    <div class="product-attribute">
+      <h2>
+        product_color_group
+      </h2>
+      <p>
+        {{ product_color_group | default: "NA" }}
+      </p>
+    </div>
+
+    <div class="product-attribute">
+      <h2>
+        product_color_groups
+      </h2>
+      <p>
+        {% if product_color_groups == empty %}
+          NA
+        {% else %}
+          {{ product_color_groups | join: ", " }}
+        {% endif %}
+      </p>
+    </div>
+
+    <div class="product-attribute">
+      <h2>
+        product_considered_weights
+      </h2>
+      <p>
+        {% if product_considered_weights == empty %}
+          NA
+        {% else %}
+          {{ product_considered_weights | join: ", " }}
+        {% endif %}
+      </p>
+    </div>
+
+    <div class="product-attribute">
+      <h2>
+        product_cross_sell_heading
+      </h2>
+      <p>
+        {{ product_cross_sell_heading | default: "NA" }}
+      </p>
+    </div>
+
+    <div class="product-attribute">
+      <h2>
+        product_excerpt
+      </h2>
+      <p>
+        {{ product_excerpt | default: "NA" }}
+      </p>
+    </div>
+
+    <div class="product-attribute">
+      <h2>
+        product_is_accessory
+      </h2>
+      <p>
+        {{ product_is_accessory }}
+      </p>
+    </div>
+
+    <div class="product-attribute">
+      <h2>
+        product_is_backorder
+      </h2>
+      <p>
+        {{ product_is_backorder | default: false }}
+      </p>
+    </div>
+
+    <div class="product-attribute">
+      <h2>
+        product_is_gift_card
+      </h2>
+      <p>
+        {{ product_is_gift_card }}
+      </p>
+    </div>
+
+    <div class="product-attribute">
+      <h2>
+        product_is_full_set
+      </h2>
+      <p>
+        {{ product_is_full_set }}
+      </p>
+    </div>
+
+    <div class="product-attribute">
+      <h2>
+        product_is_sample
+      </h2>
+      <p>
+        {{ product_is_sample }}
+      </p>
+    </div>
+
+    <div class="product-attribute">
+      <h2>
+        product_label
+      </h2>
+      <p>
+        {{ product_label | default: "NA" }}
+      </p>
+    </div>
+
+    <div class="product-attribute">
+      <h2>
+        product_is_gift
+      </h2>
+      <p>
+        {{ product_is_gift }}
+      </p>
+    </div>
+
+    <div class="product-attribute">
+      <h2>
+        product_length
+      </h2>
+      <p>
+        {{ product_length | default: "NA" }}
+      </p>
+    </div>
+
+    <div class="product-attribute">
+      <h2>
+        product_title
+      </h2>
+      <p>
+        {{ product_title }}
+      </p>
+    </div>
+
+    <div class="product-attribute">
+      <h2>
+        product_type
+      </h2>
+      <p>
+        {{ product_type | default: "NA" }}
+      </p>
+    </div>
+
+    <div class="product-attribute">
+      <h2>
+        product_weight
+      </h2>
+      <p>
+        {{ product_weight | default: "NA" }}
+      </p>
+    </div>
+
+    <div class="product-attribute">
+      <h2>
+        product_waitlist_id
+      </h2>
+      <p>
+        {{ product_waitlist_id | default: "NA" }}
+      </p>
+    </div>
+
+    <div class="product-attribute">
+      <h2>
+        product_has_waitlist_id
+      </h2>
+      <p>
+        {{ product_has_waitlist_id }}
+      </p>
+    </div>
+
+    <div class="product-attribute">
+      <h2>
+        product_on_waitlist
+      </h2>
+      <p>
+        {{ product_on_waitlist }}
+      </p>
+    </div>
+
+    <div class="product-attribute">
+      <h2>
+        variant_on_sale
+      </h2>
+      <p>
+        {{ variant_on_sale }}
+      </p>
+    </div>
+  </div>
+{% endpaginate %}

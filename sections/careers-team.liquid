@@ -1,0 +1,241 @@
+{% assign heading = section.settings.heading %}
+
+{% assign description = section.settings.description %}
+
+<div class="careers-section careers-section-container border-bottom-default-lighter">
+  <div class="careers-team-content">
+    <h2 class="careers-section-title with-subtitle">
+      {{ heading }}
+    </h2>
+
+    <p class="careers-section-description">
+      {{ description }}
+    </p>
+  </div>
+
+  <div class="careers-team-slider js-careers-team-slider">
+    {% for block in section.blocks %}
+      {% assign image = block.settings.image | default: false %}
+
+      {% assign image_url = image | img_url: "600x" %}
+
+      {% assign heading = block.settings.title %}
+
+      {% assign subheading = block.settings.subheading | default: false %}
+
+      {% assign description = block.settings.description | default: false %}
+
+      {% assign url = block.settings.url | default: false %}
+
+      <div class="careers-team-slide">
+        <a href="{{ url }}" class="local--image-container {% unless url %}no-pointer-events{% endunless %}">
+          {% if image %}
+            <img class="one-whole" data-src="{{ image_url }}" alt="{{ heading }} - {{ shop.name }}" />
+          {% endif %}
+        </a>
+        <div class="local--content">
+          <h3 class="local--heading">
+            {{ heading }}
+          </h3>
+
+          {% if subheading %}
+            <h4 class="local--subheading">
+              {{ subheading }}
+            </h4>
+          {% endif %}
+
+          {% if description %}
+            <p class="local--description">
+              {{ description }}
+            </p>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Team",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading"
+      },
+      {
+        "type": "textarea",
+        "id": "description",
+        "label": "Description"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "person",
+        "name": "Person",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading"
+          },
+          {
+            "type": "text",
+            "id": "subheading",
+            "label": "Subheading"
+          },
+          {
+            "type": "text",
+            "id": "description",
+            "label": "Description"
+          },
+          {
+            "type": "url",
+            "id": "url",
+            "label": "Link"
+          }
+        ]
+      }
+    ],
+    "default": {
+      "settings": {
+        "heading": "Meet the Team",
+        "description": "The people behind the magic"
+      },
+      "blocks": [
+        {
+          "type": "person",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/MeetTheTeam_Lulu.jpg",
+            "title": "Lulu Liang",
+            "subheading": "CEO",
+            "description": ""
+          }
+        },
+        {
+          "type": "person",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/MeetTheTeam_Liliya.jpg",
+            "title": "Liliya Kay",
+            "subheading": "Digital Marketing Manager",
+            "description": ""
+          }
+        },
+        {
+          "type": "person",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/MeetTheTeam_Azra.jpg",
+            "title": "Azra Kassam",
+            "subheading": "Editorial Coordinator",
+            "description": ""
+          }
+        },
+        {
+          "type": "person",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/MeetTheTeam_Vanessa.jpg",
+            "title": "Vanesa Cocuzzo",
+            "subheading": "Executive Assistant",
+            "description": ""
+          }
+        },
+        {
+          "type": "person",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/MeetTheTeam_Sarah.jpg",
+            "title": "Sarah Baker",
+            "subheading": "Creative Director",
+            "description": ""
+          }
+        },
+        {
+          "type": "person",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/MeetTheTeam_Rachel.jpg",
+            "title": "Rachel Passarelli",
+            "subheading": "Influencer Manager",
+            "description": ""
+          }
+        },
+        {
+          "type": "person",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/MeetTheTeam_Aleks.jpg",
+            "title": "Aleksandra Massar",
+            "subheading": "Customer Experience Specialist",
+            "description": ""
+          }
+        },
+        {
+          "type": "person",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/MeetTheTeam_Bonnie.jpg",
+            "title": "Bonnie Chao",
+            "subheading": "Product Development Manager",
+            "description": ""
+          }
+        },
+        {
+          "type": "person",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/MeetTheTeam_Lis.jpg",
+            "title": "Lis Huynh",
+            "subheading": "Graphic Designer",
+            "description": ""
+          }
+        },
+        {
+          "type": "person",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/MeetTheTeam_Julia.jpg",
+            "title": "Julia Venturin",
+            "subheading": "Customer Experience Specialist",
+            "description": ""
+          }
+        },
+        {
+          "type": "person",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/MeetTheTeam_Sophie.jpg",
+            "title": "Sophie Lalani",
+            "subheading": "Editor\/Copywriter",
+            "description": ""
+          }
+        },
+        {
+          "type": "person",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/MeetTheTeam_Tatiana.jpg",
+            "title": "Tatiana Koriakina",
+            "subheading": "Operations Assistant",
+            "description": ""
+          }
+        },
+        {
+          "type": "person",
+          "settings": {
+            "image": "",
+            "title": "Kerry Tuttle",
+            "subheading": "Customer Experience Specialist",
+            "description": ""
+          }
+        },
+        {
+          "type": "person",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/MeetTheTeam_Takara.jpg",
+            "title": "Takara Wong",
+            "subheading": "Customer Experience Manager",
+            "description": ""
+          }
+        }
+      ]
+    }
+  }
+{% endschema %}

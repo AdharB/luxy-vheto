@@ -1,0 +1,13 @@
+{% layout none %}
+
+<p>Total products in collection: {{ collection.products_count }}</p>
+
+{% paginate collection.products by 250 %}
+  {% for product in collection.products %}
+    {%- if product.price < 1000 -%}
+      <p><a href="{{ product.url }}">{{ product.title }}</a> - {{ product.price | money }}</p>
+    {%- endif -%}
+  {% endfor %}
+
+  <p>{{ paginate | default_pagination }}</p>
+{% endpaginate %}

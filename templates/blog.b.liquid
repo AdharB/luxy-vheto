@@ -1,0 +1,12 @@
+{% include "object-param-view" %}
+{% include "attribute-blog-categories" %}
+{% include "attribute-blog-current-category" %}
+
+{% case current_tags.size %}
+  {% when blank %}
+    {% include "template-blog-index-b" %}
+  {% when 1 %}
+    {% include "template-blog-category-b" %}
+  {% else %}
+    {% layout "fragment" %}
+{% endcase %}

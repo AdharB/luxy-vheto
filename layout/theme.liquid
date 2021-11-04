@@ -1,0 +1,159 @@
+<!doctype html>
+
+<html lang="en">
+  {%- assign current_product = product -%}
+
+  {%- include "object-canonical" -%}
+  {%- include "object-param-view" -%}
+  {%- include "attribute-article-video" -%}
+  {%- include "attribute-cart-has-full-set" -%}
+  {%- include "attribute-cart-has-gift-card" -%}
+  {%- include "attribute-cart-invalid" -%}
+  {%- include "attribute-product-backorder" -%}
+  {%- include "attribute-product-color" -%}
+  {%- include "attribute-product-collection" -%}
+  {%- include "attribute-product-is-gift" -%}
+  {%- include "attribute-product-length" -%}
+  {%- include "attribute-product-title" -%}
+  {%- include "attribute-product-weight" -%}
+  {%- include "attribute-product-waitlist-id" -%}
+  {%- include "attribute-shop-facebook-app-id" -%}
+  {%- include "attribute-theme-landing-page" -%}
+
+  <head>
+    {%- if theme.role == "main" -%}
+      {%- include "vendor-google" -%}
+      {%- include "vendor-google-tag-manager-head" -%}
+    {%- endif -%}
+
+    <meta name="facebook-domain-verification" content="hxl7dp0y805jc9y9p8v1b6l8vegn3f" />
+    <meta property="fb:app_id" content="{{ shop_facebook_app_id }}" />
+    <meta charset="utf-8" />
+    <meta name="theme-color" content="{{ settings.color_primary }}" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="ahrefs-site-verification" content="21d360fca59b84077c5475e27a5592b811b0d03401302df6e13b7d4517dd7eda" />
+    <meta name="google-site-verification" content="IAJn9A53y-exuoOKl2DEX7a9siqyVl37mIx69HS9RJ4" />
+    <meta name="msvalidate.01" content="6ADA05DEC2CD2D1939F8D1B0D87FC15C" />
+    <meta name="description" content="{{ page_description }}" />
+
+    {%- include "title" -%}
+
+    <link rel="canonical" href="{{ canonical }}" />
+
+    {%- if product_is_gift -%}
+      <meta name="robots" content="noindex, nofollow" />
+      <meta http-equiv="refresh" content="0; url=/" />
+    {%- endif -%}
+
+    {%- include "css-async" with "//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" -%}
+
+    {{ "//fast.fonts.net/cssapi/dae26521-047a-40e8-8683-f0d2a88f897a.css" | stylesheet_tag }}
+    {{ "theme.min.css" | asset_url | stylesheet_tag }}
+
+    {%- if template == "blog.support" or template == "search.support" -%}
+      {{ "//cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.1/awesomplete.min.css" | stylesheet_tag }}
+      {{ "//cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.1/awesomplete.min.js" | script_tag }}
+    {%- endif -%}
+
+    {%- if template contains "index" -%}
+      <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" media="all" />
+    {%- endif -%}
+
+    {%- if template contains 'rewards' or template contains 'refer' or template contains 'account' -%}
+      {{ "swell-rewards.scss.css" | asset_url | stylesheet_tag }}
+      {{ "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" | script_tag }}
+      {{ "swell-rewards.js"  | asset_url | script_tag }}
+      {{ '//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css' | stylesheet_tag}}
+      {{ '//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css' | stylesheet_tag }}
+      {{ '//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js' | script_tag }}
+      {{ 'https://fonts.googleapis.com/css?family=Open+Sans&display=swap' | stylesheet_tag }}
+    {%- endif -%}
+
+    {%- if template contains 'hair-color-classification' -%}
+      {{ "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" | script_tag }}
+    {%- endif -%}
+
+    {{ content_for_header }}
+
+    {%- include "favicon" -%}
+    {%- include "liquid-json" -%}
+    {%- include "meta-open-graph" -%}
+    {%- include "meta-twitter-card" -%}
+
+    {%- if template contains 'customers' -%}
+      {{ "shopify_common.js" | shopify_asset_url | script_tag }}
+      {{ "customer_area.js"  | shopify_asset_url | script_tag }}
+    {%- endif -%}
+
+    {%- include "minmaxify-head" -%}
+
+    <script src="https://cdn-widgetsrepository.yotpo.com/v1/loader/4ovNBaW4otRyWlwJz803Jg" async></script>
+</head>
+  <body class="theme-{{ template.name }}">
+    {%- if theme.name == "Develop" -%}
+      {%- include "vendor-google-tag-manager-body" -%}
+    {%- endif -%}
+
+    {%- include "vendor-facebook-sdk" -%}
+    {%- include "svg" -%}
+
+    {%- unless theme_landing_page -%}
+      <div class="position-relative">
+        {%- section "shipping-notification" -%}
+        {%- include "notification-bar" -%}
+        {%- include "header" -%}
+        {%- include "search-form" -%}
+        {%- include "cart-reminder" -%}
+      </div>
+    {%- endunless -%}
+
+    <main>
+      <div id="{{ template.name }}-container">
+        {{ content_for_layout }}
+      </div>
+    </main>
+
+    {%- unless theme_landing_page -%}
+      {%- include "footer" -%}
+    {%- endunless -%}
+
+    {%- include "gdpr-notice" -%}
+    {%- include "mobile-menu" -%}
+    {%- include "modal-close" -%}
+    {%- include "cart-drawer" -%}
+
+    {%- include "vendor-maxmind" -%}
+
+    {{ "theme.min.js" | asset_url | script_tag }}
+
+    {%- unless template.name == "blog" or template.name == "article" -%}
+      {%- include "vendor-lucky-orange" -%}
+    {%- endunless -%}
+
+    {%- include "vendor-klaviyo" -%}
+    {%- include "vendor-klaviyo-back-in-stock" -%}
+    {%- include "vendor-yotpo" -%}
+    {%- include "vendor-attentive" -%}
+    {%- include "vendor-twitter" -%}
+    {%- include "schema-article" -%}
+    {%- include "schema-breadcrumbs" -%}
+    {%- include "schema-organization" -%}
+    {%- include "schema-product" -%}
+    {%- include "schema-website" -%}
+
+    {%- if theme.role == "main" -%}
+      {%- include "google-remarketing" -%}
+      {%- include "vendor-bing" -%}
+      {%- include "vendor-criteo" -%}
+      {%- include "vendor-pinterest" -%}
+      {%- include "vendor-snapchat" -%}
+    {%- endif -%}
+
+    {%- if template == "page.careers" -%}
+      {%- include "vendor-workable" -%}
+    {%- endif -%}
+
+    {%- include "vendor-helpdocs" -%}
+
+<!--Gorgias Chat Widget Start--><script id="gorgias-chat-widget-install">!function(_){_.GORGIAS_CHAT_APP_ID="50",_.GORGIAS_CHAT_BASE_URL="us-east1-898b.production.gorgias.chat",_.GORGIAS_API_BASE_URL="config.gorgias.chat";var e=new XMLHttpRequest;e.open("GET","https://config.gorgias.chat/applications/50",!0),e.onload=function(t){if(4===e.readyState)if(200===e.status){var n=JSON.parse(e.responseText);if(!n.application||!n.bundleVersion)throw new Error("Missing fields in the response body - https://config.gorgias.chat/applications/50");if(_.GORGIAS_CHAT_APP=n.application,_.GORGIAS_CHAT_BUNDLE_VERSION=n.bundleVersion,n&&n.texts&&(_.GORGIAS_CHAT_TEXTS=n.texts),n&&n.sspTexts&&(_.GORGIAS_CHAT_SELF_SERVICE_PORTAL_TEXTS=n.sspTexts),!document.getElementById("gorgias-chat-container")){var o=document.createElement("div");o.id="gorgias-chat-container",document.body.appendChild(o);var r=document.createElement("script");r.setAttribute("defer",!0),r.src="https://client-builds.production.gorgias.chat/{bundleVersion}/static/js/main.js".replace("{bundleVersion}",n.bundleVersion),document.body.appendChild(r)}}else console.error("Failed request GET - https://config.gorgias.chat/applications/50")},e.onerror=function(_){console.error(_)},e.send()}(window||{});</script><script id="gorgias-chat-shopify-install">!function(_){_.SHOPIFY_PERMANENT_DOMAIN="{{shop.permanent_domain}}",_.SHOPIFY_CUSTOMER_ID="{{customer.id}}",_.SHOPIFY_CUSTOMER_EMAIL="{{customer.email}}"}(window||{});</script><!--Gorgias Chat Widget End--></body>
+</html>

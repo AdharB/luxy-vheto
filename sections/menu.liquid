@@ -1,0 +1,97 @@
+{% assign menu = linklists[section.settings.menu] | default: linklists["main-menu"] %}
+
+<ul class="menu">
+  {% for link in menu.links %}
+    {% include "attribute-link-has-dropdown" %}
+
+    <li class="menu-item {% if link_has_dropdown %}with--dropdown{% endif %}">
+      <a href="{{ link.url }}" class="menu-item-link">
+        <span class="menu-item-text">{{ link.title }}</span>
+      </a>
+
+      {% case link.levels %}
+        {% when 1 %}
+          {% include "menu-dropdown" %}
+        {% when 2 %}
+          {% include "menu-mega-dropdown" %}
+      {% endcase %}
+    </li>
+  {% endfor %}
+</ul>
+
+{% schema %}
+  {
+    "name": "Main menu",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "menu",
+        "label": "Menu"
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Dropdown link",
+        "type": "dropdown_link",
+        "settings": [
+          {
+            "type": "header",
+            "content": "Dropdown link"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Name",
+            "info": "The name of the corresponding menu item."
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "textarea",
+            "id": "description",
+            "label": "Description"
+          }
+        ]
+      },
+      {
+        "name": "Featured thumbnail",
+        "type": "featured_thumbnail",
+        "settings": [
+          {
+            "type": "header",
+            "content": "Featured thumbnail"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Name",
+            "info": "The name of the corresponding menu item."
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading"
+          },
+          {
+            "type": "textarea",
+            "id": "description",
+            "label": "Description"
+          },
+          {
+            "type": "url",
+            "id": "url",
+            "label": "Link"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,41 @@
+{% comment %}
+
+  Add Facebook and Pinterest Open Graph meta tags to product pages
+  for friendly Facebook sharing and Pinterest pinning.
+
+  More info Open Graph meta tags
+    - https://developers.facebook.com/docs/opengraph/using-objects/
+    - https://developers.pinterest.com/rich_pins/
+
+  Use the Facebook Open Graph Debugger for validation (and cache clearing)
+    - http://developers.facebook.com/tools/debug
+
+  Validate your Pinterest rich pins
+    - https://developers.pinterest.com/rich_pins/validator/
+
+{% endcomment %}
+
+{% case template.name %}
+  {% when "product" %}
+    {% assign image = product.featured_image %}
+    {% assign type = "product" %}
+  {% when "article" %}
+    {% assign image = article.image %}
+  {% when "collection" %}
+    {% assign image = collection.image %}
+{% endcase %}
+
+{% assign image = image | default: settings.social_media_image %}
+
+{% if template contains "product" %}
+  <meta property="og:price:amount" content="{{ product.price | money_without_currency | stip_html | escape }}" />
+  <meta property="og:price:currency" content="{{ shop.currency }}" />
+{% endif %}
+
+<meta property="og:type" content="website" />
+<meta property="og:image" content="http:{{ image | img_url: '800x' }}" />
+<meta property="og:image:secure_url" content="https:{{ image | img_url: '800x' }}" />
+<meta property="og:title" content="{{ page_title | escape }}" />
+<meta property="og:description" content="{{ page_description | escape }}" />
+<meta property="og:url" content="{{ canonical }}" />
+<meta property="og:site_name" content="{{ shop.name }}" />

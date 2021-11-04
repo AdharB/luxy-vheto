@@ -1,0 +1,44 @@
+{% assign current_article = article %}
+
+{% assign rte = article.content %}
+
+{% include "attribute-rte-fragments" %}
+{% include "attribute-rte-content" %}
+
+{% include "object-param-view" %}
+
+{% include "attribute-article-category" %}
+{% include "attribute-article-category-url" %}
+{% include "attribute-article-image" with "1400x" %}
+{% include "attribute-article-content" %}
+
+{% paginate blog.articles by 100 %}
+  {% include "article-breadcrumb" %}
+  {% include "article-hero" %}
+
+  <div class="article">
+    <div class="grid large--grid-gutter--up-4">
+      <div class="grid-item xlarge--eleven-sixteenths">
+        {% include "article-header" %}
+        {% section "article-social-icons" %}
+        {% include "article-content" %}
+        {% include "article-author" %}
+        {% section "article-products" %}
+        {% section "article-related" %}
+      </div>
+      <aside class="grid-item xlarge--five-sixteenths">
+        {% section "article-popular" %}
+        {% section "article-banner" %}
+
+        <div class="article-sidebar-utility" data-module-article-sidebar-utility>
+          {% section "article-guide" %}
+          {% section "article-newsletter" %}
+          {% include "article-search" %}
+          {% section "article-categories" %}
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  {% section "article-guide-bar" %}
+{% endpaginate %}

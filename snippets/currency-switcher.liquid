@@ -1,0 +1,19 @@
+<div class="currency-switcher">
+  <select data-module-currency-switcher>
+    {% for currency in shop.enabled_currencies %}
+      {% assign current = false %}
+
+      {% if currency.iso_code == cart.currency.iso_code %}
+        {% assign current = true %}
+      {% endif %}
+
+      <option value="{{ currency.iso_code }}" {% if current %}selected="selected"{% endif %}>
+        {{ currency.symbol }} {{ currency.iso_code }}
+      </option>
+    {% endfor %}
+  </select>
+
+  <svg width="1em" height="1em">
+    <use xlink:href="#icon-arrow-down" />
+  </svg>
+</div>

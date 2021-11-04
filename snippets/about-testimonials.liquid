@@ -1,0 +1,11 @@
+<div class="about-testimonials">
+  <div class="grid grid-gutter--up-4">
+    {% for num in (1..3) %}
+      {% assign article = "about_testimonial_article_" | append: num %}
+      {% assign article = settings[article] %}
+      {% assign article = articles[article] %}
+
+      {% include "component-testimonial-thumbnail" %}
+    {% endfor %}
+  </div>
+</div>

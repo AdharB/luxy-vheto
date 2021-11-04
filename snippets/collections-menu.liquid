@@ -1,0 +1,25 @@
+<div class="collections-menu" data-module-collections-menu>
+  <ul class="collections-menu-list">
+    <li>
+      <a href="#collections" class="state--active" data-local-link data-scroll='{ "top": true }'>
+        Shop all
+      </a>
+    </li>
+
+    {% for block in section.blocks %}
+      {% unless block.type == "collection" %}
+        {% continue %}
+      {% endunless %}
+
+      {% assign collection_handle = block.settings.collection %}
+
+      {% assign heading = block.settings.title %}
+
+      <li>
+        <a href="#{{ collection_handle }}" data-local-link data-scroll='{ "offset": "#sticky-menu" }'>
+          {{ heading }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>

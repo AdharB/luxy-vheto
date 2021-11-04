@@ -1,0 +1,25 @@
+{% assign rte = article.content %}
+
+{% include "attribute-rte-paragraphs" %}
+
+{% assign heading = article.title %}
+
+{% assign description = rte_paragraphs.first | strip_html %}
+
+{% assign image_url = article.image | img_url: "medium" %}
+
+<div class="grid-item large--one-third">
+  <div class="testimonial-thumbnail">
+    <div class="local--image-container">
+      <img src="{{ image_url }}" alt="Luxy Hair - {{ title }}" />
+    </div>
+
+    <div class="about-rte">
+      <p>"{{ description }}"</p>
+    </div>
+
+    <p class="local--heading">
+      {{ heading }}
+    </p>
+  </div>
+</div>

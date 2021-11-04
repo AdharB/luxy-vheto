@@ -1,0 +1,25 @@
+{% if variant_sample_swatch %}
+  {% assign item_description = "Sample Swatch" %}
+  {% assign item_description_style = "dark" %}
+
+{% elsif product_is_backorder %}
+  {% assign item_description = product_backorder_description %}
+  {% assign item_description_style = "alert" %}
+
+{% elsif product_is_gift %}
+  {% assign item_description = settings.product_gift_cart_item_description %}
+  {% assign item_description_style = "default" %}
+
+{% elsif product_is_gift_card %}
+  {% assign item_description = variant.title %}
+  {% assign item_description_style = "default" %}
+
+{% elsif item.message.size > 0 %}
+  {% assign item_description = item.message %}
+  {% assign item_description_style = "default" %}
+
+{% else %}
+  {% assign item_description = "In Stock" %}
+  {% assign item_description_style = "bright" %}
+
+{% endif %}

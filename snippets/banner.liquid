@@ -1,0 +1,16 @@
+<section class="banner" style="{% if full_width %}background-image:url({{ image_url }}); background-size: cover; background-position: center center; background-repeat: no-repeat;{% else %}background-color: {{ background_color }}{% endif %}">
+  <div class="banner-content">
+
+    <h1 class="local--heading">
+      {{ title }}
+    </h1>
+
+    <a href="{{ href }}" class="button-primary">
+      {{ call_to_action }}
+    </a>
+  </div>
+
+  {% unless full_width %}
+    <img data-src="{{ image_url }}" class="banner-image" />
+  {% endunless %}
+</section>

@@ -1,0 +1,31 @@
+{% assign product = nil %}
+
+{% for attribute_title in attribute_titles %}
+  {% if attribute_title == "handle" %}
+    {% assign product_handle = attribute_values[forloop.index0] %}
+    {% assign product = all_products[product_handle] %}
+  {% endif %}
+{% endfor %}
+
+{% if product %}
+  {% assign current_variant = product.first_available_variant %}
+
+  {% include "attribute-product-collection" %}
+  {% include "attribute-product-is-full-set" %}
+  {% include "attribute-product-length" %}
+  {% include "attribute-product-title" %}
+  {% include "attribute-product-weight" %}
+  {% include "attribute-product-featured-image" %}
+
+  {% assign image_url = product_featured_image | img_url: "800x" %}
+
+  {% if product_length and product_weight %}
+    {% assign kicker = product_length | append: " / " | append: product_weight | append: " grams" %}
+  {% else %}
+    {% assign kicker = nil %}
+  {% endif %}
+
+  {% assign call_to_action = "Add to cart" %}
+
+  {% include "component-product-thumbnail-4" %}
+{% endif %}

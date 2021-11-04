@@ -1,0 +1,12 @@
+{% assign heading = product_title %}
+
+<div class="product-header">
+  <h1 class="local--heading">
+    {{ heading }}
+  </h1>
+
+  <div class="local--price-container">
+    <span class="local--price {% if variant_on_sale %}state--highlighted{% endif %}">{% include "filter-money" with variant.price %}</span>{% if variant_on_sale %}&nbsp;<span class="local--compare-price">{% include "filter-money" with variant.compare_at_price %}</span>{% endif %}
+  </div>
+</div>
+

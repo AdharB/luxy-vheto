@@ -1,0 +1,2 @@
+{% assign shop_weights = settings.shop_weights | newline_to_br | split: "<br />" %}
+{% assign shop_weights = shop_weights | join: " " | replace: "  ", " " | strip | split: " " %}

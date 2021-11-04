@@ -1,0 +1,34 @@
+{% assign output = false %}
+
+{% assign shopify_formats = "jpg jpeg gif png" | split: " " %}
+
+{% assign shopify_legacy_sizes = "pico icon thumb small compact medium large grande" | split: " " %}
+
+{% assign shopify_sizes = "16x16 32x32 50x50 100x100 160x160 240x240 480x480 600x600 1024x1024 2048x2048" | split: " " %}
+
+{% assign shopify_sizes = shopify_sizes | concat: shopify_legacy_sizes %}
+
+{% assign suffix_pattern = "_SIZE.FORMAT" %}
+
+{% assign suffixes = "" | split: "" %}
+
+{% for format in shopify_formats %}
+  {% for size in shopify_sizes %}
+    {% assign suffix = suffix_pattern | replace: "SIZE", size | replace: "FORMAT", format | split: "  " %}
+    {% assign suffixes = suffixes | concat: suffix %}
+  {% endfor %}
+{% endfor %}
+
+{% for format in shopify_formats %}
+  {% assign suffix = "." | append: format | split: "  " %}
+  {% assign suffixes = suffixes | concat: suffix %}
+{% endfor %}
+
+{% for suffix in suffixes %}
+  {% if input contains suffix %}
+    {% assign format = suffix | split: "." | last %}
+    {% assign change = suffix_pattern | replace: "SIZE", size | replace: "FORMAT", format %}
+    {% assign output = input | replace: suffix, change %}
+    {% break %}
+  {% endif %}
+{% endfor %}

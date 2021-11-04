@@ -1,0 +1,18 @@
+{% assign current_product = product %}
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+{% assign variant = current_variant %}
+
+{% include "attribute-product-description" %}
+{% include "attribute-product-title" %}
+
+<div class="theme-width-center position-relative">
+  {% include "product-gallery" %}
+
+  <div class="content-container">
+    {% include "product-form-gift-card" %}
+  </div>
+</div>
+
+{% include "product-faq" %}
+{% include "product-blog" %}

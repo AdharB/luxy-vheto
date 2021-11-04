@@ -1,0 +1,34 @@
+{% assign current_product = product %}
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+{% assign variant = current_variant %}
+
+{% include "attribute-product-description" %}
+{% include "attribute-product-title" %}
+
+{%- assign call_to_action = settings.product_add_to_cart_call_to_action -%}
+
+<div class="template-product template-product-container">
+  <div class="template-product-column-1">
+    {% include "product-gift-card-gallery" %}
+  </div>
+  <div class="template-product-column-2">
+    <div class="product-sidebar" data-module-product-sidebar>
+      {%- form "product", product -%}
+        <input type="hidden" name="id" value="{{ current_variant.id }}" data-product-gift-card-form-input />
+        <input type="hidden" name="quantity" value="1" min="1" />
+
+        {%- include "product-header" -%}
+        {%- include "product-description" -%}
+
+        {% include "product-gift-card-options" %}
+
+        <div class="product-add-to-cart-container">
+          <button type="submit" class="product-add-to-cart">
+            {{ call_to_action }}
+          </button>
+        </div>
+      {%- endform -%}
+    </div>
+  </div>
+</div>

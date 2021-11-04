@@ -1,0 +1,54 @@
+{% assign column_link_count = link.links | size | divided_by: 2.0 | ceil %}
+
+<div class="menu-mega-dropdown">
+  <div class="menu-mega-dropdown-grid">
+    <div class="local--column-1">
+      {% for link in link.links limit: column_link_count %}
+        {% include "menu-mega-dropdown-links" %}
+      {% endfor %}
+    </div>
+
+    <div>
+      {% for link in link.links offset: column_link_count %}
+        {% include "menu-mega-dropdown-links" %}
+      {% endfor %}
+    </div>
+
+    {% for block in section.blocks %}
+      {% unless block.type == "featured_thumbnail" %}
+        {% continue %}
+      {% endunless %}
+
+      {% unless block.settings.title == link.title %}
+        {% continue %}
+      {% endunless %}
+
+      {% assign heading = block.settings.heading %}
+
+      {% assign description = block.settings.description %}
+
+      {% assign url = block.settings.url %}
+
+      {% assign image = block.settings.image %}
+
+      {% assign image_url = image | img_url: "800x" %}
+
+      <div>
+        <a href="{{ url }}" class="menu-mega-dropdown-image-container">
+          <img class="one-whole" src="{{ image_url }}" alt="" />
+        </a>
+
+        <div class="menu-mega-dropdown-content">
+          <h2 class="local--heading">
+            <a href="{{ url }}">
+              {{ heading }}
+            </a>
+          </h2>
+          <p class="local--description">
+            {{ description }}
+          </p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>

@@ -1,0 +1,19 @@
+{% assign enabled = true %}
+
+{% unless product.available %}
+  {% assign enabled = false %}
+{% endunless %}
+
+{% if product.tags contains "no-shiptimer" %}
+  {% assign enabled = false %}
+{% endif %}
+
+{% if product_is_backorder %}
+  {% assign enabled = false %}
+{% endif %}
+
+{% if enabled %}
+  <div class="product-ship-timer">
+    {% include "ship-timer" %}
+  </div>
+{% endif %}

@@ -1,0 +1,25 @@
+{%- assign enabled = false -%}
+
+{%- if settings.chat_enabled -%}
+  {%- assign enabled = true -%}
+{%- endif -%}
+
+{%- if template.name == "index" -%}
+  {%- assign enabled = false -%}
+{%- endif -%}
+
+{% if enabled %}
+  <script>
+    window.hdlh = {
+      widget_key: "mvy83eovhjo703zvljn1",
+      color_mode: "light",
+      primary_color: "#000000",
+      launcher_button_image: "{{ 'helpdocs-icon.svg' | asset_url }}",
+      i18n: {
+        contact_button: "Chat",
+        search_placeholder: "Search keyword(s)"
+      }
+    };
+    (function(h,d){var s=d.createElement("script");s.type='text/javascript';s.async=true;s.src=h+"?t="+new Date().getTime();d.head.appendChild(s);})("https://lighthouse.helpdocs.io/load",document);
+  </script>
+{% endif %}

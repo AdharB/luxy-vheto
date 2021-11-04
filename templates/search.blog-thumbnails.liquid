@@ -1,0 +1,7 @@
+{% layout none %}
+
+{% assign blog = blogs["hair-blog"] %}
+
+{% paginate search.results by settings.blog_pagination_limit %}
+  {% include "blog-search-results" %}
+{% endpaginate %}

@@ -1,0 +1,116 @@
+{% assign heading = section.settings.heading %}
+
+<div class="homepage-press">
+  <h1 class="local--heading">
+    {{ heading }}
+  </h1>
+
+  <div class="homepage-press-logos grid-uniform grid-gutter--none xlarge--grid-gutter--up-2" data-flickity='{ "wrapAround": true, "prevNextButtons": false, "autoPlay": 4000, "pauseAutoPlayOnHover": false, "pageDots": false, "draggable": true, "dragThreshold": 10, "groupCells": 2, "watchCSS": true }'>
+    {% for block in section.blocks %}
+      {% assign image = block.settings.image %}
+
+      {% include "attribute-image-box-ratio" %}
+
+      {% assign image_url = image | img_url: "300x" %}
+
+      <div class="grid-item one-half medium--one-quarter large--one-quarter xlarge--one-eighth">
+        <div class="local--image-container box-ratio-inline" style="padding-bottom: {{ image_box_ratio }};">
+          <img data-src="{{ image_url }}" alt="Luxy Hair - Press" />
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <span class="arrow-icon-left"></span>
+  <span class="arrow-icon-right"></span>
+</div>
+
+{% schema %}
+  {
+    "name": "Press",
+    "class": "homepage-press-section",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading"
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Logo",
+        "type": "logo",
+        "limit": 7,
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Name"
+          }
+        ]
+      }
+    ],
+    "default": {
+      "settings": {
+        "heading": "As seen and featured in"
+      },
+      "blocks": [
+        {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/press-4.jpg",
+            "title": "Teen Vogue"
+          }
+        },
+        {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/press-5.jpg",
+            "title": "Bustle"
+          }
+        },
+        {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/press-6.jpg",
+            "title": "Bazaar"
+          }
+        },
+        {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/press-7.jpg",
+            "title": "The Huffington Post"
+          }
+        },
+        {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/press-2.jpg",
+            "title": "Refinery29"
+          }
+        },
+        {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/press-3.jpg",
+            "title": "BuzzFeed"
+          }
+        },
+        {
+          "type": "logo",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/press-1.jpg",
+            "title": "Glamour"
+          }
+        }
+      ]
+    }
+  }
+{% endschema %}

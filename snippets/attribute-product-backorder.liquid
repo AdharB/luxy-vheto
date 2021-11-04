@@ -1,0 +1,11 @@
+{% assign product_is_backorder = false %}
+
+{% assign product_backorder_description = nil %}
+
+{% for tag in product.tags %}
+  {% if tag contains "backorder-" %}
+    {% assign product_backorder_date = tag | split: "-" | last %}
+    {% assign product_backorder_description = settings.product_backorder_description | replace: "{{ date }}", product_backorder_date %}
+    {% assign product_is_backorder = true %}
+  {% endif %}
+{% endfor %}

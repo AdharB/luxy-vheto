@@ -1,0 +1,59 @@
+<script id="liquid-json" type="application/json">
+  {
+    "Article": {
+      "custom_attributes": {
+        "secure_url": {{ shop.secure_url | append: article.url | json }}
+      }
+    },
+    "Cart": {
+      "currency": {{ cart.currency.iso_code | json }},
+      "item_count": {{ cart.item_count | json }},
+      "total_price": {{ cart.total_price | json }},
+      "items": [{% for item in cart.items %}
+        {
+          "variant_id": {{ item.variant.id | json }}
+        }{% unless forloop.last %},{% endunless %}
+      {% endfor %}],
+      "custom_attributes": {
+        "has_product_gift": {{ cart_has_gift | json }},
+        "has_full_set": {{ cart_has_full_set | json }},
+        "has_gift_card": {{ cart_has_gift_card | json }},
+        "invalid": {{ cart_invalid | json }},
+        "gift_auto": {
+          "enabled": {{ settings.cart_gift_auto_enabled | json }},
+          "cart_amount": {{ settings.cart_gift_auto_amount | times: 100 }},
+          "id": {{ all_products[settings.cart_gift_auto_product].first_available_variant.id | json }},
+          "quantity": 1
+        }
+      }
+    },
+    "Collection": {
+      "current_tags": {{ current_tags | json }},
+      "title": {{ collection.title | json }}
+    },
+    "Product": {
+      "title": {{ product.title | json }},
+      "sku": {{ product.selected_or_first_available_variant.sku | json }}{% if collection %},
+      "collection": {
+        "title": {{ collection.title | json }}
+      }{% endif %},
+      "price": {{ product.price | money_without_currency | json }},
+      "custom_attributes": {
+        "length": {{ product_length | json }},
+        "title": {{ product_title | json }},
+        "weight": {{ product_weight | json }}
+      }
+    },
+    "Search": {
+      "terms": {{ search.terms | json }}
+    },
+    "Template":   {
+      "name": {{ template.name | json }},
+      "suffix": {{ template.suffix | json }},
+      "directory": {{ template.directory | json }}
+    },
+    "Theme": {
+      "role": {{ theme.role | json }}
+    }
+  }
+</script>

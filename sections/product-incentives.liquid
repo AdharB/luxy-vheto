@@ -1,0 +1,59 @@
+<div class="product-incentives-container">
+  <div class="product-incentives-content">
+    <div class="grid">
+      {% for block in section.blocks %}
+        {% assign svg = block.settings.icon %}
+
+        {% assign description = block.settings.title %}
+
+        {% case section.blocks.size %}
+          {% when 1 %}
+            {% assign grid_column_class = "one" %}
+          {% when 2 %}
+            {% assign grid_column_class = "one-half" %}
+          {% when 3 %}
+            {% assign grid_column_class = "one-third" %}
+          {% when 4 %}
+            {% assign grid_column_class = "one-quarter" %}
+        {% endcase %}
+
+        <div class="grid-item {{ grid_column_class }}">
+          <div class="product-incentive">
+            {{ svg }}
+
+            <div class="local--description">
+              {{ description }}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Incentives",
+    "settings": [],
+    "blocks": [
+      {
+        "name": "Incentive",
+        "type": "incentive",
+        "limit": 4,
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Description"
+          },
+          {
+            "type": "html",
+            "id": "icon",
+            "label": "Icon",
+            "info": "Paste in SVG code"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

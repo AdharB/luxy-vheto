@@ -1,0 +1,48 @@
+<!-- Google Code for Remarketing Tag -->
+{% comment %}
+Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. See more information and instructions on how to setup the tag on: http://google.com/ads/remarketingsetup
+{% endcomment %}
+
+<script>
+  var google_tag_params = {
+    {% if template == "index" -%}
+      ecomm_pagetype: "home",
+    {% endif %}
+
+    {% if template.name == "collection" %}
+      ecomm_pagetype: "category",
+    {% endif %}
+
+    {% if template.name == "product" %}
+      ecomm_pagetype: "product",
+      ecomm_prodid: {{ product.selected_or_first_available_variant.sku | json }},
+      ecomm_totalvalue: {{ product.price | money_without_currency }}{% if collection %},{% endif %}
+    {% endif %}
+
+    {% if collection %}
+      ecomm_category: {{ collection.title | json }}
+    {% endif %}
+
+    {% if template.name == "cart" %}
+      ecomm_pagetype: "cart",
+      ecomm_prodid: {{ cart.items | map: "sku" | join: '","' | append: '"]' | prepend: '["' }},
+      ecomm_totalvalue: {{ cart.total_price | money_without_currency }}
+    {% endif %}
+  };
+</script>
+
+<script>
+/* <![CDATA[ */
+var google_conversion_id = 1019326617;
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script>
+<div style="display: none;">
+  <script src="//www.googleadservices.com/pagead/conversion.js"></script>
+</div>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1019326617/?value=0&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>

@@ -1,0 +1,37 @@
+{% assign author_image = false %}
+{% assign author_name = false %}
+
+{% assign article_author = article.author %}
+
+{% assign blog_authors = blogs.authors.articles | map: "title" %}
+
+{% unless blog_authors contains article_author %}
+  {% assign article_author = "Luxy Hair" %}
+{% endunless %}
+
+{% for a in blogs.authors.articles %}
+  {% if article_author == a.title %}
+    {% assign author_image = a | img_url: "medium" %}
+    {% assign author_name = a.title %}
+  {% endif %}
+{% endfor %}
+
+{% if author_image %}
+  <div class="article-author">
+    <div class="grid-bar">
+      <div class="grid-item auto">
+        <div class="image-container">
+          <img data-src="{{ author_image }}" class="circle" width="85" />
+        </div>
+      </div>
+      <div class="grid-item auto">
+        <span class="local--kicker">
+          Posted by
+        </span>
+        <span class="local--description">
+          {{ author_name }}
+        </span>
+      </div>
+    </div>
+  </div>
+{% endif %}

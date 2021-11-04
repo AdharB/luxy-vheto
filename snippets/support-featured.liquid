@@ -1,0 +1,23 @@
+{% assign title = settings.support_featured_title %}
+
+<div class="support-featured">
+  <div class="content-container">
+    <h2 class="local--heading">
+      {{ title }}
+    </h2>
+
+    <ul class="local--list">
+      {% for num in (1..7) %}
+        {% assign article = "support_featured_article_" | append: num %}
+        {% assign article = settings[article] %}
+        {% assign article = articles[article] | default: false %}
+
+        {% unless article %}
+          {% continue %}
+        {% endunless %}
+
+        {% include "support-thumbnail" %}
+      {% endfor %}
+    </ul>
+  </div>
+</div>

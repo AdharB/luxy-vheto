@@ -1,0 +1,11 @@
+{% unless shop_color_groups %}
+  {%- include "attribute-shop-color-groups" -%}
+{% endunless %}
+
+{%- assign product_color_group = nil -%}
+
+{%- for tag in product.tags -%}
+  {%- if shop_color_groups contains tag -%}
+    {%- assign product_color_group = tag -%}
+  {%- endif -%}
+{%- endfor -%}

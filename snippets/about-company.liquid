@@ -1,0 +1,35 @@
+{% assign heading = settings.about_company_title %}
+
+{% assign description = settings.about_company_fun_fact %}
+
+{% assign image = settings.about_company_image | default: false %}
+
+{% assign image_url = image | img_url: "1000x" %}
+
+{% assign caption = settings.about_company_image_caption %}
+
+{% assign image_alt = caption %}
+
+<section class="box-default-lightest">
+  <div class="about-company">
+    <div class="container">
+      <h1 class="local--heading">
+        {{ heading }}
+      </h1>
+
+      <p class="local--kicker">
+        FUN FACT
+      </p>
+
+      <p class="local--description">
+        {{ description }}
+      </p>
+    </div>
+
+    {% if image %}
+      <div class="local--image-container">
+        <img src="{{ image_url }}" class="max-one" alt="{{ image_alt }}" />
+      </div>
+    {% endif %}
+  </div>
+</section>

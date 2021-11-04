@@ -1,0 +1,43 @@
+{%- include "attribute-product-backorder" -%}
+{%- include "attribute-product-waitlist-id" -%}
+
+{%- assign enabled = false -%}
+
+{%- if product_is_backorder -%}
+  {%- unless product_on_waitlist -%}
+    {%- assign enabled = true -%}
+  {%- endunless -%}
+{%- endif -%}
+
+{%- if enabled -%}
+  <script src="https://a.klaviyo.com/media/js/onsite/onsite.js"></script>
+
+  <script>
+    var klaviyo = klaviyo || [];
+
+    klaviyo.init({
+      account: "f4PkhV",
+      platform: "shopify",
+      display_on_policy_continue: true,
+      list: {{ settings.klaviyo_back_in_stock_settings_list_id | json }},
+      exclude_on_tags: {{ settings.klaviyo_back_in_stock_settings_include_tags | json }}
+    });
+
+    klaviyo.enable("backinstock", {
+      modal: {
+        headline: {{ product.title | json }},
+        body_content: {{ settings.klaviyo_back_in_stock_modal_description | json }},
+        email_field_label: "Email",
+        button_label: {{ settings.klaviyo_back_in_stock_modal_call_to_action | json }},
+        subscription_success_label: {{ settings.klaviyo_back_in_stock_modal_success | json }},
+        footer_content: {{ settings.klaviyo_back_in_stock_modal_footer | json }},
+        additional_styles: "@import url('https://cdn.shopify.com/s/files/1/0066/0052/t/171/assets/klaviyo-back-in-stock.css?v=5134392149487297110');",
+        drop_background_color: "#000",
+        background_color: "#fff",
+        text_color: "#6e6e6e",
+        error_background_color: "#fcd6d7",
+        error_text_color: "#CD627D",
+      }
+    });
+  </script>
+{%- endif -%}

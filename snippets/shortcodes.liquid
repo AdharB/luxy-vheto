@@ -1,0 +1,118 @@
+{% comment %}
+
+  DESCRIPTION
+
+    Shortcodes are an easy and powerful way to inject code anywhere
+    within a rich-text editor. They allow for custom pages without
+    more templates or embedded theme code.
+
+  USAGE
+
+    Pass in RTE content using the `with` keyword:
+
+      {% include "shortcodes" with page.content %}
+
+    This will show `page.content` with any shortcodes expanded.
+
+  SYNTAX
+
+    The syntax is the same as Wordpress:
+
+      [name]
+
+    Shortcodes can have any number of HTML-like attributes:
+
+      [name attribute="value"]
+
+    In rare cases where actual content matches a shortcode, brackets
+    can be escaped with double brackets.
+
+    One shortcode per line.
+
+  CUSTOM SHORTCODES
+
+    Create a snippet `snippets/shortcode-NAME.liquid` where NAME is
+    the name of the shortcode.
+
+    All attributes and values found in the RTE for each shortcode are
+    made available through 2 variables:
+
+    * `attribute_titles` - array of attribute titles
+    * `attribute_values` - array of attribute values
+
+    These can be used together to mimic key-value pairs by looping
+    through titles and using `forloop.index0` to access the
+    corresponding value.
+
+    A special `shortcode_href` variable is also available that contains
+    the value of the RTE link on the shortcode. Useful for buttons.
+
+  LINE BREAKS
+
+    There's a special built-in shortcode for line breaks:
+
+      [br]
+
+    Which gets replaced with a break tag `<br />`. Use everywhere a
+    line break would normally be used.
+
+{% endcomment %}
+
+{% assign each_line = shortcodes | newline_to_br | split: "<br />" %}
+
+{% for html in each_line %}
+  {% if html contains "[br]" %}
+    {{ html | replace: "[br]", "<br />" }}
+    {% continue %}
+  {% endif %}
+
+  {% assign shortcode = false %}
+
+  {% if html contains "[" and html contains "]" %}
+    {% unless html contains "[[" and html contains "]]" %}
+      {% assign shortcode = html | strip_html %}
+    {% endunless %}
+  {% endif %}
+
+  {% if shortcode %}
+    {% assign shortcode_name = shortcode | split: " " | first | replace: "[", "" | replace: "]", "" %}
+
+    {% assign shortcode_snippet = "shortcode-" | append: shortcode_name | handle %}
+
+    {% assign attribute_titles = "" %}
+    {% assign attribute_values = "" %}
+
+    {% assign shortcode = shortcode | replace: '”', '"' %}
+    {% assign shortcode = shortcode | replace: "[", "" | replace: "]", "" %}
+    {% assign shortcode = shortcode | split: " " %}
+    {% assign shortcode = shortcode | slice: 1, shortcode.size | join: " " %}
+    {% assign shortcode = shortcode | split: '" ' %}
+
+    {% for attribute in shortcode %}
+      {% assign title = attribute | split: '="' | first %}
+      {% assign value = attribute | split: '="' | last | replace: '"', "" %}
+
+      {% assign attribute_titles = attribute_titles | append: "  " | append: title %}
+      {% assign attribute_values = attribute_values | append: "  " | append: value %}
+    {% endfor %}
+
+    {% assign attribute_titles = attribute_titles | strip | split: "  " %}
+    {% assign attribute_values = attribute_values | strip | split: "  " %}
+
+    {% if html contains "href" %}
+      {% assign shortcode_href = html | split: 'href="' | last | split: '"' | first %}
+    {% else %}
+      {% assign shortcode_href = false %}
+    {% endif %}
+
+    {% capture shortcode %}
+      {% include shortcode_snippet %}
+    {% endcapture %}
+
+    {% unless shortcode contains "Liquid error" %}
+      {{ shortcode }}
+    {% endunless %}
+  {% else %}
+    {{ html | replace: "[[", "[" | replace: "]]", "]" }}
+  {% endif %}
+{% endfor %}

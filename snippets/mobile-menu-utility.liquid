@@ -1,0 +1,15 @@
+<ul>
+  {% for link in linklists["mobile-menu-utility"].links %}
+    {% assign highlight = "" %}
+
+    {% if forloop.last %}
+      {% assign highlight = "state--highlight" %}
+    {% endif %}
+
+    <li>
+      <a href="{{ link.url }}" class="mobile-menu-utility-link {{ highlight }}">
+        {{ link.title }}
+      </a>
+    </li>
+  {% endfor %}
+</ul>

@@ -1,0 +1,29 @@
+{% assign heading = section.settings.heading %}
+
+<div class="homepage-tagline-container">
+  <div class="homepage-tagline-content">
+    <h1 class="homepage-tagline-heading">
+      {{ heading }}
+    </h1>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Tagline",
+    "class": "homepage-tagline-section",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading"
+      }
+    ],
+    "default": {
+      "settings": {
+        "heading": "Luxy Hair is the #1 highest rated clip-in hair extensions brand worldwide."
+      }
+    }
+  }
+{% endschema %}

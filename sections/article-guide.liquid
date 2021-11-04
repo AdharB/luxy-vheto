@@ -1,0 +1,40 @@
+{% assign heading = section.settings.heading | default: nil %}
+
+{% assign call_to_action = section.settings.call_to_action | default: nil %}
+
+{% assign url = section.settings.url | default: nil %}
+
+<section class="article-guide hide large--show">
+  <h1 class="local--heading">
+    {{ heading }}
+  </h1>
+
+  {% if call_to_action and url %}
+    <a href="{{ url }}" class="local--button">
+      {{ call_to_action }}
+    </a>
+  {% endif %}
+</section>
+
+{% schema %}
+  {
+    "name": "Guide",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "heading"
+      },
+      {
+        "type": "text",
+        "id": "call_to_action",
+        "label": "Call to action"
+      },
+      {
+        "type": "url",
+        "id": "url",
+        "label": "Link"
+      }
+    ]
+  }
+{% endschema %}

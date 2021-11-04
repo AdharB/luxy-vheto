@@ -1,0 +1,49 @@
+<div class="large--flex product-thumbnail-4">
+  <div class="flex-item--2">
+    <a href="{{ product.url }}" class="local--image-container without-rte-styles">
+      <img class="one-whole" data-src="{{ image_url }}" alt="{{ shop.name }} - {{ product_title }}" />
+    </a>
+
+    {% if product_label %}
+      <div class="product-label local--label">
+        {{ product_label }}
+      </div>
+    {% endif %}
+  </div>
+  <div class="flex-item--2 flex flex-center border-default-lighter">
+    <div class="flex-item-center product-thumbnail-4-content">
+      <div class="local--logo">
+        {% include "logo" %}
+      </div>
+
+      {% if kicker %}
+        <span class="local--kicker">
+          {{ kicker }}
+        </span>
+      {% endif %}
+
+      <h2 class="local--heading without-rte-styles">
+        {{ product_title }}
+      </h2>
+
+      <span class="local--price">
+        {{ current_variant.price | money_without_trailing_zeros }}
+      </span>
+
+      <button class="local--button" data-ga-event='{ "category": "Article", "action": "click", "label": "{{ call_to_action }}" }' module-add-to-cart>
+        <script type="application/json">
+          {
+            "quantity": 1,
+            "custom_attributes": {
+              "product_is_full_set": {{ product_is_full_set }}
+            },
+            "variant": {{ current_variant | json }},
+            "collection": {{ product_collection | json }}
+          }
+        </script>
+
+        {{ call_to_action }}
+      </button>
+    </div>
+  </div>
+</div>

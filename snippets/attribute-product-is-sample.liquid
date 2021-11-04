@@ -1,0 +1,5 @@
+{% assign product_is_sample = false %}
+
+{% if product.title contains "Sample" %}
+  {% assign product_is_sample = true %}
+{% endif %}

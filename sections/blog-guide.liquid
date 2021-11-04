@@ -1,0 +1,87 @@
+{% assign image = section.settings.image | default: nil %}
+
+{% if image %}
+  {% include "attribute-image-box-ratio" %}
+  {% assign image_url = image | img_url: "1200x" %}
+{% endif %}
+
+{% assign mobile_image = section.settings.mobile_image %}
+
+{% assign mobile_image_url = mobile_image | img_url: "800x" %}
+
+{% assign kicker = section.settings.kicker %}
+
+{% assign heading = section.settings.heading %}
+
+{% assign call_to_action = section.settings.call_to_action %}
+
+{% assign url = section.settings.url %}
+
+{% if image %}
+  <section class="blog-guide">
+    <div class="blog-guide-container">
+      <div class="blog-guide-image large--hide!" data-src="{{ mobile_image_url }}"></div>
+      <div class="blog-guide-image medium-down--hide!" data-src="{{ image_url }}"></div>
+
+      <div class="blog-guide-content">
+        <span class="blog-kicker">
+          {{ kicker }}
+        </span>
+
+        <h1 class="local--heading">
+          {{ heading }}
+        </h1>
+
+        <a href="{{ url }}" class="local--button">
+          {{ call_to_action }}
+        </a>
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Guide",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Desktop"
+      },
+      {
+        "type": "image_picker",
+        "id": "mobile_image",
+        "label": "Mobile"
+      },
+      {
+        "type": "header",
+        "content": "Content"
+      },
+      {
+        "type": "text",
+        "id": "kicker",
+        "label": "Kicker"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading"
+      },
+      {
+        "type": "text",
+        "id": "call_to_action",
+        "label": "Call to action"
+      },
+      {
+        "type": "url",
+        "id": "url",
+        "label": "Link"
+      }
+    ]
+  }
+{% endschema %}

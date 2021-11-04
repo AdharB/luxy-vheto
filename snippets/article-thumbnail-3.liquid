@@ -1,0 +1,29 @@
+{% include "attribute-article-image" with "compact" %}
+{% include "attribute-article-category" %}
+
+{% assign url = article.url %}
+
+<div class="article-thumbnail-3 {% if forloop.last %}position--last{% endif %}">
+  <div class="grid grid-gutter--down-1">
+    <div class="grid-item one-third">
+      <a href="{{ url }}" class="local--image-container">
+        <img data-src="{{ article_image }}" />
+      </a>
+    </div>
+    <div class="grid-item two-thirds font-size--none">
+      <div class="local--content">
+        {% if article_category %}
+          <span class="local--kicker">
+            {{ article_category }}
+          </span>
+        {% endif %}
+
+        <h2 class="local--heading">
+          <a href="{{ url }}">
+            {{ article.title }}
+          </a>
+        </h2>
+      </div>
+    </div>
+  </div>
+</div>

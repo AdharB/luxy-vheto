@@ -1,0 +1,9 @@
+{% assign html_empty = false %}
+
+{% assign non_breaking_space = "%C2%A0" %}
+
+{% assign html_text_encoded = html | strip_html | strip | url_encode %}
+
+{% if html_text_encdoed == non_breaking_space %}
+  {% assign html_empty = true %}
+{% endif %}

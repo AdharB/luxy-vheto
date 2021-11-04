@@ -1,0 +1,68 @@
+{% assign blog = blog | default: blogs["hair-blog"] %}
+
+{% assign with_images = true %}
+
+{% if current_tags or template == "blog.all" or template == "search.blog" %}
+  {% assign with_images = false %}
+{% endif %}
+
+{% unless section.blocks == empty %}
+  <div class="{% if with_images %}blog-menu{% else %}blog-menu-text-only{% endif %}">
+    <div data-flickity='{ "cellAlign": "left", "groupCells": true, "contain": true, "pageDots": false, "prevNextButtons": false, "lazyLoad": 2 }'>
+      {% for block in section.blocks %}
+        {% assign name = block.settings.title %}
+
+        {% assign url = block.settings.url | default: blank %}
+
+        {% if url == blank %}
+          {% assign url = name | handle %}
+          {% assign url = blog.url | append: "/tagged/" | append: url %}
+        {% endif %}
+
+        {% assign image = block.settings.image | default: nil %}
+
+        {% assign image_url = image | img_url: "300x" %}
+
+        <div class="local--slide">
+          <a href="{{ url }}" class="local--image-container">
+            <img src="" data-flickity-lazyload="{{ image_url }}" class="one-whole" />
+          </a>
+
+          <a href="{{ url }}" class="blog-menu-text">
+            {{ name }}
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endunless %}
+
+{% schema %}
+  {
+    "name": "Categories",
+    "blocks": [
+      {
+        "type": "item",
+        "name": "Item",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Name"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "url",
+            "id": "url",
+            "label": "Link",
+            "info": "Leave blank to generate a tag URL."
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

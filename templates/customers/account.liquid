@@ -1,0 +1,120 @@
+<div class="customer-account-container">
+  <h1 class="customer-account-heading">
+    My Account
+  </h1>
+
+  <div class="grid">
+    <div class="grid-item medium--two-thirds">
+      <h2 class="customer-account-section-heading">
+        Order History
+      </h2>
+
+      {% if customer.orders.size != 0 %}
+        <div class="rte js-rte">
+          <table class="table-account-order">
+            <tr>
+              <th>Order</th>
+              <th>Date</th>
+              <th>Payment</th>
+              <th>Fulfillment</th>
+              <th>Total</th>
+            </tr>
+
+            {% for order in customer.orders %}
+              <tr>
+                <td class="text-links-default">{{ order.name | link_to: order.customer_url }}</td>
+                <td>{{ order.created_at | date: "%b %d, %Y" }}</td>
+                <td>{{ order.financial_status }}</td>
+                <td>{{ order.fulfillment_status }}</td>
+                <td>{{ order.total_price | money }}</td>
+              </tr>
+            {% endfor %}
+          </table>
+        </div>
+      {% else %}
+        <p>You haven't placed any orders yet.</p>
+      {% endif %}
+    </div>
+
+    <div class="grid-item medium--one-third">
+      <div class="account__sidebar">
+        <h2 class="customer-account-section-heading">
+          Account Details
+        </h2>
+
+        <h5>{{ customer.name }}</h5>
+
+        {% comment %}
+          {% if customer.default_address != nil %}
+            <p>
+              {{ customer.default_address.address1 }}<br>
+
+              {% if customer.default_address.address2 != "" %}
+                {{ customer.default_address.address2 }}<br>
+              {% endif %}
+
+              {% if customer.default_address.city != "" %}
+                {{ customer.default_address.city }}<br>
+              {% endif %}
+
+              {% if customer.default_address.province_code != "" %}
+                {{ customer.default_address.province_code | upcase }}<br>
+              {% endif %}
+
+              {% if customer.default_address.zip != "" %}
+                {{ customer.default_address.zip | upcase }}<br>
+              {% endif %}
+
+              {% if customer.default_address.country != "" %}
+                {{ customer.default_address.country }}<br>
+              {% endif %}
+
+              {% if customer.default_address.phone != "" %}
+                {{ customer.default_address.phone }}
+              {% endif %}
+            </p>
+          {% endif %}
+        {% endcomment %}
+
+        <ul class="account__sidebar__nav text-default-light">
+          <li>
+            <a href="/account/addresses">Edit address</a>
+          </li>
+          <li>
+            <a href="https://www.luxyhair.com/a/returns">Start a return</a>
+          </li>
+          <li>
+            <a href="/account/logout">Sign out</a>
+          </li>
+        </ul>
+
+        <div class="account__sidebar__reset-password">
+          {% form "reset_customer_password", class: 'form-reset-password' %}
+
+            <h2 class="customer-account-section-heading position--stacked">
+              Change password
+            </h2>
+
+            <p>Enter a new password for {{ customer.email }}</p>
+
+            {% if form.errors %}
+            <div class="text-links">
+              {{ form.errors | default_errors }}
+            </div>
+            {% endif %}
+
+            <label for="reset_password">Password</label>
+            <input type="password" value="" name="customer[password]" id="reset_password" placeholder="Enter Password" />
+
+            <label for="password_confirmation">Password Confirmation</label>
+            <input type="password" value="" name="customer[password_confirmation]" id="password_confirmation" placeholder="Password Confirmation" />
+
+            <button type="submit" class="button-outline-small">Reset Password</button>
+          {% endform %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include "swell-my-rewards" %}

@@ -1,0 +1,35 @@
+<!-- start snap pixel -->
+<script type='text/javascript'>
+  (function(win, doc, sdk_url){
+    if (win.snaptr) return;
+    var tr=win.snaptr=function() {
+      tr.handleRequest? tr.handleRequest.apply(tr, arguments):tr.queue.push(arguments);
+    };
+    tr.queue = [];
+    var s='script';
+    var new_script_section=doc.createElement(s);
+    new_script_section.async=!0;
+    new_script_section.src=sdk_url;
+    var insert_pos=doc.getElementsByTagName(s)[0];
+    insert_pos.parentNode.insertBefore(new_script_section, insert_pos);
+  })(window, document, 'https://sc-static.net/scevent.min.js');
+
+  {% if customer %}
+    snaptr('init', 'cf040e68-c5db-4c0a-989c-1f33af7fa864', {
+      user_hashed_email: '{{ customer.email | sha256 }}'
+    });
+  {% else %}
+    snaptr('init', 'cf040e68-c5db-4c0a-989c-1f33af7fa864');
+  {% endif %}
+
+  snaptr('track', 'PAGE_VIEW', {
+    description: {{ page_title | json }}
+  });
+
+  {% if checkout %}
+    if ( Shopify.step == "contact_information" ) {
+      snaptr('track', 'START_CHECKOUT');
+    }
+  {% endif %}
+</script>
+<!-- end snap pixel -->

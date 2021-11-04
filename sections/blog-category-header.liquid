@@ -1,0 +1,13 @@
+{% assign kicker = "The Luxy Hair Blog" %}
+
+{% assign heading = current_tags.first | default: "All posts" %}
+
+<div class="blog-category-header">
+  <a href="{{ blog.url }}" class="local--kicker">
+    {{ kicker }}
+  </a>
+
+  <h1 class="page-title">
+    {{ heading }}
+  </h1>
+</div>

@@ -1,0 +1,18 @@
+{% assign collection_for_color_choose = '0' %}
+{% assign collection_handle_match = '' %}
+{% for collection_ind in product.collections %}
+    {% assign collection_handle = collection_ind.handle | downcase %}
+    {% if collection_handle == 'classic-clip-in-hair-extensions' or collection_handle == '16-inch-hair-extensions-clip-in' or collection_handle == 'classic-24-inch' or collection_handle == 'seamless-clip-in-hair-extensions' or collection_handle == 'halo-hair-extensions' or collection_handle == 'ponytail-extension' or collection_handle == 'clip-in-buns' or collection_handle == 'curly-ponytail-extension' %}
+        {% assign collection_for_color_choose = '1' %}
+        {% assign collection_handle_match = collection_handle %}
+    {% endif %}
+{% endfor %}
+
+{% if collection_for_color_choose == '1'  %}
+      <div class="text-center collection-landing-virtual-color">
+        <a  class="collection-landing-filter-button" href="/pages/virtual-color-match?from_product=1&collection={{collection_handle_match}}">
+        <span class="collection-landing-filter-text collection-landing-filter-label" type="button">VIRTUAL COLOR MATCH</span>
+        </a>
+      </div>
+    <br>
+{% endif %}

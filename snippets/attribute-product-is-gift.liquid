@@ -1,0 +1,5 @@
+{% assign product_is_gift = false %}
+
+{%- if product and product.type == "GWP" -%}
+  {%- assign product_is_gift = true -%}
+{%- endif -%}

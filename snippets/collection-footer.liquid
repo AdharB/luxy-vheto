@@ -1,0 +1,34 @@
+{% capture email %}
+  {% assign address = settings.collection_footer_email_address %}
+  {% assign call_to_action = settings.collection_footer_email_call_to_action %}
+
+  <a href="mailto:{{ address }}">{{ call_to_action }}</a>
+{% endcapture %}
+
+{% capture video %}
+  {% assign url = settings.collection_footer_video_url %}
+  {% assign call_to_action = settings.collection_footer_video_call_to_action %}
+
+  <a href="{{ url }}" class="js-modal-video" data-ga-event='{ "category": "Video", "action": "play", "label": "Help video" }'>
+   {{ call_to_action }}
+
+  </a>
+{% endcapture %}
+
+{% capture support %}
+  {% assign url = settings.collection_footer_support_url %}
+  {% assign call_to_action = settings.collection_footer_support_call_to_action %}
+
+  <a href="{{ url }}">{{ call_to_action }}</a>
+{% endcapture %}
+
+{% assign description = settings.collection_footer_description %}
+{% assign description = description | replace: "{{ email }}", email %}
+{% assign description = description | replace: "{{ video }}", video %}
+{% assign description = description | replace: "{{ support }}", support %}
+
+<div class="collection-footer">
+  <p class="local--description">
+    {{ description }}
+  </p>
+</div>

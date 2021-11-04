@@ -1,0 +1,21 @@
+{% assign description = section.settings.compare_description %}
+
+{% assign call_to_action = section.settings.compare_call_to_action %}
+
+{% assign image = section.settings.compare_image | default: nil %}
+
+{% assign image_url = image | img_url: "1200x" %}
+
+<div class="collections-compare">
+  <p class="color-collections-description local--description">
+    {{ description }}
+  </p>
+
+  <a href="#collections-compare-modal" class="local--link js-modal">
+    {{ call_to_action }}
+  </a>
+</div>
+
+<div id="collections-compare-modal" class="modal-rte--image-only">
+  <img src="{{ image_url }}" alt="" />
+</div>

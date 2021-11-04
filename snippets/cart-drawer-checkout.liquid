@@ -1,0 +1,17 @@
+<form action="/cart" method="post" novalidate class="cart-drawer-checkout">
+  <div class="grid-bar grid-gutter--down-3">
+    <div class="grid-item one-half">
+      <button id="checkout-button" type="submit" class="cart-drawer-checkout-button" name="checkout" data-ga-event='{ "category": "Cart", "action": "checkout", "label": "Shopify" }'>
+        Checkout
+      </button>
+    </div>
+
+    <div class="grid-item one-half">
+      <button name="goto_pp" class="button-paypal one-whole" data-ga-event='{ "category": "Cart", "action": "checkout", "label": "Paypal" }'>
+        <svg class="align-icon">
+          <use xlink:href="#payment-paypal-color" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</form>

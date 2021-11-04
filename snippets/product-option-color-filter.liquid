@@ -1,0 +1,69 @@
+{% assign label = "Filter: All Colors" %}
+
+{% if current_color_group %}
+  {% assign label = "Filter: " | append: current_color_group %}
+{% endif %}
+
+{% if current_color_group == "all" %}
+  {% assign label = "Filter: All Colors" %}
+{% endif %}
+
+{% unless product_collection_color_groups == empty %}
+  <div class="product-option-color-filter" data-module-product-option-color-filter>
+    <a href="#" class="product-option-color-filter-button" data-local-button>
+      <span class="product-option-color-filter-text product-option-color-filter-label" data-local-label>
+        {{ label }}
+      </span>
+
+      <svg width="1em" height="1em" class="text-default">
+        <use xlink:href="#icon-controls" />
+      </svg>
+
+      <svg width="1em" height="1em" class="text-default">
+        <use xlink:href="#icon-arrow-down" />
+      </svg>
+    </a>
+
+    <div class="product-option-color-filter-dropdown hide" data-local-dropdown>
+      <div class="product-option-color-filter-dropdown-content">
+        <a href="#all" class="product-option-color-filter-text product-option-color-filter-link" data-local-link>
+          All Colors
+        </a>
+
+        {% for color in shop_color_groups %}
+          {% unless product_collection_color_groups contains color %}
+            {% continue %}
+          {% endunless %}
+
+          <a href="#{{ color | handle }}" class="product-option-color-filter-text product-option-color-filter-link" data-local-link>
+            {{ color }}
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <select class="product-option-color-filter-select" data-local-select>
+      <option value="all">
+        All colors
+      </option>
+
+      {% for color in shop_color_groups %}
+        {% unless product_collection_color_groups contains color %}
+          {% continue %}
+        {% endunless %}
+
+        {% assign color_handle = color | handle %}
+
+        {% assign selected = false %}
+
+        {% if current_color_group == color_handle %}
+          {% assign selected = true %}
+        {% endif %}
+
+        <option value="{{ color_handle }}" {% if selected %}selected="selected"{% endif %}>
+          {{ color }}
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+{% endunless %}

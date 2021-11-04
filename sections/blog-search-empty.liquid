@@ -1,0 +1,19 @@
+{% assign description = section.settings.description %}
+
+<div class="blog-search-empty">
+  {{ description }}
+</div>
+
+{% schema %}
+  {
+    "name": "No results",
+    "settings": [
+      {
+        "type": "richtext",
+        "id": "description",
+        "label": "Description",
+        "default": "<p>No results found. Make sure all words are spelled correctly. Try searching with more general keywords or fewer keywords.<\/p>"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,12 @@
+{% assign rte = product.description %}
+
+{% include "attribute-rte-fragments" %}
+{% include "attribute-rte-content" %}
+
+{% assign product_excerpt = rte_content | strip_html | truncatewords: 16 %}
+
+{% include "rte-fragment" with "excerpt" %}
+
+{% if rte_paragraphs.first %}
+  {% assign product_excerpt = rte_paragraphs.first | strip_html %}
+{% endif %}
